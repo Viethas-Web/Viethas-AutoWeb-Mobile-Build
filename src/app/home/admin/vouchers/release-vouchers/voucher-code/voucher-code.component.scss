@@ -1,0 +1,60 @@
+.row-back {
+    margin-top: 8px;
+    cursor: pointer;
+    i {
+      margin-top: 2px;
+    }
+  }
+  nz-layout {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 6px #00000014;
+    border-radius: 5px;
+    padding: 16px;
+    height: 95%;
+    overflow-y: hidden;
+    .title {
+      color: var(--ion-color-vh-green);
+      font-size: 1.1rem;
+    }
+    .btn-add {
+      color: #fff;
+      background: var(--ion-color-vh-green) 0% 0% no-repeat padding-box;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .btn_content{
+      border: none;
+      background: none;
+      box-shadow: none;
+    }
+  }
+  .ant-input-affix-wrapper {
+    border: 1px solid #c8c7cc;
+    border-radius: 5px;
+  }
+  @media only screen and (max-width: 1200px) {
+    .btn-add {
+      font-size: 0.8rem !important;
+    }
+    .btn-data {
+      font-size: 0.8rem !important;
+    }
+  } 
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  i {
+    cursor: pointer;
+  }
+  

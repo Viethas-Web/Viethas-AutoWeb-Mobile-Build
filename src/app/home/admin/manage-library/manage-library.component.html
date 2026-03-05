@@ -1,0 +1,192 @@
+<div style="background-color: white !important; height: 90vh; border-radius: 5px;" (click)="resetActive()" id="element">
+  <div style="font-size: 16px !important; height: 8%;
+  padding-bottom: 4px; display: flex; justify-content: space-between;
+   border-bottom: 1px dotted gray; align-items: center;">
+    <span style="display:flex; justify-content: flex-start;align-items: center;">
+      <span (click)="getFilenames_onViethas('')">
+        <button mat-stroked-button>
+          <mat-icon style="color: #00a859;">home</mat-icon>
+        </button>
+      </span>
+      <b style="color: #00a859; width: 70px">{{'thu_vien' | translate}}</b>
+      
+      <nz-input-group [nzPrefix]="prefixTemplateUser" style="width: 300px; margin-left: 10px;">
+        <input type="text" nz-input placeholder="Tìm kiếm" [(ngModel)]="keySearch" (keyup.enter)="onSearch()" (ngModelChange)="!$event ? onSearch() : null" />
+      </nz-input-group>
+      <ng-template #prefixTemplateUser><i nz-icon nzType="search"  (click)="onSearch()"></i></ng-template>
+    </span>
+    <span style="display:flex; width: 70%; justify-content: flex-end;">
+      <span (click)="backPath()">
+        <button mat-stroked-button *ngIf="path != data.scopeData">
+          <mat-icon>keyboard_return</mat-icon> {{'quay_lai' | translate}}
+        </button>
+      </span>
+      <span>
+        <button mat-stroked-button [matMenuTriggerFor]="menu">
+          <mat-icon style="color: #00a859;">view_list</mat-icon>
+          View
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="viewFilenames('icon')" style="margin: 0;" mat-menu-item>
+            <mat-icon [ngStyle]="{'color': view === 'icon' ? '#00a859' : ''}"
+              style="margin: 0;">check_box_outline_blank</mat-icon>
+            Icon
+          </button>
+          <button (click)="viewFilenames('detail')" style="margin: 0;" mat-menu-item>
+            <mat-icon [ngStyle]="{'color': view === 'detail' ? '#00a859' : ''}" style="margin: 0;">view_list</mat-icon>
+            Detail
+          </button>
+        </mat-menu>
+      </span>
+      <button mat-stroked-button (click)="openAddFolder()">
+        <mat-icon style="color: #fad76f;">folder</mat-icon> {{'tao_thu_muc' | translate}}
+      </button>
+      <button mat-stroked-button (click)="clickId('idUploadImg')">
+        <mat-icon>upload_file</mat-icon> {{'tai_len_anh' | translate}}
+      </button>
+      <button mat-stroked-button (click)="clickId('idUploadDoc')">
+        <mat-icon>insert_drive_file</mat-icon> {{'tai_len_tai_lieu' | translate}}
+      </button>
+      <button style="background-color: #00a859; color: white;" mat-stroked-button
+        (click)="selectFile(activeSelect)">
+        OK
+      </button>
+      <button mat-stroked-button (click)="close()">
+        {{'huy' | translate}}
+      </button>
+    </span>
+  </div>
+  <p *ngIf="(rows?.[0]?.length == 0 || rows?.length == 0 || showFileNames?.length == 0) && !keySearch">{{'ban_chua_tao_du_lieu_nao' | translate}}!</p>
+  <p *ngIf="(rows?.[0]?.length == 0 || rows?.length == 0 || showFileNames?.length == 0) && keySearch">{{'khong_tim_thay_du_lieu' | translate}}!</p>
+
+  <div class="relative" *ngIf="view == 'icon'">
+    <cdk-virtual-scroll-viewport class="scroll"   itemSize="136" style="height: 80vh;" id="scroll-library" >
+      <div class="row" *cdkVirtualFor="let row of rows">
+        <div (click)="activeFile(item, $event); $event.stopPropagation()" (contextmenu)="openRightFile(item,$event);"
+          class="col-2 folder"
+          *ngFor="let item of row"
+          [ngStyle]="{'background-color': (item?.name === activeLeft || selectedImages.has(item?.href)) ? 'antiquewhite' : 'white'}"
+        >
+          <div (dblclick)="getFilenames_onViethas(item.path)" *ngIf="item?.type ==0" class="file">
+            <mat-icon style="height: 90px;width: 90px;font-size: 90px; color: #fad76f;">folder</mat-icon>
+            <span style="font-size: 13px; word-break:break-all; padding: 6px;">{{item.name}}</span>
+          </div>
+          <!-- nếu ảnh .png, .jpg, .svg -->
+          <div (dblclick)="selectFile(item)" *ngIf="item?.type ==1 && (['png', 'jpg', 'svg', 'jpeg'].includes(getEndFileName(item.href)))" class="file">
+              <img style="height: 100px; width: 100px;box-shadow: 0px 2px 6px #00000014;" [src]="item.href" >
+              <span style="font-size: 13px; word-break: break-all;padding: 6px;"> {{item.name}}</span>
+          </div>
+
+          <!-- nếu file .pdf, .txt, .docs, .xls, .xlsx, .zip, .rar  -->
+          <div (dblclick)="selectFile(item)" *ngIf="item?.type ==1 && (['pdf', 'txt', 'doc', 'docx', 'xls', 'xlsx', 'zip', 'rar'].includes(getEndFileName(item.href)))" class="file">
+              <img style="height: 100px; width: 100px;box-shadow: 0px 2px 6px #00000014;" [src]="fileTypeImgs[getEndFileName(item.href)]" >
+              <span style="font-size: 13px; word-break: break-all;padding: 6px;"> {{item.name}}</span>
+          </div>
+
+          <div class="action" *ngIf="item?.name == activeRight ">
+            <p *ngIf="item.type == 1" (click)="openImage(item?.href)">
+              <mat-icon> open_in_new </mat-icon> {{ (['png', 'jpg', 'svg', 'jpeg'].includes(getEndFileName(item.href))) ? 'xem_anh' : 'xem_file' | translate}}
+            </p>
+            <p (click)="openEditFolder(item)">
+              <mat-icon>edit</mat-icon> {{'sua_anh' | translate}}
+            </p>
+            <p (click)="handleDelete($event)">
+              <mat-icon>delete</mat-icon> {{'xoa' | translate}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </cdk-virtual-scroll-viewport>
+    
+  </div>
+  <div class="relative_detail scroll" *ngIf="view == 'detail'">
+    <div style="width: 100%;display: flex;justify-content: center;">
+      <div class="row" style="width: 100%;align-items: center;justify-content: flex-start;">
+        <div class="col-12"
+          style="display: flex;position: sticky;top: 0;padding: 8px;z-index: 99;background: white;justify-content: space-between; border-bottom: 1px dotted gainsboro;">
+          <span (click)="statusName = !statusName;sort(statusName,'name')"
+            style="width: 60%; cursor: pointer; font-size: 14px; color: brown;">
+            {{'ten' | translate}}
+            <mat-icon *ngIf="statusName"
+              style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">expand_less</mat-icon>
+            <mat-icon *ngIf="!statusName"
+              style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">expand_more</mat-icon>
+          </span>
+          <span (click)="statusType = !statusType;sort(statusType,'type')"
+            style="width: 20%;font-size: 14px;color: brown;cursor: pointer;">
+            {{'loai' | translate}}
+            <mat-icon *ngIf="statusType"
+              style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">expand_less</mat-icon>
+            <mat-icon *ngIf="!statusType"
+              style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">expand_more</mat-icon>
+          </span>
+          <span (click)="statusSize = !statusSize;sort(statusSize,'size')"
+            style="width: 20%;font-size: 14px;color: brown; cursor: pointer;">
+            {{'kich_thuoc' | translate}}
+            <mat-icon *ngIf="statusSize"
+              style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">expand_less</mat-icon>
+            <mat-icon *ngIf="!statusSize"
+              style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">expand_more</mat-icon>
+          </span>
+        </div>
+        <div class="col-12" style="display: flex; cursor: default; margin: 2px; align-items: center;"
+          (click)="activeFile(item, $event); $event.stopPropagation()" (contextmenu)="openRightFile(item,$event);"
+          [ngStyle]="{'background-color': (item?.name === activeLeft || selectedImages.has(item?.href)) ? 'antiquewhite' : 'white'}"
+          *ngFor="let item of showFileNames">
+          <div style="width: 60%;display: flex; align-items: center;" (dblclick)="getFilenames_onViethas(item.path)"
+            *ngIf="item.type ==0">
+            <mat-icon style="height: 20px;width: 20px;font-size: 20px; color: #fad76f;">folder</mat-icon>
+            <span style="font-size: 14px; word-break:break-all; padding: 6px;">{{item.name}}</span>
+          </div>
+          <div style="width: 60%; display: flex; align-items: center;" (dblclick)="openImage(item.href)"
+            *ngIf="item.type ==1">
+            <img *ngIf="['png', 'jpg', 'svg', 'jpeg'].includes(getEndFileName(item.href))" style="height: auto; width: 20px;box-shadow: 0px 2px 6px #00000014;object-fit: cover;" [src]="item.href" alt="">
+            <img *ngIf="['pdf', 'txt', 'doc', 'docx', 'xls', 'xlsx','zip', 'rar'].includes(getEndFileName(item.href))" style="height: 20px; width: 20px;box-shadow: 0px 2px 6px #00000014;" [src]="fileTypeImgs[getEndFileName(item.href)]" alt="">
+            
+            <span style="font-size: 14px; word-break: break-all;padding: 6px;">{{item.name}}</span>
+          </div>
+          <div style="width: 20%;font-size: 14px; color: gray;">
+            {{item.type == 0 ? ' Thư mục' : 'File ảnh'}}
+          </div>
+          <div style="width: 20%;font-size: 14px;color: gray;">
+            281,982Kb
+          </div>
+          <div class="action action_detail" *ngIf="item.name === activeRight">
+            <p *ngIf="item.type == 1" (click)="openImage(item?.href)">
+                <mat-icon> open_in_new </mat-icon> {{'xem_anh' | translate}}
+            </p>
+            <p (click)="openEditFolder(item)">
+              <mat-icon>edit</mat-icon> {{'sua_ten' | translate}}
+            </p>
+            <p (click)="handleDelete($event)">
+              <mat-icon>delete</mat-icon> {{'xoa' | translate}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+<ul id="menu" class="absolute hidden">
+  <div class="action action_right">
+    <p (click)="openAddFolder()">
+      <mat-icon>folder</mat-icon> {{'tao_thu_muc' | translate}}
+    </p>
+    <p (click)="clickId('idUploadImg')">
+      <mat-icon>upload_file</mat-icon> {{'tai_len_anh' | translate}}
+    </p>
+    
+    <p (click)="clickId('idUploadDoc')">
+      <mat-icon>insert_drive_file</mat-icon> {{'tai_len_tai_lieu' | translate}}
+    </p>
+  </div>
+</ul>
+<input style="display: none;" type="file" class="custom-file-input" id="idUploadImg" (change)="uploadImg($event);" multiple
+  accept=".png, .jpg, .svg">
+
+<input style="display: none;" type="file" class="custom-file-input" id="idUploadDoc" (change)="uploadDoc($event);" multiple
+accept=".pdf, .txt, .doc, .docx, .xls, .xlsx, .zip, .rar"> 

@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Amatic SC",
+    "value": "'Amatic SC', cursive"
+  },
+  {
+    "name": "Arial",
+    "value": "Arial"
+  },
+  {
+    "name": "Anton",
+    "value": "Anton"
+  },
+  {
+    "name": "Asap",
+    "value": "'Asap', serif"
+  },
+  {
+    "name": "Baloo 2",
+    "value": "'Baloo 2', sans-serif"
+  },
+  {
+    "name": "Be Vietnam Pro",
+    "value": "Be Vietnam Pro"
+  },
+  {
+    "name": "Barlow",
+    "value": "Barlow"
+  },
+  {
+    "name": "Barlow Condensed",
+    "value": "'Barlow Condensed', sans-serif"
+  },
+  {
+    "name": "Bebas Neue",
+    "value": "'Bebas Neue', sans-serif"
+  },
+  {
+    "name": "Bungee",
+    "value": "'Bungee', sans-serif"
+  },
+  {
+    "name": "Caveat",
+    "value": "'Caveat', cursive"
+  },
+  {
+    "name": "Charm",
+    "value": "Charm"
+  },
+  {
+    "name": "Comfortaa",
+    "value": "'Comfortaa', serif"
+  },
+  {
+    "name": "Comic Sans MS",
+    "value": "'Comic Sans MS',Arial"
+  },
+  {
+    "name": "Cursive",
+    "value": "cursive"
+  },
+  {
+    "name": "Dancing Script",
+    "value": "'Dancing Script', cursive"
+  },
+  {
+    "name": "Edu Australia VIC WA NT Pre",
+    "value": "'Edu AU VIC WA NT Pre', serif"
+  },
+  {
+    "name": "Exo",
+    "value": "'Exo', sans-serif"
+  },
+  {
+    "name": "Exo 2",
+    "value": "'Exo 2', sans-serif"
+  },
+  {
+    "name": "Fira Sans Extra Condensed",
+    "value": "Fira Sans Extra Condensed"
+  },
+  {
+    "name": "Georgia",
+    "value": "Georgia"
+  },
+  {
+    "name": "Great Vibes",
+    "value": "'Great Vibes', cursive"
+  },
+  {
+    "name": "Inconsolata",
+    "value": "Inconsolata"
+  },
+  {
+    "name": "Inter",
+    "value": "'Inter', serif"
+  },
+  {
+    "name": "Josefin Sans",
+    "value": "'Josefin Sans', sans-serif"
+  },
+  {
+    "name": "Kanit",
+    "value": "Kanit"
+  },
+  {
+    "name": "Kaushan Script",
+    "value": "'Kaushan Script', cursive"
+  },
+  {
+    "name": "Lato",
+    "value": "'Lato', sans-serif"
+  },
+  {
+    "name": "Lavishly Yours",
+    "value": "'Lavishly Yours', cursive"
+  },
+  {
+    "name": "Libre Franklin",
+    "value": "'Libre Franklin', sans-serif"
+  },
+  {
+    "name": "Lilita One",
+    "value": "'Lilita One', serif"
+  },
+  {
+    "name": "Lobster",
+    "value": "'Lobster', cursive"
+  },
+  {
+    "name": "Lora",
+    "value": "Lora"
+  },
+  {
+    "name": "Merriweather",
+    "value": "Merriweather"
+  },
+  {
+    "name": "Mukta",
+    "value": "Mukta"
+  },
+  {
+    "name": "Mulish",
+    "value": "Mulish"
+  },
+  {
+    "name": "Montserrat",
+    "value": "Montserrat"
+  },
+  {
+    "name": "Noto Sans TC",
+    "value": "Noto Sans TC"
+  },
+  {
+    "name": "Noto Serif",
+    "value": "'Noto Serif', serif"
+  },
+  {
+    "name": "Open Sans",
+    "value": "'Open Sans', sans-serif"
+  },
+  {
+    "name": "PT Sans",
+    "value": "'PT Sans', sans-serif"
+  },
+  {
+    "name": "Pacifico",
+    "value": "'Pacifico', cursive"
+  },
+  {
+    "name": "Playfair Display",
+    "value": "'Playfair Display', serif"
+  },
+  {
+    "name": "Poppins",
+    "value": "'Poppins', sans-serif"
+  },
+  {
+    "name": "Quicksand",
+    "value": "Quicksand"
+  },
+  {
+    "name": "Raleway",
+    "value": "Raleway"
+  },
+  {
+    "name": "Roboto",
+    "value": "'Roboto', sans-serif"
+  },
+  {
+    "name": "Roboto Condensed",
+    "value": "'Roboto Condensed', sans-serif"
+  },
+  {
+    "name": "Rubik",
+    "value": "Rubik"
+  },
+  {
+    "name": "Sans Serif",
+    "value": "sans-serif"
+  },
+  {
+    "name": "Serif",
+    "value": "serif"
+  },
+  {
+    "name": "Shadows Into Light",
+    "value": "'Shadows Into Light', cursive"
+  },
+  {
+    "name": "Shrikhand",
+    "value": "'Shrikhand', serif"
+  },
+  {
+    "name": "Signika",
+    "value": "'Signika', sans-serif"
+  },
+  {
+    "name": "Sora",
+    "value": "'Sora', serif"
+  },
+  {
+    "name": "Sour Gummy",
+    "value": "'Sour Gummy', serif"
+  },
+  {
+    "name": "Source Sans Pro",
+    "value": "'Source Sans Pro', sans-serif"
+  },
+  {
+    "name": "System UI",
+    "value": "system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+  },
+  {
+    "name": "Tajawal",
+    "value": "'Tajawal', serif"
+  },
+  {
+    "name": "Times New Roman",
+    "value": "'Times New Roman',Arial"
+  },
+  {
+    "name": "Ubuntu",
+    "value": "Ubuntu"
+  },
+  {
+    "name": "Urbanist",
+    "value": "'Urbanist', serif"
+  },
+  {
+    "name": "Varela",
+    "value": "Varela"
+  }
+]

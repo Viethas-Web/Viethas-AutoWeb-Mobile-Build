@@ -1,0 +1,57 @@
+<div class="wrapper-modal">
+    <div class="header" style="display: flex;align-items: center;justify-content: space-between;">
+        <p class="m-0 title" style="font-weight: 500">{{'thanh_toan_khac' | translate}}</p>
+        <i class="bi bi-x" style="cursor:pointer;color: #07d31d;font-size: 30px;" (click)="closeDialog()"></i>
+    </div>
+    <div class="content">
+        <div class="content-left">
+            <p class="title">Coupon</p>
+        </div>
+        <div class="content-center">
+            <input type="text" placeholder="{{'nhap_hoac_quet_ma_coupon' | translate }}">
+            <button style="padding: 8px 12px;
+            background: #00a859;
+            color: #ffffff;
+            border-radius: 3px;
+            margin-left: 10px;">{{'ap_dung' | translate }}</button>
+        </div>
+        <div class="content-right" style="text-align: right;">
+            <span>0</span>
+        </div>
+    </div>
+    <br>
+    <div class="content">
+        <div class="content-left">
+            <p class="title">{{'diem_tich_luy' | translate }}</p>
+        </div>
+        <div class="content-center">
+            <input type="text" style="width: 92%;">
+        </div>
+        <div class="content-right" style="text-align: right;">
+            <span>0</span>
+        </div>
+    </div>
+    <br>
+    <div class="content">
+        <div class="content-left">
+            <p class="title">{{'ti_le_quy_doi' | translate }}: 1 {{'diem' | translate }} = 1,000 VNĐ</p>
+        </div>
+        <div class="content-right" style="text-align: right;">
+            <span>{{'diem_tich_luy_hien_tai' | translate }}: 0</span>
+        </div>
+    </div>
+    <br>
+    <div class="content">
+        <div class="content-left">
+            <p class="title" style="font-weight: 500;">{{'tong_giam' | translate }}</p>
+        </div>
+        <div class="content-right" style="text-align: right;">
+            <span>0</span>
+        </div>
+    </div>
+    <hr>
+    <div class="footer">
+        <button class="button-cancel" (click)="closeDialog()">{{'huy' | translate }}</button>
+        <button class="button-save">{{'luu' | translate }}</button>
+    </div>
+</div>

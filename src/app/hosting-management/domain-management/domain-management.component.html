@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h2>{{'quan_ly_domain' | translate}}</h2>
+  <form [formGroup]="domainForm" (ngSubmit)="editingDomain ? updateDomain() : addDomain()">
+    <div class="mb-3">
+      <label class="form-label">Domain Name</label>
+      <input type="text" class="form-control" formControlName="name">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Status</label>
+      <select class="form-control" formControlName="status">
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">{{ editingDomain ? 'Update' : 'Add' }} Domain</button>
+  </form>
+  <hr>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let domain of domains">
+        <td>{{ domain.id }}</td>
+        <td>{{ domain.name }}</td>
+        <td>{{ domain.status }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" (click)="editDomain(domain)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteDomain(domain.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

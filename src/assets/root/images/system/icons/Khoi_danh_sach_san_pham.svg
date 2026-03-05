@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69" height="69" viewBox="0 0 69 69">
+  <defs>
+    <filter id="Rectangle_14557" x="0" y="0" width="69" height="69" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_62766" data-name="Group 62766" transform="translate(23196.5 -23.5)">
+    <g transform="matrix(1, 0, 0, 1, -23196.5, 23.5)" filter="url(#Rectangle_14557)">
+      <rect id="Rectangle_14557-2" data-name="Rectangle 14557" width="60" height="60" transform="translate(4.5 3.5)" fill="#fff"/>
+    </g>
+    <path id="Path_115828" data-name="Path 115828" d="M9.8,15h8.3a.789.789,0,0,0,.8-.8V5.8a.709.709,0,0,0-.7-.8H9.8a.86.86,0,0,0-.8.8v8.3A.882.882,0,0,0,9.8,15Zm0,14h8.3a.789.789,0,0,0,.8-.8V19.9a.789.789,0,0,0-.8-.8H9.8a.709.709,0,0,0-.8.7v8.3A.882.882,0,0,0,9.8,29Zm0,14h8.3a.789.789,0,0,0,.8-.8V33.9a.789.789,0,0,0-.8-.8H9.8a.709.709,0,0,0-.8.7v8.3A.882.882,0,0,0,9.8,43ZM23,7h6a.945.945,0,0,0,1-1,.945.945,0,0,0-1-1H23a.945.945,0,0,0-1,1A.945.945,0,0,0,23,7Zm0,4H38a.945.945,0,0,0,1-1,.945.945,0,0,0-1-1H23a.945.945,0,0,0-1,1A.945.945,0,0,0,23,11Zm0,4H38a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Zm0,6h6a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Zm0,4H38a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Zm0,4H38a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Zm0,6h6a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Zm0,4H38a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Zm0,4H38a1,1,0,0,0,0-2H23a1,1,0,0,0,0,2Z" transform="translate(-23186 33)" fill="#707070"/>
+    <path id="Intersection_19" data-name="Intersection 19" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23174.051 41.259)" fill="#fff"/>
+    <path id="Intersection_20" data-name="Intersection 20" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23174.051 55.259)" fill="#fff"/>
+    <path id="Intersection_21" data-name="Intersection 21" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23174.051 69.259)" fill="#fff"/>
+  </g>
+</svg>

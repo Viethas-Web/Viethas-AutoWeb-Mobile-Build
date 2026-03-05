@@ -1,0 +1,213 @@
+[
+    {
+      "label" : "Khi rê chuột" ,
+      "type" :"hover",
+      "data" : [
+        {
+          "id": "000000",
+          "name": "Mặc định",
+          "animation": {
+            "animation-0": {}
+          }
+        },
+        {
+          "id": "000001",
+          "type": "1",
+          "name": "Đổi màu",
+          "animation": {
+            "animation-0": {
+                "--0h-color": "#fff",
+                "--0h-transition": "0.3s",
+                "--0-transition": "0.3s"
+            }
+          },
+          "customize": [
+            {
+              "label": "mau_van_ban",
+              "var": "--0h-color",
+              "type": "color"
+            },
+            {
+              "label": "thoi_gian_bat_dau",
+              "var": "--0h-transition",
+              "type": "transition"
+            },
+            {
+              "label": "thoi_gian_ket_thuc",
+              "var": "--0-transition",
+              "type": "transition"
+            }
+          ]
+        },
+        {
+          "id": "000002",
+          "type": "1",
+          "name": "Tạo bóng",
+          "animation": {
+            "animation-0": {
+              "--0-transition": "0.3s",
+              "--0h-transition": "0.3s",
+              "--0h-filter": "drop-shadow(0 0 0.3rem #00a859)"
+            }
+          },
+          "customize": [
+            {
+              "label": "",
+              "var": "--0h-filter",
+              "type": "filter"
+            },
+            {
+              "label": "thoi_gian_bat_dau",
+              "var": "--0h-transition",
+              "type": "transition"
+            },
+            {
+              "label": "thoi_gian_ket_thuc",
+              "var": "--0-transition",
+              "type": "transition"
+            }
+          ]
+        },
+        {
+          "id": "000003",
+          "type": "1",
+          "name": "Gạch chân",
+          "animation": {
+            "animation-0": {
+              "--0h-text-decoration": "underline"
+            }
+          },
+          "customize": [
+          ]
+        }
+      ]
+    },
+    {
+      "label" : "Tự động" ,
+      "type" :"keyframes",
+      "data" : [
+        {
+          "id": "000004",
+          "type": "1",
+          "name": "Đổi màu",
+          "animation": {
+            "animation-0": {
+              "--0-animation": "animate-1 2s linear infinite",
+              "--0f-color": "#ff0000",
+              "--0t-color": "#ff00ff"
+            }
+          },
+          "customize": [
+            {
+              "label": "mau_1",
+              "var": "--0f-color",
+              "type": "color"
+            },
+            {
+              "label": "mau_2",
+              "var": "--0t-color",
+              "type": "color"
+            },
+            {
+              "label": "",
+              "var": "--0-animation",
+              "type": "animation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label" : "Khi xuất hiện" ,
+      "type" :"visible",
+      "data":[
+        {
+            "id": "000005",
+            "type": "1",
+            "name": "Trượt",
+            "animation": {
+              "animation-0": {
+                "--0-animation": "animate-0 2s linear 1",
+                "--0f-transform": "translateX(100%) translateY(100%)",
+                "--0t-transform": "translateX(0%) translateY(0%)"
+              }
+            },
+            "customize": [
+                {
+                    "label": "vi_tri_bat_dau",
+                    "var": "--0f-transform",
+                    "type": "transform"
+                  },
+                  {
+                    "label": "vi_tri_ket_thuc",
+                    "var": "--0t-transform",
+                    "type": "transform"
+                  },
+                  {
+                    "label": "",
+                    "var": "--0-animation",
+                    "type": "animation"
+                  }
+            ]
+        },
+        {
+            "id": "000006",
+            "type": "1",
+            "name": "Hiện dần",
+            "animation": {
+              "animation-0": {
+                "--0-animation": "animate-0 2s linear 1",
+                "--0f-opacity": "0",
+                "--0t-opacity": "1"
+              }
+            },
+            "customize": [
+                {
+                    "label": "do_mo_khi_bat_dau",
+                    "var": "--0f-opacity",
+                    "type": "opacity"
+                },
+                {
+                    "label": "do_mo_khi_ket_thuc",
+                    "var": "--0t-opacity",
+                    "type": "opacity"
+                },
+                {
+                    "label": "",
+                    "var": "--0-animation",
+                    "type": "animation"
+                }
+            ]
+        },
+        {
+            "id": "000007",
+            "type": "1",
+            "name": "Thu phóng",
+            "animation": {
+              "animation-0": {
+                "--0-animation": "animate-0 2s linear 1",
+                "--0f-transform": "scale(0.5)",
+                "--0t-transform": "scale(1)"
+              }
+            },
+            "customize": [
+                {
+                    "label": "",
+                    "var": "--0f-transform",
+                    "type": "transform"
+                  },
+                  {
+                    "label": "",
+                    "var": "--0t-transform",
+                    "type": "transform"
+                  },
+                  {
+                    "label": "",
+                    "var": "--0-animation",
+                    "type": "animation"
+                  }
+            ]
+        }
+      ]
+    }
+  ]

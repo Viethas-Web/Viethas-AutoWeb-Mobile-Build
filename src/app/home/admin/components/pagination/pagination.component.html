@@ -1,0 +1,54 @@
+<div class="pagination">
+  <div class="pagination-list-button">
+    <div class="page-start pagiItem" (click)="gotoPreviousPage()">{{'truoc' | translate }}</div>
+    <div class="page-number pagiItem" *ngIf="totalPages >= 3 && pageCurrent >= 3" (click)="transferFn(1)">
+      1
+    </div>
+    <div class="page-number pagiItem" *ngIf="totalPages > 3 && pageCurrent > 3">
+      ...
+    </div>
+    <div *ngFor='let page of pageShowChoose ;let i = index'>
+      <div class="page-number pagiItem" *ngIf="page <= totalPages && page > 0"
+        [ngClass]="{'active': page == pageCurrent}" (click)="transferFn(page)">
+        {{page}}
+      </div>
+    </div>
+    <div class="page-number pagiItem" *ngIf="totalPages > 3 && pageCurrent < totalPages-2">
+      ...
+    </div>
+    <div class="page-number pagiItem" *ngIf="totalPages >= 3 && pageCurrent <= totalPages-2"
+      (click)="transferFn(totalPages)">
+      {{totalPages}}
+    </div>
+    <div class="page-end pagiItem" (click)="gotoNextPage()">{{'sau' | translate }}</div>
+    <button nz-popover [nzPopoverTitle]="'Tối đa ' +  totalPages" [nzPopoverContent]="contentTemplate"
+      class="page-go pagiItem" nzPopoverPlacement="top">
+      {{'toi_trang' | translate }}
+    </button>
+
+      <!-- Số lượng danh mục trên/trang -->
+    <nz-select [nzSize]="'large'"
+      [(ngModel)]="limit"
+      (ngModelChange)="handleChangeLimit()"
+      nzPlaceHolder=""
+      nzAllowClear="false"
+      class="ml-2"
+      style="width: 115px;"
+      >
+      <nz-option *ngFor="let n of numberPerPage" [nzValue]="n" [nzLabel]="n + '/Trang'"></nz-option>
+    </nz-select>
+      
+  </div>
+  <ng-template #contentTemplate>
+    <div class="input-container">
+      <div class="input-group">
+        <input class="form-control" width="10rem" placeholder="{{'nhap_trang_can_toi' | translate }}" type="number" min="1"
+          [max]="totalPages" [(ngModel)]="pageGoto" />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button"
+            (click)="transferFn(pageGoto > totalPages ? totalPages : pageGoto < 1 ? 1 : pageGoto)">Tới</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

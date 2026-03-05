@@ -1,0 +1,57 @@
+<nz-layout id="purchase-invoice-today">
+    <!-- Heading -->
+    <div class="field-heading">
+            <p class="title">{{'danh_sach_voucher' | translate}}</p>
+        <nz-input-group [nzSuffix]="suffixIconSearch" style="width:30%">
+            <input type="text" nz-input placeholder="{{'tim_voucher' | translate}}" [(ngModel)]="keySearch" (keyup)="search_Voucher(keySearch)"/>
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button style="margin: 0 8px;" nz-button nzType="default" (click)="getListVoucher()">
+                    {{'xem' | translate}}
+                  </button>
+              <button type="button" class="btn btn-success" (click)="addVoucher()"> + {{'tao_voucher' | translate}} </button>
+            </div>
+    </div>
+    <!-- Content -->
+    <div style="margin-top: 16px;">
+        {{'tong' | translate}} <span style="color: #00a859;font-weight: 500;">{{listVoucher.length}}</span> voucher
+        <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="listVoucher" #basicTable [nzShowPagination]="true"
+            nzShowSizeChanger [nzLoading]="loading" [nzPageSize]="pageSize" [nzPageSizeOptions]="[5,10, 20, 30, 40, 50, 100, 200]">
+            <thead class="_thead">
+                <tr>
+                    <th *ngFor="let item of listOfColumn" [nzWidth]="item.width" [nzAlign]="item.align" style="cursor:pointer" >
+                        <b>{{item.name | translate}}</b>
+                        <span *ngIf="item.hasOwnProperty('sort') && listVoucher.length" nz-icon (click)="item.sort = !item.sort;handleSort(item.name, item.sort)"
+                         [nzType]="item.sort ? 'arrow-down' : 'arrow-up'" nzTheme="outline">
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let voucher of basicTable.data; trackBy: trackByFn" >
+                    <td nzAlign="left">
+                        <span>{{ voucher.name }}</span>
+                    </td>
+                    <td nzAlign="left">
+                        <span>{{ voucher.nameProduct}}</span>
+                    </td>
+                    <td nzAlign="center">
+                        <span>{{vhAlgorithm.vhcurrencyunit(voucher.units[0].price)}} đ</span>
+                    </td>
+                    <td nzAlign="center">
+                        <div class="icon-action">
+                            <span nz-icon nzType="edit" nzTheme="outline" (click)="gotoDetail(voucher)"></span>
+                            <span  nz-popconfirm
+                            nzPopconfirmTitle="Bạn muốn xóa voucher này?"
+                            (nzOnConfirm)="deleteVoucher(voucher)"
+                             nz-icon nzType="delete" nzTheme="outline" ></span>
+                          </div>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-layout>

@@ -1,0 +1,110 @@
+.row-back {
+    margin-top: 8px;
+    cursor: pointer;
+    i {
+      margin-top: 2px;
+    }
+  }
+  nz-layout {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 6px #00000014;
+    border-radius: 5px;
+    padding: 16px;
+    height: 95%;
+    overflow: hidden !important;
+    .title {
+      color: var(--ion-color-vh-green);
+      font-size: 1.1rem;
+    }
+  
+    .btn-add {
+      color: #fff;
+      background: #ff7f27 0% 0% no-repeat padding-box;
+      border-radius: 5px;
+    }
+    .bg-img {
+      width: 120px;
+      padding: 4px;
+      height: 120px;
+      background: #f2f2f2 0% 0% no-repeat padding-box;
+      box-shadow: 0px 2px 6px #00000014;
+      border-radius: 10px;
+      i {
+        font-size: 60px;
+        color: #8e8e93;
+      }
+      img {
+        height: 100%;
+      }
+    }
+    input {
+      width: 100%;
+      border: 1px solid #c8c7cc !important;
+      border-radius: 5px !important;
+    }
+    .ant-select {
+      width: 100%;
+      // border: 1px solid #c8c7cc !important;
+      border-radius: 5px !important;
+    }
+    nz-date-picker {
+      margin: 0 8px 12px 0;
+      width: 90%;
+      border: 1px solid #c8c7cc !important;
+      border-radius: 5px !important;
+    }
+    .branch-permission {
+      &-input {
+         
+        padding: 4px 11px;
+        border: 1px solid #c8c7cc;
+        border-radius: 5px;
+        height: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        ion-icon {
+          float: right;
+        }
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+  .layout {
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+  
+  .layout::-webkit-scrollbar {
+    width: 0px; /* For Chrome, Safari, and Opera */
+  }
+  ion-toggle {
+    width: 50px;
+    padding-right: 0;
+  }
+  .label {
+    font-size: 0.9rem;
+  }
+  
+  .item-checkbox {
+    border-bottom: 1px solid #80808029;
+    padding: 10px 0;
+    margin: 5px 0;
+  }
+  input.nz-hover-border {
+    width: 90% !important;
+    border-radius: 5px !important;
+  }
+  .ant-table-body {
+    overflow-y: auto;
+  }
+  

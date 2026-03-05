@@ -1,0 +1,131 @@
+<div nz-row class="row-back medium-size"  >
+  <i nz-icon nzType="left" nzTheme="outline"></i>{{'Back' | translate}}
+</div>
+<nz-layout id="product-list" class="height-layout">
+  <div nz-row class="product-list-header">
+    <div nz-col nzSpan="4" class="title left-all-content">
+      <b>{{'quan_ly_diem_tich_luy' | translate}}</b>
+    </div>
+    <div nz-col nzSpan="8" class="title left-all-content">
+      <nz-input-group [nzSuffix]="suffixIconSearch" style=" width: 90%;">
+        <input 
+          #box 
+          type="text"   
+          [(ngModel)]="keySearch" 
+          (keyup.enter)="onSearch()" 
+          nz-input
+          placeholder="{{'nhap_email_khach_hang' | translate}}" 
+          />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search" (click)="onSearch()"></i>
+      </ng-template>
+    </div>
+    
+    <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select">
+      <nz-select style="margin: 0 16px; width: 18rem" [(ngModel)]="idCustomerClass"
+        nzPlaceHolder="{{'chon_danh_muc_san_pham' | translate}}" (ngModelChange)="keySearch = '';customers=[]; totalPages = 0">
+        <nz-option nzLabel="{{'tat_ca' | translate}}" nzValue="all"></nz-option>
+        <nz-option *ngFor="let item of customerClass" 
+          [nzValue]="item._id" 
+          [nzLabel]="item.name"
+        >
+        </nz-option>
+      </nz-select>
+      <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default" (click)="getCustomers()">
+        {{'xem' | translate}}
+      </button>
+    </div>
+  </div>
+  <div>
+    <div nz-row class="total-item small-size count-quantity">
+        {{'tong' | translate}} &nbsp;<span style="color: var(--ion-color-vh-red);">
+            {{customers.length}}&nbsp; </span> {{'khach_hang' | translate}}
+    </div>
+    <nz-table  
+      nzNoResult="{{'khong_du_lieu'| translate}}" 
+      [nzData]="customers"
+      [nzLoading]="loading"
+      [nzShowPagination]="false" 
+      nzShowSizeChanger
+      [nzFooter]="customers.length && footerTpl"
+    >
+    <thead>
+      <tr>
+        <th nzWidth="25%" style="cursor: pointer;"  (click)="handleSort('name')">
+          <b>{{'ten_khach_hang' | translate}}</b>
+          <span 
+            *ngIf="customers.length" 
+            nz-icon 
+            [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" 
+            nzTheme="outline"
+            >
+          </span>
+        </th>
+        <th nzWidth="20%" style="cursor: pointer;">
+          <b>{{'so_dien_thoai' | translate}}</b>
+        </th>
+        <th nzWidth="200px" style="cursor: pointer;">
+          <b>{{'chuong_trinh_ap_dung' | translate}}</b>
+        </th>
+        <th nzWidth="25%" nzAlign="center" style="cursor: pointer;">
+          <b>{{'nhom_khach_hang' | translate}}</b>
+        </th>
+        <th nzWidth="25%" nzAlign="right" style="cursor: pointer;"
+          (click)="handleSort('point_validity')">
+          <b>{{'diem_tich_luy' | translate}}</b>
+          <span 
+            *ngIf="customers.length" 
+            nz-icon 
+            [nzType]="sortby.point_validity ? 'arrow-down' : 'arrow-up'" 
+            nzTheme="outline"
+          >
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of customers; trackBy: trackByFn">
+        <td>
+          {{ data.name}}
+        </td>
+        <td> {{ data.phone}}</td>
+        <td>
+          <div [innerText]="data.program_name"></div>
+        </td>
+        <td nzAlign="center">
+          {{data.class_name}}
+        </td>
+        <td nzAlign="right">
+          {{data.earned_points || 0}}
+          <i style="cursor: pointer;" (click)="editEarningPoint(data)" nz-icon nzType="edit" nzTheme="outline"></i>
+        </td>
+      </tr>
+    </tbody>
+    </nz-table>
+
+    <ng-template #footerTpl>
+      <app-pagination
+        [pageCurrent]="pageCurrent"
+        [totalPages]="totalPages"
+        [limit]="limit"
+        [pageShowChoose]="pageShowChoose"
+        [pageGoto]="pageGoto"
+        (pageIndexChange)="pageIndexChange($event)"
+        (limitChange)="limitChange($event)"
+      ></app-pagination>
+    </ng-template>
+  </div>
+
+</nz-layout>
+
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'chinh_sua_diem_tich_luy' | translate}}" (nzOnCancel)="closeCancelModal()"
+  (nzOnOk)="closeOkModal()">
+  <ng-container *nzModalContent>
+    <form [formGroup]="formEditPoint">
+      <nz-input-number style="width: 100%;" nzPlaceHolder="{{'nhap_so_diem_thay_doi'| translate}}"
+        formControlName="point" [nzMin]="0" [nzMax]="999999999" [nzStep]="1"></nz-input-number>
+    </form>
+  </ng-container>
+</nz-modal>

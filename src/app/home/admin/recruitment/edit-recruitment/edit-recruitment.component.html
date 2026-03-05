@@ -1,0 +1,243 @@
+<div class="add-product w-100 h-100">
+	<div class="_head d-flex justify-content-between align-items-center">
+		<div class="title">
+			<h2 class="m-0">{{'tin_tuyen_dung_moi' | translate}}</h2>
+		</div>
+		<span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="dialogRef.close()">
+		</span>
+	</div>
+
+	<div class="main">
+		<form class="form p-0 m-0 body" *ngIf="editRecruitmentForm" [formGroup]="editRecruitmentForm">
+			<div class="row" >
+				<!-- vi_tri_tuyen_dung -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'vi_tri_tuyen_dung' | translate}} <sup>*</sup></label>
+					</div>
+					<div class="layout-input">
+						<input class="input" type="text" [formControl]="getFormControl('position_' + functionService.languageTempCode)"
+							placeholder="{{'nhap_vi_tri_tuyen_dung' | translate}}">
+					</div>
+				</div>
+				<div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'danh_muc' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input d-flex" style="gap:8px">
+            <div style="width:100%; ">
+              <nz-select
+								class="w-100"
+                nzMode="multiple"
+                formControlName="id_categorys"
+                [nzPlaceHolder]="'trong' | translate"
+                nzShowSearch
+              >
+                <ng-container *ngFor="let o of categories">
+                  <nz-option  nzCustomContent [nzValue]="o._id" [nzLabel]="renderOptionCategory(o)">
+                    {{ renderOptionCategory(o) }}
+                  </nz-option>
+                </ng-container>
+              </nz-select>
+            </div>
+            <button class="center-all-content button_list_unit" nz-button nzType="default" (click)="createCategory()">
+              <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+              {{'tao_nhanh' | translate}}
+            </button>
+          </div>
+        </div>
+				<!-- dia_chi_lam_viec -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'dia_chi_lam_viec' | translate}}</label>
+					</div>
+					<div class="layout-input">
+						<input class="input" type="text" [formControl]="getFormControl('address_' + functionService.languageTempCode)"
+							placeholder="{{'nhap_dia_chi_lam_viec' | translate}}">
+					</div>
+				</div>
+
+				<!-- duong_dan_chi_tiet -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'duong_dan_chi_tiet' | translate}} <sup>*</sup></label>
+						<span class="ml-1" style="margin-bottom: .5rem" nz-icon nzType="question-circle" nzTheme="outline"
+							[nz-tooltip]="'chu_y_duong_dan_chi_co_the_la' | translate"></span>
+
+					</div>
+					<div class="layout-input">
+						<input class="input" type="text" formControlName="link"
+							placeholder="{{'nhap_duong_dan_chi_tiet' | translate}}">
+					</div>
+				</div>
+
+				<!-- luong -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'luong' | translate}}</label>
+					</div>
+					<div class="layout-input">
+						<input class="input" type="text" [formControl]="getFormControl('salary_' + functionService.languageTempCode)" placeholder="{{'nhap_luong' | translate}}">
+					</div>
+				</div>
+
+				<!-- cap_bac -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'cap_bac' | translate}}</label>
+					</div>
+					<div class="layout-input">
+						<input class="input" type="text" [formControl]="getFormControl('level_' + functionService.languageTempCode)" placeholder="{{'nhap_cap_bac' | translate}}">
+					</div>
+				</div>
+
+				<!-- nganh_nghe -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'nganh_nghe' | translate}}</label>
+					</div>
+					<div class="layout-input">
+						<input class="input" type="text" [formControl]="getFormControl('specialized_' + functionService.languageTempCode)" placeholder="{{'nhap_nganh_nghe' | translate}}">
+					</div>
+				</div>
+
+				<!-- ngay_het_han -->
+				<div class="col-6 padding">
+					<div>
+						<label for="name-input">{{'ngay_het_han' | translate}}</label>
+					</div>
+					<div class="layout-input">
+						<!-- <input class="input" type="text" formControlName="specialized" placeholder="{{'nhap_nganh_nghe' | translate}}"> -->
+						<mat-form-field color="accent" appearance="fill">
+							<mat-label>{{'chon_ngay_het_han' | translate}}</mat-label>
+							<input matInput [matDatepicker]="picker1" formControlName="date_expired" [value]="">
+							<mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+							<mat-datepicker #picker1></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+
+				<!-- newFields -->
+				<div *ngFor="let item of newFields" class="col-6 padding">
+					<div>
+						<label for="name-input">{{item?.field_lable}}<sup *ngIf="item.field_required">*</sup></label>
+					</div>
+					<div class="layout-input d-flex" style="gap:8px">
+						<!-- <input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}"
+							[type]="item.field_typeof">
+						<app-select-language-config [isAdmin]="true"></app-select-language-config> -->
+						<ng-container *ngIf="item.field_input_type.includes('input')">
+							<input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}"
+							[type]="getTypeInput(item)" >
+							<app-select-language-config [isAdmin]="true"></app-select-language-config>
+						</ng-container>
+
+						<ng-container *ngIf="item.field_input_type.includes('select')">
+							<div style="width:100%;">
+							<app-vh-select
+								[categoriesChoosing]="editRecruitmentForm.get(item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode).value"
+								[labelSearch]="languageService.translate('tim') + ' ' + item.field_lable"
+								[multiple]="item.field_input_type == 'select-multiple'"
+								[listCategories]="item.data_list"
+								[fieldLabel]="'label_'+ functionService.languageTempCode"
+								[fieldValue]="'value_'+ functionService.languageTempCode"
+								(selectChange)="selectChange($event, item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode)"
+								[isObject]="item.field_input_type == 'select-multiple'">
+							</app-vh-select>
+							</div>
+							<app-select-language-config [isAdmin]="true"></app-select-language-config>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+
+			<div class="form">
+				<div class="tab-editor">
+          <div class="flag">
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+					<nz-tabset [(nzSelectedIndex)]="selectedIndexTabset" style="display: contents" class="w-100">
+						<nz-tab *ngFor="let item of ckeditorFields; let i = index" [nzTitle]="item.field_lable | translate">
+							<ng-container *ngIf="selectedIndexTabset === i">
+							<ckeditor
+								class="ckeditor-admin"
+								[editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+								[formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+							</ckeditor>
+							</ng-container>
+						</nz-tab>
+
+						<nz-tab *ngFor="let item of newFieldsCKEditor; let j = index" nzTitle="{{ item?.field_lable}}">
+							<ng-container *ngIf="selectedIndexTabset === (ckeditorFields.length + j)">
+							<ckeditor
+								class="ckeditor-admin"
+								[editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+								[formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+							</ckeditor>
+							</ng-container>
+						</nz-tab>
+					</nz-tabset>
+				</div>
+			</div>
+
+			<button class="_btn _btn_cancel d-flex align-items-center right-all-content mt-2" nz-button nzType="primary" (click)="openCKEditorByDevice()">
+				{{'mo_ta_rieng_cho_tung_thiet_bi' | translate}}
+			</button>
+
+			        <!-- Nội dùng SEO -->
+        <div class="col-12" style="padding: 5pt 0 0;">
+          <div>
+            <div class="title d-flex flex-row justify-content-between">
+              <h5 style="font-size: 16px; margin: 6pt 0px !important;">SEO</h5>
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </div>
+            <div class="_body_seo">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_title">{{'tieu_de' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" [formControl]="getFormControl('webapp_seo_title_' + functionService.languageTempCode)" id="webapp_seo_title"
+                    placeholder="{{'nhap_tieu_de' | translate}}"
+                    >
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_description">{{'mieu_ta' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" [formControl]="getFormControl('webapp_seo_description_' + functionService.languageTempCode)" id="webapp_seo_description"
+                    placeholder="{{'nhap_mieu_ta' | translate}}"
+                    >
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_keyword">{{'tu_khoa' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" [formControl]="getFormControl('webapp_seo_keyword_' + functionService.languageTempCode)" id="webapp_seo_keyword"
+                    placeholder="{{'nhap_tu_khoa' | translate}}" data-role="tagsinput"
+                    >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+		</form>
+	</div>
+
+	<div class="_foot d-flex align-items-center justify-content-end">
+		<button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+			(click)="dialogRef.close()">
+			{{'huy' | translate}}
+		</button>
+		<button [disabled]="!editRecruitmentForm?.valid || loading" class="mr-2" nz-button nzType="primary"
+			[ngStyle]="{opacity: !editRecruitmentForm?.valid? .5: 1}" (click)="saveRecruitment()"
+			class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+			{{'luu' | translate}}
+		</button>
+	</div>
+</div>

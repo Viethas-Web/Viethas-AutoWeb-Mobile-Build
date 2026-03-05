@@ -1,0 +1,13 @@
+<div class="form">
+  <div class="mb-3">
+    <h3 class="m-0">{{'cap_nhat_ten' | translate}}</h3>
+  </div>
+  <div class="mb-3">
+    <input type="text" placeholder="Nhập tên website" class="form-control" [(ngModel)]="name">
+  </div>
+  <div class="d-flex justify-content-between">
+    <button type="submit" class="btn btn-danger" (click)="cancel()">{{'huy' | translate}}</button>
+    <button type="submit" class="btn btn-primary" (click)="accepct()" [disabled]="!name.length"
+      [ngStyle]="{opacity: !name.length? .5: 1}">{{'xac_nhan' | translate}}</button>
+  </div>
+</div>

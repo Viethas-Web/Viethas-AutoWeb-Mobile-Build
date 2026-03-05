@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div *ngIf="!loading" class="card p-4">
+      <h4 class="mb-3">THANH TOÁN WEBSITE:</h4>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">Dịch Vụ</th>
+                  <th scope="col">Ngày đăng ký</th>
+                  <th scope="col">Phiên bản</th>
+                  <th scope="col" class="text-end">Số Tiền</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><p>Hosting: {{currentHosting?.hosting}}</td>
+                  <td><p>{{currentHosting?.creationdate | date:'dd/MM/yyyy'}}</td>
+                  <td><p>Miễn phí</p></td>
+                  <td class="text-end">0 đ</td>
+              </tr>
+
+              <tr>
+                <td><p>Website: {{currentWebsite?.['name_' + functionService.selectedLanguageCode]}}</td>
+                <td><p>{{currentHosting?.creationdate | date:'dd/MM/yyyy'}}</td>
+                <td>Trả phí</td>
+                <td class="text-end">{{vhAlgorithm.vhcurrencyunit_symbol(currentWebsite?.price)}}</td>
+            </tr>
+              
+          </tbody>
+      </table>
+
+      <div class="alert alert-warning">Bạn có thắc mắc? Gọi ngay <a href="https://zalo.me/0934606060" target="_blank">0934 60 60 60</a> (24/7) để được hỗ trợ.</div>
+
+      <div class="text-end">
+          <p><strong>Tổng cộng (Chưa VAT):</strong> {{vhAlgorithm.vhcurrencyunit_symbol(currentWebsite?.price)}}</p>
+          <p><strong>VAT:</strong> 0 đ</p>
+          <p class="text-danger fs-5"><strong>Thành tiền: {{vhAlgorithm.vhcurrencyunit_symbol(currentWebsite?.price)}}</strong></p>
+      </div>
+
+      <button class="btn-vh primary w-100" (click)="handlePaymentWebsite()">THANH TOÁN &nbsp;→</button>
+  </div>
+
+  <nz-spin *ngIf="loading" nzSimple></nz-spin>
+</div>

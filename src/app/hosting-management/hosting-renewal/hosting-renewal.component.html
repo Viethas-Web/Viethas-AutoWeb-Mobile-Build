@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div *ngIf="!loading" class="card p-4">
+      <h4 class="mb-3">GIA HẠN HOSTING</h4>
+      
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">Hosting</th>
+                  <th scope="col">Ngày đăng ký</th>
+                  <th scope="col">Gói gia hạn</th>
+                  <th scope="col">Thời Hạn</th>
+                  <th scope="col" class="text-end">Số Tiền</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                    <td><p>{{currentHosting?.hosting}}</td>
+                    <td><p>{{currentHosting?.creationdate | date:'dd/MM/yyyy'}}</td>
+                    <td>
+                        <nz-select class="_select" [(ngModel)]="hostingPackageChoosing" >
+                            <nz-option class="_option" [nzValue]="package" [nzLabel]="package['name_'+functionService.selectedLanguageCode]"*ngFor="let package of hostingPackages"></nz-option>
+                        </nz-select>
+                    </td>
+                    <td>
+                        <nz-select class="_select"  (ngModelChange)="onUnitChange($event)" [(ngModel)]="hostingPackageChoosing.unitChoosing" >
+                            <nz-option class="_option" [nzValue]="unit" [nzLabel]="unit['unit_'+functionService.selectedLanguageCode]"*ngFor="let unit of hostingPackageChoosing.units"></nz-option>
+                        </nz-select>
+                    </td>
+                    <td class="text-end">{{hostingPackageChoosing.unitChoosing.price | number:'1.0-0'}} đ</td>
+              </tr>
+          </tbody>
+      </table>
+
+      <div class="alert alert-warning">Bạn có thắc mắc? Gọi ngay <a href="https://zalo.me/0934606060" target="_blank">0934 60 60 60</a> (24/7) để được hỗ trợ.</div>
+
+      <div class="text-end">
+          <p><strong>Tổng cộng (Chưa VAT):</strong> {{hostingPackageChoosing.unitChoosing.price | number:'1.0-0'}} đ</p>
+          <p><strong>VAT:</strong> 0 đ</p>
+          <p class="text-danger fs-5"><strong>Thành tiền: {{hostingPackageChoosing.unitChoosing.price | number:'1.0-0'}} đ</strong></p>
+      </div>
+
+      <button class="btn-vh primary w-100" (click)="handleRenewal()">GIA HẠN &nbsp;→</button>
+  </div>
+
+  <nz-spin *ngIf="loading" nzSimple></nz-spin>
+</div>

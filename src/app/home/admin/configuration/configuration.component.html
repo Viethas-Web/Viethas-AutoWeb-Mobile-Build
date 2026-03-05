@@ -1,0 +1,144 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-start">
+        <span class="title"><b>{{'thong_tin_cua_hang' | translate}}</b></span>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end">
+      </div>
+    </div>
+  </div>
+  <form *ngIf="configForm" [formGroup]="configForm">
+    <div class="form">
+      <div class="row p-0 ml-0 mr-0">
+        <div class="col-6 p-0">
+          <div class="d-flex align-items-start justify-content-start w-100">
+            <span><b>{{'logo_cua_hang' | translate}}</b>*</span>
+          </div>
+          <div class="image_default mt-2 d-flex align-items-center justify-content-center">
+            <input style="display: none;" id="logo_path" type="file" accept=".png, .jpg"
+              (change)="onUpload('logo_path',$event)" />
+            <div class="_buttons_choose_image align-items-center justify-content-center p-2">
+              <button class="_btn_upload" (click)="getFile('logo_path')">{{'tai_len' | translate}}</button>
+              <span>{{'hoac' | translate}}</span>
+              <button class="_btn_media" (click)="openLibrary('logo_path')">{{'chon_tu_thu_vien' | translate}}</button>
+            </div>
+            <img [ngClass]="configForm.value.logo_path? 'img_w100': 'img_w90'"
+              [src]="configForm.value.logo_path? configForm.value.logo_path: '/assets/root/images/system/icons/image_default.svg' ">
+          </div>
+          <div class="w-100 mt-2">
+            <span style="font-weight: 500;">{{'hinh_anh_ho_tro_dinh_dang' | translate}} (.jpg, jpeg, .png)</span>
+          </div>
+        </div>
+        <div class="col-6 p-0">
+          <div class="d-flex align-items-start justify-content-start w-100">
+            <span><b>Favicon</b>*</span>
+            <span style="padding-left: 5px; color:red;" nz-icon nzType="question-circle" nzTheme="outline" nz-tooltip
+              nzTooltipTitle="{{'favicon_nay_chi_hien_thi_tren_thanh_tab_cua_trinh_duyet' | translate}}"></span>
+          </div>
+          <div class="image_default mt-2 d-flex align-items-center justify-content-center">
+            <input style="display: none;" id="favicon_path" type="file" accept=".png, .jpg"
+              (change)="onUpload('favicon_path',$event)" />
+            <div class="_buttons_choose_image align-items-center justify-content-center p-2">
+              <button class="_btn_upload" (click)="getFile('favicon_path')">{{'tai_len' | translate}}</button>
+              <span>{{'hoac' | translate}}</span>
+              <button class="_btn_media" (click)="openLibrary('favicon_path')">{{'chon_tu_thu_vien' | translate}}</button>
+            </div>
+            <img [ngClass]="configForm.value.favicon_path? 'img_w100': 'img_w90'"
+              [src]="configForm.value.favicon_path? configForm.value.favicon_path: '/assets/root/images/system/icons/image_default.svg' ">
+          </div>
+          <div class="w-100 mt-2">
+            <span style="font-weight: 500;">({{'hinh_anh_co_kich_thuoc_toi_thieu' | translate}} 16x16 pixel, {{'ho_tro_dinh_dang' | translate}} .jpg, jpeg,
+              .png)</span>
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 mt-3">
+        <div class="col-6 pl-0">
+          <div>
+            <label class="mb-0">{{'ten_website' | translate}}</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="name">
+          </div>
+        </div>
+        <div class="col-6 pl-0">
+          <div>
+            <label class="mb-0">{{'mo_ta_ngan_ve_website' | translate}}</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="short_description">
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 mt-3">
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">Email</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="email" formControlName="email">
+          </div>
+        </div>
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">{{'so_dien_tu' | translate}}</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="phone_number">
+          </div>
+        </div>
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">{{'dia_chi' | translate}}</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="address">
+          </div>
+        </div>
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">{{'duong_dan' | translate}} Youtube</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="youtube">
+          </div>
+        </div>
+      </div>
+      <div class="row m-0 mt-3">
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">Zalo OAID</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="facebook">
+          </div>
+        </div>
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">{{'duong_dan' | translate}} Instagram</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="instagram">
+          </div>
+        </div>
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">{{'duong_dan' | translate}} Twitter</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="twitter">
+          </div>
+        </div>
+        <div class="col-3 pl-0">
+          <div>
+            <label class="mb-0">{{'duong_dan' | translate}} Tiktok</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="tiktok">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</nz-layout>

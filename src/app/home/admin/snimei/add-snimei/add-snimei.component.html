@@ -1,0 +1,225 @@
+<div class="add-product w-100 h-100" *ngIf="doneLoad && addSnimeiForm">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2>{{'them_snimei' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="onClone()">
+    </span>
+  </div>
+  <div class="main" >
+    <form class="form p-0 m-0" *ngIf="addSnimeiForm" [formGroup]="addSnimeiForm">
+      <div class="row">
+        <!-- nhom_tra_cuu -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'nhom_tra_cuu' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-select formControlName="lookup_group" >
+                <mat-option *ngFor="let lkg of lookupGroup" [value]="lkg">
+                  {{lkg}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- ten_san_pham -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'ten_san_pham' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="d-flex flex-row" style="gap:8px">
+            <input class="input" type="text" [formControl]="getFormControl('name_' + functionService.languageTempCode)" placeholder="{{'nhap_ten_san_pham' | translate}}">
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+        </div>
+
+        <!-- thuong_hieu -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'thuong_hieu' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="brand" placeholder="{{'nhap_thuong_hieu' | translate}}">
+          </div>
+        </div>
+
+        <!-- ma_san_pham -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'ma_san_pham' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="product_id" placeholder="{{'nhap_ma_san_pham' | translate}}">
+          </div>
+        </div>
+
+        <!-- sn_imei -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'so_snimei' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="sn_imei" placeholder="{{'nhap_so_snimei' | translate}}">
+          </div>
+          <div style="color: red" *ngIf="addSnimeiForm.get('sn_imei').hasError('incorrect') && addSnimeiForm.get('sn_imei').touched">
+            {{'so_snimei_da_ton_tai' | translate}}
+          </div>
+
+
+
+
+        </div>
+
+        <!-- ngay_xuat_hang -->
+        <div class="col-6 padding">
+          <div style="display: flex; align-items: center; gap: 20px">
+            <div >
+              <label for="name-input">{{'ngay_xuat_hang' | translate}} <sup>*</sup></label>
+              <div class="layout-input">
+                <mat-form-field class="date-picker" appearance="fill">
+                  <input formControlName="warehouse_release_date" matInput [matDatepicker]="picker" readonly  (dateChange)="calculateExpirationDate()" >
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div >
+              <label for="name-input">{{'kich_hoat' | translate}} </label>
+              <div class="layout-input">
+                <nz-switch formControlName="active" (ngModelChange)="handleChangeActive($event)"></nz-switch>
+              </div>
+            </div>
+
+            <div  *ngIf="addSnimeiForm.value.active">
+              <label for="name-input">{{'ngay_kich_hoat' | translate}} <sup>*</sup></label>
+              <div class="layout-input">
+                <mat-form-field class="date-picker" appearance="fill">
+                  <input formControlName="active_date" matInput [matDatepicker]="picker" readonly  (dateChange)="calculateExpirationDate()" >
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div style="color: red" *ngIf="addSnimeiForm.errors?.invalidDates">
+                {{'ngay_kich_hoat_khong_hop_le' | translate}}
+              </div>
+            </div>
+
+            <div  *ngIf="addSnimeiForm.value.active">
+              <label for="name-input">{{'ngay_het_han' | translate}} <sup>*</sup></label>
+              <div class="layout-input">
+                <mat-form-field class="date-picker" appearance="fill">
+                  <input formControlName="expiration_date" matInput [matDatepicker]="picker" readonly   >
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+
+        <!-- han_bao_hanh -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'han_bao_hanh' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="warranty_period" placeholder="365" (input)="calculateExpirationDate()">
+          </div>
+        </div>
+
+        <!-- so_ngay_toi_da_duoc_phep_kich_hoat -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'so_ngay_toi_da_duoc_phep_kich_hoat' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="max_activation_days" (input)="calculateExpirationDate()" >
+          </div>
+        </div>
+
+
+        <!--------------->
+        <ng-container *ngIf="newFields.length">
+          <ng-container *ngFor="let item of newFields">
+            <div class="col-6 padding" *ngIf="item.lookup_group == addSnimeiForm.value.lookup_group">
+              <div>
+                <label for="name-input">{{item?.field_lable}}<sup *ngIf="item.field_required">*</sup></label>
+              </div>
+              <div class="layout-input d-flex" style="gap:8px">
+                <!-- <input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}" [type]="item.field_typeof">
+                <app-select-language-config [isAdmin]="true"></app-select-language-config> -->
+
+                <ng-container *ngIf="item.field_input_type.includes('input')">
+                  <input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}" [type]="getTypeInput(item)">
+                  <app-select-language-config [isAdmin]="true"></app-select-language-config>
+                </ng-container>
+
+                <ng-container *ngIf="item.field_input_type.includes('select')">
+                  <div style="width:100%;">
+                    <app-vh-select
+                    [categoriesChoosing]="addSnimeiForm.get(item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode )?.value"
+                    [labelSearch]="languageService.translate('tim') + ' ' + item.field_lable"
+                    [multiple]="item.field_input_type == 'select-multiple'"
+                    [listCategories]="item.data_list"
+                    [fieldLabel]="'label_'+ functionService.languageTempCode"
+                    [fieldValue]="'value_'+ functionService.languageTempCode"
+                    (selectChange)="selectChange($event, item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode )"
+                    [isObject]="item.field_input_type == 'select-multiple'"
+                    >
+                    </app-vh-select>
+                  </div>
+                  <app-select-language-config [isAdmin]="true"></app-select-language-config>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <nz-tabset [(nzSelectedIndex)]="selectedIndexTabset" style="display: contents" class="row p-0 m-0">
+        <!-- trường tự tạo ckeditor -->
+          <nz-tab *ngFor="let item of newFieldsCKEditor; let j = index" nzTitle="{{item?.field_lable}}">
+            <ng-container *ngIf="selectedIndexTabset === j">
+              <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+              </ckeditor>
+            </ng-container>
+          </nz-tab>
+      </nz-tabset>
+    </form>
+  </div>
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="onClone()">
+      {{'huy' | translate}}
+    </button>
+    <button [disabled]="!addSnimeiForm.valid || submitting" class="mr-2" nz-button nzType="primary"
+      [ngStyle]="{opacity: !addSnimeiForm.valid? .5: 1}" (click)="onAddSnimei(addSnimeiForm.getRawValue())"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'them_snimei' | translate}}
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

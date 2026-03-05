@@ -1,0 +1,109 @@
+
+
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <!-- Tiêu đề  -->
+        <span class="title d-flex flex-row" style="gap:8px">
+          <b>{{ "danh_sach_cong_viec" | translate }}</b>
+        </span>
+        <!-- Thanh tìm kiếm -->
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_vi_tri_tuyen_dung' | translate}}"
+              [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span style="cursor: pointer;" (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select" style="gap: 1rem">
+        <!-- Chọn danh mục -->
+        <nz-range-picker nzFormat='dd/MM/yyyy' [(ngModel)]="date" (ngModelChange)="keySearch=''; recruitments = []" [nzAllowClear]="false"></nz-range-picker>
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination();getRecruitments()">
+          {{'xem' | translate}}
+        </button>
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="addRecruitment()">
+          <i class="bi bi-plus"></i> {{ "them" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px">
+    <nz-table
+      [nzVirtualItemSize]="53"
+      [nzData]="recruitments"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="recruitments?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+          <th scope="col" nzWidth="6%">{{'stt' | translate}}</th>
+          <th scope="col" nzWidth="24%" (click)="handleSort(positionField)">
+            <b>{{'vi_tri_tuyen_dung' | translate}}</b>
+            <span *ngIf="recruitments?.length" nz-icon [nzType]="sortby[positionField] ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col" nzWidth="30%" (click)="handleSort('address')">
+            <b>{{'noi_lam_viec' | translate}}</b>
+            <span *ngIf="recruitments?.length" nz-icon [nzType]="sortby.address ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col" nzWidth="15%" (click)="handleSort(salaryField)">
+            <b>{{'luong' | translate}}</b>
+            <span *ngIf="recruitments?.length" nz-icon [nzType]="sortby[salaryField] ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col"  nzWidth="15%"  (click)="handleSort('date_expired')">
+            <b>{{'ngay_het_han' | translate}}</b>  
+            <span *ngIf="recruitments?.length" nz-icon [nzType]="sortby.date_expired ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col"  nzWidth="10%" nzAlign="center">
+            {{'thao_tac' | translate}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr>
+            <td style="white-space: normal; width: 6%" scope="row">
+              {{ (pageCurrent-1) * limit + index + 1 }}
+            </td>
+            <td style="white-space: normal; width: 24%; font-weight: 600">
+              {{ item[positionField] }}
+            </td>
+            <td style="white-space: normal; width: 30%">{{ item['address_'+functionService.selectedLanguageCode] }}</td>
+            <td style="white-space: normal; width: 15%">{{item[salaryField]}}</td>
+            <td style="white-space: normal; width: 15%">
+              {{ item.date_expired | date : "dd/MM/yyyy" }}
+            </td>
+            <td nzAlign="center" style="white-space: normal; width: 10%">
+              <div class="icon-action">
+                <span style="color: #008848; margin-right: 0.5rem;cursor: pointer; font-size: 18px" nz-icon nzType="edit" nzTheme="outline" (click)="gotoDetailPost(item)"></span>
+                <span style="color: #ff000a;cursor: pointer; font-size: 18px" nz-icon nzType="delete" nzTheme="outline" (click)="deleteRecruitment(item)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+  </div>
+</nz-layout>
+

@@ -1,0 +1,7 @@
+<svg style="width: 24px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="16px" viewBox="0 0 24 16" enable-background="new 0 0 24 16" xml:space="preserve">
+  <path fill="#4399FA" d="M23,0H1v16h22V0L23,0z"></path>
+  <path fill="#62D376" d="M10.2,11.5c-3.6-2.6-7.5-5-9.2-5V16h4.6C6.9,14.8,8.6,13.1,10.2,11.5z"></path>
+  <path fill="#A5F3B3" d="M14.3,6C12.9,5.7,11,7,11,7c-0.9,0.4-3,2.4-5.2,4.5c-1.7,1.6-3.3,3.2-4.6,4.5h10.4H23v-2.8
+	C23,13.2,17,6.6,14.3,6z"></path>
+  <circle fill="#FFF200" cx="7.3" cy="4.5" r="2.5"></circle>
+</svg>

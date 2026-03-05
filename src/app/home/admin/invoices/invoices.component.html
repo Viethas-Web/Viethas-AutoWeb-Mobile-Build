@@ -1,0 +1,108 @@
+<nz-layout id="purchase-invoice-today">
+    <div class="purchase-invoice-today-header">
+        <div class="row p-0 m-0">
+            <div class="p-0 m-0 d-flex align-items-center justify-content-between w-100">
+                <span class="title"><b>{{'danh_sach_hoa_don' | translate}}</b></span>
+                <div class="search">
+                    <nz-input-group [nzSuffix]="suffixIconSearch">
+                      <input type="text" nz-input placeholder="{{'tim_kiem_theo_ma_hoa_don' | translate}}"
+                        [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+                    </nz-input-group>
+                    <ng-template #suffixIconSearch>
+                      <span style="cursor: pointer;" (click)="onSearch()" nz-icon nzType="search"></span>
+                    </ng-template>
+                  </div>
+                <div class="row-date" style="display: flex;align-items: center;gap: 10px;">
+                    <nz-range-picker nzFormat='dd/MM/yyyy' (ngModelChange)="keySearch=''; bills = []" [(ngModel)]="date"  ></nz-range-picker>
+                    <button class="view-date"
+                        style="padding: 8px 12px;background: #00a859;color: #ffffff;border-radius: 3px;"
+                        (click)="getBills()">{{'xem' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 10px;">
+    <nz-table
+      [nzVirtualItemSize]="77"
+      [nzData]="bills"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="bills?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+            <th nzWidth="10%" nzAlign="center"><b>{{'ngay' | translate}} </b></th>
+            <th nzWidth="12%" nzAlign="left" (click)="handleSort('bill_code')">
+                <b>{{'ma_hoa_don' | translate}}</b>
+                <span 
+                *ngIf="bills?.length"
+                nz-icon 
+                [nzType]="sortby.bill_code ?'caret-down': 'caret-up'" 
+                nzTheme="outline"
+                style="cursor: pointer;"
+                >
+                </span>
+            </th>
+            <th nzWidth="15%" nzAlign="center"><b>{{'hinh_thuc_thanh_toan' | translate}}</b></th>
+            <th nzWidth="15%" nzAlign="center"><b>{{'ghi_chu_cua_khach' | translate}}</b></th>
+            <th nzWidth="15%" nzAlign="center"><b>{{'ghi_chu_cua_shop' | translate}}</b></th>
+            <th nzWidth="15%" nzAlign="center"><b>{{'tong' | translate}}</b></th>
+            <th nzWidth="10%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr (click)="showBillDetail(item)" style="cursor: pointer;">
+            <td>
+                <div class="image d-flex align-items-center">
+                    <span>{{item.date | date: 'dd/MM/yyyy'}}</span>
+                </div>
+                <div class="image d-flex align-items-center">
+                    <span>{{item.date | date: 'hh:mm'}}</span>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex justify-content-start text-start">
+                    <span>{{ item.bill_code }}</span>
+                </div>
+            </td>
+            <td nzAlign="center">
+                <span>{{ item.payments }}</span>
+            </td>
+            <td nzAlign="center">
+                <span>{{ item?.note}}</span>
+            </td>
+            <td nzAlign="center">
+            </td>
+            <td nzAlign="center">
+                <span>{{ item.total | number:'1.0-2'}} VNĐ</span>
+            </td>
+            <td nzAlign="center">
+            
+                <button class="button-remove" nz-popconfirm
+                    nzPopconfirmTitle="{{'ban_co_chac_chan_xoa_hoa_don_nay' | translate}}" nzPopconfirmPlacement="bottom"
+                    (click)="$event.stopPropagation();"
+                    (nzOnConfirm)="deleteDetail(item._id)"
+                        nzCancelText="{{'huy' | translate}}" nzOkText="Ok"><i class="bi bi-trash"></i></button>
+            </td>
+        </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+    </div>
+</nz-layout>

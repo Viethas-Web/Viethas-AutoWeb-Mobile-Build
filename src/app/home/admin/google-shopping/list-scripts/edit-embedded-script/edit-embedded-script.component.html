@@ -1,0 +1,80 @@
+<div class="add-product w-100 h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <h2 class="m-0">{{'sua_embedded_script' | translate}}</h2>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+
+  <div class="main">
+    <form class="form p-0 m-0" *ngIf="editEmbeddedScript" [formGroup]="editEmbeddedScript">
+      <div class="d-flex flex-row justify-content-start align-items-center mb-2" style="gap:8px">
+        <label class="m-0" for="name-input">{{'hoat_dong' | translate}}</label>
+        <nz-switch formControlName="active"></nz-switch>
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label for="name-input">{{'loai' | translate}} <span style="color: red;">*</span></label>
+        <nz-select formControlName="data_type" (ngModelChange)="onDataTypeChange($event)">
+          <nz-option [nzValue]="''" nzLabel="Chọn loại"></nz-option>
+          <nz-option *ngFor="let item of type_options" [nzValue]="item.value" [nzLabel]="item.label | translate"></nz-option>
+        </nz-select>
+        <div *ngIf="editEmbeddedScript.get('data_type')?.hasError('required') && editEmbeddedScript.get('data_type')?.touched" class="text-red text-xs">
+          Vui lòng chọn loại!
+        </div>
+      </div>
+      <!-- Select cho page khi data_type được chọn và là 'page', 'block' hoặc 'object' -->
+      <div class="d-flex flex-column mb-2" *ngIf="editEmbeddedScript.get('data_type')?.value && (editEmbeddedScript.get('data_type')?.value === 'page' || editEmbeddedScript.get('data_type')?.value === 'block' || editEmbeddedScript.get('data_type')?.value === 'object')">
+        <label for="page-input">{{'Trang' | translate}} <span style="color: red;">*</span></label>
+        <nz-select formControlName="page_id" (ngModelChange)="onPageChange($event)">
+          <nz-option [nzValue]="''" nzLabel="Chọn trang"></nz-option>
+          <nz-option *ngFor="let page of pages" [nzValue]="page._id" [nzLabel]="page['name_' + functionService.selectedLanguageCode] || page.name || page._id"></nz-option>
+        </nz-select>
+        <div *ngIf="editEmbeddedScript.get('page_id')?.hasError('required') && editEmbeddedScript.get('page_id')?.touched" class="text-red text-xs">
+          Vui lòng chọn trang!
+        </div>
+      </div>
+      <!-- Select cho block khi data_type là 'block' hoặc 'object' và page_id được chọn -->
+      <div class="d-flex flex-column mb-2" *ngIf="(editEmbeddedScript.get('data_type')?.value === 'block' || editEmbeddedScript.get('data_type')?.value === 'object') && editEmbeddedScript.get('page_id')?.value">
+        <label for="block-input">{{'Block' | translate}} <span style="color: red;">*</span></label>
+        <div *ngIf="isLoadingBlocks" class="mb-1">
+          <nz-spin nzTip="Đang tải block..."></nz-spin>
+        </div>
+        <nz-select formControlName="block_id" (ngModelChange)="onBlockChange($event)" [nzLoading]="isLoadingBlocks" [nzDisabled]="isLoadingBlocks || !blocks?.length">
+          <nz-option [nzValue]="''" nzLabel="Chọn block"></nz-option>
+          <nz-option *ngFor="let block of blocks" [nzValue]="block._id" [nzLabel]="block['name_' + functionService.selectedLanguageCode] || block.name || block._id"></nz-option>
+        </nz-select>
+        <div *ngIf="editEmbeddedScript.get('block_id')?.hasError('required') && editEmbeddedScript.get('block_id')?.touched" class="text-red text-xs">
+          Vui lòng chọn block!
+        </div>
+      </div>
+      <!-- Select cho object khi data_type là 'object' và block_id được chọn -->
+      <div class="d-flex flex-column mb-2" *ngIf="editEmbeddedScript.get('data_type')?.value === 'object' && editEmbeddedScript.get('block_id')?.value">
+        <label for="object-input">{{'Object' | translate}} <span style="color: red;">*</span></label>
+        <div *ngIf="isLoadingObjects" class="mb-1">
+          <nz-spin nzTip="Đang tải object..."></nz-spin>
+        </div>
+        <nz-select formControlName="object_id" [nzLoading]="isLoadingObjects" [nzDisabled]="isLoadingObjects || !objects?.length">
+          <nz-option [nzValue]="''" nzLabel="Chọn object"></nz-option>
+          <nz-option *ngFor="let object of objects" [nzValue]="object._id" [nzLabel]="object['name_' + functionService.selectedLanguageCode] || object.name || object._id"></nz-option>
+        </nz-select>
+        <div *ngIf="editEmbeddedScript.get('object_id')?.hasError('required') && editEmbeddedScript.get('object_id')?.touched" class="text-red text-xs">
+          Vui lòng chọn object!
+        </div>
+      </div>
+      <div class="d-flex flex-column">
+        <label for="name-input">{{'Script' | translate}} <span style="color: red;">*</span></label>
+        <textarea nz-input formControlName="data" placeholder="Nhập script" [nzAutosize]="{ minRows: 20, maxRows: 20 }"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="close()">
+      {{'huy' | translate}}
+    </button>
+    <button [nzLoading]="submitting" [disabled]="!editEmbeddedScript.valid || submitting" class="mr-2" nz-button nzType="primary"
+      [ngStyle]="{opacity: !editEmbeddedScript.valid? .5: 1}" (click)="onSubmiteditEmbeddedScript()"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'luu' | translate}}
+    </button>
+  </div>
+</div>

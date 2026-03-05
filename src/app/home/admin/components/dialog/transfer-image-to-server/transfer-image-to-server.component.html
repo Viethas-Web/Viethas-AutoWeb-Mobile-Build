@@ -1,0 +1,36 @@
+<div >
+  <h1 class="title">{{ 'chuyen_anh_len_server' | translate}}</h1>
+
+  <div class="body" >
+    <div>
+      <mat-form-field  appearance="fill" style="margin-bottom: 15px; width: 100%">
+        <mat-label>{{'nen_anh_tai_len' | translate}}</mat-label>
+        <mat-select disableRipple [(ngModel)]="data.setupsImage.upload_image.compress_type" (ngModelChange)="updateSetup()">
+          <mat-option [value]="'no-compress'">{{'khong_nen_anh_sau_khi_tai_len' | translate}}</mat-option>
+          <mat-option [value]="'compress-screen'">{{'nen_anh_theo_ti_le_man_hinh_hien_thi' | translate}}</mat-option>
+          <mat-option [value]="'custom'">{{'nen_anh_theo_kich_thuoc_tu_chon' | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <mat-form-field *ngIf="data.setupsImage.upload_image.compress_type == 'custom'" class="mt-4 mr-4">
+      <mat-label>{{'chieu_rong' | translate}}</mat-label>
+      <input matInput placeholder="{{'chieu_rong' | translate}}" [(ngModel)]="data.compressWidth">
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="data.setupsImage.upload_image.compress_type == 'custom'">
+      <mat-label>{{'chieu_cao' | translate}}</mat-label>
+      <input matInput placeholder="{{'chieu_cao' | translate}}" [(ngModel)]="data.compressHeight">
+    </mat-form-field>
+  </div>
+  <div class="footer" >
+    <button nz-button nzType="default"
+      (click)="dialogRef.close(false)">
+      {{'huy' | translate}}
+    </button>
+    <button  class="mr-2" nz-button nzType="primary"
+       (click)="dialogRef.close(true)">
+      {{'dong_y' | translate}}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-5 p-0 m-0 d-flex align-items-center justify-content-between">
+        <span class="title d-flex flex-row" style="gap:8px">
+          <b>{{ "danh_muc" | translate }}</b>
+        </span>
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_ten_danh_muc' | translate}}"
+              [(ngModel)]="keySearch" (keyup.enter)="onSearchCategory()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span (click)="onSearchCategory()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-7 p-0 m-0 d-flex align-items-center justify-content-end">
+        <nz-select style="margin: 0 16px; width: 18rem" [(ngModel)]="idMainSector" (ngModelChange)="keySearch = '';totalPages = 0; categories = []"
+          nzPlaceHolder="{{'nhom_nganh_hang' | translate}}" >
+          <nz-option nzLabel="{{'tat_ca' | translate}}" nzValue="all"></nz-option>
+          <nz-option *ngFor="let item of mainSectors" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+        </nz-select>
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button
+          (click)="resetPagination();getCategorys()" nzType="default">
+          {{ "xem" | translate}}
+        </button>
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="addCategory()">
+          <i class="bi bi-plus"></i> {{ "them_danh_muc" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px">
+    <nz-table
+      [nzVirtualItemSize]="72"
+      [nzData]="categories"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="categories.length &&  footerTpl" 
+      [nzLoading]="loading"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="10%" nzAlign="center"><b>{{'anh' | translate}}</b></th>
+          <th nzWidth="65%" nzAlign="left" (click)="handleSort('name')">
+            <b>{{'ten_danh_muc' | translate}}</b>
+            <span *ngIf="categories?.length" nz-icon [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th nzWidth="25%" nzAlign="left"><b>{{'nhom_nganh_hang' | translate}}</b></th>
+          <th nzWidth="15%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr>
+            <td>
+              <div class="image d-flex align-items-center justify-content-center">
+                <img onerror="src='/assets/root/images/system/icons/image_default.svg'"
+                  [src]="item.imgs ? item.imgs[0] : ''" [alt]="item['name_'+functionService.selectedLanguageCode]" width="40px" height="40px" />
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600">
+                <span style="padding-right: 4px" *ngFor="let e of item.array_step">&#8722;
+                </span>
+                <span>{{ item['name_'+functionService.selectedLanguageCode] }}</span>
+              </div>
+            </td>
+            <td>
+              {{renderBussiness(item.id_main_sectors)}}
+            </td>
+            <td nzAlign="center">
+              <span style="color: #008848; margin-right: 0.5rem;cursor: pointer; font-size: 18px" nz-icon nzType="edit" nzTheme="outline" (click)="editCategory(item)"></span>
+              <span style="color: #ff000a;cursor: pointer; font-size: 18px" nz-icon nzType="delete" nzTheme="outline" (click)="deleteCategory(item)"></span>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+
+    <ng-template #footerTpl>
+      <app-pagination
+      [pageCurrent]="pageCurrent"
+      [totalPages]="totalPages"
+      [limit]="limit"
+      [pageShowChoose]="pageShowChoose"
+      [pageGoto]="pageGoto"
+      (pageIndexChange)="pageIndexChange($event)"
+      (limitChange)="limitChange($event)"
+      > 
+      </app-pagination>
+    </ng-template>
+
+
+
+  </div>
+</nz-layout>

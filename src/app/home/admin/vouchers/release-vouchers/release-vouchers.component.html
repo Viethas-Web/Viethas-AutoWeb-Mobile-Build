@@ -1,0 +1,79 @@
+<nz-layout id="purchase-invoice-today">
+    <div class="heading">
+        <p class="title">{{'danh_sach_dot_phat_hanh_voucher' | translate}}</p>
+        <nz-input-group [nzSuffix]="suffixIconSearch" style="width:30%">
+            <input type="text" nz-input placeholder="{{'tim_voucher' | translate}}" [(ngModel)]="searchVoucher" (keyup)="onSearchVoucher(searchVoucher)"/>
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+        </ng-template>
+
+        <nz-range-picker nzFormat='dd/MM/yyyy' [(ngModel)]="date" (ngModelChange)="list_vouchers = []; searchVoucher = ''" [nzAllowClear]="false"></nz-range-picker>
+        <button style="margin: 0 8px;padding: 7px;" nz-button nzType="default" (click)="showFilter = !showFilter">
+          <i nz-icon nzType="filter" nzTheme="outline"></i></button>
+          <button style="margin: 0 8px;" nz-button nzType="default" (click)="getVoucherRealease()">
+            {{'xem' | translate}}
+          </button>
+
+        <button class="button-add" (click)="showModalAdd()">+ {{'tao_dot_phat_hanh' | translate}}</button>
+    </div>
+    <div style="margin-top: 16px;">
+        <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="list_vouchers" #tableSales
+            nzShowSizeChanger [nzLoading]="loading">
+            <thead class="_thead">
+                <tr>
+                    <th nzWidth="30%" nzAlign="left" style="cursor: pointer" (click)="nameCol = !nameCol;sortProducts('name')">
+                        <b>{{'ten_dot' | translate}}
+                            <i [class]="nameCol ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"></i>
+                        </b>
+                    </th>
+                    <th nzWidth="25%" nzAlign="left"><b>{{'ngay_bat_dau' | translate}}</b></th>
+                    <th nzWidth="25%" nzAlign="center"><b>{{'ngay_ket_thuc' | translate}}</b></th>
+                    <th nzWidth="20%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container>
+                    <tr style="cursor: pointer;" *ngFor="let voucher of tableSales.data" >
+                        <td nzAlign="left" (click)="viewDetail(voucher)">
+                            <span>{{ voucher.name }}</span>
+                        </td>
+                        <td nzAlign="left">
+                            <span>{{ voucher.date_validity | date: 'dd-MM-yyyy'}}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ voucher.date_expire | date: 'dd-MM-yyyy'}}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <button class="button-tool" (click)="showModalEdit($event,voucher)"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button class="button-tool" nz-popconfirm (click)="$event.stopPropagation()"
+                                nzPopconfirmTitle="{{'xoa_dot_phat_hanh_nay' | translate}}?" nzPopconfirmPlacement="bottom" nzOkText="{{'xoa' | translate}}"
+                                nzCancelText="{{'huy' | translate}}" (nzOnConfirm)="confirm(voucher)" (nzOnCancel)="cancel()"><i
+                                    class="bi bi-trash" style="color:red"></i></button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-layout>
+<!-- xử lý modal -->
+<nz-modal [(nzVisible)]="visible" [nzTitle]="isOpenComponent ? ('them_dot_phat_hanh' | translate) : ('cap_nhat_dot_phat_hanh' | translate)" [nzFooter]="null"
+    (nzOnCancel)="visible=false">
+    <ng-container *nzModalContent>
+        <app-add-release-voucher *ngIf="isOpenComponent" (closeModal)="closeModal($event)" (isAdded)="isAdd($event)"></app-add-release-voucher>
+        <app-edit-release-voucher *ngIf="!isOpenComponent" (closeModal)="closeModal($event)" (isEdited)="isEdit($event)" [itemEditing]="itemEditing"></app-edit-release-voucher>
+    </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="showFilter" nzCancelText="{{'huy' | translate}}" nzTitle="{{'loc_du_lieu_theo'|translate}}"
+  (nzOnCancel)="showFilter = false" (nzOnOk)="showFilter = false">
+  <ng-container *nzModalContent>
+    <nz-radio-group [(ngModel)]="date_query" (ngModelChange)="this.searchVoucher = ''; this.list_vouchers = []">
+      <label nz-radio nzValue="">{{'khong' | translate}}</label>
+      <label nz-radio nzValue="date_validity">{{'ngay_bat_dau' | translate}}</label>
+      <label nz-radio nzValue="date_expire">{{'ngay_ket_thuc' | translate}}</label>
+    </nz-radio-group>
+  </ng-container>
+</nz-modal>

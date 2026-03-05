@@ -1,0 +1,103 @@
+<nz-layout id="purchase-invoice-today">
+    <div class="purchase-invoice-today-header">
+      <div class="row p-0 m-0">
+        <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+          <span class="title"><b>{{'truong_du_lieu_tu_tao' | translate}}</b></span>
+          <div class="search">
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input placeholder="{{'tim_kiem_ten_truong' | translate }}" [(ngModel)]="keySearch"
+                (keyup.enter)="onSearchNewField()" />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+              <span (click)="onSearchNewField()" nz-icon nzType="search"></span>
+            </ng-template>
+          </div>
+        </div>
+        <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end">
+          <nz-select style="margin: 0 16px; width: 18rem" [(ngModel)]="idMainSector"
+            nzPlaceHolder="{{'nhom_nganh_hang' | translate}}" (ngModelChange)="keySearch = '';totalPages = 0; newFields = []">
+            <nz-option nzLabel="{{'tat_ca' | translate}}" nzValue="all"></nz-option>
+            <nz-option *ngFor="let item of mainSectors" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+          </nz-select>
+          <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button
+            (click)="resetPagination();getNewFields()" nzType="default">
+            {{ "xem" | translate}}
+          </button>
+          <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+            (click)="addNewField()">
+            <i class="bi bi-plus"></i> {{'them_truong' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 16px;">
+      <nz-table [nzScroll]="{ y: tableHeight }" 
+      [nzData]="newFields" 
+      #tableSales [nzShowPagination]="false"
+      [nzLoading]="loading"
+        nzShowSizeChanger [nzFooter]="newFields.length && footerTpl ">
+        <thead class="_thead">
+          <tr> 
+            <th nzWidth="65%" nzAlign="left" (click)="handleSort('field_lable')">
+              <b>{{'ten_truong' | translate }}</b>
+              <span *ngIf="newFields?.length" nz-icon [nzType]="sortby.field_lable ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+            </th>
+            <th nzWidth="65%" nzAlign="left" (click)="handleSort('id_main_sector')">
+              <b>{{'nhom_nganh_hang' | translate }}</b> 
+              <span 
+                *ngIf="newFields?.length" 
+                nz-icon 
+                [nzType]="sortby.id_main_sector ? 'arrow-down' : 'arrow-up'" 
+                nzTheme="outline"
+              >
+              </span>
+            </th>
+            <th nzWidth="65%" nzAlign="left" (click)="handleSort('field_order_number')">
+              <b>{{'vi_tri_hien_thi' | translate }}</b> 
+              <span 
+                *ngIf="newFields?.length" 
+                nz-icon 
+                [nzType]="sortby.field_order_number ? 'arrow-down' : 'arrow-up'" 
+                nzTheme="outline"
+              >
+              </span>
+            </th>
+            <th nzWidth="15%" nzAlign="center"><b>{{'thao_tac' | translate }}</b></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of newFields">
+              <td>
+                <div class="d-flex justify-content-start text-start" style="margin-left: 20px;font-weight: 600; ">
+                  <span>{{ item.field_lable}}</span><span *ngIf="item.field_required" class="sup"> *</span>
+                </div>
+              </td>
+              <td>
+                {{renderBussiness(item.id_main_sector)}}
+                {{ translateLookupGroup(item) }}
+              </td>
+              <td>
+                {{ item.field_order_number }}
+              </td>
+              <td nzAlign="center">
+                <div class="icon-action">
+                  <span nz-icon nzType="edit" nzTheme="outline" (click)="editNewField(item)"></span>
+                  <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteNewField(item)"></span>
+                </div>
+              </td>
+            </tr>
+        </tbody>
+      </nz-table>
+      <ng-template #footerTpl>
+        <app-pagination
+        [pageCurrent]="pageCurrent"
+        [totalPages]="totalPages"
+        [limit]="limit"
+        [pageShowChoose]="pageShowChoose"
+        [pageGoto]="pageGoto"
+        (pageIndexChange)="pageIndexChange($event)"
+        (limitChange)="limitChange($event)"
+      ></app-pagination>
+      </ng-template>
+    </div>
+  </nz-layout>

@@ -1,0 +1,23 @@
+{
+	"resolution": {
+		"desktop_width": 1920,
+		"mobile_landscape_width": 844,
+		"mobile_portrait_width": 390,
+		"tablet_landscape_width": 1180,
+		"tablet_portrait_width": 820
+	},
+	"main_sectors": [
+		"basic",
+		"member",
+		"category",
+		"ecommerce",
+		"food_drink",
+		"news",
+		"website"
+	],
+	"desktop_template_display": true,
+	"mobile_landscape_template_display": false,
+	"mobile_portrait_template_display": true,
+	"tablet_landscape_template_display": false,
+	"tablet_portrait_template_display": false
+}

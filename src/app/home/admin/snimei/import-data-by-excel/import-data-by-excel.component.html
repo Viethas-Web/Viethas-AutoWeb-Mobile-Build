@@ -1,0 +1,80 @@
+<div nz-row class="row-back medium-size" (click)="close(false)">
+    <i nz-icon nzType="left" nzTheme="outline"></i>{{'tro_lai'|translate}}
+</div>
+<nz-layout class="mt-2" >
+    <div nz-row style="padding-bottom: 16px;z-index: 99;">
+        <div nz-col nzSpan="8" class="title left-all-content">
+            <b>{{'tao_bao_hanh_sn_imei' |translate}}</b>
+        </div>
+        <div nz-col nzSpan="16" class="right-all-content">
+            <div>
+                <button (click)="downloadSampleFile()" class="btn-data center-all-content" nz-button nzType="default">
+                    <i nz-icon nzType="download" nzTheme="outline"></i>
+                    {{'tao_file_mau' | translate}}
+                </button>
+            </div>
+            <div>
+                <button (click)="openFile()" [disabled]="formData?.length!=0" class="btn-data center-all-content" nz-button nzType="default">
+                    <i nz-icon nzType="upload" nzTheme="outline"></i>
+                    {{'them_file'|translate}}
+                </button>
+            </div>
+            <div>
+                <button (click)="createData()" [disabled]="formData?.length==0 || !isFormValid" class="btn-add center-all-content" nz-button nzType="default">
+                    <i nz-icon nzType="save" nzTheme="outline"></i>
+                    {{'tao_du_lieu'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div nz-row class='table'>
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let field of fields; let i = index">
+                        {{ field?.name | translate }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let form of formDataToCreate ; let i = index">
+                    <td *ngFor="let field of fields; let index = index">
+                        <input [type]="field?.db_field === 'lookup_group' ? 'number' : 'text'"
+                            [(ngModel)]="form[field?.db_field]" 
+                            (blur)="onInputChange(i, field, form[field?.db_field])" 
+                        />
+                        <ng-container *ngIf="!form[field?.db_field] && (['sn_imei', 'active', 'warehouse_release_date', 'max_activation_days', 'warranty_period', 'lookup_group','name', 'product_id'].includes(field?.db_field)  || field.field_required)">
+                            <div class="error-message error-font">
+                                <ion-text color="vh-red">{{ 'khong_duoc_de_trong' | translate }}</ion-text>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="field.db_field == 'lookup_group' && (form[field.db_field] < 1 || form[field.db_field] > 10)">
+                            <div class="error-message error-font">
+                                <ion-text color="vh-red">{{ 'nhom_tra_cuu_phai_tu_1_den_10' | translate }}</ion-text>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="field.db_field == 'active_date'&& isInvalidActiveDate(i, form)">
+                            <div class="error-message error-font">
+                                <ion-text color="vh-red">{{ 'ngay_kich_hoat_khong_hop_le' | translate }}</ion-text>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="form[field?.db_field]?.length != 0 && isDuplicateData(i, field?.db_field)">
+                            <div class="error-message error-font">
+                                <ion-text color="vh-red">{{ 'da_ton_tai_gia_tri_trong_database' | translate }}</ion-text>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="form[field?.db_field]?.length != 0 && isDuplicateFile(i, field?.db_field)">
+                            <div class="error-message error-font">
+                                <ion-text color="vh-red">{{ 'da_trung_gia_tri_trong_file' | translate }}</ion-text>
+                            </div>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</nz-layout>
+<input type="file" style="display: none;" id="file_excel_product"
+    accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+    (change)="openXLSXFile($event)" />

@@ -1,0 +1,18 @@
+<div style="width: 50%;margin: 0 auto;padding-top: 36px;">
+    <h3>SSL cho website</h3>
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input nz-input id="name" #name [(ngModel)]="commonData.ssl"
+            (blur)="updateCommonData({ssl : name.value})" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>Gửi</button>
+    </ng-template>
+    <h3>Viethas cung cấp SSL miễn phí:  
+        <button nz-button nzType="primary" nzSize="large" nzSearch>Cấp mới</button>
+    </h3>
+    <nz-input-group nzSearch nzSize="large">
+        <input nz-input id="name" #name [(ngModel)]="commonData.ssl_viethas"
+             disabled />
+    </nz-input-group>
+    <h3>Hướng dẫn:</h3>
+</div>

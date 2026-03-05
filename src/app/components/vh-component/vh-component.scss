@@ -1,0 +1,195 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+// @include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+// $Viethas-Web-Sales-Template-primary: mat-palette($mat-indigo);
+// $Viethas-Web-Sales-Template-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+// $Viethas-Web-Sales-Template-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+// $Viethas-Web-Sales-Template-theme: mat-light-theme((
+//   color: (
+//     primary: $Viethas-Web-Sales-Template-primary,
+//     accent: $Viethas-Web-Sales-Template-accent,
+//     warn: $Viethas-Web-Sales-Template-warn,
+//   )
+// ));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// @include angular-material-theme($Viethas-Web-Sales-Template-theme);
+
+/** Toast Ctrl*/
+
+.alert-toast {
+    --background: var(--ion-color-vh-red);
+    --color: var(--ion-color-vh-white);
+}
+
+.success-toast {
+    --background: var(--primary-color);
+    --color: var(--ion-color-vh-white);
+}
+
+
+/** Toast Ctrl*/
+
+
+/** Loading Ctrl */
+
+.current-loading {
+    --spinner-color: var(--ion-color-vh-pink);
+    --backdrop-opacity: 0.1;
+}
+
+.transparent-loading {
+    --background: transparent;
+    &>.sc-ion-loading-md {
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+}
+
+
+/** Loading Ctrl */
+
+
+/**Action sheet Ctrl */
+
+.action-sheet-red {
+    --button-color: var(--ion-color-vh-red);
+    --color: var(--ion-color-vh-red);
+    --button-color-hover: var(--ion-color-vh-red);
+    --button-color-selected: var(--ion-color-vh-red);
+    --button-color-activated: var(--ion-color-vh-red);
+}
+
+.action-sheet-current {
+    --button-color: var(--ion-color-vh-pink);
+    --color: var(--ion-color-vh-pink);
+    --button-color-hover: var(--ion-color-vh-pink);
+    --button-color-selected: var(--ion-color-vh-pink);
+    --button-color-activated: var(--ion-color-vh-pink);
+}
+
+.action-sheet-black {
+    --button-color: var(--ion-color-vh-black);
+    --color: var(--ion-color-vh-black);
+    --button-color-hover: var(--ion-color-vh-black);
+    --button-color-selected: var(--ion-color-vh-black);
+    --button-color-activated: var(--ion-color-vh-black);
+}
+
+
+/**Action sheet Ctrl */
+
+
+/** Modal controller */
+
+.modal-transparent .modal-wrapper {
+    --background: transparent;
+}
+
+.modal-print-A4 .modal-wrapper {
+    @media only screen and (min-width: 768px) {
+        min-width: 800px !important;
+    }
+}
+
+.modal-print-K80 .modal-wrapper,
+.modal-print-K57 .modal-wrapper {
+    @media only screen and (min-width: 768px) {
+        max-width: 420px !important;
+    }
+}
+
+.modal-fullscreen .modal-wrapper {
+    --min-width: 100%;
+    --min-height: 100%;
+}
+
+/* 5 Columns */
+
+// .col-xs-5,
+// .col-sm-5,
+// .col-md-5,
+// .col-lg-5 {
+//     position: relative;
+//     min-height: 1px;
+//     padding-right: 10px;
+//     padding-left: 10px;
+// }
+
+// .col-xs-5 {
+//     width: 20% !important;
+//     flex: 0 0 auto;
+// }
+// @media (min-width: 768px) {
+//     .col-sm-5 {
+//         width: 20% !important;
+//         flex: 0 0 auto;
+//     }
+// }
+// @media (min-width: 992px) {
+//     .col-md-5 {
+//         width: 20% !important;
+//         flex: 0 0 auto;
+//     }
+// }
+// @media (min-width: 1200px) {
+//     .col-lg-5 {
+//         width: 20% !important;
+//         flex: 0 0 auto;
+//     }
+// }
+/* 7 Columns */
+
+// .col-xs-7,
+// .col-sm-7,
+// .col-md-7,
+// .col-lg-7 {
+//     position: relative;
+//     min-height: 1px;
+//     padding-right: 10px;
+//     padding-left: 10px;
+// }
+
+// .col-xs-7 {
+//     width: 14.28% !important;
+//     flex: 0 0 auto;
+// }
+// @media (min-width: 768px) {
+//     .col-sm-7 {
+//         width: 14.28% !important;
+//         flex: 0 0 auto;
+//     }
+// }
+// @media (min-width: 992px) {
+//     .col-md-7 {
+//         width: 14.28% !important;
+//         flex: 0 0 auto;
+//     }
+// }
+// @media (min-width: 1200px) {
+//     .col-lg-7 {
+//         width: 14.28% !important;
+//         flex: 0 0 auto;
+//     }
+// }
+
+
+/** Modal controller */

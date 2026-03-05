@@ -1,0 +1,313 @@
+<div class="folder-manager">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="mb-0">
+      <i nz-icon nzType="folder-open" nzTheme="outline"></i>
+      Quản lý thư mục
+    </h3>
+    
+    <div class="d-flex gap-2">
+      <!-- Create Folder -->
+      <button 
+        nz-button 
+        nzType="default" 
+        nzSize="small"
+        (click)="createNewFolder()"
+      >
+        <i nz-icon nzType="folder-add" nzTheme="outline"></i>
+        Tạo Thư mục
+      </button>
+      
+      <!-- Upload File -->
+      <label class="btn btn-primary btn-sm mb-0">
+        <i nz-icon nzType="upload" nzTheme="outline"></i>
+        Tải lên File
+        <input 
+          type="file" 
+          multiple 
+          hidden 
+          (change)="handleFileUpload($event)"
+        />
+      </label>
+      
+      <!-- Upload Folder -->
+      <label class="btn btn-outline-primary btn-sm mb-0">
+        <i nz-icon nzType="folder-add" nzTheme="outline"></i>
+        Tải lên Thư mục
+        <input 
+          type="file" 
+          webkitdirectory 
+          directory 
+          hidden 
+          (change)="handleFolderUpload($event)"
+        />
+      </label>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <nz-breadcrumb class="mb-3">
+    <nz-breadcrumb-item *ngFor="let path of currentPath; let i = index">
+      <a 
+        *ngIf="i < currentPath.length - 1" 
+        (click)="navigateToPath(i)"
+        style="cursor: pointer;"
+      >
+        {{ path }}
+      </a>
+      <span *ngIf="i === currentPath.length - 1">{{ path }}</span>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <!-- Search & Filter Bar -->
+  <div class="card mb-3">
+    <div class="card-body py-2">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <nz-input-group [nzPrefix]="prefixIconSearch">
+            <input 
+              type="text" 
+              nz-input 
+              placeholder="Tìm kiếm file hoặc thư mục..." 
+              [(ngModel)]="searchText"
+              (ngModelChange)="onSearch()"
+            />
+          </nz-input-group>
+          <ng-template #prefixIconSearch>
+            <i nz-icon nzType="search" nzTheme="outline"></i>
+          </ng-template>
+        </div>
+        
+        <div class="col-md-6 text-end">
+          <nz-spin [nzSpinning]="loading" nzSize="small">
+            <span class="text-muted">
+              Tổng: {{ displayList.length }} mục
+            </span>
+          </nz-spin>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- File List Table -->
+  <div class="card">
+    <nz-spin [nzSpinning]="loading">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 50%">
+                <a 
+                  (click)="sortBy('name')" 
+                  class="text-decoration-none text-dark d-flex align-items-center gap-1"
+                  style="cursor: pointer;"
+                >
+                  <i nz-icon nzType="file" nzTheme="outline"></i>
+                  Tên {{ getSortIcon('name') }}
+                </a>
+              </th>
+              <th style="width: 15%">
+                <a 
+                  (click)="sortBy('size')" 
+                  class="text-decoration-none text-dark"
+                  style="cursor: pointer;"
+                >
+                  Kích thước {{ getSortIcon('size') }}
+                </a>
+              </th>
+              <th style="width: 20%">
+                <a 
+                  (click)="sortBy('mtime')" 
+                  class="text-decoration-none text-dark"
+                  style="cursor: pointer;"
+                >
+                  Ngày sửa {{ getSortIcon('mtime') }}
+                </a>
+              </th>
+              <th style="width: 15%" class="text-center">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              *ngFor="let item of displayList"
+              (contextmenu)="contextMenu($event, menu, item)"
+              (dblclick)="item.type === 'dir' ? openFolder(item) : editFile(item)"
+              class="file-row"
+              style="cursor: pointer;"
+            >
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <i 
+                    nz-icon 
+                    [nzType]="getFileIcon(item)" 
+                    [nzTheme]="item.type === 'dir' ? 'fill' : 'outline'"
+                    [class.text-warning]="item.type === 'dir'"
+                    [class.text-primary]="item.type === 'file'"
+                  ></i>
+                  
+                  <span *ngIf="!item.isEditing">{{ item.name }}</span>
+                  
+                  <input 
+                    *ngIf="item.isEditing"
+                    nz-input
+                    [value]="item.name"
+                    #renameInput
+                    (blur)="confirmRename(item, renameInput.value)"
+                    (keyup.enter)="confirmRename(item, renameInput.value)"
+                    (keyup.escape)="cancelRename(item)"
+                    class="w-auto"
+                    autoFocus
+                  />
+                </div>
+              </td>
+              <td>
+                <span class="text-muted" *ngIf="item.type !== 'dir'">
+                  {{ formatFileSize(item.size) }}
+                </span>
+              </td>
+              <td>
+                <span class="text-muted">{{ item.mtime | date: 'dd/MM/yyyy HH:mm' }}</span>
+              </td>
+              <td class="text-center">
+                <button 
+                  nz-button 
+                  nzType="text" 
+                  nzSize="small"
+                  nz-dropdown
+                  [nzDropdownMenu]="actionMenu"
+                  nzTrigger="click"
+                  (click)="selectedFile = item; $event.stopPropagation()"
+                >
+                  <i nz-icon nzType="more" nzTheme="outline"></i>
+                </button>
+              </td>
+            </tr>
+            
+            <tr *ngIf="displayList.length === 0 && !loading">
+              <td colspan="4" class="text-center py-5 text-muted">
+                <i nz-icon nzType="inbox" nzTheme="outline" style="font-size: 48px;"></i>
+                <p class="mt-2 mb-0">Không có file hoặc thư mục nào</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </nz-spin>
+  </div>
+</div>
+
+<!-- Context Menu -->
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item (click)="editFile(selectedFile!)" *ngIf="selectedFile?.type === 'file'">
+      <i nz-icon nzType="form" nzTheme="outline"></i>
+      <span>Xem và chỉnh sửa</span>
+    </li>
+    <li nz-menu-item (click)="viewFile(selectedFile!)" *ngIf="selectedFile">
+      <i nz-icon nzType="eye" nzTheme="outline"></i>
+      <span>Xem thông tin</span>
+    </li>
+    <li nz-menu-item (click)="openFolder(selectedFile!)" *ngIf="selectedFile?.type === 'dir'">
+      <i nz-icon nzType="folder-open" nzTheme="outline"></i>
+      <span>Mở</span>
+    </li>
+    <li nz-menu-item (click)="renameFile(selectedFile!)" *ngIf="selectedFile">
+      <i nz-icon nzType="edit" nzTheme="outline"></i>
+      <span>Đổi tên</span>
+    </li>
+    <li nz-menu-item (click)="extractZip(selectedFile!)" *ngIf="selectedFile?.name.toLowerCase().endsWith('.zip')">
+      <i nz-icon nzType="file-zip" nzTheme="outline"></i>
+      <span>Giải nén</span>
+    </li>
+    <li nz-menu-divider></li>
+    <li nz-menu-item (click)="deleteFile(selectedFile!)" class="text-danger" *ngIf="selectedFile">
+      <i nz-icon nzType="delete" nzTheme="outline"></i>
+      <span>Xóa</span>
+    </li>
+  </ul>
+</nz-dropdown-menu>
+
+<!-- Create Folder Modal Template -->
+<ng-template #createFolderModal>
+  <div>
+    <nz-form-item>
+      <nz-form-label>Tên thư mục</nz-form-label>
+      <nz-form-control>
+        <input 
+          nz-input 
+          [(ngModel)]="newFolderName" 
+          placeholder="Nhập tên thư mục"
+          autofocus
+        />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</ng-template>
+
+<!-- Edit File Modal Template -->
+<ng-template #editFileModal>
+  <div>
+    <nz-form-item>
+      <nz-form-control>
+        <textarea 
+          nz-input 
+          [(ngModel)]="editingFileContent" 
+          [rows]="20"
+          style="font-family: monospace; font-size: 13px;"
+          placeholder="Nội dung file..."
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</ng-template>
+
+<!-- Action Menu (same as context menu) -->
+<nz-dropdown-menu #actionMenu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item (click)="editFile(selectedFile!)" *ngIf="selectedFile?.type === 'file'">
+      <i nz-icon nzType="form" nzTheme="outline"></i>
+      <span>Xem và chỉnh sửa</span>
+    </li>
+    <li nz-menu-item (click)="viewFile(selectedFile!)" *ngIf="selectedFile">
+      <i nz-icon nzType="eye" nzTheme="outline"></i>
+      <span>Xem thông tin</span>
+    </li>
+    <li nz-menu-item (click)="openFolder(selectedFile!)" *ngIf="selectedFile?.type === 'dir'">
+      <i nz-icon nzType="folder-open" nzTheme="outline"></i>
+      <span>Mở</span>
+    </li>
+    <li nz-menu-item (click)="renameFile(selectedFile!)" *ngIf="selectedFile">
+      <i nz-icon nzType="edit" nzTheme="outline"></i>
+      <span>Đổi tên</span>
+    </li>
+    <li nz-menu-item (click)="extractZip(selectedFile!)" *ngIf="selectedFile?.name.toLowerCase().endsWith('.zip')">
+      <i nz-icon nzType="file-zip" nzTheme="outline"></i>
+      <span>Giải nén</span>
+    </li>
+    <li nz-menu-divider></li>
+    <li nz-menu-item (click)="deleteFile(selectedFile!)" class="text-danger" *ngIf="selectedFile">
+      <i nz-icon nzType="delete" nzTheme="outline"></i>
+      <span>Xóa</span>
+    </li>
+  </ul>
+</nz-dropdown-menu>
+
+<!-- Duplicate Item Modal (File & Folder) -->
+<ng-template #duplicateFileModal>
+  <div>
+    <p>
+      {{ duplicateItemType === 'file' ? 'File' : 'Thư mục' }}
+      <strong>{{ duplicateItemName }}</strong> đã tồn tại.
+    </p>
+    <p>Bạn muốn:</p>
+    <nz-radio-group [(ngModel)]="duplicateAction">
+      <label nz-radio nzValue="replace">
+        {{ duplicateItemType === 'file' ? 'Thay thế file cũ' : 'Thay thế thư mục cũ' }}
+      </label>
+      <label nz-radio nzValue="rename">
+        Đổi tên tự động (thêm số)
+      </label>
+      <label nz-radio nzValue="skip">Bỏ qua {{ duplicateItemType === 'file' ? 'file' : 'thư mục' }} này</label>
+    </nz-radio-group>
+  </div>
+</ng-template>

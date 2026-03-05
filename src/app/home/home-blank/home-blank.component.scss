@@ -1,0 +1,117 @@
+
+.fr {
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+    border: 1px solid #f2f2f2;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #b2b2b2;
+  }
+  .view {
+    height: 100%;
+    margin: auto;
+    // border: 4px solid lightgray;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    // padding: 8px;
+    background-color: darkgrey;
+    border-radius: 4px;
+    //  border: 1px solid darkgrey;
+  }
+}
+.design_main_overflow {
+  .show_scrollbar {
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    will-change: scroll-position;
+  }
+  
+  .show_scrollbar {
+    /* Đặt chiều rộng của scrollbar */
+    &::-webkit-scrollbar {
+      width: var(--width-scrollbar); 
+      height: var(--height-scrollbar);
+    }
+
+    /* Tùy chỉnh đường ray của scrollbar */
+    &::-webkit-scrollbar-track {
+      background-color: var(--background-color-track);
+      box-shadow: inset 0 0 5px grey; 
+      border-radius: var(--border-radius-track);
+    }
+    
+    /* Tùy chỉnh phần có thể kéo của scrollbar */
+    &::-webkit-scrollbar-thumb {
+      background-color:  var(--background-color-thumb);
+      border-radius: var(--border-radius-thumb);
+    }
+  }
+}
+
+.grid-container {
+  position: relative;
+  margin: 0 auto;
+  .grid-item {
+    position: relative;
+    text-align: center;
+    z-index: 10;
+  }
+}
+
+@mixin device() {
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: hidden;
+  overflow-y: scroll; 
+
+}
+
+.desktop {
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+.mobile_portrait {
+  @include device();  
+  height: 100%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.tablet_landscape {
+  @include device();
+  height: 100%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.tablet_portrait {
+  @include device();
+  height: 100%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.mobile_landscape {
+  @include device();
+  height: 100%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+::ng-deep .cdk-overlay-pane{
+  max-width: 100% !important;
+}
+.appear-when-scroll {
+  position: sticky !important;
+  top: 0 !important;
+  opacity: 1 !important;
+}

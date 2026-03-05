@@ -1,0 +1,98 @@
+[
+  {
+    "label": "mac_dinh",
+    "value": "default"
+  },
+  {
+    "label": "ban_tay",
+    "value": "pointer"
+  },
+  {
+    "label": "sao_chep",
+    "value": "copy"
+  },
+  {
+    "label": "di_chuyen",
+    "value": "move"
+  },
+  {
+    "label": "van_ban_chon",
+    "value": "text"
+  },
+  {
+    "label": "N-Resize",
+    "value": "n-resize"
+  },
+  {
+    "label": "NE-Resize",
+    "value": "ne-resize"
+  },
+  {
+    "label": "E-Resize",
+    "value": "e-resize"
+  },
+  {
+    "label": "SE-Resize",
+    "value": "se-resize"
+  },
+  {
+    "label": "S-Resize",
+    "value": "s-resize"
+  },
+  {
+    "label": "SW-Resize",
+    "value": "sw-resize"
+  },
+  {
+    "label": "W-Resize",
+    "value": "w-resize"
+  },
+  {
+    "label": "NW-Resize",
+    "value": "nw-resize"
+  },
+  {
+    "label": "N-Resize EW",
+    "value": "ns-resize"
+  },
+  {
+    "label": "E-Resize NS",
+    "value": "ew-resize"
+  },
+  {
+    "label": "All-Scroll",
+    "value": "all-scroll"
+  },
+  {
+    "label": "Not-Allowed",
+    "value": "not-allowed"
+  },
+  {
+    "label": "Progress",
+    "value": "progress"
+  },
+  {
+    "label": "doi",
+    "value": "wait"
+  },
+  {
+    "label": "Help",
+    "value": "help"
+  },
+  {
+    "label": "phong_to",
+    "value": "zoom-in"
+  },
+  {
+    "label": "thu_nho",
+    "value": "zoom-out"
+  },
+  {
+    "label": "Grab",
+    "value": "grab"
+  },
+  {
+    "label": "Grabbing",
+    "value": "grabbing"
+  }
+]

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69" height="69" viewBox="0 0 69 69">
+  <defs>
+    <filter id="Rectangle_14559" x="0" y="0" width="69" height="69" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_62764" data-name="Group 62764" transform="translate(23196.5 -171.5)">
+    <g transform="matrix(1, 0, 0, 1, -23196.5, 171.5)" filter="url(#Rectangle_14559)">
+      <rect id="Rectangle_14559-2" data-name="Rectangle 14559" width="60" height="60" transform="translate(4.5 3.5)" fill="#fff"/>
+    </g>
+    <g id="Group_62763" data-name="Group 62763" transform="translate(3.095)">
+      <path id="Path_115832" data-name="Path 115832" d="M22.258,20.393V5.174A2.163,2.163,0,0,0,20.118,3H5.14A2.163,2.163,0,0,0,3,5.174V20.393a2.163,2.163,0,0,0,2.14,2.174H20.118A2.163,2.163,0,0,0,22.258,20.393ZM8.884,14.414l2.675,3.272,3.745-4.9,4.814,6.522H5.14Z" transform="translate(-23190.184 178.053)" fill="#707070"/>
+      <rect id="Rectangle_14567" data-name="Rectangle 14567" width="22.098" height="3.683" rx="1.841" transform="translate(-23165 181.053)" fill="#707070"/>
+      <rect id="Rectangle_14574" data-name="Rectangle 14574" width="42.098" height="3.683" rx="1.841" transform="translate(-23187.184 211.053)" fill="#707070"/>
+      <rect id="Rectangle_14568" data-name="Rectangle 14568" width="15.049" height="3.683" rx="1.841" transform="translate(-23165 186.209)" fill="#707070"/>
+      <rect id="Rectangle_14575" data-name="Rectangle 14575" width="19.258" height="3.683" rx="1.841" transform="translate(-23187.184 216.209)" fill="#707070"/>
+      <rect id="Rectangle_14569" data-name="Rectangle 14569" width="15.049" height="3.683" rx="1.841" transform="translate(-23165 191.365)" fill="#707070"/>
+      <rect id="Rectangle_14576" data-name="Rectangle 14576" width="33.232" height="3.683" rx="1.841" transform="translate(-23187.184 221.365)" fill="#707070"/>
+      <path id="Intersection_22" data-name="Intersection 22" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23187.184 201.982)" fill="#707070"/>
+      <path id="Intersection_23" data-name="Intersection 23" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23182.184 201.982)" fill="#707070"/>
+      <path id="Intersection_24" data-name="Intersection 24" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23177.184 201.982)" fill="#707070"/>
+      <path id="Intersection_25" data-name="Intersection 25" d="M.455,4.037A.453.453,0,0,1,0,3.588V.449A.453.453,0,0,1,.455,0H3.643A.453.453,0,0,1,4.1.449v3.14a.453.453,0,0,1-.455.449Zm0-.673H3.643L2.618,2.019l-.8,1.011-.569-.675Z" transform="translate(-23172.184 201.982)" fill="#707070"/>
+    </g>
+  </g>
+</svg>

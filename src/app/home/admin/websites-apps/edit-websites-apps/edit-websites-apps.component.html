@@ -1,0 +1,297 @@
+<div class="add-product w-100 h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'cap_nhat_app' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="main">
+    <form class="form p-0 m-0" *ngIf="editWebsiteForm" [formGroup]="editWebsiteForm">
+      <div class="row">
+        <!-- Tên, danh mục -->
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'ten_website' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" [formControl]="getFormControl('name_' + functionService.languageTempCode)" placeholder="{{'nhap_ten_website' | translate}}"
+              (blur)="updateDynamicField('name', editWebsiteForm.value['name_' + functionService.languageTempCode])">
+          </div>
+        </div>
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'danh_muc' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input d-flex">
+            <div style="width:100%; ">
+              <nz-select
+                nzMode="multiple"
+                formControlName="id_categorys"
+                [nzPlaceHolder]="'trong' | translate"
+                (ngModelChange)="updateWebsite('id_categorys', { id_categorys: editWebsiteForm.value.id_categorys })"
+                nzShowSearch
+              >
+                <ng-container *ngFor="let o of categories">
+                  <nz-option  nzCustomContent [nzValue]="o._id" [nzLabel]="renderOptionCategory(o)">
+                    {{ renderOptionCategory(o) }}
+                  </nz-option>
+                </ng-container>
+              </nz-select>
+            </div>
+
+            <button class="center-all-content button_list_unit" nz-button nzType="default" (click)="createCategory()">
+              <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+              {{'tao_nhanh' | translate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div class="d-flex align-items-center">
+            <label for="name-input">{{'duong_dan_chi_tiet' | translate}}</label>
+            <span class="ml-1"  style="margin-bottom: .5rem" nz-icon nzType="question-circle" nzTheme="outline" [nz-tooltip]="'chu_y_duong_dan_chi_co_the_la' | translate"></span>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="link" placeholder="{{'nhap_duong_dan' | translate}}"
+              (blur)="updateWebsite('link', {link: editWebsiteForm.value.link})">
+              <div *ngIf="editWebsiteForm.get('link').invalid && editWebsiteForm.get('link').touched" class="error-message">
+                <small *ngIf="editWebsiteForm.get('link').errors.required">{{'vui_long_nhap_duong_dan' | translate}}</small>
+                <small *ngIf="editWebsiteForm.get('link').errors.pattern">{{'duong_dan_khong_hop_le' | translate}}</small>
+              </div>
+          </div>
+        </div>
+
+        <!-- Số lượng cảnh báo hết hàng -->
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'ma_website_tren_he_thong_viethas' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" formControlName="db"
+              placeholder="{{'nhap_ma_du_an_tren_he_thong_viethas' | translate}}"
+              (blur)="updateWebsite('db', {db: editWebsiteForm.value.db})">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'duong_dan_website' | translate}}</label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="link_website_demo"
+              placeholder="{{'nhap_duong_dan_website_ket_noi' | translate}}"
+              (blur)="updateWebsite('link_website_demo', {link_website_demo: editWebsiteForm.value.link_website_demo})">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'gia' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" type="number" formControlName="price" placeholder="{{'nhap_quet_ma_vach_website' | translate}}">
+
+          </div>
+        </div>
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'gia_goc' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" type="number"  formControlName="webapp_price_sales" placeholder="{{'nhap_quet_ma_vach_website' | translate}}">
+
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">Barcode</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" formControlName="barcode" placeholder="{{'nhap_quet_ma_vach_website' | translate}}">
+            <i style="margin: 8px 0 0 8px; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+              nzTooltipTitle="{{'tao_ma_vach_tu_dong' | translate}}" nzTooltipPlacement="bottom"
+              (click)="generateBarcodesAutomatically()"></i>
+          </div>
+        </div>
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'ngay_cap_nhat' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <nz-date-picker (blur)="updateWebsite('date_update', {date_update: editWebsiteForm.value.date_update})"
+              style="width: 100%;" formControlName="date_update"></nz-date-picker>
+
+          </div>
+        </div>
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'so_luong_da_dat' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input (blur)="updateWebsite('quantity', {quantity: editWebsiteForm.value.quantity})"
+              class="input" formControlName="quantity" placeholder="VD: 100+">
+
+          </div>
+        </div>
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'phien_ban' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input (blur)="updateWebsite('version', {version: editWebsiteForm.value.version})" class="input"
+              formControlName="version" placeholder="VD: 1.2">
+
+          </div>
+        </div>
+        <!-- Danh sách Trường tự định nghĩa -->
+        <ng-container>
+          <div class="col-6 padding" *ngFor="let item of newFields">
+            <div>
+              <label for="name-input">{{item?.field_lable}}<sup *ngIf="item.field_required">*</sup></label>
+            </div>
+            <div class="layout-input d-flex" style="gap:8px">
+              <input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}"
+                [type]="item.field_typeof" (blur)="updateNewField(item['field_custom'] + '_' + functionService.languageTempCode, editWebsiteForm.value[item['field_custom'] + '_' + functionService.languageTempCode])">
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <!-- Bật/ tắt -->
+      <div class="row padding">
+        <div class="col-6">
+          <div class="d-flex justify-content-between">
+            <label>{{'an_hien_thi_app_tren_website' | translate}}</label>
+            <nz-switch formControlName="webapp_hidden"
+              (ngModelChange)="updateWebsite('webapp_hidden', {webapp_hidden: editWebsiteForm.value.webapp_hidden})"></nz-switch>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách hình ảnh website -->
+      <div class="row p-0 m-0 pt-2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0 pb-2">
+          <h3 class="m-0" style="font-size: 16px;">{{'hinh_anh_website_hien_thi_tren_website' | translate}}</h3>
+        </div>
+        <ng-template [ngTemplateOutlet]="listImages"></ng-template>
+      </div>
+
+
+
+      <!-- Danh sách liên kết website  -->
+      <div class="row p-0 m-0 pt-2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0 pb-2 d-flex">
+          <h3 class="m-0" style="font-size: 16px;">{{'demo_website_dang_hinh_anh_tu_duong_dan_neu_co' | translate}} <span
+              style="padding-left: 5px; vertical-align: baseline !important;" nz-icon nzType="question-circle"
+              nzTheme="outline" nz-tooltip
+              nzTooltipTitle="{{'sao_chep_va_dan_duong_dan_website_he_thong_chuyen_moi_duong_dan_ve_dang_hinh_anh' | translate}}"></span>
+          </h3>
+          <button class="_btn_add_link ml-2" (click)="addIFrame()">{{'them_duong_dan' | translate}}</button>
+        </div>
+        <ng-template [ngTemplateOutlet]="listImageIFrames"></ng-template>
+      </div>
+
+      <div class="tab-editor">
+        <div class="flag">
+          <app-select-language-config [isAdmin]="true"></app-select-language-config>
+        </div>
+        <nz-tabset style="display: contents" [(nzSelectedIndex)]="selectedIndexTabset" class="row p-0 m-0">
+          <nz-tab *ngFor="let item of ckeditorFields; let i = index" [nzTitle]="item.field_lable | translate">
+            <ng-container *ngIf="selectedIndexTabset === i">
+              <ckeditor
+                class="ckeditor-admin"
+                (blur)="updateDynamicField(item.field_custom, editWebsiteForm.get(item.field_custom + '_' + functionService.languageTempCode).value)"
+                [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+              </ckeditor>
+            </ng-container>
+          </nz-tab>
+
+          <nz-tab *ngFor="let item of newFieldsCKEditor; let j = index" nzTitle="{{ item?.field_lable}}">
+            <ng-container *ngIf="selectedIndexTabset === (ckeditorFields.length + j)">
+              <ckeditor
+                class="ckeditor-admin"
+                (blur)="updateDynamicField(item.field_custom, editWebsiteForm.get(item.field_custom + '_' + functionService.languageTempCode).value)"
+                [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+              </ckeditor>
+            </ng-container>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+
+      <button class="_btn _btn_cancel d-flex align-items-center right-all-content mt-2" nz-button nzType="primary" (click)="openCKEditorByDevice()">
+        {{'mo_ta_rieng_cho_tung_thiet_bi' | translate}}
+      </button>
+
+
+      <!-- Nội dùng SEO -->
+      <div class="col-12" style="padding: 5pt 0 0;">
+        <div>
+          <div class="title d-flex flex-row justify-content-between">
+            <h5 style="font-size: 16px; margin: 6pt 0px !important;">SEO</h5>
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+          <div class="_body_seo">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="label">
+                <label class="m-0" for="webapp_seo_title">{{'tieu_de' | translate}}</label>
+              </div>
+              <div class="text">
+                <input class="input" type="text" [formControl]="getFormControl('webapp_seo_title_' + functionService.languageTempCode)" id="webapp_seo_title"
+                  placeholder="{{'nhap_tieu_de' | translate}}"
+                  (blur)="updateDynamicField('webapp_seo_title', editWebsiteForm.value['webapp_seo_title_' + functionService.languageTempCode])">
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="label">
+                <label class="m-0" for="webapp_seo_description">{{'mieu_ta' | translate}}</label>
+              </div>
+              <div class="text">
+                <input class="input" type="text" [formControl]="getFormControl('webapp_seo_description_' + functionService.languageTempCode)" id="webapp_seo_description"
+                  placeholder="{{'nhap_mieu_ta' | translate}}"
+                  (blur)="updateDynamicField('webapp_seo_description', editWebsiteForm.value['webapp_seo_description_' + functionService.languageTempCode])">
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="label">
+                <label class="m-0" for="webapp_seo_keyword">{{'tu_khoa' | translate}}</label>
+              </div>
+              <div class="text">
+                <input class="input" type="text" [formControl]="getFormControl('webapp_seo_keyword_' + functionService.languageTempCode)" id="webapp_seo_keyword"
+                  placeholder="{{'nhap_tu_khoa' | translate}}" data-role="tagsinput"
+                  (blur)="updateDynamicField('webapp_seo_keyword', editWebsiteForm.value['webapp_seo_keyword_' + functionService.languageTempCode])">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Danh sách hình ảnh của sản phẩm -->
+    <ng-template #listImages>
+      <app-list-images [imgs]="listImgProduct" [folderName]="'images/database/websites'"
+        (sendImgs)="sendImgs($event)" [setupsImage]="data.setupWebsiteImg" ></app-list-images>
+
+    </ng-template>
+
+    <!-- Danh sách hình ảnh của sản phẩm -->
+    <ng-template #listImageIFrames>
+      <div class="row p-0 m-0 w-100">
+        <ng-container *ngFor="let iframe of imgIFrames; index as i">
+          <div class="col-6 p-0 pr-2 pt-2 d-flex align-items-center justify-content-between">
+            <span>Link {{i + 1}}</span>
+            <input class="input mr-2" style="width: 85%;" type="text" placeholder="{{'nhap_duong_dan_lien_ket' | translate}}"
+              [(ngModel)]="iframe.path" (blur)="updateWebsite('img_iframes',{img_iframes:imgIFrames })">
+            <span role="button" nz-icon nzType="delete" nzTheme="outline" class="_delete_iframe" nz-popconfirm
+              [nzPopconfirmTitle]="('xoa' | translate) + iframe.path" nzCancelText="{{'thoat' | translate}}" nzOkText="{{'dong_y' | translate}}"
+              (nzOnConfirm)="deleteIFrame(i)"></span>
+          </div>
+        </ng-container>
+      </div>
+    </ng-template>
+  </div>
+</div>

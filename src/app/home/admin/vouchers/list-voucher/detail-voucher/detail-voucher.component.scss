@@ -1,0 +1,89 @@
+.field-add {
+    padding: 20px;
+
+    .heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title {
+            color: var(--ion-color-vh-green);
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 500;
+        }
+        .tool-right{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .button-add {
+                display: flex;
+                gap: 7px;
+                padding: 8px 12px;
+                color: #ffffff;
+                background-color: #00a859;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .text {
+            font-weight: 500;
+        }
+
+        .form-fill {
+            display: flex;
+            flex-direction: column;
+            height: 50px;
+        }
+
+        .text-error {
+            color: red;
+        }
+    }
+}
+
+.list-product {
+    list-style-type: none;
+    padding: 0;
+    height: 270px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .item-product {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f9e8e8;
+        cursor: pointer;
+        .subtext {
+            .img-product {
+                width: 45px;
+                height: 40px;
+                object-fit: fill;
+            }
+
+            .name-product {
+                font-weight: 500;
+                margin-left: 15px;
+            }
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        border: none;
+        background: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0;
+        background: none;
+    }
+}

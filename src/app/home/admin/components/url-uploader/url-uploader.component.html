@@ -1,0 +1,26 @@
+<div class="main h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'tai_anh_tu_duong_dan' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="_body pt-2">
+    <div class="row p-0 m-0 w-100">
+      <div class="col-12 p-0 d-flex align-items-center justify-content-center">
+        <input #valueInput class="input mr-2" type="text" placeholder="{{'nhap_duong_dan_anh' | translate}}" [(ngModel)]="url">
+      </div>
+    </div>
+  </div>
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="close()">
+      {{'huy' | translate}}
+    </button>
+    <button class="mr-2" nz-button nzType="primary" (click)="handelOk()"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'them' | translate}}
+    </button>
+  </div>
+</div>

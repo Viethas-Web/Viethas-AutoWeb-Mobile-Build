@@ -1,0 +1,53 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { NgZorroAntModule } from 'src/app/ng-zorro-ant.module';
+import { MaterialModule } from 'src/app/material.module';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { VhStringPercentPipeModule } from 'vhobjects-user';
+import { TranslateModule } from '@ngx-translate/core';
+import { IonicModule } from '@ionic/angular';
+// import { PaginationModule } from '../components/pagination/pagination.module'; 
+import { ByProductComponent } from './by-product.component';
+import { AddByProductComponent } from './add/add.component';
+import { EditByProductComponent } from './edit/edit.component';
+import { PaginationModule } from '../../components/pagination/pagination.module';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ByProductComponent,
+    children: [
+      {
+        path: 'add',
+        component: AddByProductComponent,
+      },
+      {
+        path: 'edit',
+        component: EditByProductComponent,
+      }
+    ]
+  },
+]
+
+@NgModule({
+    declarations: [
+        ByProductComponent, AddByProductComponent, EditByProductComponent,
+    ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        NgZorroAntModule,
+        RouterModule.forChild(routes),
+        FormsModule,
+        ReactiveFormsModule,
+        ColorPickerModule,
+        VhStringPercentPipeModule,
+        TranslateModule,
+        PaginationModule,
+        IonicModule,
+    ],
+    exports: []
+})
+export class RewardPointByProductModule { }

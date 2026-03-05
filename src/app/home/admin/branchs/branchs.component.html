@@ -1,0 +1,51 @@
+<nz-layout id="branches-list">
+    <div nz-row class="branches-list-header">
+        <div nz-col nzSpan="5" class="title left-all-content">
+            <b>{{'Branches list'| translate}}</b>
+        </div>
+        <div nz-col nzSpan="10" class="title left-all-content">
+            <nz-input-group style="margin-right : 10px;width: 80%;" [nzSuffix]="suffixIconSearch">
+                <input [(ngModel)]="searchValue" (ngModelChange)="searchBill($event)" type="text" nz-input placeholder="{{'Search for branch name' | translate}}" />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+                <i nz-icon nzType="search"></i>
+            </ng-template>
+        </div>
+        <div nz-col class="right-all-content" nzSpan="9">
+            <!-- <div>
+                <button (click)="goToAdd()" class="btn-green right-all-content" nz-button nzType="default">
+                    <ion-icon name="add-outline"></ion-icon>
+                    {{'Add branch' | translate}}
+                </button>
+            </div> -->
+        </div>
+    </div>
+    <div style="margin-top: 16px;">
+        <nz-table [nzScroll]="{ y: tableHeight }" #branchListShowdata nzShowPagination nzShowSizeChanger nzNoResult="{{'khong_co_du_lieu'| translate}}" [nzData]="branchListShow">
+            <thead>
+                <tr>
+                    <tr>
+                        <th style="cursor: pointer;" (click)="nameCol = !nameCol;sortTable('name')" nzWidth="35%" nzAlign='left'>
+                            <b>{{'Branch name' | translate}}</b>
+                            <i nz-icon [nzType]="nameCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                        </th>
+                        <th style="cursor: pointer;" (click)="phoneCol = !phoneCol;sortTable('phone')" nzWidth="30%" nzAlign='left'>
+                            <b>{{'Phone number' | translate}}</b>
+                            <i nz-icon [nzType]="phoneCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                        </th>
+                        <th style="cursor: pointer;" (click)="addressCol = !addressCol;sortTable('address')" nzWidth="35%" nzAlign='left'>
+                            <b>{{'Address' | translate}}</b>
+                            <i nz-icon [nzType]="addressCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                        </th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let invoice of branchListShowdata.data" style="cursor: pointer;">
+                    <td nzAlign='left'>{{invoice.name}}</td>
+                    <td nzAlign='left'>{{invoice.phone}}</td>
+                    <td nzAlign='left'>{{invoice.address}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-layout>

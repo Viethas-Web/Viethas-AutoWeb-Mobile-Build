@@ -1,0 +1,72 @@
+<div>
+
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'cap_nhap_lo_san_xuat_san_pham' | translate}}</h2>
+    </div>
+  </div>
+
+  <form nz-form [formGroup]="data.formEditLotProduct" class="form_lot_product">
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'so_lo_san_xuat' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorlot_number">
+        <input nz-input formControlName="lot_number" placeholder="{{'nhap_so_lo_san_xuat' | translate }}" />
+        <ng-template #errorlot_number let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'vui_long_nhap_so_lo_san_xuat' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'so_lo_san_xuat_la_bat_buoc' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'Barcode' }}</b></nz-form-label>
+      <div class="d-flex align-items-center w-100 justify-content-between">
+        <input formControlName="barcode" #barcodesize maxlength="15" nz-input placeholder="{{'Barcode'}}" />
+        <i class="ml-1" style="margin: auto; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+          nzTooltipTitle="{{'tao_ma_vach_tu_dong' | translate}}" nzTooltipPlacement="bottom"
+          (click)="generateBarcodesAutomatically()"></i>
+      </div>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'ngay_bat_dau' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errordate_mfg">
+        <input nz-input class="size-price-purchase-item" type="date" formControlName="date_mfg"
+          placeholder="{{'nhap_ngay_bat_dau' | translate }}" />
+        <ng-template #errordate_mfg let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_nhap_la_bat_buoc' | translate}}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'ngay_het_han' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errordate_exp">
+        <input nz-input class="size-price2-item" type="date" formControlName="date_exp"
+          placeholder="{{'nhap_ngay_het_han' | translate }}" />
+        <ng-template #errordate_exp let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'ngay_het_han_la_bat_buoc' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="pt-1 pb-1 w-100">
+      <div class="d-flex align-items-center">
+        <span><b>{{'an' | translate}}</b></span>
+        <nz-switch class="ml-2" formControlName="hidden"></nz-switch>
+      </div>
+    </nz-form-item>
+  </form>
+  <div class="d-flex align-items-center justify-content-end" style="gap:1rem">
+    <button nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-white); color: var(--ion-color-vh-black)" nzType="default"
+      (click)="dialogRef.close(false)">
+      {{"thoat" | translate}}
+    </button>
+    <button [disabled]="data.formEditLotProduct.invalid" [ngStyle]="{opacity: data.formEditLotProduct.invalid ? 0.5 : 1}" nz-button
+      class="nz-hover-border" style="background-color: var(--ion-color-vh-green); color: var(--ion-color-vh-white)"
+      class="nz-hover-border-green" (click)="dialogRef.close(true)">
+      {{"luu" | translate }}
+    </button>
+  </div>
+</div>

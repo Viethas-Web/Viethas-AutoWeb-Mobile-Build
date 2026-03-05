@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="69" height="69" viewBox="0 0 69 69">
+  <defs>
+    <filter id="Rectangle_14557" x="0" y="0" width="69" height="69" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_62754" data-name="Group 62754" transform="translate(22294.5 -163.5)">
+    <g transform="matrix(1, 0, 0, 1, -22294.5, 163.5)" filter="url(#Rectangle_14557)">
+      <rect id="Rectangle_14557-2" data-name="Rectangle 14557" width="60" height="60" transform="translate(4.5 3.5)" fill="#fff"/>
+    </g>
+    <g id="Group_62753" data-name="Group 62753" transform="translate(59.79 -66.205)" style="isolation: isolate">
+      <path id="Exclusion_22" data-name="Exclusion 22" d="M32,25.645H0V0H32V25.644ZM7.406,3.259a2.267,2.267,0,0,0-2.455,2V19.292a2.267,2.267,0,0,0,2.455,2H24.594a2.267,2.267,0,0,0,2.455-2V5.263a2.267,2.267,0,0,0-2.455-2ZM24.594,18.29H7.406l4.3-4.509L14.772,16.8l4.3-4.519,5.523,6.01Z" transform="translate(-22335.791 247.205)" fill="#707070"/>
+      <g id="Group_62742" data-name="Group 62742" transform="translate(-22332.791 275.205)">
+        <circle id="Ellipse_1630" data-name="Ellipse 1630" cx="2" cy="2" r="2" transform="translate(0)" fill="#707070"/>
+        <g id="Ellipse_1631" data-name="Ellipse 1631" transform="translate(7.403)" fill="#fff" stroke="#707070" stroke-width="1">
+          <circle cx="2" cy="2" r="2" stroke="none"/>
+          <circle cx="2" cy="2" r="1.5" fill="none"/>
+        </g>
+        <g id="Ellipse_1632" data-name="Ellipse 1632" transform="translate(14.806)" fill="#fff" stroke="#707070" stroke-width="1">
+          <circle cx="2" cy="2" r="2" stroke="none"/>
+          <circle cx="2" cy="2" r="1.5" fill="none"/>
+        </g>
+        <g id="Ellipse_1633" data-name="Ellipse 1633" transform="translate(22.209)" fill="#fff" stroke="#707070" stroke-width="1">
+          <circle cx="2" cy="2" r="2" stroke="none"/>
+          <circle cx="2" cy="2" r="1.5" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

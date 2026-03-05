@@ -1,0 +1,79 @@
+<div>
+  <div class="d-flex flex-row" style="gap:8px">
+    <h2 class="m-0" style="color: #008848">{{'them_co_mon_an' | translate}}</h2>
+  </div>
+  <div>
+    <form class="form p-0 m-0 body" *ngIf="formAddSubFood" [formGroup]="formAddSubFood" >
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24">
+          <b>{{'ten_co' | translate }}</b>
+          <span style="color:red">*</span>
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <div class="layout-input d-flex" style="gap:8px">
+            <input [formControl]="getFormControl('name_' + functionService.languageTempCode)" nz-input  placeholder="{{'nhap_ten_co' | translate}}" />
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24">
+          <b>{{'don_vi' | translate }}</b>
+          <span style="color:red">*</span>
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <div class="layout-input d-flex" style="gap:8px">
+            <input [formControl]="getFormControl('unit_' + functionService.languageTempCode)" nz-input class="sideDish_price" placeholder="{{'nhap_don_vi' | translate}}" />
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24"><b>{{'gia_ban' | translate }}</b><span style="color:red">*</span></nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input formControlName="price" nz-input class="price" placeholder="{{'nhap_gia_ban' | translate}}" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24"><b>{{'gia_ban_2' | translate }}</b><span style="color:red">*</span></nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input formControlName="price2" nz-input class="price2" placeholder="{{'nhap_gia_ban_2' | translate}}" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24"><b>{{'Barcode' }}</b></nz-form-label>
+        <div class="d-flex align-items-center w-100 justify-content-between">
+          <input formControlName="barcode" maxlength="15" nz-input [placeholder]="'Barcode'" />
+          <i class="ml-1" style="margin: auto; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+            [nzTooltipTitle]="'Tạo mã vạch tự động'" nzTooltipPlacement="bottom"
+            (click)="generateBarcodesAutomatically()"></i>
+        </div>
+      </nz-form-item>
+      <div class="mb-1 w-100">
+        <div class="mb-2 d-flex justify-content-between">
+          <label>{{'cho_phep_ban' | translate}}</label>
+          <nz-switch formControlName="allow_sell"></nz-switch>
+        </div>
+        <div class="mb-2 d-flex justify-content-between">
+          <label>{{'ban_chay' | translate}}</label>
+          <nz-switch formControlName="selling"></nz-switch>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-flex justify-content-end" style="gap: 1rem">
+    <button (click)="this.dialogRef.close(false)" nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-white); color: var(--ion-color-vh-black)" nzType="default">
+      {{"thoat" | translate}}
+    </button>
+    <button 
+      nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-green); color: var(--ion-color-vh-white)"
+      class="nz-hover-border-green"
+      [ngStyle]="{opacity: !formAddSubFood.valid? .5: 1}" 
+      (click)="addSubFood()"
+      >
+      {{"them" | translate }}
+    </button>
+  </div>
+</div>

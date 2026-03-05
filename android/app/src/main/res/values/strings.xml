@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">autoweb-build</string>
+    <string name="title_activity_main">autoweb-build</string>
+    <string name="package_name">com.viethas.autoweb</string>
+    <string name="custom_url_scheme">com.viethas.autoweb</string>
+</resources>

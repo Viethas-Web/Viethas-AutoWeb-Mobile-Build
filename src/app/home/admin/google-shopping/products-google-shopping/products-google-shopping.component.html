@@ -1,0 +1,111 @@
+<nz-layout id="purchase-invoice-today" class="products-google-shopping">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <!-- Tiêu đề  -->
+        <span class="title d-flex flex-row" style="gap:8px">
+          {{
+          dataRender[idMainSector]?.title | translate
+          }}
+        </span>
+        <!-- Thanh tìm kiếm -->
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input [placeholder]="dataRender[idMainSector]?.search | translate"
+              [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span style="cursor: pointer;" (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select">
+        <!-- Chọn danh mục -->
+        <div style="margin: 0 16px; width: 18rem ">
+            <app-vh-select [listMainSectors] = "mainSectors" [loading]="loadingCategory" [categoriesChoosing]="idCategory" [listCategories]="categories" [allowEmpty]="false" 
+              (selectChangeMainSector)="getProductsByMainSector($event)"
+              (selectChange)="idCategory = $event; keySearch = ''; products = []; totalPages = 0">
+            </app-vh-select>
+        </div>
+
+        <!-- tao_file_feedxml -->
+        <button (click)="handleFeedXml()" class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          [disabled]="!products || products.length === 0">
+          {{'tao_nguon_cap_xml' | translate}}
+        </button>
+
+        <!-- tao_file_google_sheet -->
+        <button (click)="handleFeedSheet()" class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          [disabled]="!products || products.length === 0">
+          {{'tao_nguon_cap_google_sheet' | translate}}
+        </button>
+
+        <!-- Nút xem -->
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination();getProducts()">
+          {{'xem' | translate}}
+        </button>
+        <!-- Nút thêm sản phẩm -->
+        <!-- <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="openModalSettingGoogleDrive()">
+          <i class="bi bi-plus"></i> {{ 'cau_hinh_google_drive' | translate}}
+        </button> -->
+      </div>
+    </div>
+  </div>
+  <nz-table style="margin-top: 11px" [nzScroll]="{ y: tableHeight }" #editRowTable nzBordered [nzData]="products"
+    [nzShowPagination]="false" [nzFrontPagination]="false" [nzLoading]="loading"
+    [nzFooter]="products?.length && footerTpl">
+    <thead>
+      <tr>
+        <th nzWidth="8%" nzAlign="center"><b>{{'anh' | translate}}</b></th>
+        <th nzWidth="60%"><b>{{ 'thong_tin_san_pham' | translate}}</b></th>
+        <th><b>{{'nhung_script_google_shopping' | translate}}</b></th>
+        <!-- <th><b>{{'thao_tac' | translate}}</b></th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pro of editRowTable.data; let index = index" class="editable-row">
+        <td>
+          <div class="image d-flex align-items-center justify-content-center">
+            <img onerror="this.src='/assets/root/images/system/icons/image_default.svg'"
+              [src]="pro.imgs ? pro.imgs[0] : ''" [alt]="pro[nameField]" width="40px" height="40px" />
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-column">
+            <div>SKU: {{ pro?.google_shopping?.id ?? '' }}</div>
+            <div>Tên: {{ pro?.google_shopping?.title ?? '' }}</div>
+            <div>Mô tả: {{ pro?.google_shopping?.description ?? '' }}</div>
+            <div>Giá: {{ pro?.google_shopping?.price ?? '' }}</div>
+            <div>Đường dẫn sản phẩm: {{ pro?.google_shopping?.link ?? '' }}</div>
+            <div>Tình trạng kho: {{ pro?.google_shopping?.availability ?? '' }}</div>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-row align-items-center gap-2">
+            <nz-switch [(ngModel)]="pro.embed_script_enable"
+              (ngModelChange)="updateData(pro, { embed_script_enable: pro.embed_script_enable })"></nz-switch>
+            <!-- Nút xem -->
+            <button *ngIf="pro.embed_script_enable"
+              class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+              (click)="handleShowStructure(pro)">
+              {{'xem_cau_truc' | translate}}
+            </button>
+          </div>
+        </td>
+        <!-- <td>
+          <button class="btn btn-danger" type="button" (click)="updateData(pro, { enable_google_shopping: false })">
+            {{'go_bo' | translate}}
+          </button>
+        </td> -->
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-template #footerTpl>
+    <app-pagination [pageCurrent]="pageCurrent" [totalPages]="totalPages" [limit]="limit"
+      [pageShowChoose]="pageShowChoose" [pageGoto]="pageGoto" (pageIndexChange)="pageIndexChange($event)"
+      (limitChange)="limitChange($event)"></app-pagination>
+  </ng-template>
+
+</nz-layout>

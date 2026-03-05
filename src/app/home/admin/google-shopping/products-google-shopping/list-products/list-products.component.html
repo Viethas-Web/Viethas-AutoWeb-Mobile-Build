@@ -1,0 +1,125 @@
+<nz-layout id="purchase-invoice-today">
+    <div class="flex items-center justify-between mb-2">
+        <h1 class="m-0 text-primary-green font-bold">{{ dataRender[idMainSector]?.title | translate }}</h1>
+        <span class="text-red cursor-pointer" nz-icon nzType="close" nzTheme="outline" (click)="close()"> </span>
+    </div>
+    <div class="purchase-invoice-today-header">
+        <div class="row p-0 m-0">
+            <div class="col-5 p-0 m-0 d-flex align-items-center justify-content-between">
+                <!-- Tiêu đề  -->
+                <span class="title d-flex flex-row" style="gap:8px">
+                    <b>{{ dataRender[idMainSector]?.list | translate }}</b>
+                </span>
+                <!-- Thanh tìm kiếm -->
+                <div class="search">
+                    <nz-input-group [nzSuffix]="suffixIconSearch">
+                        <input type="text" nz-input [placeholder]="dataRender[idMainSector]?.search | translate"
+                            [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+                    </nz-input-group>
+                    <ng-template #suffixIconSearch>
+                        <span style="cursor: pointer;" (click)="onSearch()" nz-icon nzType="search"></span>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col-7 p-0 m-0 d-flex align-items-center justify-content-end select">
+                <nz-select style="margin: 0 16px; width: 18rem" [(ngModel)]="idMainSector"
+                    (ngModelChange)="keySearch = '';totalPages = 0; categories = []; products = []; productList = []; getCategory()"
+                    nzPlaceHolder="{{'nhom_nganh_hang' | translate}}">
+                    <nz-option *ngFor="let item of mainSectors" [nzValue]="item.value"
+                        [nzLabel]="item.label | translate"></nz-option>
+                </nz-select>
+                <!-- Chọn danh mục -->
+                <div style="margin: 0 16px; width: 18rem ">
+                    <app-vh-select [categoriesChoosing]="idCategory" [listCategories]="categories" [allowEmpty]="false"
+                        (selectChange)="idCategory = $event; keySearch = ''; products = []; totalPages = 0">
+                    </app-vh-select>
+                </div>
+
+                <!-- Nút xem -->
+                <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button
+                    nzType="default" (click)="resetPagination();getProducts()">
+                    {{'xem' | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 16px">
+        <nz-table [nzScroll]="{ y: '450px' }" [nzData]="products" #tableSales [nzShowPagination]="false"
+            nzShowSizeChanger [nzLoading]="loading" [nzFooter]="products?.length && footerTpl">
+            <thead class="_thead">
+                <tr>
+                    <th nzWidth="2%"><span></span></th>
+                    <th nzWidth="8%" nzAlign="center"><b>{{'anh' | translate}}</b></th>
+                    <th nzWidth="27%" nzAlign="left" (click)="handleSort(nameField)">
+                        <b>{{dataRender[idMainSector]?.name | translate}}</b>
+                        <span *ngIf="products?.length" nz-icon [nzType]="sortby[nameField] ? 'arrow-down' : 'arrow-up'"
+                            nzTheme="outline"></span>
+                    </th>
+                    <th nzWidth="18%" nzAlign="left"><b>{{'danh_muc' | translate}}</b></th>
+                    <th *ngIf="idMainSector != 'webapp'" nzWidth="10%" nzAlign="center"><b>{{'don_vi' | translate}}</b>
+                    </th>
+                    <th nzWidth="10%" nzAlign="right"><b>{{'gia_ban' | translate}}</b></th>
+                    <th nzWidth="10%" nzAlign="center"><b>Barcode</b></th>
+                    <th nzWidth="8%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of products; trackBy: trackByFn">
+                    <tr>
+                        <td style="cursor: pointer"
+                            (click)="$event.stopPropagation(); item.show_expand = !item.show_expand">
+                            <i class="icon-expand" *ngIf="item.manysize" nz-icon
+                                [nzType]="item.show_expand ? 'up' : 'down'" nzTheme="outline"></i>
+                        </td>
+                        <td>
+                            <div class="image d-flex align-items-center justify-content-center">
+                                <img onerror="this.src='/assets/root/images/system/icons/image_default.svg'"
+                                    [src]="item.imgs ? item.imgs[0] : ''" [alt]="item[nameField]" width="40px"
+                                    height="40px" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start text-start">
+                                <span>{{ item[nameField] }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start text-start">
+                                <span>{{ item.category_name || 'Trống' }}</span>
+                            </div>
+                        </td>
+                        <td *ngIf="idMainSector != 'webapp'" nzAlign="center">
+                            <nz-select class="_select" *ngIf="!item.manysize" [(ngModel)]="item.unitDefault">
+                                <nz-option class="_option" [nzValue]="unit"
+                                    [nzLabel]="unit['unit_'+functionService.selectedLanguageCode]"
+                                    *ngFor="let unit of item.units"></nz-option>
+                            </nz-select>
+                        </td>
+                        <td nzAlign="right">
+                            <span *ngIf="!item.manysize">{{(item.unitDefault?.price | number : "1.0-0") +"đ"}}</span>
+                        </td>
+                        <td nzAlign="right">
+                            <span *ngIf="!item.manysize">{{ item.unitDefault?.barcode }}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <div class="icon-action">
+                                <nz-switch [nzDisabled]="item.enable_google_shopping"
+                                    [(ngModel)]="item.enable_google_shopping" (ngModelChange)="
+                      updateData(item, { enable_google_shopping: $event })
+                    "></nz-switch>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </nz-table>
+
+        <ng-template #footerTpl>
+            <app-pagination [pageCurrent]="pageCurrent" [totalPages]="totalPages" [limit]="limit"
+                [pageShowChoose]="pageShowChoose" [pageGoto]="pageGoto" (pageIndexChange)="pageIndexChange($event)"
+                (limitChange)="limitChange($event)"></app-pagination>
+        </ng-template>
+
+    </div>
+</nz-layout>

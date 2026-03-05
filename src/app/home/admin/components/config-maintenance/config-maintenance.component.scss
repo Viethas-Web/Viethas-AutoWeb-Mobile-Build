@@ -1,0 +1,20 @@
+.maintenance {
+  padding: 50px;
+}
+
+.maintenance-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+
+.maintenance-top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.maintenance-top__title {
+  margin: 0;
+}

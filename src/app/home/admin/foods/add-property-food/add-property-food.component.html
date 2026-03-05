@@ -1,0 +1,26 @@
+<div>
+  <div>
+    <h2 class="m-0" style="color: #008848">{{'them_thuoc_tinh' | translate}}</h2>
+  </div>
+  <div class="mt-2">
+    <p>{{'neu_ban_nhap_nhieu_gia_tri_thi_cac_gia_tri_ngan_cach_nhau_dau_phay' | translate }}</p>
+    <mat-form-field class="example-full-width w-100" appearance="fill">
+      <mat-label>{{'ten_thuoc_tinh' | translate}}</mat-label>
+      <input matInput [placeholder]="'ten_thuoc_tinh' | translate" [(ngModel)]="nameProperty">
+    </mat-form-field>
+  </div>
+  <div class="d-flex justify-content-end" style="gap: 1rem">
+    <button (click)="this.dialogRef.close(false)" nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-white); color: var(--ion-color-vh-black)" nzType="default">
+      {{"thoat" | translate}}
+    </button>
+    <button 
+      nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-green); color: var(--ion-color-vh-white)"
+      class="nz-hover-border-green"
+      (click)="addProperty()"
+      >
+      {{"them" | translate }}
+    </button>
+  </div>
+</div>

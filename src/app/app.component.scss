@@ -1,0 +1,38 @@
+.qr-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.btn-style-impressive {
+  padding: 14px 35px; /* Kích thước lớn hơn */
+  font-size: 18px;
+  font-weight: 800; /* Chữ siêu đậm */
+  border-radius: 50px; /* Bo góc tròn hoàn toàn */
+  text-transform: none;
+  transition: all 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67); /* Hiệu ứng chuyển động mượt mà */
+  cursor: pointer;
+  display: inline-block;
+}
+
+.homePage-btn-login {
+  color: white;
+  /* Màu chuyển xanh từ đậm sang nhạt */
+  background: linear-gradient(135deg, #d42e00 0%, #ec4f21 100%);
+  border: none;
+  /* Hiệu ứng phát sáng xanh bên ngoài (Blue Glow) */
+  box-shadow: 0 4px 15px rgba(226, 77, 31, 0.368627451);
+  /* Hover Nút 2: (Phát sáng mạnh hơn, màu chuyển sắc nét hơn) */
+}
+.homePage-btn-login:hover {
+  background: linear-gradient(135deg, #b62800 0%, rgb(179, 48, 8) 100%);
+  box-shadow: 0 6px 20px rgba(236, 80, 33, 0.6509803922); /* Tăng độ sáng */
+  transform: translateY(-2px);
+}

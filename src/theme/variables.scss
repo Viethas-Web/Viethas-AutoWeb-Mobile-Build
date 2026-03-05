@@ -1,0 +1,184 @@
+/* Ionic Variables and Theming. */
+
+
+/* This is just a placeholder file For more info, please see: */
+
+
+/* https://ionicframework.com/docs/theming/basics */
+
+
+/* To quickly generate your own theme, check out the color generator */
+
+
+/* https://ionicframework.com/docs/theming/color-generator */
+
+:root {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: #ff000a;
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #008848;
+    --ion-color-vh-green-chart: #f5a62f;
+    --ion-color-vh-green-light: #00c76a;
+    --ion-color-primary: #00a859;
+    --ion-color-vh-pink: #008848;
+    --ion-color-vh-pink-light: #fb8b8c;
+    --ion-color-vh-turquoise: #00b5a9;
+    --ion-color-vh-hover: #4B4B4B;
+
+    
+    // --primary-color: #008848;
+    // --primary-color-red: #ff000a;
+}
+
+
+/*
+       * Custom theme
+       * -------------------------------------------
+       */
+
+.gray-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: rgb(209, 81, 203);
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #7f7f7f;
+    --ion-color-vh-green-chart: #e9f1f7;
+    --ion-color-vh-green-light: #6f7f7f;
+    --ion-color-primary: #7f7f7f;
+}
+
+.brown-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: rgb(209, 81, 203);
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #880015;
+    --ion-color-vh-green-chart: #f5a62f;
+    --ion-color-vh-green-light: #980015;
+    --ion-color-primary: #880015;
+}
+
+.red-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: rgb(209, 81, 203);
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #ed1c24;
+    --ion-color-vh-green-chart: #d8bd8a;
+    --ion-color-vh-green-light: #fd1c24;
+    --ion-color-primary: #ed1c24;
+}
+
+.orange-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: #dd3341;
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #ff7f27;
+    --ion-color-vh-green-chart: #f5a62f;
+    --ion-color-vh-green-light: #fd8b3e;
+    --ion-color-primary: #ff7f27;
+}
+
+.yellow-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: #dd3341;
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #ffc000;
+    --ion-color-vh-green-chart: #776d5a;
+    --ion-color-vh-green-light: #ffdc6d;
+    --ion-color-primary: #ffc000;
+}
+
+.sky-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: #dd3341;
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #00a2e8;
+    --ion-color-vh-green-chart: #f58f29;
+    --ion-color-vh-green-light: #19a8e6;
+    --ion-color-primary: #00a2e8;
+}
+
+.blue-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: #dd3341;
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #3f48cc;
+    --ion-color-vh-green-chart: #8fbfe0;
+    --ion-color-vh-green-light: #4650d8;
+    --ion-color-primary: #3f48cc;
+}
+
+.purple-theme {
+    --ion-color-vh-black: #373737;
+    --ion-color-vh-red: #dd3341;
+    --ion-color-vh-gray: #8e8e93;
+    --ion-color-vh-gray-light: #f5f5f5;
+    --ion-color-vh-orange: #f5a62f;
+    --ion-color-vh-white: #ffffff;
+    --ion-color-vh-green: #a349a4;
+    --ion-color-vh-green-chart: #ddd5d0;
+    --ion-color-vh-green-light: #be56c0;
+    --ion-color-primary: #a349a4;
+}
+
+.ion-color-vh-black {
+    --ion-color-base: var(--ion-color-vh-black) !important;
+}
+
+.ion-color-vh-red {
+    --ion-color-base: var(--ion-color-vh-red) !important;
+}
+
+.ion-color-vh-gray {
+    --ion-color-base: var(--ion-color-vh-gray) !important;
+}
+
+.ion-color-vh-gray-light {
+    --ion-color-base: var(--ion-color-vh-gray-light) !important;
+}
+
+.ion-color-vh-orange {
+    --ion-color-base: var(--ion-color-vh-orange) !important;
+}
+
+.ion-color-vh-white {
+    --ion-color-base: var(--ion-color-vh-white) !important;
+}
+
+.ion-color-vh-green {
+    --ion-color-base: var(--ion-color-vh-green) !important;
+}
+
+.ion-color-vh-green-chart {
+    --ion-color-base: var(--ion-color-vh-green-chart) !important;
+}
+
+.ion-color-vh-green-light {
+    --ion-color-base: var(--ion-color-vh-green-light) !important;
+}
+
+.ion-color-vh-pink-light {
+    --ion-color-base: var(--ion-color-vh-pink-light) !important;
+}

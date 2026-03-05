@@ -1,0 +1,122 @@
+ 
+<nz-layout id="layout-employee" class="layout">
+    <div nz-row>
+        <div nz-col [nzSpan]="24">
+            <div nz-row>
+                <div nz-col nzSpan="21" class="layout-employee-title title left-all-content">
+                    <b>{{'Thông tin Administrator' | translate}}</b>
+                    
+                </div>
+                <div nz-col nzSpan="3" class="layout-employee-title title right-all-content"> 
+                    <button style="margin-left: 32px;border-color:var(--ion-color-vh-red);color:var(--ion-color-vh-red);" 
+                    (click)="isVisibleEditEmail = true;data.email = detailEmployee.value.email"  nz-button nzType="default"  >{{'Đổi mật khẩu mới' | translate}}</button>
+                </div>
+            </div>
+            <div nz-col nzSpan="24">
+                <form id="layout-employee-form" class="ant-table-body" nz-form [formGroup]="detailEmployee">
+                    <div nz-row>
+                        
+                        <div nz-col nzSpan="11">
+                            <div><b class='label'>{{'Employee name'|translate}}*</b></div>
+                            <nz-form-item>
+                                <nz-form-control [nzErrorTip]="combineTplName">
+                                    <nz-input-group>
+                                        <input   (blur)="updateEmployee({name: detailEmployee.value.name})" formControlName="name" nz-input
+                                            placeholder="{{'Enter employee name' | translate}}" minlength="5"
+                                            required />
+                                        <ng-template #combineTplName let-control>
+                                            <ng-container *ngIf="control.hasError('minlength')">{{'At least 6 characters' | translate}}
+                                            </ng-container>
+                                            <ng-container *ngIf="control.hasError('required')">{{'Employee name is required' | translate}}
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="1"></div>
+                        <div nz-col nzSpan="12">
+                            <div><b class='label'>{{'Email' | translate}}*</b></div>
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-input-group  >
+                                        <input style="width: 90%;"  readonly type="email" formControlName="email" nz-input
+                                            placeholder="{{'Enter email' | translate}}" required />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                            
+                        </div>
+                        
+                       
+                        <div nz-col nzSpan="11">
+                            <div><b class='label'>{{'Phone number' | translate}}*</b></div>
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-input-group   [nzPrefix]="prefixTemplateUser">
+                                        <input readonly style="border: none !important;" class="phone"
+                                            formControlName="phoneNumber" type="tel" nz-input  (blur)="updateEmployee({phoneNumber: detailEmployee.value.phoneNumber})" 
+                                            placeholder="{{'Enter phone number' | translate}}" minlength="6" required />
+                                        <ng-template #prefixTemplateUser><b
+                                                style="cursor: pointer;">{{data.countrycode}}</b></ng-template>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="1"></div>
+                        <div nz-col nzSpan="12">
+                            <div><b class='label'>{{'Date of birth' | translate}}</b></div>
+                            <input style="width: 90%;padding: 4px;"  type="date" id="start"   formControlName="dateofbirth"  (ngModelChange)="updateEmployee({dateofbirth: detailEmployee.value.dateofbirth})" />
+                            <!-- <nz-date-picker style="width: 90%;"   (ngModelChange)="updateEmployee({dateofbirth: detailEmployee.value.dateofbirth})"  formControlName="dateofbirth" nzPlaceHolder="{{'Select date' | translate}}">
+                            </nz-date-picker> -->
+                        </div>
+                        <div nz-col nzSpan="11">
+                            <div><b class='label'>{{'Address'|translate}}</b></div>
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-input-group>
+                                        <input (blur)="updateEmployee({address: detailEmployee.value.address})"
+                                            formControlName="address" nz-input
+                                            placeholder="{{'Enter address' | translate}}" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="1"></div>
+                        <div nz-col nzSpan="12">
+                            <div><b class='label'>{{'Gender' | translate}}</b></div>
+                            <nz-select style="border: none !important;width:90%;" nzShowSearch
+                                (ngModelChange)="updateEmployee({gender: detailEmployee.value.gender})"
+                                nzPlaceHolder="{{'Select gender' | translate}}" 
+                                formControlName="gender">
+                                <nz-option nzLabel="{{'Female' | translate}}" nzValue="Female"></nz-option>
+                                <nz-option nzLabel="{{'Male' | translate}}" nzValue="Male"></nz-option>
+                            </nz-select>
+                        </div>
+                     
+                        <div nz-col nzSpan="11">
+                            <div><b class='label'>{{'Starting date'|translate}}</b></div>
+                            <input style="width: 100%;padding: 4px;"  type="date" id="start"   formControlName="datework"  placeholder="dd-mm-yyyy"   
+                            (ngModelChange)="updateEmployee({datework: detailEmployee.value.datework})"  />
+                            <!-- <nz-date-picker style="width: 100%;" (ngModelChange)="updateEmployee({datework: detailEmployee.value.datework})" formControlName="datework" nzPlaceHolder="{{'Select date' | translate}}">
+                            </nz-date-picker> -->
+                        </div>
+                          
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</nz-layout>
+ 
+<!-- modal đổi email nhân biên -->
+<nz-modal [(nzVisible)]="isVisibleEditEmail" nzTitle="{{'Thay đổi mật khẩu mới'}}" (nzOnCancel)="isVisibleEditEmail = false" (nzOnOk)="changePassWord()">
+    <ng-container *nzModalContent>
+        <nz-input-group>
+             <h3>Mật khẩu cũ</h3>
+             <input nz-input placeholder="Nhập mật khẩu cũ" [(ngModel)]="oldPassword" type="password" />
+             <h3>Mật khẩu mới</h3>
+             <input nz-input placeholder="Nhập mật khẩu mới" [(ngModel)]="newPassword" type="password" />
+        </nz-input-group>
+    </ng-container>
+  </nz-modal>

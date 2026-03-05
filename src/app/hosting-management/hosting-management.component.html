@@ -1,0 +1,52 @@
+<div class="admin">
+  <div id="top-navbar" class="header navbar">
+    <div class="container-fluid p-0 ">
+      <div class="row p-0 m-0 w-100">
+        <div class="col-4 p-0 m-0 d-flex align-items-center justify-content-between">
+          <img style="height: 40px;" src="assets/viethas.png" />
+          <span class="m-0 title_page">{{'trang_tai_khoan' | translate}}</span>
+          <div class="center_navbar">
+            <div class="administrator w-100 d-flex justify-content-start">
+              <button class="_btn ml-1" (click)="backToPage()">
+                <i class="bi bi-box-arrow-left"></i>
+                <span>{{'trang_tai_khoan' | translate}}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 m-0 d-flex align-items-center">
+          <div class="administrator w-100 d-flex justify-content-end">
+            <button class="ml-1">
+              <i class="bi bi-person"></i>
+              <span>Administrator</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body" *ngIf="currentHosting">
+    <nz-layout >
+      <nz-sider class="ant-table-body">
+        <div>
+          <ul class="sider-menu ant-table-body w-100" nz-menu nzMode="inline">
+            <ng-container *ngFor="let item of tools">
+              <li *ngIf="currentHosting.freehosting ? item.label != 'gia_han_hosting' : item.label != 'thanh_toan_website'" [nzSelected]="item.route == currentRoute" nz-menu-item (click)="routerToModule(item.route)">
+                <span nz-icon [nzType]="item.nzType" nzTheme="outline"></span>
+                <span>{{item.label | translate}}</span>
+              </li>
+
+            </ng-container>
+          </ul>
+
+        </div>
+      </nz-sider>
+    </nz-layout>
+    <!-- Main outlet -->
+    <div class="router">
+      <div class="body-outlet" id="scroll">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

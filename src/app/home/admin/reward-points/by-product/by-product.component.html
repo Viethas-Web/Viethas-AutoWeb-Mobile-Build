@@ -1,0 +1,56 @@
+ 
+<nz-layout id="product-list" class="height-layout">
+    <div nz-row class="product-list-header">
+        <div nz-col nzSpan="14" class="title left-all-content">
+            <b>{{'danh_sach_chuong_trinh_trinh_tich_diem_theo_san_pham' | translate }}</b>
+        </div>
+        <div nz-col nzSpan="10" class="right-all-content">
+            <button class="btn-add center-all-content" nz-button nzType="default" (click)="getData()">
+                     
+                {{'xem_du_lieu' | translate}}</button>
+            <button class="btn-add" nz-button nzType="default" (click)="gotoAdd()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+                {{'them' | translate}}
+            </button>
+        </div>
+    </div>
+    <div>
+        <nz-table [nzScroll]="{ y: heightScroll  }" #dataShow [nzShowPagination]="false" nzNoResult="{{'khong_du_lieu' | translate}}" [nzData]="list_data">
+            <thead>
+                <tr>
+                    <th nzWidth="5%"></th>
+                    <th style="cursor: pointer;" (click)="nameCol = !nameCol;sortTable('name')">
+                        <b>{{'ten_chuong_trinh' | translate }}</b>
+                        <i nz-icon [nzType]="nameCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                    </th>
+                    <th style="cursor: pointer;" (click)="asMoneyCol = !asMoneyCol;sortTable('asMoney')">
+                        <b>{{'gia_tri_san_pham' | translate }}</b>
+                        <i nz-icon [nzType]="asMoneyCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                    </th>
+                    <th style="cursor: pointer;" (click)="asPointsCol = !asPointsCol;sortTable('asPoints')">
+                        <b>{{'diem_tich_luy' | translate }}</b>
+                        <i nz-icon [nzType]="asPointsCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                    </th>
+                    <!-- <th nzWidth="25%"><b>{{'Nhóm khách hàng' }}</b></th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of dataShow.data" (click)=" gotoEdit(data)" style="cursor: pointer;">
+                    <td>
+                        <i nz-icon nzType="close" nzTheme="outline" style="color: var(--ion-color-vh-red);" nz-popconfirm (click)="$event.stopPropagation()" nzPopconfirmTitle="{{'Xóa chương trình này' }}?" nzPopconfirmPlacement="bottom" (nzOnConfirm)="deleleData(data)"></i>
+                    </td>
+                    <td> {{ data.name}}</td>
+                    <td>
+                        {{vhAlgorithm.vhcurrencyunit(data.asMoney)}}
+                    </td>
+                    <td>
+                        {{data.asPoints}}
+                    </td>
+                    <!-- <td>
+                        {{data.customer_group_name}}
+                    </td> -->
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-layout>

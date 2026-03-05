@@ -1,0 +1,212 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <span class="title"><b>{{'so_do_trang_web' | translate}}</b></span>
+        <!-- Thanh tìm kiếm -->
+        <div class="search pr-1">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem' | translate}}" [(ngModel)]="keySearch" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-end w-100">
+          <button *ngIf="dataSitemap.length" class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+            (click)="downloadSitemap()">
+            {{'tai_xuong' | translate}}
+          </button>
+          <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+            (click)="handleScanWebsite()" [disabled]="loading" [nzLoading]="loading">
+            {{'tao_du_lieu' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 16px;">
+    <nz-table [nzVirtualItemSize]="64" [nzFrontPagination]="false" [nzShowPagination]="false" [nzScroll]="{ y: tableHeight }" [nzData]="paginatedDataSitemap" [nzLoading]="loading">
+      <!-- Tab File -->
+      <ng-container>
+        <thead class="_thead">
+          <tr>
+            <th nzWidth="5%">
+              STT
+            </th>
+            <th nzWidth="30%">
+              loc
+              <img class="icon-replace" src="assets/root/images/system/icons/replace-w.svg" alt="Replace All"
+                [nz-tooltip]="'tim_kiem_va_thay_the' | translate" (click)="replaceAllSitemap('loc')" />
+            </th>
+            <th nzWidth="10%">
+              priority
+              <img class="icon-replace" src="assets/root/images/system/icons/replace-w.svg" alt="Replace All"
+                [nz-tooltip]="'tim_kiem_va_thay_the' | translate" (click)="replaceAllSitemap('priority')" />
+            </th>
+            <th nzWidth="15%">
+              changefreq
+              <img class="icon-replace" src="assets/root/images/system/icons/replace-w.svg" alt="Replace All"
+                [nz-tooltip]="'tim_kiem_va_thay_the' | translate" (click)="replaceAllSitemap('changefreq')" />
+            </th>
+            <th nzWidth="20%">
+              lastmod
+              <img class="icon-replace" src="assets/root/images/system/icons/replace-w.svg" alt="Replace All"
+                [nz-tooltip]="'tim_kiem_va_thay_the' | translate" (click)="replaceAllSitemap('lastmod')" />
+            </th>
+            <th nzWidth="10%">
+              <b>Hành động</b>
+            </th>
+          </tr>
+        </thead>
+        <!-- <tbody> -->
+          <ng-template nz-virtual-scroll let-item let-i="index">
+            <tr>
+              <td>{{ dataSitemap.indexOf(item) + 1}}</td>
+
+              <!-- LOC -->
+              <td class="flex items-center gap-2 cursor-pointer">
+                <input nz-input [(ngModel)]="item.loc" placeholder="Nhập loc" [id]="'loc-input-' + dataSitemap.indexOf(item)" />
+                <i class="bi bi-box-arrow-up-right icon-open-link-in-new-tab" (click)="openInNewTab(item.loc)" nz-tooltip="Open link in new tab" ></i>
+              </td>
+
+              <!-- PRIORITY: select -->
+              <td>
+                <nz-select [(ngModel)]="item.priority" style="width: 100%;">
+                  <nz-option *ngFor="let option of priorities" [nzLabel]="option" [nzValue]="option"></nz-option>
+                </nz-select>
+              </td>
+
+              <!-- CHANGEFREQ: select -->
+              <td>
+                <nz-select [(ngModel)]="item.changefreq" style="width: 100%;">
+                  <nz-option *ngFor="let freq of frequencies" [nzLabel]="freq" [nzValue]="freq"></nz-option>
+                </nz-select>
+              </td>
+
+              <!-- LASTMOD: input date -->
+              <td>
+                <input nz-input type="date" [(ngModel)]="item.lastmod"/>
+              </td>
+              <!-- ACTIONS -->
+              <td>
+                <div class="d-flex flex-row align-items-center gap-2">
+                  <button nz-button nzType="link" nzSize="default" (click)="addRow(dataSitemap.indexOf(item))">
+                    <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+                  </button>
+                  <button nz-button nzType="link" nzSize="default" (click)="removeRow(dataSitemap.indexOf(item))">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          
+        <!-- </tbody> -->
+      </ng-container>
+    </nz-table>
+  </div>
+</nz-layout>
+
+<!-- modal replace -->
+<nz-modal [(nzVisible)]="visibleModalReplaceDomain" nzTitle="Tìm kiếm và thay thế" nzOkText="Thay thế tất cả"
+  (nzOnCancel)="visibleModalReplaceDomain = false" (nzOnOk)="handleReplaceAllSitemap()">
+  <ng-container *nzModalContent>
+    <div class="domain">
+      <label class="p-0 m-0">Tìm kiếm:</label>
+
+      <!-- LOC -->
+      <input *ngIf="fieldReplace === 'loc'" type="text" nz-input placeholder="Nhập loc cần tìm"
+        [(ngModel)]="locReplace" />
+
+      <!-- PRIORITY -->
+      <nz-select *ngIf="fieldReplace === 'priority'" [(ngModel)]="priorityReplace" style="width: 100%;">
+        <nz-option *ngFor="let option of priorities" [nzLabel]="option" [nzValue]="option"></nz-option>
+      </nz-select>
+
+      <!-- CHANGEFREQ -->
+      <nz-select *ngIf="fieldReplace === 'changefreq'" [(ngModel)]="changefreqReplace" style="width: 100%;">
+        <nz-option *ngFor="let freq of frequencies" [nzLabel]="freq" [nzValue]="freq"></nz-option>
+      </nz-select>
+
+      <!-- LASTMOD -->
+      <input *ngIf="fieldReplace === 'lastmod'" nz-input type="date" [(ngModel)]="lastmodReplace" />
+    </div>
+
+    <div class="domain mt-2">
+      <label class="p-0 m-0">Thay thế bằng:</label>
+
+      <!-- LOC -->
+      <input *ngIf="fieldReplace === 'loc'" type="text" nz-input placeholder="Loc mới" [(ngModel)]="newLocReplace" />
+
+      <!-- PRIORITY -->
+      <nz-select *ngIf="fieldReplace === 'priority'" [(ngModel)]="newPriorityReplace" style="width: 100%;">
+        <nz-option *ngFor="let option of priorities" [nzLabel]="option" [nzValue]="option"></nz-option>
+      </nz-select>
+
+      <!-- CHANGEFREQ -->
+      <nz-select *ngIf="fieldReplace === 'changefreq'" [(ngModel)]="newChangefreqReplace" style="width: 100%;">
+        <nz-option *ngFor="let freq of frequencies" [nzLabel]="freq" [nzValue]="freq"></nz-option>
+      </nz-select>
+
+      <!-- LASTMOD -->
+      <input *ngIf="fieldReplace === 'lastmod'" nz-input type="date" [(ngModel)]="newLastmodReplace" />
+    </div>
+  </ng-container>
+</nz-modal>
+
+
+<!-- modal nhập đường dẫn -->
+<nz-modal [(nzVisible)]="visibleCreateSitemap" nzTitle="Tạo dữ liệu" nzOkText="Tạo dữ liệu"
+  (nzOnCancel)="visibleCreateSitemap = false" [nzOkLoading]="loading" (nzOnOk)="handleCreateSitemap()">
+  <ng-container *nzModalContent>
+    <div class="d-flex flex-column justify-content-center align-items-start" style="gap:16px">
+      <div class="d-flex flex-row justify-content-start align-items-center">
+        <label class="p-0 m-0">Vui lòng nhập tên miền: </label>
+        <input type="text" nz-input placeholder="https://domain.com" [(ngModel)]="domainInput" />
+      </div>
+
+      <!-- chọn loại ngày -->
+      <div class="d-flex flex-row justify-content-start align-items-center" style="gap:16px">
+        <label class="p-0 m-0">Sitemap cần tải: </label>
+        <nz-radio-group [(ngModel)]="sitemap_type" (ngModelChange)="onSiteMapTypeChange($event)">
+          <label nz-radio-button nzValue="all">Tất cả</label>
+          <label nz-radio-button nzValue="main_page">Trang chính</label>
+          <label nz-radio-button nzValue="page_by_category">Trang theo danh mục</label>
+        </nz-radio-group>
+      </div>
+
+      <div *ngIf="sitemap_type === 'page_by_category'" class="d-flex flex-row justify-content-start align-items-center" style="gap:16px">
+        <label class="p-0 m-0">Lọc theo: </label>
+        <nz-radio-group [(ngModel)]="date_type">
+          <label nz-radio-button nzValue="none">Không</label>
+          <label nz-radio-button nzValue="created_at">Ngày tạo</label>
+          <label nz-radio-button nzValue="updated_at">Ngày cập nhật</label>
+        </nz-radio-group>
+      </div>
+
+      <ng-container *ngIf="sitemap_type === 'page_by_category'">
+        <div *ngIf="date_type !== 'none'" class="d-flex flex-row justify-content-start align-items-center gap-2">
+          <label class="p-0 m-0" style="white-space: nowrap;">Thời gian: </label>
+          <nz-range-picker [(ngModel)]="date"></nz-range-picker>
+        </div>
+
+        <div class="d-flex flex-column justify-content-start align-items-start gap-2">
+          <label class="p-0 m-0">Chọn danh mục cần tạo Sitemap:</label>
+          <div *ngIf="loading" class="mb-2">
+            <nz-spin nzSimple></nz-spin>
+          </div>
+
+          <div class="checkbox-grid" *ngIf="!loading">
+            <label *ngFor="let cat of categories" nz-checkbox [(ngModel)]="cat.checked">
+              {{ cat.name }}
+            </label>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</nz-modal>

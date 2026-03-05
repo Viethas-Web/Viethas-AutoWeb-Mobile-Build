@@ -1,0 +1,15 @@
+<!-- config maintenance page -->
+<ng-container>
+  <div class="maintenance">
+    <div class="maintenance-content">
+      <div class="maintenance-top">
+        <h1 class="maintenance-top__title">{{'hien_thi_trang_web_bao_tri' | translate}}</h1>
+      </div>
+      <nz-select class="maintenance__select" [(ngModel)]="maintenance.link" (ngModelChange)="updateSetup()"
+        nzPlaceHolder="{{'chon_trang_bao_tri' | translate}}">
+        <nz-option [nzValue]="''" [nzLabel]="'khong' | translate"></nz-option>
+        <nz-option *ngFor="let page of arr_link_page" [nzValue]="page.link" [nzLabel]="page['name_' + functionService.defaultLanguage]"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+</ng-container>

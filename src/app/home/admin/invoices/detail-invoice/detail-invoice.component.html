@@ -1,0 +1,149 @@
+<div class="heading" style="display: flex;align-items:center; justify-content: space-between;width: 100%;">
+    <div class="heading-left" style="width: 70%;display: flex;
+    align-items: center;
+    justify-content: space-between;">
+        <p style="font-size: 1.1rem;color: #00a85f;font-weight: 500;margin: 0;">{{'don_dat_hang' | translate }} {{data.bill_code}}</p>
+        <button (click)="completeInvoice()"
+            style="display:flex;align-items:center; padding: 10px;background: #00a859; gap: 5px;color: #ffffff;border-radius: 3px;">
+            <span nz-icon nzType="save" nzTheme="outline"></span> {{'hoan_tat_giao_hang' | translate }}
+        </button>
+    </div>
+    <div class="heading-right" style="width: 30%;text-align: right;">
+        <i class="bi bi-x" style="cursor:pointer;color: #07d31d;font-size: 30px;" (click)="closeDialog()"></i>
+    </div>
+</div>
+<br />
+<div class="wrapper">
+    <div class="side-left">
+        <nz-table #dataDetail [nzShowPagination]="false" [nzData]="showDetail" [nzLoading]="loading_product">
+            <thead class="_thead">
+                <tr>
+                    <th nzWidth="2%"><span></span></th>
+                    <th nzWidth="15%" nzAlign="left"><b>{{'ten_san_pham' | translate }} </b></th>
+                    <th nzWidth="10%" nzAlign="left"><b>{{'don_vi' | translate }}</b></th>
+                    <th nzWidth="10%" nzAlign="center"><b>{{'so_luong' | translate }}</b></th>
+                    <th nzWidth="20%" nzAlign="center"><b>{{'don_gia' | translate }}</b></th>
+                    <th nzWidth="10%" nzAlign="center"><b>{{'tong' | translate }}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of dataDetail.data">
+                    <tr>
+                        <td style="cursor: pointer;"
+                            (click)="$event.stopPropagation(); item.show_expand = !item.show_expand ">
+                            <i class="icon-expand" *ngIf="item.manysize" nz-icon
+                                [nzType]="item.show_expand ? 'up' : 'down'" nzTheme="outline"></i>
+                        </td>
+                        <td>
+                            <div class="image d-flex align-items-center">
+                                <span>{{item['name_' + functionService.selectedLanguageCode]}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start text-start">
+                                <span style="text-transform: capitalize;">{{ item['unit_' + functionService.selectedLanguageCode] }}</span>
+                            </div>
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ item.quantity }}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ vhAlgorithm.vhcurrencyunit(item.price)}}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ vhAlgorithm.vhcurrencyunit(item.price * item.quantity) }}</span>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </nz-table>
+    </div>
+    <div class="side-right">
+        <div class="top-right">
+            <div class="field-info">
+                <p class="title">{{'ma_hoa_don' | translate }}</p>
+                <span>{{data.bill_code}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'ngay_tao_don' | translate }}</p>
+                <span>{{data.date | date: 'dd/MM/yyyy'}} {{data.date | date: 'hh:mm'}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'giao_hang' | translate }}</p>
+                <span></span>
+            </div>
+        </div>
+        <div class="center-right">
+            <div class="field-info">
+                <p class="title">{{'khach_hang' | translate }}: </p>
+                <span>{{endUser?.name || data?.retail_name}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'so_dien_thoai' | translate }}: </p>
+                <span>{{endUser?.phone || data?.retail_phone}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">Email: </p>
+                <span>{{endUser?.email || data?.retail_email}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'dia_chi' | translate }}: </p>
+                <span>{{endUser?.address || data?.retail_address}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'hinh_thuc_thanh_toan' | translate }}: </p>
+                <span></span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'ghi_chu_cua_khach' | translate }}: </p>
+                <span>{{data.note}}</span>
+            </div>
+        </div>
+        <div class="bottom-right">
+            <div class="field-info">
+                <p class="title">{{'cong_tien' | translate }} </p>
+                <span>{{vhAlgorithm.vhcurrencyunit(data.total)}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'phi' | translate }} </p>
+                <span>0</span>
+            </div>
+            <!-- <div class="field-info">
+                <p class="title" style="display: flex;justify-content: space-between;width: 60%">Giảm giá hóa đơn
+                    <span>0%</span>
+                </p>
+                <span>{{data.discount}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">Thanh toán bằng điểm </p>
+                <span>-15000</span>
+            </div>
+            <div class="field-info">
+                <p class="title">Giảm giá Coupon </p>
+                <span>-10000</span>
+            </div>
+            <div class="field-info">
+                <p class="title" style="display: flex;justify-content: space-between;width: 40%;">Thuế <span>0%</span>
+                </p>
+                <span>{{data.tax}}</span>
+            </div> -->
+            <div class="field-info">
+                <p class="title">{{'tong' | translate }} </p>
+                <span>{{vhAlgorithm.vhcurrencyunit(data.total)}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'ghi_chu' | translate }}</p>
+                <span>{{data.note}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'xuat_hoa_don' | translate }}</p>
+                <span>{{data.is_export ? ('co' | translate) : ('khong' | translate)}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'thoi_gian_giao_hang' | translate }}</p>
+                <span>{{data.date_delivery}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

@@ -1,0 +1,161 @@
+<div class="fr">
+  <div class="view h-100 w-100" id="preview_blank">
+    <ng-container *ngIf="detailPage.blocks?.length;  ">
+      <!-- div này để canh giữa các phần tử -->
+      <div class="design_main_overflow h-100 w-100  d-flex align-items-center">
+        <!-- div này để set width height cho từng thiết bị -->
+        <div id="device" class="show_scrollbar w-100" [ngClass]="currentDeviceShow"  (scroll)="handleScroll($event)"
+          [style.--width-scrollbar]="subproject.resolution[deviceDisplay + '_class']['scrollbar']['width_scrollbar']"
+          [style.--height-scrollbar]="subproject.resolution[deviceDisplay + '_class']['scrollbar']['height_scrollbar']"
+          [style.--background-color-track]="subproject.resolution[deviceDisplay + '_class']['scrollbar']['background_color_track']"
+          [style.--border-radius-track]="subproject.resolution[deviceDisplay + '_class']['scrollbar']['border_radius_track']"
+          [style.--background-color-thumb]="subproject.resolution[deviceDisplay + '_class']['scrollbar']['background_color_thumb']"
+          [style.--border-radius-thumb]="subproject.resolution[deviceDisplay + '_class']['scrollbar']['border_radius_thumb']">
+          <!--  div này để set css cho page vì ko thể dùng 2 ngStyle trong 1 div -->
+
+
+          <!-- block header -->
+          <ng-container *ngIf="block_header">
+            <div [id]="block_header?._id + '_root'" data-id="header" [ngStyle]="{
+              width: block_header[deviceDisplay+'_position_'].width  + 'px',
+              height: block_header[deviceDisplay+'_config'].appear_when_scroll?.value ? '0' : block_header[deviceDisplay + '_position_'].height + 'px',
+              opacity: block_header[deviceDisplay+'_config'].appear_when_scroll?.value ? '0' : '1',
+              position: block_header[deviceDisplay + '_config']['position_onscroll'].type == 1 ? 'sticky' : 'relative',
+              top: block_header[deviceDisplay+'_config'].appear_when_scroll?.value ? '-100%' : 0,
+              'z-index': 11,
+            
+              transition: 'all .6s ease-out'
+            }"
+             [ngClass]="{
+              'appear-when-scroll': block_header[deviceDisplay+'_config'].appear_when_scroll?.appear
+            }"
+            role="banner">
+             <atw-block-header [type]="'build'" [data]="block_header" [selectedDevice]="deviceDisplay"
+             [resolution]="resolution"></atw-block-header>
+              <!-- <ng-container *ngComponentOutlet="pipeBlockService.pipeBlockComponent(block_header.component) ;
+              ndcDynamicInputs:{
+                data: block_header,
+                detailPage:detailPage,
+                selectedDevice: deviceDisplay,
+                type: 'build'
+              }">
+              </ng-container> -->
+            </div>
+          </ng-container>
+          <div id="zoom-zone" class="grid-container" data-id="grid-container">
+            <div [ngStyle]="detailPage[this.deviceDisplay + '_class']['page']"  role="main">
+
+
+              <div #blockRef class="grid-item" *ngFor="let block of blocks_of_page; trackBy: trackByBlockId; let i = index"
+                [id]="block._id + '_root'"  [ngStyle]="{
+                'margin-left': (marginData[i]?.marginLeft + 'px'),
+                'margin-top': (marginData[i]?.marginTop + 'px'),
+                'width': block[deviceDisplay+'_position_'+detailPage._id]?.width + 'px',
+                'display' : block[deviceDisplay + '_hidden'] ? 'none' : 'block',
+                'z-index': block[deviceDisplay + '_position_' + detailPage._id]?.z_index}
+              ">
+                <atw-block-blank [type]="'build'" [data]="block" [selectedDevice]="deviceDisplay"
+                  [resolution]="resolution"
+                  (hanldleProcessResizeOffset)="hanldleProcessResizeOffset($event)"></atw-block-blank>
+                <!-- <ng-template [ngComponentOutlet]="pipeBlockService.pipeBlockComponent(block.component)" [ndcDynamicInputs]="{
+                  data: block, 
+                  selectedDevice: deviceDisplay,
+                  type:'build',
+                  resolution: resolution
+                }" [ndcDynamicOutputs]="outputs">
+                </ng-template> -->
+              </div>
+
+              <!-- <ng-container *ngIf="block_chat_box">
+                <div style="position: fixed;" [id]="block_chat_box?._id" [ngStyle]="{
+                  left: block_chat_box[deviceDisplay + '_config'].position.type == 'top_left'
+                          ? block_chat_box[deviceDisplay + '_config'].position.left + deviceElementPosition?.left + 'px' 
+                          : 'calc(100% - ' + (block_chat_box[deviceDisplay + '_position_'].width + block_chat_box[deviceDisplay + '_config'].position.right + deviceElementPosition?.left) + 'px)',
+                  top: block_chat_box[deviceDisplay + '_config'].position.type == 'top_left'
+                          ? block_chat_box[deviceDisplay + '_config'].position.top + deviceElementPosition?.top + 'px'
+                          : 'calc(100% - ' + (block_chat_box[deviceDisplay + '_position_'].height + block_chat_box[deviceDisplay + '_config'].position.bottom + deviceElementPosition?.top) + 'px)',
+                  right: 'unset',
+                  bottom:'unset',
+                  width:block_chat_box[deviceDisplay + '_position_'].width + 'px',
+                  height:block_chat_box[deviceDisplay + '_position_'].height +'px',
+                  display: block_chat_box[deviceDisplay + '_hidden'] ? 'none' : 'block',
+                  'z-index': 2
+                }"
+                  role="complementary">
+                  <atw-block-chatbox [type]="'build'" [data]="block_chat_box" [selectedDevice]="deviceDisplay"
+                    [resolution]="resolution"></atw-block-chatbox>
+                   
+                </div>
+              </ng-container> -->
+              <!-- Block chat-box -->
+                <ng-container *ngIf="block_chat_boxs?.length">
+                  <ng-container *ngFor="let block_chat_box of block_chat_boxs">
+                    <div style="position: fixed;" [id]="block_chat_box?._id" [ngStyle]="{
+                      left: block_chat_box[deviceDisplay + '_config'].position.type == 'top_left'
+                              ? block_chat_box[deviceDisplay + '_config'].position.left + deviceElementPosition?.left + 'px' 
+                              : 'calc(100% - ' + (block_chat_box[deviceDisplay + '_position_'].width + block_chat_box[deviceDisplay + '_config'].position.right + deviceElementPosition?.left) + 'px)',
+                      top: block_chat_box[deviceDisplay + '_config'].position.type == 'top_left'
+                              ? block_chat_box[deviceDisplay + '_config'].position.top + deviceElementPosition?.top + 'px'
+                              : 'calc(100% - ' + (block_chat_box[deviceDisplay + '_position_'].height + block_chat_box[deviceDisplay + '_config'].position.bottom + deviceElementPosition?.top) + 'px)',
+                      right: 'unset',
+                      bottom:'unset',
+                      width:block_chat_box[deviceDisplay + '_position_'].width + 'px',
+                      height:block_chat_box[deviceDisplay + '_position_'].height +'px',
+                      display: block_chat_box[deviceDisplay + '_hidden'] ? 'none' : 'block',
+                      'z-index': 2
+                    }"
+                    role="complementary">
+                      <atw-block-chatbox [type]="'build'" [data]="block_chat_box" [selectedDevice]="deviceDisplay"
+                    [resolution]="resolution"></atw-block-chatbox>
+                    </div>
+                  </ng-container>
+                </ng-container>
+
+            </div>
+          </div>
+          <!-- block footer -->
+          <ng-container *ngIf="block_footer">
+            <div style="position: relative;" [id]="block_footer?._id + '_root'" [ngStyle]="{
+              width: block_footer[deviceDisplay+'_position_'].width  + 'px',
+              height: block_footer[deviceDisplay+'_position_'].height  + 'px',
+              'z-index': 0
+            }"  role="contentinfo">
+              <atw-block-footer [type]="'build'" [data]="block_footer" [selectedDevice]="deviceDisplay"
+                [resolution]="resolution"></atw-block-footer>
+              <!-- <ng-container *ngComponentOutlet="pipeBlockService.pipeBlockComponent(block_footer.component);
+                ndcDynamicInputs:{
+                  data: block_footer, 
+                  selectedDevice: deviceDisplay,
+                  type: 'build'
+                }">
+              </ng-container> -->
+            </div>
+
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+     
+  </div>
+</div>
+<div #zaloWidget id="zalo-widget-placeholder"></div>
+<div class="zalo-chat-widget" [attr.data-oaid]="data_oaid"></div>
+<div style="position: fixed;top: 0;left: 0;" class=" h-100 w-100" id="loading-screen">
+    <div class="d-flex justify-content-center align-items-center h-100 w-100" id="loading-screen">
+      <div class="text-center">
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
+          <linearGradient id='a11'>
+            <stop offset='0' stop-color='#FF156D' stop-opacity='0'></stop>
+            <stop offset='1' stop-color='#FF156D'></stop>
+          </linearGradient>
+          <circle fill='none' stroke='url(#a11)' stroke-width='15' stroke-linecap='round'
+            stroke-dasharray='0 44 0 44 0 44 0 44 0 360' cx='100' cy='100' r='70' transform-origin='center'>
+            <animateTransform type='rotate' attributeName='transform' calcMode='discrete' dur='2'
+              values='360;324;288;252;216;180;144;108;72;36' repeatCount='indefinite'></animateTransform>
+          </circle>
+        </svg>
+        <h2>Vui lòng chờ...</h2>
+      </div>
+    </div>
+
+  </div>

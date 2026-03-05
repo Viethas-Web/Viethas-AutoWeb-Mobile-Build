@@ -1,0 +1,132 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-5 p-0 m-0 d-flex align-items-center justify-content-between">
+        <span class="title"><b>{{ "casso" | translate }}</b></span>
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_ten_ngan_hang' | translate}}"
+              [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-7 p-0 m-0 d-flex align-items-center justify-content-end">
+        <nz-select style="margin: 0 16px; width: 18rem" [(ngModel)]="idBranch" (ngModelChange)="keySearch = '';totalPages = 0; bankAccounts = []"
+          nzPlaceHolder="{{'nhom_nganh_hang' | translate}}" >
+          <nz-option nzLabel="{{'tat_ca_chi_nhanh' | translate}}" nzValue="all"></nz-option>
+          <nz-option *ngFor="let item of branchs" [nzValue]="item.value" [nzLabel]="item.name"></nz-option>
+        </nz-select>
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button
+          (click)="resetPagination();getCasso()" nzType="default">
+          {{ "xem" | translate}}
+        </button>
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="addBankAccount()">
+          <i class="bi bi-plus"></i> {{ "them_tai_khoan" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 16px">
+    <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="bankAccounts" #tableSales [nzShowPagination]="false"
+      nzShowSizeChanger  [nzFooter]="bankAccounts.length &&  footerTpl" [nzLoading]="loading">
+      <thead class="_thead">
+        <tr>
+          <th nzWidth="10%" nzAlign="center"><b>{{'stt' | translate}}</b></th>
+          <th nzWidth="15%" nzAlign="left" (click)="handleSort('acq_id')">
+            <b>{{'ngan_hang' | translate}}</b>
+            <span 
+              *ngIf="bankAccounts?.length" 
+              nz-icon 
+              [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" 
+              nzTheme="outline"
+              >
+            </span>
+          </th>
+          <th nzWidth="15%" nzAlign="left" (click)="handleSort('account_name')">
+            <b>{{'chu_tai_khoan' | translate}}</b>
+            <span 
+              *ngIf="bankAccounts?.length" 
+              nz-icon 
+              [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" 
+              nzTheme="outline"
+              >
+            </span>
+          </th>
+          <th nzWidth="15%" nzAlign="left" (click)="handleSort('account_no')">
+            <b>{{'so_tai_khoan' | translate}}</b>
+            <span 
+              *ngIf="bankAccounts?.length" 
+              nz-icon 
+              [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" 
+              nzTheme="outline"
+              >
+            </span>
+          </th>
+          <th nzWidth="15%" nzAlign="left"><b>{{'template' | translate}}</b></th>
+          <th nzWidth="15%" nzAlign="left"><b>{{'chi_nhanh_thanh_toan' | translate}}</b></th>
+          <th nzWidth="15%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container>
+          <tr *ngFor="let item of bankAccounts; index as i">
+            <td>
+              <div class="image d-flex align-items-center justify-content-center">
+                <span>{{ i + 1 }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600">
+                <span>{{ getBankName(item.acq_id) }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600">
+                <span>{{ item.account_name }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600">
+                <span>{{ item.account_no }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600">
+                <span>{{ item.template }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600">
+                <span>{{ getBranchName(item.branch) }}</span>
+              </div>
+            </td>
+           
+           
+            <td nzAlign="center">
+              <div class="icon-action">
+                <span nz-icon nzType="edit" nzTheme="outline" (click)="editBankAccount(item)"></span>
+                <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteBankAccount(item)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </nz-table>
+    <ng-template #footerTpl>
+      <app-pagination
+      [pageCurrent]="pageCurrent"
+      [totalPages]="totalPages"
+      [limit]="limit"
+      [pageShowChoose]="pageShowChoose"
+      [pageGoto]="pageGoto"
+      (pageIndexChange)="pageIndexChange($event)"
+      (limitChange)="limitChange($event)"
+      > 
+      </app-pagination>
+    </ng-template>
+  </div>
+</nz-layout>

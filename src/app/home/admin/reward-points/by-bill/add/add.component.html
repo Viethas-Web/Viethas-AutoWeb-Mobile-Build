@@ -1,0 +1,127 @@
+<div nz-row class="row-back medium-size" (click)="goBack()">
+    <i nz-icon nzType="left" nzTheme="outline"></i>{{'Back' | translate}}
+</div>
+<nz-layout id="product-list" class="height-layout">
+    <div nz-row class="product-list-header">
+        <div nz-col nzSpan="14" class="title left-all-content">
+            <b>{{'them_chuong_trinh_tich_diem_cho_hoa_don' | translate}}</b>
+        </div>
+        <div nz-col nzSpan="10" class="right-all-content">
+            <div>
+                <button class="btn-add" nz-button nzType="default" (click)="addData()">
+                    <i nz-icon nzType="save" nzTheme="outline"></i>
+                    {{'luu'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="formAdd">
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-label style="text-align: start;" [nzSpan]="5"><b>{{'Name' | translate}}*</b></nz-form-label>
+            <nz-form-control [nzSpan]="10" [nzErrorTip]="userErrorTpl">
+                <input style="text-align: start;" nz-input formControlName="name"
+                    placeholder="{{'Enter name' | translate}}" />
+                <ng-template #userErrorTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">{{'ten_la_truong_bat_buoc' | translate}}
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-label style="text-align: start;" [nzSpan]="5"><b>{{'ty_le_quy_doi_diem'|translate}}*</b></nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input  #box class="price" style="text-align: start;" nz-input
+                    [value]="vhAlgorithm.vhcurrencyunit(exchange.money)" placeholder="{{'Enter money' | translate}}"
+                    (keyup)="changeExchange('money',box.value)" /> {{synbol}} =
+                <input #points class="price" style="text-align: start;" nz-input   [value]="exchange.points" 
+                    placeholder="{{'Enter point' | translate}}" (keyup)="changeExchange('points',points.value)"/> {{'điểm' | translate}}
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-label style="text-align: start;" [nzSpan]="5"><b>{{'ap_dung_cho_hoa_don_tu' | translate}}*</b></nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input  #box1 class="price" style="text-align: start;" nz-input
+                    [value]="vhAlgorithm.vhcurrencyunit(bill_total_minimum)"
+                    (keyup)="changeValue('bill_total_minimum',box1.value)"
+                    placeholder="{{'Enter value' | translate}}" /> {{synbol}}
+            </nz-form-control>
+        </nz-form-item>
+        
+
+        <p><b>{{'thiet_lap_chuong_trinh_tich_diem' | translate}}</b></p>
+        
+        <nz-form-item style="margin:0 0 8px;">
+            <!-- <nz-form-label [nzSpan]="24"><b>{{'Kiểu hoa hồng'}}</b></nz-form-label> -->
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="include_promotion_product">
+                    {{'tich_diem_cho_san_pham_giam_gia' | translate}}
+                </label> <br>
+               
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="include_discount">
+                    {{'tich_diem_hoa_don_giam_gia_chiet_khau' | translate}}
+                </label>
+
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="include_paid_points">
+                    {{'tich_diem_cho_hoa_don_thanh_toan_bang_diem_thuong' | translate}}
+                </label>
+
+            </nz-form-control>
+        </nz-form-item>
+        <!-- <nz-form-item style="margin:0 0 8px;">
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="check_payment_voucher">
+                    {{'Tích điểm cho hóa đơn thanh toán bằng voucher' | translate}}
+                </label>
+
+            </nz-form-control>
+        </nz-form-item> -->
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="include_fee">
+                    {{'tich_diem_cho_gia_tri_hoa_don_bao_gom_phi' | translate}}
+                </label>
+
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="include_tax">
+                    {{'tich_diem_cho_gia_tri_hoa_don_bao_gom_thue' | translate}}
+                </label>
+
+            </nz-form-control>
+        </nz-form-item>
+        <!-- <nz-form-item style="margin:0 0 8px;">
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="check_month_delete">
+                    {{'Xóa tất cả điểm tích lũy của khách hàng vào cuối tháng' | translate}}
+                </label>
+                <input  class="price" style="text-align: start;" nz-input formControlName="value_month_delete"
+                    placeholder="{{'Enter value' | translate}}" />
+                {{'mỗi năm' | translate}}
+            </nz-form-control>
+        </nz-form-item> -->
+       
+    </form>
+    <!-- <nz-form-item style="margin:0 0 8px;">
+        <nz-form-label [nzSpan]="24"><b>{{'Hạng thành viên áp dụng chương trình' | translate}}*</b>
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24">
+            <nz-select nzPlaceHolder="{{'Chọn hạng thành viên' | translate}}" style="width: auto;min-width: 200px;"
+                [(ngModel)]="id_customer_class">
+                <nz-option *ngFor="let item of customer_group" [nzDisabled]="item.selected" [nzValue]="item._id" nzLabel="{{item.name}}">
+                </nz-option>
+            </nz-select>
+        </nz-form-control>
+
+    </nz-form-item> -->
+</nz-layout>

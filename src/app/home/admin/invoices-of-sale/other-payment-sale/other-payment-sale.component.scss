@@ -1,0 +1,46 @@
+hr {
+    border-top: 1px solid #c7c7c7;
+  }
+  
+  .wrapper-modal {
+    .content {
+      display: grid;
+      grid-template-columns: 20% 70% 10%;
+      align-items: center;
+  
+      .title {
+        margin: 0;
+      }
+  
+      input[type='text'] {
+        padding: 7px 12px;
+        border-radius: 3px;
+        width: 70%;
+        border: 1px solid #c7c7c7;
+        outline: none;
+      }
+    }
+  
+    .content:nth-child(n+5) {
+      grid-template-columns: 50% 50%;
+    }
+  
+    .footer {
+      text-align: right;
+  
+      .button-cancel {
+        padding: 8px 16px;
+        border-radius: 3px;
+        border: 1px solid #c7c7c7;
+        background: white;
+      }
+      .button-save{
+        padding: 8px 16px;
+        border-radius: 3px;
+        border: 1px solid #00a859;
+        background: #00a859;
+        color: white;
+        margin-left: 10px;
+      }
+    }
+  }

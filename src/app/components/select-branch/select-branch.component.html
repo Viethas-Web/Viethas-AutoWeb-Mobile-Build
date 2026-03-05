@@ -1,0 +1,10 @@
+<div class="modal-branch">
+    <h3 class="text-center">Chọn chi nhánh</h3>
+    <div>Vui lòng chọn chi nhánh để thực hiện việc đặt hàng tại chi nhánh được chọn</div>
+    <img src="./assets/img/default/select_branch.svg" />
+    <nz-select [(ngModel)]="id_branch_selected">
+        <nz-option *ngFor="let item of branchs" nzLabel="{{item.name}} {{' - ' + item.address}}" [nzValue]="item._id">
+        </nz-option>
+    </nz-select>
+    <div (click)="handleOkBranch()" class="modal-branch-complete">Hoàn thành</div>
+</div>

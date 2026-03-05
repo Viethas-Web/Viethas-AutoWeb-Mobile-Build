@@ -1,0 +1,120 @@
+<div>
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0" style="color: #008848">{{'cap_nhat_don_vi' | translate}}</h2>
+    </div>
+  </div>
+  <form nz-form [formGroup]="data.formHandleUnit" class="form_unit">
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24">
+        <b>{{'ten_don_vi'  | translate}}</b>
+        <span style="color:red">*</span>
+      </nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorUnit">
+        <div class="d-flex flex-row" style="gap:8px">
+          <input nz-input [formControl]="getFormControl('unit_' + functionService.languageTempCode)" placeholder="{{'nhap_ten_don_vi' | translate }}" />
+          <app-select-language-config [isAdmin]="true"></app-select-language-config>
+        </div>
+        <ng-template #errorUnit let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'vui_long_nhap_don_vi' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'ten_don_vi_la_bat_buoc' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'ti_le_quy_doi' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorRatio">
+        <input #ratio nz-input type="number" formControlName="ratio" (keyup)="checkRatioExist()"
+          placeholder="{{'nhap_ti_le_quy_doi' | translate }}" />
+        <ng-template #errorRatio let-control>
+          <ng-container *ngIf="control.hasError('required') || control.hasError('pattern');">
+            <ng-container *ngIf="control.hasError('required')">{{'ti_le_quy_doi_la_bat_buoc' | translate }}
+            </ng-container>
+            <ng-container *ngIf="control.hasError('pattern')">{{'ti_le_quy_doi_khong_hop_le' | translate }}
+            </ng-container>
+          </ng-container>
+        </ng-template>
+        <ng-container *ngIf="data.ratioExist === true && ratio.value.length">
+          <span style="color: var(--ion-color-vh-red)">{{data.errorContentRatio | translate}}
+          </span>
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_ban_le' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorPrice">
+        <input nz-input formControlName="price" id="price" placeholder="{{'nhap_gia_ban_le' | translate }}" />
+        <ng-template #errorPrice let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_ban_le_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_ban_le_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_ban_buon' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorPrice2">
+        <input nz-input formControlName="price2" id="price_2" placeholder="{{'nhap_gia_ban_buon' | translate }}" />
+        <ng-template #errorPrice2 let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_ban_buon_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_ban_buon_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_nhap' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorPriceImport">
+        <input nz-input formControlName="price_import" id="price_import" placeholder="{{'nhap_gia_nhap' | translate }}" />
+        <ng-template #errorPriceImport let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_nhap_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_nhap_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_khuyen_mai' | translate }}</b></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorPriceSales">
+        <input nz-input formControlName="webapp_price_sales" id="price_sales"
+          placeholder="{{'nhap_gia_khuyen_mai' | translate }}" />
+        <ng-template #errorPriceSales let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_khuyen_mai_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_khuyen_mai_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'Barocde' }}</b></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorPrice">
+        <input nz-input formControlName="barcode" placeholder="{{'nhap_barcode' | translate }}" />
+        <ng-template #errorPrice let-control>
+          <ng-container *ngIf="control.hasError('pattern')">{{'barocde_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <div class="d-flex justify-content-end" style="gap:16px; margin-top: 12px">
+    <button nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-white); color: var(--ion-color-vh-black)" nzType="default"
+      (click)="dialogRef.close(false)">
+      {{"huy" | translate}}
+    </button>
+    <button nz-button class="nz-hover-border" [disabled]="!data.formHandleUnit.valid || data.ratioExist === true"
+      [ngStyle]="{opacity: !data.formHandleUnit.valid || data.ratioExist === true? .5: 1}"
+      style="background-color: var(--ion-color-vh-green); color: var(--ion-color-vh-white)"
+      class="nz-hover-border-green" (click)="dialogRef.close(true)">
+      {{"luu" | translate }}
+    </button>
+  </div>
+
+</div>

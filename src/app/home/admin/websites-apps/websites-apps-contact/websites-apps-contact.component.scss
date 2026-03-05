@@ -1,0 +1,24 @@
+.example-spacer {
+  flex: 1 auto;
+}
+th {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: #529bfc;
+  color: #fff;
+}
+.body-tab {
+  height: 100%;
+  overflow: auto;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.body-tab::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.body-tab {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}

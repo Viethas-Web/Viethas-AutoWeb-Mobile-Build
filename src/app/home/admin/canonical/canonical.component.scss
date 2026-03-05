@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+.messenger-box {
+  padding: 20px;
+  width: 70%;
+  padding: auto;
+}
+.input-label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-bottom: 2%;
+}
+.input-field {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 1%;
+
+}
+@mixin btn($color, $background, $border) {
+  color: $color;
+  background: $background 0% 0% no-repeat padding-box;
+  border: 1px solid $border;
+  span {
+    color: $color;
+  }
+}
+._btn {
+  border-radius: 18px !important;
+  font-size: 0.9rem;
+  &_add {
+    @include btn(#ffffff, #008848, #008848);
+  }
+  &_soft {
+    @include btn(#373737, #ffffff, #c8c7cc);
+  }
+  &_delete {
+    @include btn(#ffffff, #ff000a, #ff000a);
+  }
+}

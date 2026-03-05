@@ -1,0 +1,730 @@
+[
+  {
+    "label": "Không hiệu ứng",
+    "type": "none",
+    "data": [
+      {
+        "id": "000000",
+        "name": "mac_dinh",
+        "animation": {
+          "animation-0": {}
+        }
+      }
+    ]
+  },
+  {
+    "label": "Khi rê chuột",
+    "type": "hover",
+    "data": [
+      {
+        "id": "000004",
+        "type": "1",
+        "name": "doi_mau_nen",
+        "animation": {
+          "animation-0": {
+            "--0h-background-color": "#ff0000",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_nen",
+            "var": "--0h-background-color",
+            "type": "background-color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000009",
+        "type": "1",
+        "name": "lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h-opacity": "0.5",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "",
+            "var": "--0h-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000010",
+        "type": "1",
+        "name": "bo_loc",
+        "animation": {
+          "animation-0": {
+            "--0h-filter": "grayscale(50%) blur(2px) contrast(100%) brightness(80%) invert(75%) hue-rotate(90deg) sepia(60%) saturate(30%)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Tự động",
+    "type": "keyframes",
+    "data": [
+      {
+        "id": "000005",
+        "type": "2",
+        "name": "phao_hoa",
+        "animation": {
+          "animation-0": {
+            "--0-position": "relative",
+            "--0-overflow": "hidden"
+          },
+          "animation-2": {
+            "--2-position": "absolute",
+            "--2a-position": "absolute",
+            "--2b-position": "absolute",
+            "--2a-left": "50%",
+            "--2b-left": "50%",
+            "--2a-top": "50%",
+            "--2b-top": "50%",
+            "--2-width": "0%",
+            "--2f-left": "50%",
+            "--2f-top": "100%",
+            "--2t-width": "50%",
+            "--2a-width": "100%",
+            "--2b-width": "100%",
+            "--2-aspect-ratio": "1",
+            "--2a-aspect-ratio": "1",
+            "--2b-aspect-ratio": "1",
+            "--2-transform": "translate(-50%, -50%)",
+            "--2a-transform": "translate(-50%, -50%) scale(1) rotate(-40deg)",
+            "--2b-transform": "translate(-50%, -50%) scale(1) rotate(40deg)",
+            "--2-animation-name": "block-blank-animate-3",
+            "--2a-animation-name": "block-blank-animate-3",
+            "--2b-animation-name": "block-blank-animate-3",
+            "--2-animation-duration": "4s",
+            "--2a-animation-duration": "4s",
+            "--2b-animation-duration": "4s",
+            "--2-animation-iteration-count": "infinite",
+            "--2a-animation-iteration-count": "infinite",
+            "--2b-animation-iteration-count": "infinite",
+            "--2-z-index": "9999",
+            "--2a-z-index": "9999",
+            "--2b-z-index": "9999",
+            "--2-color1": "#f0e68c",
+            "--2-color2": "#ffff00",
+            "--2-color3": "#ffffff",
+            "--2-color4": "#00ff00",
+            "--2-color5": "#ffd700",
+            "--2-color6": "#3cb371",
+            "--2-background-size-width-height": "3px",
+            "--2-background": "radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 80% 90%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 95% 90%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 90% 70%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 100% 60%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 55% 80%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 70% 77%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 22% 90%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 45% 90%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 33% 70%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 10% 60%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 31% 80%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 28% 77%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 13% 72%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 80% 10%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 95% 14%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 90% 23%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 100% 43%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 85% 27%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 77% 37%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 60% 7%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 22% 14%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 45% 20%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 33% 34%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 10% 29%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 31% 37%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 28% 7%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 13% 42%",
+            "--2a-background": "radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 80% 90%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 95% 90%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 90% 70%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 100% 60%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 55% 80%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 70% 77%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 22% 90%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 45% 90%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 33% 70%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 10% 60%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 31% 80%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 28% 77%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 13% 72%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 80% 10%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 95% 14%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 90% 23%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 100% 43%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 85% 27%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 77% 37%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 60% 7%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 22% 14%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 45% 20%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 33% 34%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 10% 29%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 31% 37%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 28% 7%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 13% 42%",
+            "--2b-background": "radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 80% 90%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 95% 90%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 90% 70%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 100% 60%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 55% 80%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 70% 77%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 22% 90%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 45% 90%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 33% 70%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 10% 60%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 31% 80%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 28% 77%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 13% 72%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 80% 10%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 95% 14%, radial-gradient(circle, var(--2-color2) var(--2-background-size-width-height), #0000 0) 90% 23%, radial-gradient(circle, var(--2-color3) var(--2-background-size-width-height), #0000 0) 100% 43%, radial-gradient(circle, var(--2-color4) var(--2-background-size-width-height), #0000 0) 85% 27%, radial-gradient(circle, var(--2-color5) var(--2-background-size-width-height), #0000 0) 77% 37%, radial-gradient(circle, var(--2-color6) var(--2-background-size-width-height), #0000 0) 60% 7%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 22% 14%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 45% 20%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 33% 34%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 10% 29%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 31% 37%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 28% 7%, radial-gradient(circle, var(--2-color1) var(--2-background-size-width-height), #0000 0) 13% 42%",
+            "--2-background-size": "6px 6px",
+            "--2a-background-size": "6px 6px",
+            "--2b-background-size": "6px 6px",
+            "--2-background-repeat": "no-repeat",
+            "--2a-background-repeat": "no-repeat",
+            "--2b-background-repeat": "no-repeat",
+            "--2-visibility": "visible",
+            "--2f-visibility": "visible"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_tan",
+            "var": "--2t-width",
+            "type": "width"
+          },
+          {
+            "label": "do_lon_cua_1_vien",
+            "var": "--2-background-size",
+            "type": "background-size"
+          },
+          {
+            "label": "lap_vinh_vien",
+            "var": "--2-animation-iteration-count",
+            "type": "animation-iteration-count"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--2-animation-duration",
+            "type": "transition"
+          },
+          {
+            "label": "mau_1",
+            "var": "--2-color1",
+            "type": "color"
+          },
+          {
+            "label": "mau_2",
+            "var": "--2-color2",
+            "type": "color"
+          },
+          {
+            "label": "mau_3",
+            "var": "--2-color3",
+            "type": "color"
+          },
+          {
+            "label": "mau_4",
+            "var": "--2-color4",
+            "type": "color"
+          },
+          {
+            "label": "mau_5",
+            "var": "--2-color5",
+            "type": "color"
+          },
+          {
+            "label": "mau_6",
+            "var": "--2-color6",
+            "type": "color"
+          }
+        ]
+      },
+      {
+        "id": "000006",
+        "type": "2",
+        "name": "tuyet_roi",
+        "animation": {
+          "animation-0": {
+            "--0-position": "relative",
+            "--0-overflow": "hidden"
+          },
+          "animation-2": {
+            "--2-position": "absolute",
+            "--2-width": "8px",
+            "--2-height": "8px",
+            "--2-animation-name": "block-blank-animate-4",
+            "--2-animation-duration": "8s",
+            "--2-animation-iteration-count": "infinite",
+            "--2-animation-timing-function": "linear",
+            "--2-background": "#ffffff",
+            "--2-border-radius": "50px 50px 50px 50px",
+            "--2-background-size": "contain",
+            "--2-background-position": "center",
+            "--2-visibility": "hidden",
+            "--2f-visibility": "visible",
+            "--2-background-repeat": "no-repeat",
+            "--2-z-index": "9999"
+          }
+        },
+        "customize": [
+          {
+            "label": "",
+            "var": "--2-width",
+            "type": "width"
+          },
+          {
+            "label": "",
+            "var": "--2-height",
+            "type": "height"
+          },
+          {
+            "label": "lap_vinh_vien",
+            "var": "--2-animation-iteration-count",
+            "type": "animation-iteration-count"
+          },
+          {
+            "label": "dang_nen",
+            "var": "--2-background",
+            "type": "background"
+          },
+          {
+            "label": "bo_tron",
+            "var": "--2-border-radius",
+            "type": "border-radius"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--2-animation-duration",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000007",
+        "type": "2",
+        "name": "mua_roi",
+        "animation": {
+          "animation-0": {
+            "--0-position": "relative",
+            "--0-overflow": "hidden"
+          },
+          "animation-2": {
+            "--2-position": "absolute",
+            "--2-width": "18px",
+            "--2-height": "68px",
+            "--2-animation-name": "block-blank-animate-4",
+            "--2-animation-duration": "2s",
+            "--2-animation-iteration-count": "infinite",
+            "--2-animation-timing-function": "linear",
+            "--2-background": "url(https://i.imgur.com/PHy0pRP.png)",
+            "--2-border-radius": "50px 50px 50px 50px",
+            "--2-background-size": "cover",
+            "--2-background-position": "center",
+            "--2-background-repeat": "no-repeat",
+            "--2-visibility": "hidden",
+            "--2f-visibility": "visible",
+            "--2-z-index": "9999",
+            "--2-transform": "rotate(-55deg)"
+          }
+        },
+        "customize": [
+          {
+            "label": "",
+            "var": "--2-width",
+            "type": "width"
+          },
+          {
+            "label": "",
+            "var": "--2-height",
+            "type": "height"
+          },
+          {
+            "label": "lap_vinh_vien",
+            "var": "--2-animation-iteration-count",
+            "type": "animation-iteration-count"
+          },
+          {
+            "label": "",
+            "var": "--2-transform",
+            "type": "transform"
+          },
+          {
+            "label": "dang_nen",
+            "var": "--2-background",
+            "type": "background"
+          },
+          {
+            "label": "bo_tron",
+            "var": "--2-border-radius",
+            "type": "border-radius"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--2-animation-duration",
+            "type": "transition"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Khi xuất hiện",
+    "type": "visible",
+    "data": [
+      {
+        "id": "000011",
+        "type": "3",
+        "name": "ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 1s linear 1",
+            "--0f-opacity": "0",
+            "--0t-opacity": "1",
+            "--0-animation-delay": "0s"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      },
+      {
+        "id": "000001",
+        "type": "1",
+        "name": "di_chuyen_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 1s linear 1",
+            "--0f-transform": "translateX(100%) translateY(0%)",
+            "--0t-transform": "translateX(0%) translateY(0%)",
+            "--0f-opacity": "0",
+            "--0t-opacity": "1",
+            "--0-animation-delay": "0s"
+          }
+        },
+        "customize": [
+          {
+            "label": "vi_tri_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      },
+      {
+        "id": "000008",
+        "type": "3",
+        "name": "thu_phong_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 1s linear 1",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "scaleX(0) scaleY(1)",
+            "--0t-transform": "scaleX(0) scaleY(1)",
+            "--0f-opacity": "0",
+            "--0t-opacity": "1",
+            "--0-animation-delay": "0s"
+          }
+        },
+        "customize": [
+          {
+            "label": "vi_tri_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x-shared"
+          },
+          {
+            "label": "",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y-shared"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      },
+      {
+        "id": "000012",
+        "type": "1",
+        "name": "xoay_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 1s linear 1",
+            "--0f-transform": "rotate(-40deg)",
+            "--0t-transform": "rotate(0deg)",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-opacity": "0",
+            "--0t-opacity": "1",
+            "--0-animation-delay": "0s"
+          }
+        },
+        "customize": [
+          {
+            "label": "vi_tri_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x-shared"
+          },
+          {
+            "label": "",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y-shared"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      },
+      {
+        "id": "000013",
+        "type": "1",
+        "name": "bien_doi_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 1s linear 1",
+            "--0f-transform": "translateX(100%) translateY(0%) scaleX(0) scaleY0) rotate(-40deg)",
+            "--0t-transform": "translateX(0%) translateY(0%) scaleX(1) scaleY(1) rotate(0deg)",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-opacity": "0",
+            "--0t-opacity": "1",
+            "--0-animation-delay": "0s"
+          }
+        },
+        "customize": [
+          {
+            "label": "vi_tri_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x-shared"
+          },
+          {
+            "label": "",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y-shared"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Khi cuộn trang",
+    "type": "scroll",
+    "data": [
+      {
+        "id": "000002",
+        "type": "1",
+        "name": "thu_phong_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 linear both",
+            "--0-animation-range": "cover 0% contain 100%",
+            "--0-animation-timeline": "--animation",
+            "--0-view-timeline-name": "--animation",
+            "--0-view-timeline-axis": "block",
+            "--0-view-timeline-inset": "0% 0%",
+            "--0f-transform": "scale(0)",
+            "--0f-opacity": "0",
+            "--0t-transform": "scale(1)",
+            "--0t-opacity": "1"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_phong_dai_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_phong_dai_khi_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_bat_dau_hoac_ket_thuc_hieu_ung",
+            "var": "--0-view-timeline-inset",
+            "type": "view-timeline-inset"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      },
+      {
+        "id": "000003",
+        "type": "1",
+        "name": "di_chuyen_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0-animation": "block-blank-animate-0 linear both",
+            "--0-animation-range": "cover 0% contain 100%",
+            "--0-animation-timeline": "--animation",
+            "--0-view-timeline-name": "--animation",
+            "--0-view-timeline-axis": "block",
+            "--0-view-timeline-inset": "0% 0%",
+            "--0f-transform": "translateX(0%) translateY(-100%)",
+            "--0t-transform": "translateX(0%) translateY(0%)",
+            "--0f-opacity": "0",
+            "--0t-opacity": "1"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo_khi_bat_dau",
+            "var": "--0f-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_khi_ket_thuc",
+            "var": "--0t-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "vi_tri_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "vi_tri_bat_dau_hoac_ket_thuc_hieu_ung",
+            "var": "--0-view-timeline-inset",
+            "type": "view-timeline-inset"
+          },
+          {
+            "label": "",
+            "var": "--0-animation",
+            "type": "animation"
+          }
+        ]
+      }
+    ]
+  }
+]

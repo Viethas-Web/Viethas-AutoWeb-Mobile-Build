@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="messenger-box">
+        <div>
+            <label for="facebook-id" class="input-label">{{'nhap_zalo_oaid_tai_day' | translate}}:</label>
+            <input id="facebook-id" class="input-field" placeholder="{{'nhap_zalo_oaid' | translate}}"
+                [(ngModel)]="setup.oaid" />
+            <button mat-raised-button color="primary" class="btn-update" (click)="update()">{{'cap_nhat' |
+                translate}}</button>
+        </div>
+        <p>
+            {{'huong_dan_cach_lay_oa_id_cua_doanh_nghiep_tai_day' | translate}}
+            <span (click)="showModal()" class="guide">
+                {{'day' | translate}}
+            </span>
+        </p>
+    </div>
+    <nz-modal [(nzVisible)]="isVisible" nzWidth="80%" nzFooter="  " (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <ng-container *nzModalContent>
+            <img (click)="gotoZaloOA()" style="width: auto; height: auto"
+                src="/assets/root/images/system/imgs/cach_lay_oaid.jpg" />
+        </ng-container>
+    </nz-modal>
+</div>

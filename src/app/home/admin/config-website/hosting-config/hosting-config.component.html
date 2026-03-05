@@ -1,0 +1,11 @@
+<div style="width: 50%;margin: 0 auto;padding-top: 36px;">
+    <h3>Trỏ tên miền về Hosting</h3>
+    <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input placeholder="vd: webappgiare.vn" nz-input id="name" #name [(ngModel)]="commonData.domain"
+            (blur)="updateCommonData({domain : name.value})" />
+    </nz-input-group>
+    <ng-template #suffixButton>
+        <button nz-button nzType="primary" nzSize="large" nzSearch>Gửi</button>
+    </ng-template>
+    <h3>Hướng dẫn:</h3>
+</div>

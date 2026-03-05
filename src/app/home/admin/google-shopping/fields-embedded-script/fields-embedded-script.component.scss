@@ -1,0 +1,41 @@
+.editable-cell {
+    position: relative;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.editable-row:hover .editable-cell {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 4px 11px;
+}
+
+.text-primary-green {
+    color: #008848;
+}
+
+.text-red {
+    color: #ff4d4f;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+.ml-2 {
+    margin-left: 0.5rem;
+}
+.disabled {
+    // pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.cell {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 4px 11px;
+}

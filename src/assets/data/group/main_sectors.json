@@ -1,0 +1,73 @@
+[
+    {
+        "label": "Cơ bản",
+        "value": "basic",
+        "checked": true,
+        "type": 0
+    },
+    {
+        "label": "Thành viên mua sắm",
+        "value": "member",
+        "type": 0
+    },
+    {
+        "label": "Phân cấp theo danh mục",
+        "value": "category",
+        "type": 0
+    },
+    {
+        "label": "Sản phẩm mua bán",
+        "value": "ecommerce",
+        "type": 1
+    },
+    {
+        "label": "Món ăn nước uống",
+        "value": "food_drink",
+        "type": 1
+    },
+    {
+        "label": "Nhóm sản phẩm (combo)",
+        "value": "combo",
+        "type": 1
+    },
+    {
+        "label": "Tin tức - sự kiện",
+        "value": "news",
+        "type": 1
+    },
+    {
+        "label": "Thiết kế webapp",
+        "value": "webapp",
+        "type": 1
+    },
+    {
+        "label": "Dịch vụ theo công",
+        "value": "service",
+        "type": 1
+    },
+    {
+        "label": "Tuyển dụng",
+        "value": "recruitment",
+        "type": 1
+    },
+    {
+        "label": "Chuỗi cửa hàng ",
+        "value": "branchs",
+        "type": 1
+    },
+    {
+        "label": "Tra cứu SN/IMEI",
+        "value": "snimei",
+        "type": 1
+    },
+    {
+        "label": "Dịch vụ theo thời gian",
+        "value": "service_time",
+        "type": 1
+    },
+    {
+        "label": "Du lịch",
+        "value": "travel",
+        "type": 1
+    }
+]

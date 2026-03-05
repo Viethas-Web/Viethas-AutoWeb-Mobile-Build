@@ -1,0 +1,70 @@
+<nz-layout id="purchase-invoice-today">
+    <!-- Heading -->
+    <div class="field-heading">
+        <p class="title">{{'danh_sach_coupon_da_tao' | translate}}</p>
+        <nz-input-group [nzSuffix]="suffixIconSearch" style="width:30%">
+            <input type="text" nz-input placeholder="{{'tim_coupon' | translate}}" [(ngModel)]="keySearch" (keyup)="search_Coupon(keySearch)"/>
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button style="margin: 0 8px;" nz-button nzType="default" (click)="getValueCoupon()">
+                    {{'xem' | translate}}
+                  </button>
+                <button type="button" class="btn btn-success" (click)="open()"> + {{'tao_coupon' | translate}} </button>
+            </div>
+    </div>
+    <!-- Content -->
+    <div style="margin-top: 16px;">
+        <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="list_coupons" #basicTable 
+            nzShowSizeChanger [nzLoading]="loading">
+            <thead class="_thead">
+                <tr>
+                    <th nzWidth="30%" nzAlign="left" style="cursor:pointer" (click)="nameCol = !nameCol;sortProducts('name')"><b>{{"ten_phieu" | translate}} <i [class]="nameCol ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"></i></b></th>
+                    <th nzWidth="25%" nzAlign="left" style="cursor:pointer" (click)="valueCol = !valueCol;sortProducts('value')"><b>{{'gia_tri' | translate}} <i [class]="valueCol ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"></i></b></th>
+                    <th nzWidth="25%" nzAlign="center" style="cursor:pointer" (click)="pointsCol = !pointsCol;sortProducts('points')"><b>{{'diem_quy_doi' | translate}} <i [class]="pointsCol ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"></i></b></th>
+                    <th nzWidth="20%" nzAlign="center" style="cursor:pointer"><b>{{'chuc_nang' | translate}}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container>
+                    <tr style="cursor: pointer;" *ngFor="let item of basicTable.data;let i = index">
+                        <td nzAlign="left">
+                            <span>{{ item.name }}</span>
+                        </td>
+                        <td nzAlign="left">
+                            <span>{{ item.units[0].value | number: '1.0-0'}} VNĐ</span>
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ item.units[0].points }}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <button class="button-tool" (click)="editCoupon(item)">
+                                <i class="bi bi-pencil-square"></i></button>
+                            <button class="button-tool" nz-popconfirm
+                                nzPopconfirmTitle="{{'xoa_coupon_nay' | translate}}"
+                                nzPopconfirmPlacement="bottom"
+                                nzOkText="{{'xoa' | translate}}"
+                                nzCancelText="{{'huy' | translate}}"
+                                (nzOnConfirm)="deleteCoupon(item)"
+                                (nzOnCancel)="cancel()">
+                                <i class="bi bi-trash" style="color: red;"></i></button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-layout>
+<!-- add coupon -->
+<nz-drawer [nzClosable]="true" [nzVisible]="visible" nzPlacement="right"
+    [nzTitle]="isOpenComponent ? ('chinh_sua_coupon' | translate)    : ('them_coupon' | translate)" nzWidth="400px" (nzOnClose)="close()">
+    <ng-container *nzDrawerContent>
+        <app-add-coupon *ngIf="!isOpenComponent" (closeDrawer)="closeDrawer($event)"
+        (IsAdded)="isAdd($event)"
+        ></app-add-coupon>
+        <app-edit-coupon *ngIf="isOpenComponent" [editCoupon]="editValueCoupon"
+            (closeDrawer)="closeDrawer($event)" (isEdited)="isEdit($event)"></app-edit-coupon>
+    </ng-container>
+</nz-drawer>

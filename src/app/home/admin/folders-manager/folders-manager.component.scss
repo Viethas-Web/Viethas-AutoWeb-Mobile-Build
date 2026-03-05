@@ -1,0 +1,226 @@
+.folder-manager {
+  padding: 20px;
+  
+  // Header
+  h3 {
+    font-weight: 600;
+    color: #1f1f1f;
+    
+    i {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+  }
+  
+  // Button gap utility
+  .gap-2 {
+    gap: 8px;
+  }
+  
+  // Breadcrumb styling
+  nz-breadcrumb {
+    background: #f5f5f5;
+    padding: 10px 15px;
+    border-radius: 4px;
+    
+    a {
+      color: #1890ff;
+      transition: all 0.3s;
+      
+      &:hover {
+        color: #40a9ff;
+        text-decoration: underline;
+      }
+    }
+    
+    span {
+      color: #595959;
+      font-weight: 500;
+    }
+  }
+  
+  // Search card
+  .card {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    
+    .card-body {
+      padding: 12px 20px;
+    }
+  }
+  
+  // Table styling
+  .table {
+    thead {
+      background: #fafafa;
+      
+      th {
+        font-weight: 600;
+        color: #595959;
+        border-bottom: 2px solid #e8e8e8;
+        
+        a {
+          cursor: pointer;
+          user-select: none;
+          
+          &:hover {
+            color: #1890ff !important;
+          }
+        }
+      }
+    }
+    
+    tbody {
+      tr {
+        transition: background-color 0.3s;
+        
+        &:hover {
+          background-color: #f5f5f5;
+        }
+        
+        &.file-row {
+          cursor: pointer;
+        }
+        
+        td {
+          vertical-align: middle;
+          padding: 12px 16px;
+          
+          // Icon colors
+          .text-warning {
+            color: #faad14 !important;
+            font-size: 18px;
+          }
+          
+          .text-primary {
+            color: #1890ff !important;
+            font-size: 18px;
+          }
+          
+          .text-muted {
+            color: #8c8c8c;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+  
+  // Rename input
+  input[nz-input] {
+    &.w-auto {
+      width: auto;
+      min-width: 200px;
+      max-width: 400px;
+    }
+  }
+  
+  // Empty state
+  .text-center.py-5 {
+    padding: 60px 20px;
+    
+    i {
+      color: #d9d9d9;
+    }
+    
+    p {
+      font-size: 14px;
+      color: #8c8c8c;
+    }
+  }
+  
+  // Dropdown menu
+  ul[nz-menu] {
+    min-width: 160px;
+    
+    li[nz-menu-item] {
+      padding: 8px 16px;
+      
+      i {
+        margin-right: 8px;
+      }
+      
+      &.text-danger {
+        color: #ff4d4f;
+        
+        &:hover {
+          background-color: #fff1f0;
+        }
+      }
+      
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+  
+  // Loading overlay
+  nz-spin {
+    width: 100%;
+    
+    .ant-spin-container {
+      position: relative;
+    }
+  }
+  
+  // Buttons
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+    
+    &.btn-sm {
+      padding: 4px 12px;
+      font-size: 13px;
+    }
+    
+    &.btn-primary {
+      background-color: #1890ff;
+      border-color: #1890ff;
+      
+      &:hover {
+        background-color: #40a9ff;
+        border-color: #40a9ff;
+      }
+    }
+    
+    &.btn-outline-primary {
+      color: #1890ff;
+      border-color: #1890ff;
+      background-color: transparent;
+      
+      &:hover {
+        background-color: #e6f7ff;
+      }
+    }
+    
+    i {
+      font-size: 14px;
+    }
+  }
+  
+  // Responsive
+  @media (max-width: 768px) {
+    padding: 10px;
+    
+    .d-flex.gap-2 {
+      flex-wrap: wrap;
+    }
+    
+    .table-responsive {
+      overflow-x: auto;
+    }
+    
+    h3 {
+      font-size: 18px;
+    }
+  }
+}
+
+// Context menu override
+.ant-dropdown-menu {
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+              0 6px 16px 0 rgba(0, 0, 0, 0.08),
+              0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}

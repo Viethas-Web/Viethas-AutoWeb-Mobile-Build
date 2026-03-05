@@ -1,0 +1,109 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <span class="title"><b>{{ "danh_sach_khach_hang_can_tu_van_lien_he" | translate }}</b></span>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select " style="gap: 1rem;">
+        <nz-range-picker nzFormat='dd/MM/yyyy' [(ngModel)]="date" (ngModelChange)="keySearch=''; contacts = []"
+          [nzAllowClear]="false"></nz-range-picker>
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination();getContact()">
+          {{'xem' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px">
+
+    <nz-table
+      [nzVirtualItemSize]="53"
+      [nzData]="contacts"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1300px', y: tableHeight }"
+      [nzFooter]="contacts?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+          <th nzWidth="20%" nzAlign="left" (click)="handleSort('name')">
+            <b>{{'ho_va_ten' | translate}}</b>
+            <span *ngIf="contacts?.length" nz-icon [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" nzTheme="outline">
+            </span>
+          </th>
+          <th nzWidth="15%" nzAlign="left"><b>{{'so_dien_thoai' | translate}}</b></th>
+          <th nzWidth="15%" nzAlign="left"><b>{{'Email' | translate}}</b></th>
+          <th nzWidth="20%" nzAlign="left"><b>{{'noi_dung' | translate}}</b></th>
+          <th nzWidth="12%" nzAlign="left"><b>{{'ngay_gui' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'trang_thai' | translate}}</b></th>
+          <th nzWidth="8%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr (click)="openDetail(item)" style="cursor: pointer" [ngClass]="{'replied-row': item?.isReplied}">
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.name }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.telephone }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.email }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>
+                  {{ item?.content?.length > 200 ? (item?.content | slice:0:200) + '...' : item?.content }}
+                </span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.date | date: 'dd-MM-yyyy' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-center">
+                <nz-tag 
+                  [nzColor]="item?.isReplied ? 'success' : 'warning'"
+                  (click)="toggleReplyStatus($event, item)"
+                  style="cursor: pointer; margin: 0;">
+                  <span nz-icon [nzType]="item?.isReplied ? 'check-circle' : 'clock-circle'" nzTheme="outline"></span>
+                  {{ item?.isReplied ? ('da_phan_hoi' | translate) : ('chua_phan_hoi' | translate) }}
+                </nz-tag>
+              </div>
+            </td>
+            <td>
+              <div class="icon-action" style="text-align: center;">
+                <span style="color: red" nz-icon nzType="delete" nzTheme="outline"
+                  (click)="deleteProduct($event, item)">
+                </span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+  </div>
+</nz-layout>

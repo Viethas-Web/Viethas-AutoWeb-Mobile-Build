@@ -1,0 +1,23 @@
+<div class="modal-container" >
+  <div class="content-left" >
+    <img *ngIf="urlImg && !loading" [src]="urlImg" alt="QR Code" style="width:100%; height: auto" />
+    
+    <div *ngIf="loading"  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <nz-spin nzSimple></nz-spin>
+    </div>
+  </div>
+  <div class="content-right" >
+    
+    <p><strong>Sử dụng Mobile Banking hỗ trợ QR</strong></p>
+    <div class="account-list" >
+      <ng-container *ngIf="!loadingBankAccounts">
+        <ng-container *ngFor="let bank of bankAccounts">
+          <div [ngClass]="currentBank._id == bank._id ? 'active' : ''" class="account-item" (click)="handleChooseBank(bank)" >
+            <img style="width:100%; height: auto" [src]="bank.logo" [alt]="bank.shortName" />
+          </div>
+        </ng-container>
+      </ng-container>
+      <nz-spin *ngIf="loadingBankAccounts" nzSimple></nz-spin>
+    </div>
+  </div>
+</div>

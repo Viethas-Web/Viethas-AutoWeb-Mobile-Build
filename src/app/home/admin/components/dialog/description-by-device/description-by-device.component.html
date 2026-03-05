@@ -1,0 +1,32 @@
+<div class=" d-flex flex-column h-100">
+  <!-- Header với nút đóng -->
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="fw-bold fs-5"></div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="dialogRef.close()">
+    </span>
+  </div>
+  <nz-tabset class="description-by-device" [nzSelectedIndex]="selectedDeviceIndex" (nzSelectChange)="changeTabs($event)">
+    <nz-tab *ngFor="let device of devices; let i = index" [nzTitle]="device.name">
+      <div class="tab-editor">
+        <div class="flag">
+          <app-select-language-config [isAdmin]="true"></app-select-language-config>
+        </div>
+        <nz-tabset class="row p-0 m-0" style="overflow: visible;" [nzSelectedIndex]="selectedTabIndex" (nzSelectChange)="onTabContentChange($event)">
+          <nz-tab *ngFor="let item of data.tabs; let i2 = index" nzTitle="{{item.title | translate}}">
+            <div class="w-100" style="max-height: 500px; overflow: auto;">
+              <ng-container *ngIf="selectedDeviceIndex === i && selectedTabIndex === i2 && getFormControl(item)">
+                <ckeditor class="ckeditor ckeditor-admin"
+                  [editor]="EDITOR"
+                  (ready)="onReady($event)"
+                  (blur)="updateData(item)"
+                  [config]="functionService.CKEDITORConfig"
+                  [formControl]="getFormControl(item)">
+                </ckeditor>
+              </ng-container>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </nz-tab>
+  </nz-tabset>
+</div>

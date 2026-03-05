@@ -1,0 +1,13 @@
+{
+  "appId": "com.viethas.autoweb",
+  "appName": "Demo AutoWebApp",
+  "webDir": "dist/autoweb-build",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

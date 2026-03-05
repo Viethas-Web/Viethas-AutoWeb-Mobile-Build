@@ -1,0 +1,292 @@
+<nz-layout>
+    <div nz-row>
+        <div nz-col nzSpan="18" class="title left-all-content">
+            <b>{{'hang_khach_hang' | translate }}</b>
+        </div>
+        <div nz-col nzSpan="6" class="add-button">
+            <button class="btn-add center-all-content" nz-button nzType="default" (click)="getData()">
+
+                {{'xem_du_lieu' | translate}}</button>
+            <button class="btn-add center-all-content" nz-button nzType="default" (click)="openAdd()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i>
+                {{'them_hang_moi' | translate}}</button>
+        </div>
+    </div>
+
+    <div nz-row style="overflow-y: scroll;">
+        <div nz-col nzSpan="12" *ngFor="let data of customer_group">
+            <!-- <nz-radio-group [(ngModel)]="default_customer_class" (ngModelChange)="test()"> -->
+                <nz-list style="width: 95%;">
+                    <nz-list-item style="cursor: pointer;">
+                        <ng-container>
+                            <nz-list-item-meta-title style="width:95%; overflow: hidden;"
+                                (click)="gotoDetailGroup(data)">
+                                <b>{{data.name |slice : 0 : 100}} {{data.name.length>100 ? "..." : ""}}</b> <br>
+                                <label nz-radio (ngModelChange)="setDefault(data)" [(ngModel)]="data.default">{{'chon_lam_hang_mac_dinh_cho_khach_hang_moi' | translate}}</label>
+                            </nz-list-item-meta-title>
+                            <ul nz-list-item-actions>
+                                <nz-list-item-action>
+                                    <i class="cus-icon" nz-icon nzType="form" nzTheme="outline"
+                                        (click)="openEdit(data)"></i>
+                                </nz-list-item-action>
+                                <nz-list-item-action>
+                                    <i class="cus-icon" nz-icon nzType="delete" nzTheme="outline" nz-popconfirm
+                                        nzPopconfirmTitle="{{'Delete' }}?" (nzOnConfirm)="deleteGroup(data)"
+                                        nzPopconfirmPlacement="top"></i>
+                                </nz-list-item-action>
+                            </ul>
+                        </ng-container>
+                    </nz-list-item>
+                    <nz-divider></nz-divider>
+                </nz-list>
+            <!-- </nz-radio-group> -->
+        </div>
+
+
+    </div>
+    <div nz-row *ngIf="!customer_group.length">
+        <div nz-col nzSpan="24" style="text-align: center;margin-top: 100px;">
+            <div>{{'Not group yet'}}</div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</nz-layout>
+
+<!----------------------------- Add group product ------------------------->
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzWidth]="'40vw'" [nzVisible]="visible_add"
+    nzTitle="{{'them_hang_khach_hang' | translate }}" [nzFooter]="footerTplAdd" (nzOnClose)="closeAdd()">
+    <form nz-form *nzDrawerContent [formGroup]="formAdd">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+
+                <div><b style="font-size: 0.9rem;">{{'ten_hang' | translate }}*</b></div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group>
+                            <input (blur)="getValue(box.value)" formControlName="name" #box nz-input
+                                placeholder="{{'nhap_ten_hang' | translate}}" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <div>
+                    <b style="font-size: 0.9rem;">{{'cong_thuc_chiet_khau_hoa_don' | translate }}</b>
+                    <span nz-icon nzType="plus" nzTheme="outline" (click)="gotoAddDiscountInvoice()"></span>
+                </div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-select formControlName="id_discount_bill"
+                            nzPlaceHolder="{{'cong_thuc_chiet_khau_hoa_don' | translate }}">
+                            <nz-option *ngFor="let item of list_discount_bills" [nzValue]="item._id"
+                                [nzLabel]="item.name">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+
+
+                <div>
+                    <b style="font-size: 0.9rem;">{{'cong_thuc_tich_diem_hoa_don' | translate }}</b>
+                    <span nz-icon nzType="plus" nzTheme="outline" (click)="gotoAddPointInvoice()"></span>
+                </div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-select formControlName="id_earning_points_bill"
+                            nzPlaceHolder="{{'chon_cong_thuc_tich_diem_hoa_don' | translate }}">
+                            <nz-option *ngFor="let item of list_earning_point_bills" [nzValue]="item._id"
+                                [nzLabel]="item.name">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <div>
+                    <b style="font-size: 0.9rem;">{{'cong_thuc_tich_diem_san_pham' | translate }}</b>
+                    <span nz-icon nzType="plus" nzTheme="outline" (click)="gotoAddPointProduct()"></span>
+                </div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-select formControlName="id_earning_points_product"
+                            nzPlaceHolder="{{'cong_thuc_tich_diem_san_pham' | translate }}">
+                            <nz-option *ngFor="let item of list_earning_points_products" [nzValue]="item._id"
+                                [nzLabel]="item.name">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox formControlName="exchange_coupon_enable">
+                            {{'cho_phep_doi_diem_lay_coupon' | translate }}
+                        </label>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox formControlName="exchange_voucher_enable">
+                            {{'cho_phep_doi_diem_lay_voucher' | translate }}
+                        </label>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox formControlName="exchange_payment_card_enable">
+                            {{'cho_phep_doi_diem_lay_the_tra_truoc' | translate }}
+                        </label>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox [(ngModel)]="payment.enable" [ngModelOptions]="{standalone: true}">
+                            {{'cho_phep_thanh_toan_bang_diem' | translate }}
+                        </label>
+                        <input class="price" style="text-align: start;width: 30%;" nz-input [value]="payment.points"
+                            placeholder="{{'Enter point' }}" #points1
+                            (keyup)="changePaymentBill('points',points1.value)" /> {{'diem' | translate }}
+                        =
+                        <input #box1 class="price" style="text-align: start;width: 30%;" nz-input
+                            (keyup)="changePaymentBill('money',box1.value)"
+                            [value]="vhAlgorithm.vhcurrencyunit(payment.money)" placeholder="{{'Enter money' }}" />
+                        {{symbol}}
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24" style="display:flex ;">
+                        <label nz-checkbox [(ngModel)]="earned_points_clear_auto.enable"
+                            [ngModelOptions]="{standalone: true}">
+                            {{'xoa_tat_ca_diem_tich_luy_cua_khach_hang_vao_cuoi_thang' | translate }}
+                        </label>
+                        <input #box [value]="earned_points_clear_auto.month_of_year"
+                            (keyup)="earned_points_clear_auto.month_of_year = box.value" class="price"
+                            style="text-align: start;width: 20%;" nz-input placeholder="{{'Enter value' }}" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+
+    <ng-template #footerTplAdd>
+        <div style="float: right">
+            <button nz-button class="btn-cancel" style="margin-right: 8px;" (click)="closeAdd()">{{'Cancel' }}</button>
+            <button [disabled]="submitting" class="btn-add" nz-button (click)="addGroup()">OK</button>
+        </div>
+    </ng-template>
+</nz-drawer>
+
+<!----------------------------- Edit group product ------------------------->
+<nz-drawer *ngIf="visible_detail" [nzBodyStyle]="{ overflow: 'auto' }" [nzWidth]="'40vw'" [nzVisible]="visible_detail"
+    nzTitle="{{'cap_nhat_khach_hang' | translate }}" [nzFooter]="footerTplDetail" (nzOnClose)="closeEdit()">
+    <form nz-form *nzDrawerContent [formGroup]="formEdit">
+        <div nz-row [nzGutter]="8">
+            <div nz-col nzSpan="24">
+                <div><b style="font-size: 0.9rem;">{{'ten_hang' | translate }}*</b></div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group>
+                            <input formControlName="name" #box nz-input placeholder="{{'nhap_ten_hang' | translate }}"
+                                (blur)="getValue(box.value)" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <div><b style="font-size: 0.9rem;">{{'cong_thuc_chiet_khau_hoa_don' | translate }}</b></div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-select formControlName="id_discount_bill"
+                            nzPlaceHolder="{{'chon_cong_thuc_chiet_khau_hoa_don' | translate }}">
+                            <nz-option nzValue="" nzLabel="{{'khong_xac_dinh' | translate }}">
+                            </nz-option>
+                            <nz-option *ngFor="let item of list_discount_bills" [nzValue]="item._id"
+                                [nzLabel]="item.name">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+
+                <div><b style="font-size: 0.9rem;">{{'cong_thuc_tich_diem_hoa_don' | translate }}</b></div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-select formControlName="id_earning_points_bill"
+                            nzPlaceHolder="{{'chon_cong_thuc_tich_diem_hoa_don' | translate }}">
+                            <nz-option nzValue="" nzLabel="{{'khong_xac_dinh' | translate }}">
+                            </nz-option>
+                            <nz-option *ngFor="let item of list_earning_point_bills" [nzValue]="item._id"
+                                [nzLabel]="item.name">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <div><b style="font-size: 0.9rem;">{{'cong_thuc_tich_diem_san_pham' | translate }}</b></div>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-select formControlName="id_earning_points_product"
+                            nzPlaceHolder="{{'chon_cong_thuc_tich_diem_san_pham' | translate }}">
+                            <nz-option nzValue="" nzLabel="{{'khong_xac_dinh' | translate }}">
+                            </nz-option>
+                            <nz-option *ngFor="let item of list_earning_points_products" [nzValue]="item._id"
+                                [nzLabel]="item.name">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox formControlName="exchange_coupon_enable">
+                            {{'cho_phep_doi_diem_lay_coupon' | translate }}
+                        </label>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox formControlName="exchange_voucher_enable">
+                            {{'cho_phep_doi_diem_lay_voucher' | translate }}
+                        </label>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox formControlName="exchange_payment_card_enable">
+                            {{'cho_phep_doi_diem_lay_the_tra_truoc' | translate}}
+                        </label>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24">
+                        <label nz-checkbox [(ngModel)]="payment.enable" [ngModelOptions]="{standalone: true}">
+                            {{'cho_phep_thanh_toan_bang_diem' | translate }}
+                        </label>
+                        <input class="price" style="text-align: start;width: 30%;" nz-input [value]="payment.points"
+                            placeholder="{{'Enter point' }}" #points3
+                            (keyup)="changePaymentBill('points',points3.value)" /> {{'diem' | translate }}
+                        =
+                        <input #box3 class="price" style="text-align: start;width: 30%;" nz-input
+                            (keyup)="changePaymentBill('money',box3.value)"
+                            [value]="vhAlgorithm.vhcurrencyunit(payment.money)" placeholder="{{'Enter money' }}" />
+                        {{symbol}}
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item style="margin:0 0 8px;">
+                    <nz-form-control [nzSpan]="24" style="display: flex;">
+                        <label nz-checkbox [(ngModel)]="earned_points_clear_auto.enable"
+                            [ngModelOptions]="{standalone: true}">
+                            {{'xoa_tat_ca_diem_tich_luy_cua_khach_hang_vao_cuoi_thang' | translate }}
+                        </label>
+                        <input #box5 [value]="earned_points_clear_auto.month_of_year"
+                            (keyup)="earned_points_clear_auto.month_of_year = box5.value" class="price"
+                            style="text-align: start;width: 20%;" nz-input placeholder="{{'Enter value' }}" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+
+    <ng-template #footerTplDetail>
+        <div style="float: right">
+            <button nz-button class="btn-cancel" style="margin-right: 8px;" (click)="closeEdit()">{{'Cancel' }}</button>
+            <button class="btn-add" nz-button (click)="editGroup()">OK</button>
+        </div>
+    </ng-template>
+</nz-drawer>

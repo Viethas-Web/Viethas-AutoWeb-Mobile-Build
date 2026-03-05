@@ -1,0 +1,7 @@
+<router-outlet *ngIf="is_database"></router-outlet>
+
+<div class="qr-button-container" *ngIf="!is_database">
+  <button mat-button class="btn-style-impressive homePage-btn-login" (click)="scanQR()">
+    Quét mã QR để tải dữ liệu
+  </button>
+</div>

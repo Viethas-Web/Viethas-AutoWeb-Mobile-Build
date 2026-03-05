@@ -1,0 +1,67 @@
+.add-package-units {
+  height: 100%;
+  ._head {
+    height: 4%;
+    max-height: 4%;
+    .title {
+      h2 {
+        color: var(--ion-color-vh-green);
+        font-weight: 500;
+      }
+    }
+    ._icon {
+      color: #ff000a;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .main {
+    height: 90%;
+    max-height: 90%;
+    // overflow: hidden scroll;
+    font-size: 14px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .form {
+      padding: 16px 0px;
+      .padding {
+        padding-top: 5pt;
+        sup {
+          display: contents;
+        }
+      }
+      input {
+        width: 100%;
+      }
+     
+    }
+
+  }
+  ._foot {
+    height: 4%;
+    max-height: 4%;
+    @mixin btn($color, $background, $border) {
+      color: $color;
+      background: $background 0% 0% no-repeat padding-box;
+      border: 1px solid $border;
+      span {
+        color: $color;
+      }
+    }
+    ._btn {
+      border-radius: 5px !important;
+      font-size: 0.9rem;
+      &_add {
+        @include btn(#ffffff, #008848, #008848);
+      }
+      &_cancel {
+        @include btn(#373737, #ffffff, #c8c7cc);
+      }
+    }
+  }
+}
+
+

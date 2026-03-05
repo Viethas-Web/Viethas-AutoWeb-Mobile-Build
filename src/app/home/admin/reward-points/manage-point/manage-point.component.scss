@@ -1,0 +1,104 @@
+.row-back {
+  margin-top: 8px;
+  cursor: pointer;
+  i {
+    margin-top: 2px;
+  }
+}
+nz-layout {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 2px 6px #00000014;
+  border-radius: 5px;
+  padding: 16px;
+  height: 95%;
+  .title {
+    color: var(--ion-color-vh-green);
+    font-size: 1.1rem;
+  }
+  nz-select {
+    width: 50%;
+    text-align: center;
+  }
+  .btn-data {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #c8c7cc;
+    border-radius: 5px;
+    width: 95%;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-add {
+    color: #fff;
+    background: var(--ion-color-vh-green) 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.ant-btn:focus,
+.ant-btn:hover {
+  color: var(--ion-color-vh-green);
+}
+.ant-input-affix-wrapper {
+  border: 1px solid #c8c7cc;
+  border-radius: 5px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .pagination-list-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pagiItem:nth-child(1) {
+      border-left: 1px solid #ddd;
+    }
+    .pagiItem {
+      padding: 8px 16px;
+      cursor: pointer;
+      color: var(--ion-color-vh-green);
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+    .page-go {
+      background-color: #a54f4e;
+      color: white;
+      width: 100%;
+      padding: 12px !important;
+    }
+  }
+  .ant-btn {
+    border: none !important;
+  }
+}
+
+.input-container {
+  display: flex;
+  background-color: var(--ion-color-vh-green);
+  color: white;
+  input {
+    min-width: 200px;
+    padding: 0px 8px;
+    outline: none;
+    border: 1px solid #ddd;
+    color: #333;
+  }
+  .goto-page {
+    padding: 6px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+.pagiItem.active {
+  background-color: var(--ion-color-vh-green);
+  color: #fff !important;
+}

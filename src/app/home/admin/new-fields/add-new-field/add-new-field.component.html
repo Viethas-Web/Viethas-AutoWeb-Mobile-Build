@@ -1,0 +1,186 @@
+<div class="main h-100">
+	<div class="_head d-flex justify-content-between align-items-center">
+		<div class="title">
+			<h2 class="m-0">{{'them_truong_quan_tri_moi' | translate }}</h2>
+		</div>
+		<span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+		</span>
+	</div>
+	<div class="_body">
+		<form *ngIf="addNewFieldForm" [formGroup]="addNewFieldForm">
+			<div class="form pt-2 pb-2">
+				<div class="row p-0 m-16" style="margin-top: 16px;">
+					<div class="col-6 m-0 pl-8">
+						<div class="_input d-flex flex-column">
+							<div>
+								<label>{{'ten_tieu_de_hien_thi_trong_quan_tri_cac_nganh_hang' | translate }}</label>
+							</div>
+							<div class="d-flex flex-row" style="gap:8px">
+								<input class="input w-100" type="text" formControlName="field_lable"
+									placeholder="{{'nhap_ten_vd_ram' | translate }}">
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div>
+							<label>{{'ten_luu_trong_co_so_du_lieu' | translate }}</label> <sup>*</sup>
+						</div>
+						<input class="input w-100" type="text" formControlName="name" placeholder="vd: ram"
+							(ngModelChange)="changName()">
+					</div>
+				</div>
+				<div class="row p-0 m-16" style="margin-top: 16px;">
+					<div class="col-6 m-0 pl-8">
+						<div class="_input">
+							<div>
+								<label>{{'gia_tri_khoi_tao_ban_dau' | translate }}</label> <sup>*</sup>
+							</div>
+							<input class="input w-100" type="text" formControlName="field_start_value"
+								placeholder="Nhập giá trị, vd: 0">
+						</div>
+					</div>
+					<div class="col">
+						<div>
+							<label>{{'vi_tri_hien_thi' | translate }}</label>
+						</div>
+						<nz-input-number nzPlaceHolder="vd: 1" class="input w-100 p-0"
+							formControlName="field_order_number" [nzMin]="1" [nzMax]="100"
+							[nzStep]="1"></nz-input-number>
+					</div>
+				</div>
+				<div class="row p-0 m-16" style="margin-top: 16px;">
+					<div class="col-6 m-0 pl-8">
+						<div class="_input">
+							<div>
+								<label>{{'noi_dung_hien_thi_khi_chua_nhap_gia_tri' | translate }}</label>
+							</div>
+							<div class="d-flex flex-row" style="gap:8px">
+								<input class="input w-100" type="text" formControlName="field_placeholder"
+									placeholder="{{'nhap_noi_dung_vi_du' | translate }}">
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						<div>
+							<label>{{'nhom_nganh_hang' | translate }}</label> <sup>*</sup>
+						</div>
+						<mat-form-field style="width:100%;" class="category">
+							<mat-select disableOptionCentering formControlName="id_main_sector"
+								(ngModelChange)="onChangeMainSector($event)">
+								<mat-option *ngFor="let item of type_main_sectors" [value]="item.value">
+									{{item.label}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+
+					</div>
+				</div>
+				<div class="row p-0 m-16" style="margin-top: 16px;">
+					<div class="col-6 m-0 pl-8">
+						<div class="d-flex align-items-center mb-2" style="gap:8px">
+							<label class="m-0">{{'yeu_cau_bat_buoc' | translate }}</label>
+							<nz-switch formControlName="field_required"></nz-switch>
+						</div>
+
+						<div *ngIf="addNewFieldForm.get('field_input_type').value == 'select' || addNewFieldForm.get('field_input_type').value == 'select-multiple'">
+							<div class="d-flex align-items-center mb-2 justify-content-between" style="gap:8px">
+								<div class="d-flex align-items-center" style="gap:5rem">
+									<p class="m-0"><strong>{{'du_lieu' | translate}}</strong></p>
+									<app-select-language-config [isAdmin]="true"></app-select-language-config>
+								</div>
+								<button class="btn-add mb-2" (click)="addData()">
+									<span>{{'them_du_lieu_moi' | translate}}</span>
+									<span class="ml-1" nz-icon nzType="plus-circle" nzTheme="outline"></span>
+								</button>
+							</div>
+							<nz-table #editRowTable nzBordered [nzData]="dataList" [nzShowPagination]="false"
+								[nzScroll]="{ x: '300px', y: '300px' }" [nzPageSize]="100">
+								<thead>
+									<tr>
+										<th nzWidth="40%">{{'nhan' | translate}}</th>
+										<th nzWidth="40%">{{'gia_tri' | translate}}</th>
+										<th nzWidth="20%" nzRight>{{'thao_tac' | translate}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let data of editRowTable.data">
+										<td>
+											<input type="text" nz-input
+												[(ngModel)]="data['label_' + functionService.languageTempCode]"
+												[ngModelOptions]="{standalone: true}" />
+										</td>
+										<td>
+											<input type="text" nz-input
+												[(ngModel)]="data['value_' + functionService.languageTempCode]"
+												[ngModelOptions]="{standalone: true}" />
+										</td>
+										<td nzRight>
+											<span style="color: red" nz-icon nzType="delete" nzTheme="outline"
+												nz-popconfirm [nzPopconfirmTitle]="'xac_nhan_xoa' | translate"
+												[nzOkText]="'dong_y' | translate" [nzCancelText]="'huy' | translate"
+												(nzOnConfirm)="deleteRow(data._id)">
+											</span>
+										</td>
+									</tr>
+								</tbody>
+							</nz-table>
+						</div>
+					</div>
+					<div class="col-6" *ngIf="addNewFieldForm.get('id_main_sector').value">
+						<ng-container *ngIf="addNewFieldForm.get('id_main_sector').value == 'snimei'">
+							<div>
+								<label>{{'nhom_tra_cuu' | translate }}</label> <sup>*</sup>
+							</div>
+							<mat-form-field style="width:100%;" class="category">
+								<mat-select disableOptionCentering formControlName="lookup_group">
+									<mat-option *ngFor="let item of lookupGroupArray" [value]="item">
+										{{item}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</ng-container>
+
+						<div *ngIf="addNewFieldForm.get('id_main_sector').value == 'snimei'">
+							<div>
+								<label>{{'noi_nhap_du_lieu' | translate }}</label>
+							</div>
+							<mat-form-field style="width:100%;" class="category">
+								<mat-select formControlName="field_input_location"
+									(ngModelChange)="onChangeInputLocation($event)">
+									<mat-option [value]="item.value" *ngFor="let item of list_fieldInputLocation">
+										{{item.label | translate }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+
+						<div>
+							<div>
+								<label>{{'kieu_nhap_du_lieu' | translate }}</label>
+							</div>
+							<mat-form-field style="width:100%;" class="category">
+								<mat-select formControlName="field_input_type" (ngModelChange)="onChangeInputType($event)">
+									<mat-option [value]="item.value" *ngFor="let item of list_fieldInputType">
+										{{item.label | translate }}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="_foot d-flex align-items-center justify-content-end">
+		<button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+			(click)="close()">
+			{{'huy' | translate }}
+		</button>
+		<button [disabled]="(!addNewFieldForm.valid || submitting)" class="mr-2" nz-button nzType="primary"
+			[ngStyle]="{opacity: (!addNewFieldForm.valid || submitting) ? .5: 1 }"
+			(click)="onSubmitAddNewField(addNewFieldForm.value)"
+			class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+			{{'them' | translate }}
+		</button>
+	</div>
+</div>

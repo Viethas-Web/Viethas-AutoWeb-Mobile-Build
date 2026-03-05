@@ -1,0 +1,265 @@
+
+[
+  {
+    "label": "Không hiệu ứng",
+    "type": "none",
+    "data": [
+      {
+        "id": "000000",
+        "name": "mac_dinh",
+        "animation": {
+          "animation-0": {}
+        }
+      }
+    ]
+  },
+  {
+    "label": "Khi xuất hiện",
+    "type": "visible",
+    "data": [
+      {
+        "id": "000001",
+        "name": "ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-unactive-opacity": "0",
+            "--0-active-opacity": "1",
+            "--0-active-transition-duration-shared": "2s",
+            "--0-active-transition-timing-function-shared": "ease-in",
+            "--0-active-transition": "all var(--0-active-transition-duration-shared) var(--0-active-transition-timing-function-shared)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0-unactive-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--0-active-transition-duration-shared",
+            "type": "transition-duration"
+          },
+          {
+            "label": "loai_chuyen_dong_hieu_ung",
+            "var": "--0-active-transition-timing-function-shared",
+            "type": "transition-timing-function"
+          }
+        ]
+      },
+      {
+        "id": "000002",
+        "name": "di_chuyen_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-unactive-opacity": "0",
+            "--0-unactive-transform": "translateX(50%) translateY(50%)",
+            "--0-active-opacity": "1",
+            "--0-active-transform": "translateX(0%) translateY(0%)",
+            "--0-active-transition-duration-shared": "2s",
+            "--0-active-transition-timing-function-shared": "ease-in",
+            "--0-active-transition": "all var(--0-active-transition-duration-shared) var(--0-active-transition-timing-function-shared)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0-unactive-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-unactive-transform",
+            "type": "transform",
+            "unitTranslate": "px",
+            "minTranslate": -100,
+            "maxTranslate": 100,
+            "stepTranslate": 1
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--0-active-transition-duration-shared",
+            "type": "transition-duration"
+          },
+          {
+            "label": "loai_chuyen_dong_hieu_ung",
+            "var": "--0-active-transition-timing-function-shared",
+            "type": "transition-timing-function"
+          }
+        ]
+      },
+      {
+        "id": "000003",
+        "name": "thu_phong_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+
+            "--0-unactive-opacity": "0",
+            "--0-unactive-transform": "scaleX(0.5) scaleY(0.5)",
+            "--0-active-opacity": "1",
+            "--0-active-transform": "scaleX(1) scaleY(1)",
+            "--0-active-transition-duration-shared": "2s",
+            "--0-active-transition-timing-function-shared": "ease-in",
+            "--0-active-transition": "all var(--0-active-transition-duration-shared) var(--0-active-transition-timing-function-shared)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0-unactive-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-unactive-transform",
+            "type": "transform",
+            "minScaleX": 0,
+            "maxScaleX": 5,
+            "stepScaleX": 0.1,
+            "minScaleY": 0,
+            "maxScaleY": 5,
+            "stepScaleY": 0.1
+          },
+          {
+            "label": "tam_bien_doi_theo_chieu_ngang",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_bien_doi_theo_chieu_doc",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--0-active-transition-duration-shared",
+            "type": "transition-duration"
+          },
+          {
+            "label": "loai_chuyen_dong_hieu_ung",
+            "var": "--0-active-transition-timing-function-shared",
+            "type": "transition-timing-function"
+          }
+        ]
+      },
+      {
+        "id": "000004",
+        "name": "xoay_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+
+            "--0-unactive-opacity": "0",
+            "--0-unactive-transform": "rotate(45deg)",
+            "--0-active-opacity": "1",
+            "--0-active-transform": "rotate(0deg)",
+            "--0-active-transition-duration-shared": "2s",
+            "--0-active-transition-timing-function-shared": "ease-in",
+            "--0-active-transition": "all var(--0-active-transition-duration-shared) var(--0-active-transition-timing-function-shared)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0-unactive-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "",
+            "var": "--0-unactive-transform",
+            "type": "transform",
+            "minRotate": -90,
+            "maxRotate": 90
+          },
+          {
+            "label": "tam_bien_doi_theo_chieu_ngang",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_bien_doi_theo_chieu_doc",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--0-active-transition-duration-shared",
+            "type": "transition-duration"
+          },
+          {
+            "label": "loai_chuyen_dong_hieu_ung",
+            "var": "--0-active-transition-timing-function-shared",
+            "type": "transition-timing-function"
+          }
+        ]
+      },
+      {
+        "id": "000005",
+        "name": "bien_doi_va_ro_dan",
+        "animation": {
+          "animation-0": {
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+
+            "--0-unactive-opacity": "0",
+            "--0-unactive-transform": "translateX(50%) translateY(50%) scaleX(0.5) scaleY(0.5) rotate(45deg)",
+            "--0-active-opacity": "1",
+            "--0-active-transform": "translateX(0) translateY(0) scaleX(1) scaleY(1) rotate(0deg)",
+            "--0-active-transition-duration-shared": "2s",
+            "--0-active-transition-timing-function-shared": "ease-in",
+            "--0-active-transition": "all var(--0-active-transition-duration-shared) var(--0-active-transition-timing-function-shared)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0-unactive-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "bien_doi",
+            "var": "--0-unactive-transform",
+            "type": "transform",
+            "minRotate": -90,
+            "maxRotate": 90,
+            "minScaleX": 0,
+            "maxScaleX": 5,
+            "stepScaleX": 0.1,
+            "minScaleY": 0,
+            "maxScaleY": 5,
+            "stepScaleY": 0.1,
+            "minTranslate": -100,
+            "maxTranslate": 100,
+            "stepTranslate": 1
+          },
+          {
+            "label": "tam_bien_doi_theo_chieu_ngang",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_bien_doi_theo_chieu_doc",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "thoi_gian_hieu_ung",
+            "var": "--0-active-transition-duration-shared",
+            "type": "transition-duration"
+          },
+          {
+            "label": "loai_chuyen_dong_hieu_ung",
+            "var": "--0-active-transition-timing-function-shared",
+            "type": "transition-timing-function"
+          }
+        ]
+      }
+    ]
+  }
+]

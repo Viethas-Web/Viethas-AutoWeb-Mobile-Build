@@ -1,0 +1,10 @@
+<div>
+  <div class="flex justify-between items-center mb-2">
+    <h2>{{data.item.field_lable | translate}}</h2>
+    <span class="text-red-500 cursor-pointer" nz-icon nzType="close" nzTheme="outline" (click)="close()"></span>
+  </div>
+
+  <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+    [formControl]="getFormControl(data.item.field_custom + '_' + functionService.languageTempCode)">
+  </ckeditor>
+</div>

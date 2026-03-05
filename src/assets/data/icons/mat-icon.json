@@ -1,0 +1,4026 @@
+[
+  {
+    "icon": "logout",
+    "name": "đăng xuất"
+  },
+  {
+    "icon": "3d_rotation",
+    "name": "xoay 3D"
+  },
+  {
+    "icon": "accessibility",
+    "name": "truy cập"
+  },
+  {
+    "icon": "accessible",
+    "name": "dễ tiếp cận"
+  },
+  {
+    "icon": "accessible_forward",
+    "name": "dễ tiếp cận phía trước"
+  },
+  {
+    "icon": "account_balance",
+    "name": "số dư tài khoản"
+  },
+  {
+    "icon": "account_balance_wallet",
+    "name": "ví số dư tài khoản"
+  },
+  {
+    "icon": "account_box",
+    "name": "hộp tài khoản"
+  },
+  {
+    "icon": "account_circle",
+    "name": "vòng tròn tài khoản"
+  },
+  {
+    "icon": "add_shopping_cart",
+    "name": "thêm vào giỏ hàng"
+  },
+  {
+    "icon": "alarm",
+    "name": "báo thức"
+  },
+  {
+    "icon": "alarm_add",
+    "name": "thêm báo thức"
+  },
+  {
+    "icon": "alarm_off",
+    "name": "tắt báo thức"
+  },
+  {
+    "icon": "alarm_on",
+    "name": "bật báo thức"
+  },
+  {
+    "icon": "all_out",
+    "name": "tất cả ra"
+  },
+  {
+    "icon": "android",
+    "name": "hệ điều hành android"
+  },
+  {
+    "icon": "announcement",
+    "name": "thông báo"
+  },
+  {
+    "icon": "arrow_right_alt",
+    "name": "mũi tên phải đặc biệt"
+  },
+  {
+    "icon": "aspect_ratio",
+    "name": "tỷ lệ thước"
+  },
+  {
+    "icon": "assessment",
+    "name": "đánh giá"
+  },
+  {
+    "icon": "assignment",
+    "name": "bài tập"
+  },
+  {
+    "icon": "assignment_ind",
+    "name": "bài tập cá nhân"
+  },
+  {
+    "icon": "assignment_late",
+    "name": "bài tập trễ"
+  },
+  {
+    "icon": "assignment_return",
+    "name": "bài tập trả lại"
+  },
+  {
+    "icon": "assignment_returned",
+    "name": "bài tập đã trả lại"
+  },
+  {
+    "icon": "assignment_turned_in",
+    "name": "bài tập đã nộp"
+  },
+  {
+    "icon": "autorenew",
+    "name": "tự động làm mới"
+  },
+  {
+    "icon": "backup",
+    "name": "sao lưu"
+  },
+  {
+    "icon": "book",
+    "name": "sách"
+  },
+  {
+    "icon": "bookmark",
+    "name": "đánh dấu"
+  },
+  {
+    "icon": "bookmark_border",
+    "name": "đánh dấu viền"
+  },
+  {
+    "icon": "bug_report",
+    "name": "báo cáo lỗi"
+  },
+  {
+    "icon": "build",
+    "name": "xây dựng"
+  },
+  {
+    "icon": "cached",
+    "name": "đã lưu"
+  },
+  {
+    "icon": "calendar_today",
+    "name": "lịch ngày hôm nay"
+  },
+  {
+    "icon": "calendar_view_day",
+    "name": "lịch xem ngày"
+  },
+  {
+    "icon": "camera_enhance",
+    "name": "nâng cấp camera"
+  },
+  {
+    "icon": "card_giftcard",
+    "name": "thẻ quà tặng"
+  },
+  {
+    "icon": "card_membership",
+    "name": "thẻ thành viên"
+  },
+  {
+    "icon": "card_travel",
+    "name": "thẻ du lịch"
+  },
+  {
+    "icon": "change_history",
+    "name": "thay đổi lịch sử"
+  },
+  {
+    "icon": "check_circle",
+    "name": "đánh dấu vòng tròn"
+  },
+  {
+    "icon": "check_circle_outline",
+    "name": "đánh dấu vòng tròn viền"
+  },
+  {
+    "icon": "chrome_reader_mode",
+    "name": "chế độ đọc trình duyệt"
+  },
+  {
+    "icon": "class",
+    "name": "lớp học"
+  },
+  {
+    "icon": "code",
+    "name": "mã"
+  },
+  {
+    "icon": "commute",
+    "name": "di chuyển"
+  },
+  {
+    "icon": "compare_arrows",
+    "name": "so sánh mũi tên"
+  },
+  {
+    "icon": "contact_support",
+    "name": "hỗ trợ liên hệ"
+  },
+  {
+    "icon": "copyright",
+    "name": "bản quyền"
+  },
+  {
+    "icon": "credit_card",
+    "name": "thẻ tín dụng"
+  },
+  {
+    "icon": "dashboard",
+    "name": "bảng điều khiển"
+  },
+  {
+    "icon": "date_range",
+    "name": "khoảng thời gian"
+  },
+  {
+    "icon": "delete",
+    "name": "xóa"
+  },
+  {
+    "icon": "delete_forever",
+    "name": "xóa vĩnh viễn"
+  },
+  {
+    "icon": "delete_outline",
+    "name": "xóa viền"
+  },
+  {
+    "icon": "description",
+    "name": "mô tả"
+  },
+  {
+    "icon": "dns",
+    "name": "DNS"
+  },
+  {
+    "icon": "done",
+    "name": "đã làm"
+  },
+  {
+    "icon": "done_all",
+    "name": "đã làm tất cả"
+  },
+  {
+    "icon": "done_outline",
+    "name": "đã làm viền"
+  },
+  {
+    "icon": "donut_large",
+    "name": "donut lớn"
+  },
+  {
+    "icon": "donut_small",
+    "name": "donut nhỏ"
+  },
+  {
+    "icon": "drag_indicator",
+    "name": "kéo khuyến nghị"
+  },
+  {
+    "icon": "eject",
+    "name": "đẩy ra"
+  },
+  {
+    "icon": "euro_symbol",
+    "name": "ký hiệu euro"
+  },
+  {
+    "icon": "event",
+    "name": "sự kiện"
+  },
+  {
+    "icon": "event_seat",
+    "name": "ghế sự kiện"
+  },
+  {
+    "icon": "exit_to_app",
+    "name": "thoát ứng dụng"
+  },
+  {
+    "icon": "explore",
+    "name": "khám phá"
+  },
+  {
+    "icon": "extension",
+    "name": "tiện ích mở rộng"
+  },
+  {
+    "icon": "face",
+    "name": "khuôn mặt"
+  },
+  {
+    "icon": "favorite",
+    "name": "yêu thích"
+  },
+  {
+    "icon": "favorite_border",
+    "name": "yêu thích viền"
+  },
+  {
+    "icon": "feedback",
+    "name": "phản hồi"
+  },
+  {
+    "icon": "find_in_page",
+    "name": "tìm trong trang"
+  },
+  {
+    "icon": "find_replace",
+    "name": "tìm và thay thế"
+  },
+  {
+    "icon": "fingerprint",
+    "name": "dấu vân tay"
+  },
+  {
+    "icon": "flight_land",
+    "name": "hạ cánh chuyến bay"
+  },
+  {
+    "icon": "flight_takeoff",
+    "name": "chuyến bay cất cánh"
+  },
+  {
+    "icon": "flip_to_back",
+    "name": "lật về phía sau"
+  },
+  {
+    "icon": "flip_to_front",
+    "name": "lật về phía trước"
+  },
+  {
+    "icon": "g_translate",
+    "name": "dịch google"
+  },
+  {
+    "icon": "gavel",
+    "name": "búa tòa"
+  },
+  {
+    "icon": "get_app",
+    "name": "tải xuống ứng dụng"
+  },
+  {
+    "icon": "gif",
+    "name": "ảnh gif"
+  },
+  {
+    "icon": "grade",
+    "name": "đánh giá"
+  },
+  {
+    "icon": "group_work",
+    "name": "công việc nhóm"
+  },
+  {
+    "icon": "help",
+    "name": "trợ giúp"
+  },
+  {
+    "icon": "help_outline",
+    "name": "đường viền trợ giúp"
+  },
+  {
+    "icon": "highlight_off",
+    "name": "tắt nổi bật"
+  },
+  {
+    "icon": "history",
+    "name": "lịch sử"
+  },
+  {
+    "icon": "home",
+    "name": "trang chủ"
+  },
+  {
+    "icon": "horizontal_split",
+    "name": "chia ngang"
+  },
+  {
+    "icon": "hourglass_empty",
+    "name": "đồng hồ cát trống"
+  },
+  {
+    "icon": "hourglass_full",
+    "name": "đồng hồ cát đầy"
+  },
+  {
+    "icon": "http",
+    "name": "http"
+  },
+  {
+    "icon": "https",
+    "name": "https"
+  },
+  {
+    "icon": "important_devices",
+    "name": "thiết bị quan trọng"
+  },
+  {
+    "icon": "info",
+    "name": "thông tin"
+  },
+  {
+    "icon": "input",
+    "name": "đầu vào"
+  },
+  {
+    "icon": "invert_colors",
+    "name": "đảo màu"
+  },
+  {
+    "icon": "label",
+    "name": "nhãn"
+  },
+  {
+    "icon": "label_important",
+    "name": "nhãn quan trọng"
+  },
+  {
+    "icon": "language",
+    "name": "ngôn ngữ"
+  },
+  {
+    "icon": "launch",
+    "name": "khởi chạy"
+  },
+  {
+    "icon": "line_style",
+    "name": "kiểu dòng"
+  },
+  {
+    "icon": "line_weight",
+    "name": "độ dày dòng"
+  },
+  {
+    "icon": "list",
+    "name": "danh sách"
+  },
+  {
+    "icon": "lock",
+    "name": "khóa"
+  },
+  {
+    "icon": "lock_open",
+    "name": "mở khóa"
+  },
+  {
+    "icon": "loyalty",
+    "name": "trung thành"
+  },
+  {
+    "icon": "markunread_mailbox",
+    "name": "hộp thư chưa đọc"
+  },
+  {
+    "icon": "maximize",
+    "name": "tối đa hóa"
+  },
+  {
+    "icon": "minimize",
+    "name": "tối thiểu hóa"
+  },
+  {
+    "icon": "motorcycle",
+    "name": "xe máy"
+  },
+  {
+    "icon": "note_add",
+    "name": "thêm ghi chú"
+  },
+  {
+    "icon": "offline_bolt",
+    "name": "ngoại tuyến sét"
+  },
+  {
+    "icon": "offline_pin",
+    "name": "nối bán"
+  },
+  {
+    "icon": "opacity",
+    "name": "độ mờ"
+  },
+  {
+    "icon": "open_in_browser",
+    "name": "mở trong trình duyệt"
+  },
+  {
+    "icon": "open_in_new",
+    "name": "mở trong cửa sổ mới"
+  },
+  {
+    "icon": "open_with",
+    "name": "mở với"
+  },
+  {
+    "icon": "pageview",
+    "name": "xem trang"
+  },
+  {
+    "icon": "pan_tool",
+    "name": "dụng cụ lăn"
+  },
+  {
+    "icon": "payment",
+    "name": "thanh toán"
+  },
+  {
+    "icon": "perm_camera_mic",
+    "name": "quyền máy ảnh mic"
+  },
+  {
+    "icon": "perm_contact_calendar",
+    "name": "quyền liên hệ lịch"
+  },
+  {
+    "icon": "perm_data_setting",
+    "name": "quyền cài đặt dữ liệu"
+  },
+  {
+    "icon": "perm_device_information",
+    "name": "quyền thông tin thiết bị"
+  },
+  {
+    "icon": "perm_identity",
+    "name": "quyền nhận dạng"
+  },
+  {
+    "icon": "perm_media",
+    "name": "quyền truy cập đa phương tiện"
+  },
+  {
+    "icon": "perm_phone_msg",
+    "name": "quyền nhận dạng điện thoại"
+  },
+  {
+    "icon": "perm_scan_wifi",
+    "name": "quyền quét wifi"
+  },
+  {
+    "icon": "pets",
+    "name": "thú cưng"
+  },
+  {
+    "icon": "picture_in_picture",
+    "name": "hình ảnh trong hình ảnh"
+  },
+  {
+    "icon": "picture_in_picture_alt",
+    "name": "hình ảnh trong hình ảnh thay thế"
+  },
+  {
+    "icon": "play_for_work",
+    "name": "chơi để làm việc"
+  },
+  {
+    "icon": "polymer",
+    "name": "polymer"
+  },
+  {
+    "icon": "power_settings_new",
+    "name": "cài đặt điện năng mới"
+  },
+  {
+    "icon": "pregnant_woman",
+    "name": "phụ nữ mang thai"
+  },
+  {
+    "icon": "print",
+    "name": "in"
+  },
+  {
+    "icon": "query_builder",
+    "name": "trình tạo câu hỏi"
+  },
+  {
+    "icon": "question_answer",
+    "name": "trả lời câu hỏi"
+  },
+  {
+    "icon": "receipt",
+    "name": "biên nhận"
+  },
+  {
+    "icon": "record_voice_over",
+    "name": "ghi âm âm nhạc"
+  },
+  {
+    "icon": "redeem",
+    "name": "đổi điểm"
+  },
+  {
+    "icon": "remove_shopping_cart",
+    "name": "xóa giỏ hàng"
+  },
+  {
+    "icon": "reorder",
+    "name": "đặt lại thứ tự"
+  },
+  {
+    "icon": "report_problem",
+    "name": "báo cáo vấn đề"
+  },
+  {
+    "icon": "restore",
+    "name": "khôi phục"
+  },
+  {
+    "icon": "restore_from_trash",
+    "name": "khôi phục từ thùng rác"
+  },
+  {
+    "icon": "restore_page",
+    "name": "khôi phục trang"
+  },
+  {
+    "icon": "room",
+    "name": "phòng"
+  },
+  {
+    "icon": "rounded_corner",
+    "name": "góc bo tròn"
+  },
+  {
+    "icon": "rowing",
+    "name": "điền thuyền"
+  },
+  {
+    "icon": "schedule",
+    "name": "lịch trình"
+  },
+  {
+    "icon": "search",
+    "name": "tìm kiếm"
+  },
+  {
+    "icon": "settings",
+    "name": "cài đặt"
+  },
+  {
+    "icon": "settings_applications",
+    "name": "cài đặt ứng dụng"
+  },
+  {
+    "icon": "settings_backup_restore",
+    "name": "cài đặt khôi phục sao lưu"
+  },
+  {
+    "icon": "settings_bluetooth",
+    "name": "cài đặt bluetooth"
+  },
+  {
+    "icon": "settings_brightness",
+    "name": "cài đặt độ sáng"
+  },
+  {
+    "icon": "settings_cell",
+    "name": "cài đặt cell"
+  },
+  {
+    "icon": "settings_ethernet",
+    "name": "cài đặt ethernet"
+  },
+  {
+    "icon": "settings_input_antenna",
+    "name": "cài đặt đầu vào antenna"
+  },
+  {
+    "icon": "settings_input_component",
+    "name": "cài đặt đầu vào component"
+  },
+  {
+    "icon": "settings_input_composite",
+    "name": "cài đặt đầu vào composite"
+  },
+  {
+    "icon": "settings_input_hdmi",
+    "name": "cài đặt đầu vào hdmi"
+  },
+  {
+    "icon": "settings_input_svideo",
+    "name": "cài đặt đầu vào svideo"
+  },
+  {
+    "icon": "settings_overscan",
+    "name": "cài đặt overscan"
+  },
+  {
+    "icon": "settings_phone",
+    "name": "cài đặt điện thoại"
+  },
+  {
+    "icon": "settings_power",
+    "name": "cài đặt năng lượng"
+  },
+  {
+    "icon": "settings_remote",
+    "name": "cài đặt điều khiển"
+  },
+  {
+    "icon": "settings_voice",
+    "name": "cài đặt âm thanh"
+  },
+  {
+    "icon": "shop",
+    "name": "cửa hàng"
+  },
+  {
+    "icon": "shop_two",
+    "name": "cửa hàng số 2"
+  },
+  {
+    "icon": "shopping_basket",
+    "name": "giỏ hàng"
+  },
+  {
+    "icon": "shopping_cart",
+    "name": "xe đẩy hàng"
+  },
+  {
+    "icon": "speaker_notes",
+    "name": "ghi chú loa"
+  },
+  {
+    "icon": "speaker_notes_off",
+    "name": "tắt ghi chú loa"
+  },
+  {
+    "icon": "spellcheck",
+    "name": "kiểm tra chính tả"
+  },
+  {
+    "icon": "stars",
+    "name": "ngôi sao"
+  },
+  {
+    "icon": "store",
+    "name": "cửa hàng"
+  },
+  {
+    "icon": "subject",
+    "name": "đề tài"
+  },
+  {
+    "icon": "supervised_user_circle",
+    "name": "vòng người dùng quản lý"
+  },
+  {
+    "icon": "supervisor_account",
+    "name": "tài khoản quản lý"
+  },
+  {
+    "icon": "swap_horiz",
+    "name": "đổi chiều ngang"
+  },
+  {
+    "icon": "swap_horizontal_circle",
+    "name": "đổi chiều vòng ngang"
+  },
+  {
+    "icon": "swap_vert",
+    "name": "đổi chiều dọc"
+  },
+  {
+    "icon": "swap_vertical_circle",
+    "name": "đổi chiều vòng dọc"
+  },
+  {
+    "icon": "tab",
+    "name": "thẻ"
+  },
+  {
+    "icon": "tab_unselected",
+    "name": "thẻ chưa chọn"
+  },
+  {
+    "icon": "text_rotate_up",
+    "name": "xoay văn bản lên"
+  },
+  {
+    "icon": "text_rotate_vertical",
+    "name": "xoay văn bản theo chiều dọc"
+  },
+  {
+    "icon": "text_rotation_down",
+    "name": "xoay văn bản xuống"
+  },
+  {
+    "icon": "text_rotation_none",
+    "name": "xoay văn bản không"
+  },
+  {
+    "icon": "theaters",
+    "name": "rạp chiếu phim"
+  },
+  {
+    "icon": "thumb_down",
+    "name": "ngón tay chỉ hướng xuống"
+  },
+  {
+    "icon": "thumb_up",
+    "name": "ngón tay chỉ hướng lên"
+  },
+  {
+    "icon": "thumbs_up_down",
+    "name": "đồng ý hoặc từ chối"
+  },
+  {
+    "icon": "timeline",
+    "name": "biểu đồ thời gian"
+  },
+  {
+    "icon": "toc",
+    "name": "mục lục"
+  },
+  {
+    "icon": "today",
+    "name": "hôm nay"
+  },
+  {
+    "icon": "toll",
+    "name": "phí"
+  },
+  {
+    "icon": "touch_app",
+    "name": "chạm ứng ứng dụng"
+  },
+  {
+    "icon": "track_changes",
+    "name": "theo dõi thay đổi"
+  },
+  {
+    "icon": "translate",
+    "name": "dịch"
+  },
+  {
+    "icon": "trending_down",
+    "name": "xu hướng xuống"
+  },
+  {
+    "icon": "trending_flat",
+    "name": "xu hướng ngang"
+  },
+  {
+    "icon": "trending_up",
+    "name": "xu hướng lên"
+  },
+  {
+    "icon": "turned_in",
+    "name": "đánh dấu"
+  },
+  {
+    "icon": "turned_in_not",
+    "name": "chưa đánh dấu"
+  },
+  {
+    "icon": "update",
+    "name": "cập nhật"
+  },
+  {
+    "icon": "verified_user",
+    "name": "người dùng xác thực"
+  },
+  {
+    "icon": "vertical_split",
+    "name": "chia dọc"
+  },
+  {
+    "icon": "view_agenda",
+    "name": "xem chiến lược"
+  },
+  {
+    "icon": "view_array",
+    "name": "xem dãy"
+  },
+  {
+    "icon": "view_carousel",
+    "name": "xem vòng tròn"
+  },
+  {
+    "icon": "view_column",
+    "name": "xem cột"
+  },
+  {
+    "icon": "view_day",
+    "name": "xem ngày"
+  },
+  {
+    "icon": "view_headline",
+    "name": "xem tiêu đề"
+  },
+  {
+    "icon": "view_list",
+    "name": "xem danh sách"
+  },
+  {
+    "icon": "view_module",
+    "name": "xem module"
+  },
+  {
+    "icon": "view_quilt",
+    "name": "xem dải"
+  },
+  {
+    "icon": "view_stream",
+    "name": "xem dòng"
+  },
+  {
+    "icon": "view_week",
+    "name": "xem tuần"
+  },
+  {
+    "icon": "visibility",
+    "name": "hiển thị"
+  },
+  {
+    "icon": "visibility_off",
+    "name": "ẩn"
+  },
+  {
+    "icon": "voice_over_off",
+    "name": "tắt nghe"
+  },
+  {
+    "icon": "watch_later",
+    "name": "xem sau"
+  },
+  {
+    "icon": "work",
+    "name": "công việc"
+  },
+  {
+    "icon": "work_off",
+    "name": "nghỉ"
+  },
+  {
+    "icon": "work_outline",
+    "name": "kiểu công việc"
+  },
+  {
+    "icon": "youtube_searched_for",
+    "name": "youtube tìm kiếm cho"
+  },
+  {
+    "icon": "zoom_in",
+    "name": "phóng to"
+  },
+  {
+    "icon": "zoom_out",
+    "name": "thu nhỏ"
+  },
+  {
+    "icon": "alternate_email",
+    "name": "email thay thế"
+  },
+  {
+    "icon": "business",
+    "name": "doanh nghiệp"
+  },
+  {
+    "icon": "call",
+    "name": "cuộc gọi"
+  },
+  {
+    "icon": "call_end",
+    "name": "kết thúc cuộc gọi"
+  },
+  {
+    "icon": "call_made",
+    "name": "gọi đi"
+  },
+  {
+    "icon": "call_merge",
+    "name": "gộp cuộc gọi"
+  },
+  {
+    "icon": "call_missed",
+    "name": "cuộc gọi nhỡ"
+  },
+  {
+    "icon": "call_missed_outgoing",
+    "name": "cuộc gọi nhỡ đi đến"
+  },
+  {
+    "icon": "call_received",
+    "name": "cuộc gọi nhận"
+  },
+  {
+    "icon": "call_split",
+    "name": "chia cuộc gọi"
+  },
+  {
+    "icon": "cancel_presentation",
+    "name": "hủy trình chiếu"
+  },
+  {
+    "icon": "cell_wifi",
+    "name": "điện thoại di động wifi"
+  },
+  {
+    "icon": "chat",
+    "name": "trò chuyện"
+  },
+  {
+    "icon": "chat_bubble",
+    "name": "hội thoại"
+  },
+  {
+    "icon": "chat_bubble_outline",
+    "name": "hội thoại đường viền"
+  },
+  {
+    "icon": "clear_all",
+    "name": "xóa tất cả"
+  },
+  {
+    "icon": "comment",
+    "name": "bình luận"
+  },
+  {
+    "icon": "contact_mail",
+    "name": "liên lạc email"
+  },
+  {
+    "icon": "contact_phone",
+    "name": "liên lạc điện thoại"
+  },
+  {
+    "icon": "contacts",
+    "name": "danh bạ"
+  },
+  {
+    "icon": "dialer_sip",
+    "name": "bộ điều khiển cuộc gọi sip"
+  },
+  {
+    "icon": "dialpad",
+    "name": "bàn phím gọi"
+  },
+  {
+    "icon": "domain_disabled",
+    "name": "tên miền bị tắt"
+  },
+  {
+    "icon": "email",
+    "name": "email"
+  },
+  {
+    "icon": "forum",
+    "name": "diễn đàn"
+  },
+  {
+    "icon": "import_contacts",
+    "name": "nhập danh bạ"
+  },
+  {
+    "icon": "import_export",
+    "name": "nhập xuất"
+  },
+  {
+    "icon": "invert_colors_off",
+    "name": "đảo ngược màu tắt"
+  },
+  {
+    "icon": "list_alt",
+    "name": "danh sách thay thế"
+  },
+  {
+    "icon": "live_help",
+    "name": "trợ giúp trực tiếp"
+  },
+  {
+    "icon": "location_off",
+    "name": "vị trí tắt"
+  },
+  {
+    "icon": "location_on",
+    "name": "vị trí bật"
+  },
+  {
+    "icon": "mail_outline",
+    "name": "email đường viền"
+  },
+  {
+    "icon": "message",
+    "name": "tin nhắn"
+  },
+  {
+    "icon": "mobile_screen_share",
+    "name": "chia sẻ màn hình di động"
+  },
+  {
+    "icon": "no_sim",
+    "name": "không sim"
+  },
+  {
+    "icon": "pause_presentation",
+    "name": "tạm dừng trình chiếu"
+  },
+  {
+    "icon": "phone",
+    "name": "điện thoại"
+  },
+  {
+    "icon": "phonelink_erase",
+    "name": "xoá liên kết di động"
+  },
+  {
+    "icon": "phonelink_lock",
+    "name": "khóa liên kết di động"
+  },
+  {
+    "icon": "phonelink_ring",
+    "name": "liên kết di động nhạc"
+  },
+  {
+    "icon": "phonelink_setup",
+    "name": "cài đặt liên kết di động"
+  },
+  {
+    "icon": "portable_wifi_off",
+    "name": "wifi di động tắt"
+  },
+  {
+    "icon": "present_to_all",
+    "name": "hiện tất cả"
+  },
+  {
+    "icon": "ring_volume",
+    "name": "âm lượng điện thoại"
+  },
+  {
+    "icon": "rss_feed",
+    "name": "dòng rss"
+  },
+  {
+    "icon": "screen_share",
+    "name": "chia sẻ màn hình"
+  },
+  {
+    "icon": "sentiment_satisfied_alt",
+    "name": "tâm trạng hài lòng alternate"
+  },
+  {
+    "icon": "speaker_phone",
+    "name": "loa điện thoại"
+  },
+  {
+    "icon": "stay_current_landscape",
+    "name": "giữ nguyên chế độ ngang"
+  },
+  {
+    "icon": "stay_current_portrait",
+    "name": "giữ nguyên chế độ dọc"
+  },
+  {
+    "icon": "stay_primary_landscape",
+    "name": "giữ chế độ ngang chính"
+  },
+  {
+    "icon": "stay_primary_portrait",
+    "name": "giữ chế độ dọc chính"
+  },
+  {
+    "icon": "stop_screen_share",
+    "name": "dừng chia sẻ màn hình"
+  },
+  {
+    "icon": "swap_calls",
+    "name": "đổi cuộc gọi"
+  },
+  {
+    "icon": "textsms",
+    "name": "tin nhắn văn bản"
+  },
+  {
+    "icon": "unsubscribe",
+    "name": "hủy đăng ký"
+  },
+  {
+    "icon": "voicemail",
+    "name": "hộp thư âm"
+  },
+  {
+    "icon": "vpn_key",
+    "name": "khóa vpn"
+  },
+  {
+    "icon": "4k",
+    "name": "4k"
+  },
+  {
+    "icon": "add_to_queue",
+    "name": "thêm vào hàng đợi"
+  },
+  {
+    "icon": "airplay",
+    "name": "airplay"
+  },
+  {
+    "icon": "album",
+    "name": "album"
+  },
+  {
+    "icon": "art_track",
+    "name": "theo dõi nghệ sĩ"
+  },
+  {
+    "icon": "av_timer",
+    "name": "đèn hẹn giờ"
+  },
+  {
+    "icon": "branding_watermark",
+    "name": "đánh dấu thương hiệu"
+  },
+  {
+    "icon": "call_to_action",
+    "name": "gọi hành động"
+  },
+  {
+    "icon": "closed_caption",
+    "name": "phụ đề đóng"
+  },
+  {
+    "icon": "control_camera",
+    "name": "điều khiển camera"
+  },
+  {
+    "icon": "equalizer",
+    "name": "bộ điều chỉnh"
+  },
+  {
+    "icon": "explicit",
+    "name": "rõ ràng"
+  },
+  {
+    "icon": "fast_forward",
+    "name": "chuyển nhanh đến"
+  },
+  {
+    "icon": "fast_rewind",
+    "name": "quay lui nhanh"
+  },
+  {
+    "icon": "featured_play_list",
+    "name": "danh sách phát đặc sắc"
+  },
+  {
+    "icon": "featured_video",
+    "name": "video đặc sắc"
+  },
+  {
+    "icon": "fiber_dvr",
+    "name": "fiber_dvr"
+  },
+  {
+    "icon": "fiber_manual_record",
+    "name": "ghi âm thủ công fiber"
+  },
+  {
+    "icon": "fiber_new",
+    "name": "fiber_mới"
+  },
+  {
+    "icon": "fiber_pin",
+    "name": "ghim fiber"
+  },
+  {
+    "icon": "fiber_smart_record",
+    "name": "ghi âm thông minh fiber"
+  },
+  {
+    "icon": "forward_10",
+    "name": "chuyển đến 10"
+  },
+  {
+    "icon": "forward_30",
+    "name": "chuyển đến 30"
+  },
+  {
+    "icon": "forward_5",
+    "name": "chuyển đến 5"
+  },
+  {
+    "icon": "games",
+    "name": "trò chơi"
+  },
+  {
+    "icon": "hd",
+    "name": "chất lượng cao"
+  },
+  {
+    "icon": "hearing",
+    "name": "nghe"
+  },
+  {
+    "icon": "high_quality",
+    "name": "chất lượng cao"
+  },
+  {
+    "icon": "library_add",
+    "name": "thêm vào thư viện"
+  },
+  {
+    "icon": "library_books",
+    "name": "sách thư viện"
+  },
+  {
+    "icon": "library_music",
+    "name": "âm nhạc thư viện"
+  },
+  {
+    "icon": "loop",
+    "name": "lặp"
+  },
+  {
+    "icon": "mic",
+    "name": "mic"
+  },
+  {
+    "icon": "mic_none",
+    "name": "không mic"
+  },
+  {
+    "icon": "mic_off",
+    "name": "tắt mic"
+  },
+  {
+    "icon": "missed_video_call",
+    "name": "cuộc gọi video nhỡ"
+  },
+  {
+    "icon": "movie",
+    "name": "phim"
+  },
+  {
+    "icon": "music_video",
+    "name": "video nhạc"
+  },
+  {
+    "icon": "new_releases",
+    "name": "phát hành mới"
+  },
+  {
+    "icon": "not_interested",
+    "name": "không quan tâm"
+  },
+  {
+    "icon": "note",
+    "name": "ghi chú"
+  },
+  {
+    "icon": "pause",
+    "name": "tạm dừng"
+  },
+  {
+    "icon": "pause_circle_filled",
+    "name": "tạm dừng vòng tròn đầy"
+  },
+  {
+    "icon": "pause_circle_outline",
+    "name": "tạm dừng vòng tròn đường viền"
+  },
+  {
+    "icon": "play_arrow",
+    "name": "phát"
+  },
+  {
+    "icon": "play_circle_filled",
+    "name": "phát vòng tròn đầy"
+  },
+  {
+    "icon": "play_circle_outline",
+    "name": "phát vòng tròn đường viền"
+  },
+  {
+    "icon": "playlist_add",
+    "name": "thêm vào danh sách phát"
+  },
+  {
+    "icon": "playlist_add_check",
+    "name": "thêm vào danh sách phát kiểm tra"
+  },
+  {
+    "icon": "playlist_play",
+    "name": "phát danh sách phát"
+  },
+  {
+    "icon": "queue",
+    "name": "hàng đợi"
+  },
+  {
+    "icon": "queue_music",
+    "name": "âm nhạc hàng đợi"
+  },
+  {
+    "icon": "queue_play_next",
+    "name": "phát ngay sau hàng đợi"
+  },
+  {
+    "icon": "radio",
+    "name": "đài radio"
+  },
+  {
+    "icon": "recent_actors",
+    "name": "diễn viên gần đây"
+  },
+  {
+    "icon": "remove_from_queue",
+    "name": "xoá khỏi hàng đợi"
+  },
+  {
+    "icon": "repeat",
+    "name": "lặp"
+  },
+  {
+    "icon": "repeat_one",
+    "name": "lặp một lần"
+  },
+  {
+    "icon": "replay",
+    "name": "chơi lại"
+  },
+  {
+    "icon": "replay_10",
+    "name": "chơi lại 10"
+  },
+  {
+    "icon": "replay_30",
+    "name": "chơi lại 30"
+  },
+  {
+    "icon": "replay_5",
+    "name": "chơi lại 5"
+  },
+  {
+    "icon": "shuffle",
+    "name": "xáo trộn"
+  },
+  {
+    "icon": "skip_next",
+    "name": "bỏ qua kế tiếp"
+  },
+  {
+    "icon": "skip_previous",
+    "name": "bỏ qua trước"
+  },
+  {
+    "icon": "slow_motion_video",
+    "name": "video chạy chậm"
+  },
+  {
+    "icon": "snooze",
+    "name": "ngủ thêm"
+  },
+  {
+    "icon": "sort_by_alpha",
+    "name": "sắp xếp theo chữ"
+  },
+  {
+    "icon": "stop",
+    "name": "dừng"
+  },
+  {
+    "icon": "subscriptions",
+    "name": "theo dõi"
+  },
+  {
+    "icon": "subtitles",
+    "name": "phụ đề"
+  },
+  {
+    "icon": "surround_sound",
+    "name": "âm thanh vòm"
+  },
+  {
+    "icon": "video_call",
+    "name": "gọi video"
+  },
+  {
+    "icon": "video_label",
+    "name": "nhãn video"
+  },
+  {
+    "icon": "video_library",
+    "name": "thư viện video"
+  },
+  {
+    "icon": "videocam",
+    "name": "máy quay video"
+  },
+  {
+    "icon": "videocam_off",
+    "name": "tắt máy quay video"
+  },
+  {
+    "icon": "volume_down",
+    "name": "giảm âm lượng"
+  },
+  {
+    "icon": "volume_mute",
+    "name": "tắt âm"
+  },
+  {
+    "icon": "volume_off",
+    "name": "âm lượng tắt"
+  },
+  {
+    "icon": "volume_up",
+    "name": "tăng âm lượng"
+  },
+  {
+    "icon": "add",
+    "name": "thêm"
+  },
+  {
+    "icon": "add_box",
+    "name": "thêm hộp"
+  },
+  {
+    "icon": "add_circle",
+    "name": "thêm vòng tròn"
+  },
+  {
+    "icon": "add_circle_outline",
+    "name": "thêm vòng tròn đường viền"
+  },
+  {
+    "icon": "archive",
+    "name": "lưu trữ"
+  },
+  {
+    "icon": "backspace",
+    "name": "xóa lùi"
+  },
+  {
+    "icon": "ballot",
+    "name": "phiếu bầu"
+  },
+  {
+    "icon": "block",
+    "name": "chặn"
+  },
+  {
+    "icon": "clear",
+    "name": "xóa"
+  },
+  {
+    "icon": "create",
+    "name": "tạo"
+  },
+  {
+    "icon": "delete_sweep",
+    "name": "xóa toàn bộ"
+  },
+  {
+    "icon": "drafts",
+    "name": "bản nháp"
+  },
+  {
+    "icon": "file_copy",
+    "name": "sao chép tệp"
+  },
+  {
+    "icon": "filter_list",
+    "name": "danh sách bộ lọc"
+  },
+  {
+    "icon": "flag",
+    "name": "cờ"
+  },
+  {
+    "icon": "font_download",
+    "name": "tải font"
+  },
+  {
+    "icon": "forward",
+    "name": "chuyển tiếp"
+  },
+  {
+    "icon": "gesture",
+    "name": "cử chỉ"
+  },
+  {
+    "icon": "how_to_reg",
+    "name": "cách đăng ký"
+  },
+  {
+    "icon": "how_to_vote",
+    "name": "cách bỏ phiếu ông bầu"
+  },
+  {
+    "icon": "inbox",
+    "name": "hộp thư đến"
+  },
+  {
+    "icon": "link",
+    "name": "liên kết"
+  },
+  {
+    "icon": "link_off",
+    "name": "tắt liên kết"
+  },
+  {
+    "icon": "low_priority",
+    "name": "ưu tiên thấp"
+  },
+  {
+    "icon": "mail",
+    "name": "thư"
+  },
+  {
+    "icon": "markunread",
+    "name": "đánh dấu chưa đọc"
+  },
+  {
+    "icon": "move_to_inbox",
+    "name": "di chuyển đến hộp thư đến"
+  },
+  {
+    "icon": "next_week",
+    "name": "tuần tới"
+  },
+  {
+    "icon": "outlined_flag",
+    "name": "cờ viền"
+  },
+  {
+    "icon": "redo",
+    "name": "làm lại"
+  },
+  {
+    "icon": "remove",
+    "name": "xoá"
+  },
+  {
+    "icon": "remove_circle",
+    "name": "xoá vòng tròn"
+  },
+  {
+    "icon": "remove_circle_outline",
+    "name": "xoá vòng tròn đường viền"
+  },
+  {
+    "icon": "reply",
+    "name": "trả lời"
+  },
+  {
+    "icon": "reply_all",
+    "name": "trả lời tất cả"
+  },
+  {
+    "icon": "report",
+    "name": "báo cáo"
+  },
+  {
+    "icon": "report_off",
+    "name": "tắt báo cáo"
+  },
+  {
+    "icon": "save",
+    "name": "lưu"
+  },
+  {
+    "icon": "save_alt",
+    "name": "lưu dưới dạng khác"
+  },
+  {
+    "icon": "select_all",
+    "name": "chọn tất cả"
+  },
+  {
+    "icon": "send",
+    "name": "gửi"
+  },
+  {
+    "icon": "sort",
+    "name": "sắp xếp"
+  },
+  {
+    "icon": "text_format",
+    "name": "định dạng văn bản"
+  },
+  {
+    "icon": "unarchive",
+    "name": "mở khóa lưu trữ"
+  },
+  {
+    "icon": "undo",
+    "name": "hoàn tác"
+  },
+  {
+    "icon": "waves",
+    "name": "sóng"
+  },
+  {
+    "icon": "weekend",
+    "name": "cuối tuần"
+  },
+  {
+    "icon": "where_to_vote",
+    "name": "đi đâu để bỏ phiếu"
+  },
+  {
+    "icon": "access_alarm",
+    "name": "truy cập báo thức"
+  },
+  {
+    "icon": "access_alarms",
+    "name": "truy cập báo thức"
+  },
+  {
+    "icon": "access_time",
+    "name": "truy cập thời gian"
+  },
+  {
+    "icon": "add_alarm",
+    "name": "thêm báo thức"
+  },
+  {
+    "icon": "add_to_home_screen",
+    "name": "thêm vào màn hình chính"
+  },
+  {
+    "icon": "airplanemode_active",
+    "name": "chế độ máy bay đang kích hoạt"
+  },
+  {
+    "icon": "airplanemode_inactive",
+    "name": "chế độ máy bay đang tắt"
+  },
+  {
+    "icon": "battery_alert",
+    "name": "cảnh báo pin"
+  },
+  {
+    "icon": "battery_charging_full",
+    "name": "đầy pin sạc"
+  },
+  {
+    "icon": "battery_full",
+    "name": "pin đầy"
+  },
+  {
+    "icon": "battery_std",
+    "name": "pin tiêu chuẩn"
+  },
+  {
+    "icon": "battery_unknown",
+    "name": "pin chưa biết"
+  },
+  {
+    "icon": "bluetooth",
+    "name": "bluetooth"
+  },
+  {
+    "icon": "bluetooth_connected",
+    "name": "đã kết nối bluetooth"
+  },
+  {
+    "icon": "bluetooth_disabled",
+    "name": "bluetooth đã tắt"
+  },
+  {
+    "icon": "bluetooth_searching",
+    "name": "đang tìm kiếm bluetooth"
+  },
+  {
+    "icon": "brightness_auto",
+    "name": "độ sáng tự động"
+  },
+  {
+    "icon": "brightness_high",
+    "name": "độ sáng cao"
+  },
+  {
+    "icon": "brightness_low",
+    "name": "độ sáng thấp"
+  },
+  {
+    "icon": "brightness_medium",
+    "name": "độ sáng trung bình"
+  },
+  {
+    "icon": "data_usage",
+    "name": "sử dụng dữ liệu"
+  },
+  {
+    "icon": "developer_mode",
+    "name": "chế độ phát triển"
+  },
+  {
+    "icon": "devices",
+    "name": "thiết bị"
+  },
+  {
+    "icon": "dvr",
+    "name": "dvr"
+  },
+  {
+    "icon": "gps_fixed",
+    "name": "gps đã cố định"
+  },
+  {
+    "icon": "gps_not_fixed",
+    "name": "gps chưa cố định"
+  },
+  {
+    "icon": "gps_off",
+    "name": "gps đã tắt"
+  },
+  {
+    "icon": "graphic_eq",
+    "name": "graphic eq"
+  },
+  {
+    "icon": "location_disabled",
+    "name": "vị trí đã tắt"
+  },
+  {
+    "icon": "location_searching",
+    "name": "đang tìm vị trí"
+  },
+  {
+    "icon": "mobile_friendly",
+    "name": "thân thiện với điện thoại"
+  },
+  {
+    "icon": "mobile_off",
+    "name": "điện thoại đã tắt"
+  },
+  {
+    "icon": "network_cell",
+    "name": "mạng di động"
+  },
+  {
+    "icon": "network_wifi",
+    "name": "mạng wifi"
+  },
+  {
+    "icon": "nfc",
+    "name": "nfc"
+  },
+  {
+    "icon": "screen_lock_landscape",
+    "name": "màn hình khoá ngang"
+  },
+  {
+    "icon": "screen_lock_portrait",
+    "name": "màn hình khoá dọc"
+  },
+  {
+    "icon": "screen_lock_rotation",
+    "name": "màn hình khoá xoay"
+  },
+  {
+    "icon": "screen_rotation",
+    "name": "xoay màn hình"
+  },
+  {
+    "icon": "sd_storage",
+    "name": "lưu trữ sd"
+  },
+  {
+    "icon": "settings_system_daydream",
+    "name": "cài đặt mơ ngày"
+  },
+  {
+    "icon": "signal_cellular_4_bar",
+    "name": "tín hiệu di động 4 gạch"
+  },
+  {
+    "icon": "signal_cellular_alt",
+    "name": "tín hiệu di động khác"
+  },
+  {
+    "icon": "signal_cellular_connected_no_internet_4_bar",
+    "name": "đã kết nối di động nhưng không có internet 4 gạch"
+  },
+  {
+    "icon": "signal_cellular_no_sim",
+    "name": "không có sim di động"
+  },
+  {
+    "icon": "signal_cellular_null",
+    "name": "tín hiệu di động null"
+  },
+  {
+    "icon": "signal_cellular_off",
+    "name": "tắt tín hiệu di động"
+  },
+  {
+    "icon": "signal_wifi_4_bar",
+    "name": "tín hiệu wifi 4 gạch"
+  },
+  {
+    "icon": "signal_wifi_4_bar_lock",
+    "name": "tín hiệu wifi 4 gạch khóa"
+  },
+  {
+    "icon": "signal_wifi_off",
+    "name": "tắt tín hiệu wifi"
+  },
+  {
+    "icon": "storage",
+    "name": "lưu trữ"
+  },
+  {
+    "icon": "usb",
+    "name": "usb"
+  },
+  {
+    "icon": "wallpaper",
+    "name": "hình nền"
+  },
+  {
+    "icon": "widgets",
+    "name": "tiện ích"
+  },
+  {
+    "icon": "wifi_lock",
+    "name": "wifi bị khóa"
+  },
+  {
+    "icon": "wifi_tethering",
+    "name": "phát wifi"
+  },
+  {
+    "icon": "add_comment",
+    "name": "thêm bình luận"
+  },
+  {
+    "icon": "attach_file",
+    "name": "đính kèm tệp"
+  },
+  {
+    "icon": "attach_money",
+    "name": "đính kèm tiền"
+  },
+  {
+    "icon": "bar_chart",
+    "name": "biểu đồ thanh"
+  },
+  {
+    "icon": "border_all",
+    "name": "đường viền toàn bộ"
+  },
+  {
+    "icon": "border_bottom",
+    "name": "đường viền dưới cùng"
+  },
+  {
+    "icon": "border_clear",
+    "name": "xóa đường viền"
+  },
+  {
+    "icon": "border_color",
+    "name": "màu đường viền"
+  },
+  {
+    "icon": "border_horizontal",
+    "name": "đường viền ngang"
+  },
+  {
+    "icon": "border_inner",
+    "name": "đường viền trong"
+  },
+  {
+    "icon": "border_left",
+    "name": "đường viền trái"
+  },
+  {
+    "icon": "border_outer",
+    "name": "đường viền ngoại"
+  },
+  {
+    "icon": "border_right",
+    "name": "đường viền phải"
+  },
+  {
+    "icon": "border_style",
+    "name": "kiểu đường viền"
+  },
+  {
+    "icon": "border_top",
+    "name": "đường viền đầu cao"
+  },
+  {
+    "icon": "border_vertical",
+    "name": "đường viền dọc"
+  },
+  {
+    "icon": "bubble_chart",
+    "name": "biểu đồ bong bóng"
+  },
+  {
+    "icon": "drag_handle",
+    "name": "kéo tay cầm"
+  },
+  {
+    "icon": "format_align_center",
+    "name": "định dạng căn giữa"
+  },
+  {
+    "icon": "format_align_justify",
+    "name": "định dạng căn cả"
+  },
+  {
+    "icon": "format_align_left",
+    "name": "định dạng căn trái"
+  },
+  {
+    "icon": "format_align_right",
+    "name": "định dạng căn phải"
+  },
+  {
+    "icon": "format_bold",
+    "name": "định dạng in đậm"
+  },
+  {
+    "icon": "format_clear",
+    "name": "định dạng xóa"
+  },
+  {
+    "icon": "format_color_fill",
+    "name": "định dạng màu nền"
+  },
+  {
+    "icon": "format_color_reset",
+    "name": "đặt lại màu định dạng"
+  },
+  {
+    "icon": "format_color_text",
+    "name": "định dạng màu văn bản"
+  },
+  {
+    "icon": "format_indent_decrease",
+    "name": "định dạng giảm thụt đầu dòng"
+  },
+  {
+    "icon": "format_indent_increase",
+    "name": "định dạng tăng thụt đầu dòng"
+  },
+  {
+    "icon": "format_italic",
+    "name": "định dạng in nghiêng"
+  },
+  {
+    "icon": "format_line_spacing",
+    "name": "định dạng khoảng cách dòng"
+  },
+  {
+    "icon": "format_list_bulleted",
+    "name": "định dạng danh sách dấu chấm"
+  },
+  {
+    "icon": "format_list_numbered",
+    "name": "định dạng danh sách đánh số"
+  },
+  {
+    "icon": "format_list_numbered_rtl",
+    "name": "định dạng danh sách đánh số RTL"
+  },
+  {
+    "icon": "format_paint",
+    "name": "định dạng sơn"
+  },
+  {
+    "icon": "format_quote",
+    "name": "định dạng trích dẫn"
+  },
+  {
+    "icon": "format_shapes",
+    "name": "định dạng hình dạng"
+  },
+  {
+    "icon": "format_size",
+    "name": "định dạng kích thước"
+  },
+  {
+    "icon": "format_strikethrough",
+    "name": "định dạng gạch ngang vào văn bản"
+  },
+  {
+    "icon": "format_textdirection_l_to_r",
+    "name": "định dạng hướng văn bản từ trái sang phải"
+  },
+  {
+    "icon": "format_textdirection_r_to_l",
+    "name": "định dạng hướng văn bản từ phải sang trái"
+  },
+  {
+    "icon": "format_underlined",
+    "name": "định dạng gạch dưới"
+  },
+  {
+    "icon": "functions",
+    "name": "chức năng"
+  },
+  {
+    "icon": "highlight",
+    "name": "đánh dấu"
+  },
+  {
+    "icon": "insert_chart",
+    "name": "chèn biểu đồ"
+  },
+  {
+    "icon": "insert_chart_outlined",
+    "name": "chèn biểu đồ gạch nét"
+  },
+  {
+    "icon": "insert_comment",
+    "name": "chèn bình luận"
+  },
+  {
+    "icon": "insert_drive_file",
+    "name": "chèn tệp tài liệu"
+  },
+  {
+    "icon": "insert_emoticon",
+    "name": "chèn biểu tượng cảm xúc"
+  },
+  {
+    "icon": "insert_invitation",
+    "name": "chèn lời mời"
+  },
+  {
+    "icon": "insert_link",
+    "name": "chèn liên kết"
+  },
+  {
+    "icon": "insert_photo",
+    "name": "chèn ảnh"
+  },
+  {
+    "icon": "linear_scale",
+    "name": "thang chiếu tuyến tính"
+  },
+  {
+    "icon": "merge_type",
+    "name": "kiểu nhóm"
+  },
+  {
+    "icon": "mode_comment",
+    "name": "chế độ bình luận"
+  },
+  {
+    "icon": "monetization_on",
+    "name": "kiểu kinh doanh"
+  },
+  {
+    "icon": "money_off",
+    "name": "tắt tiền"
+  },
+  {
+    "icon": "multiline_chart",
+    "name": "biểu đồ nhiều dòng"
+  },
+  {
+    "icon": "notes",
+    "name": "ghi chú"
+  },
+  {
+    "icon": "pie_chart",
+    "name": "biểu đồ tròn"
+  },
+  {
+    "icon": "publish",
+    "name": "đăng"
+  },
+  {
+    "icon": "scatter_plot",
+    "name": "biểu đồ phân tán"
+  },
+  {
+    "icon": "score",
+    "name": "điểm số"
+  },
+  {
+    "icon": "short_text",
+    "name": "văn bản ngắn"
+  },
+  {
+    "icon": "show_chart",
+    "name": "hiển thị biểu đồ"
+  },
+  {
+    "icon": "space_bar",
+    "name": "khoảng trắng"
+  },
+  {
+    "icon": "strikethrough_s",
+    "name": "gạch ngang s"
+  },
+  {
+    "icon": "table_chart",
+    "name": "biểu đồ bảng"
+  },
+  {
+    "icon": "text_fields",
+    "name": "trường văn bản"
+  },
+  {
+    "icon": "title",
+    "name": "tiêu đề"
+  },
+  {
+    "icon": "vertical_align_bottom",
+    "name": "định dạng căn vị trí xuống dưới"
+  },
+  {
+    "icon": "vertical_align_center",
+    "name": "định dạng căn vị trí chính giữa"
+  },
+  {
+    "icon": "vertical_align_top",
+    "name": "định dạng căn vị trí lên đầu"
+  },
+  {
+    "icon": "wrap_text",
+    "name": "định dạng bọc văn bản"
+  },
+  {
+    "icon": "attachment",
+    "name": "đính kèm"
+  },
+  {
+    "icon": "cloud",
+    "name": "đám mây"
+  },
+  {
+    "icon": "cloud_circle",
+    "name": "đám mây vòng tròn"
+  },
+  {
+    "icon": "cloud_done",
+    "name": "đám mây đã xong"
+  },
+  {
+    "icon": "cloud_download",
+    "name": "đám mây tải xuống"
+  },
+  {
+    "icon": "cloud_off",
+    "name": "đám mây tắt"
+  },
+  {
+    "icon": "cloud_queue",
+    "name": "đám mây hàng đợi"
+  },
+  {
+    "icon": "cloud_upload",
+    "name": "đám mây tải lên"
+  },
+  {
+    "icon": "create_new_folder",
+    "name": "tạo thư mục mới"
+  },
+  {
+    "icon": "folder",
+    "name": "thư mục"
+  },
+  {
+    "icon": "folder_open",
+    "name": "thư mục mở"
+  },
+  {
+    "icon": "folder_shared",
+    "name": "thư mục chia sẻ"
+  },
+  {
+    "icon": "cast",
+    "name": "phát"
+  },
+  {
+    "icon": "cast_connected",
+    "name": "phát đã kết nối"
+  },
+  {
+    "icon": "computer",
+    "name": "máy tính"
+  },
+  {
+    "icon": "desktop_mac",
+    "name": "máy tính Mac"
+  },
+  {
+    "icon": "desktop_windows",
+    "name": "máy tính Windows"
+  },
+  {
+    "icon": "developer_board",
+    "name": "bảng phát triển"
+  },
+  {
+    "icon": "device_hub",
+    "name": "trung tâm thiết bị"
+  },
+  {
+    "icon": "device_unknown",
+    "name": "thiết bị không xác định"
+  },
+  {
+    "icon": "devices_other",
+    "name": "thiết bị khác"
+  },
+  {
+    "icon": "dock",
+    "name": "bến đậu"
+  },
+  {
+    "icon": "gamepad",
+    "name": "tay cầm game"
+  },
+  {
+    "icon": "headset",
+    "name": "tai nghe"
+  },
+  {
+    "icon": "headset_mic",
+    "name": "tai nghe với mic"
+  },
+  {
+    "icon": "keyboard",
+    "name": "bàn phím"
+  },
+  {
+    "icon": "keyboard_arrow_down",
+    "name": "bàn phím mũi tên xuống"
+  },
+  {
+    "icon": "keyboard_arrow_left",
+    "name": "bàn phím mũi tên trái"
+  },
+  {
+    "icon": "keyboard_arrow_right",
+    "name": "bàn phím mũi tên phải"
+  },
+  {
+    "icon": "keyboard_arrow_up",
+    "name": "bàn phím mũi tên lên"
+  },
+  {
+    "icon": "keyboard_backspace",
+    "name": "bàn phím xóa"
+  },
+  {
+    "icon": "keyboard_capslock",
+    "name": "bàn phím Caps Lock"
+  },
+  {
+    "icon": "keyboard_hide",
+    "name": "bàn phím ẩn"
+  },
+  {
+    "icon": "keyboard_return",
+    "name": "bàn phím trở về"
+  },
+  {
+    "icon": "keyboard_tab",
+    "name": "bàn phím tab"
+  },
+  {
+    "icon": "keyboard_voice",
+    "name": "bàn phím âm thanh"
+  },
+  {
+    "icon": "laptop",
+    "name": "máy tính xách tay"
+  },
+  {
+    "icon": "laptop_chromebook",
+    "name": "máy tính xách tay Chromebook"
+  },
+  {
+    "icon": "laptop_mac",
+    "name": "máy tính xách tay Mac"
+  },
+  {
+    "icon": "laptop_windows",
+    "name": "máy tính xách tay Windows"
+  },
+  {
+    "icon": "memory",
+    "name": "bộ nhớ"
+  },
+  {
+    "icon": "mouse",
+    "name": "chuột"
+  },
+  {
+    "icon": "phone_android",
+    "name": "điện thoại Android"
+  },
+  {
+    "icon": "phone_iphone",
+    "name": "điện thoại iPhone"
+  },
+  {
+    "icon": "phonelink",
+    "name": "liên kết điện thoại"
+  },
+  {
+    "icon": "phonelink_off",
+    "name": "liên kết điện thoại tắt"
+  },
+  {
+    "icon": "power_input",
+    "name": "đầu vào nguồn"
+  },
+  {
+    "icon": "router",
+    "name": "bộ định tuyến"
+  },
+  {
+    "icon": "scanner",
+    "name": "máy quét"
+  },
+  {
+    "icon": "security",
+    "name": "an ninh"
+  },
+  {
+    "icon": "sim_card",
+    "name": "thẻ SIM"
+  },
+  {
+    "icon": "smartphone",
+    "name": "điện thoại thông minh"
+  },
+  {
+    "icon": "speaker",
+    "name": "loa"
+  },
+  {
+    "icon": "speaker_group",
+    "name": "nhóm loa"
+  },
+  {
+    "icon": "tablet",
+    "name": "máy tính bảng"
+  },
+  {
+    "icon": "tablet_android",
+    "name": "máy tính bảng Android"
+  },
+  {
+    "icon": "tablet_mac",
+    "name": "máy tính bảng Mac"
+  },
+  {
+    "icon": "toys",
+    "name": "đồ đồ chơi"
+  },
+  {
+    "icon": "tv",
+    "name": "ti vi"
+  },
+  {
+    "icon": "videogame_asset",
+    "name": "tài sản trò chơi video"
+  },
+  {
+    "icon": "watch",
+    "name": "đồng hồ"
+  },
+  {
+    "icon": "add_a_photo",
+    "name": "thêm ảnh"
+  },
+  {
+    "icon": "add_photo_alternate",
+    "name": "thêm ảnh thay thế"
+  },
+  {
+    "icon": "add_to_photos",
+    "name": "thêm vào ảnh"
+  },
+  {
+    "icon": "adjust",
+    "name": "điều chỉnh"
+  },
+  {
+    "icon": "assistant",
+    "name": "trợ lý"
+  },
+  {
+    "icon": "assistant_photo",
+    "name": "ảnh trợ lý"
+  },
+  {
+    "icon": "audiotrack",
+    "name": "đoạn nhạc"
+  },
+  {
+    "icon": "blur_circular",
+    "name": "mờ vòng tròn"
+  },
+  {
+    "icon": "blur_linear",
+    "name": "mờ tuyến tính"
+  },
+  {
+    "icon": "blur_off",
+    "name": "tắt mờ"
+  },
+  {
+    "icon": "blur_on",
+    "name": "bật mờ"
+  },
+  {
+    "icon": "brightness_1",
+    "name": "độ sáng 1"
+  },
+  {
+    "icon": "brightness_2",
+    "name": "độ sáng 2"
+  },
+  {
+    "icon": "brightness_3",
+    "name": "độ sáng 3"
+  },
+  {
+    "icon": "brightness_4",
+    "name": "độ sáng 4"
+  },
+  {
+    "icon": "brightness_5",
+    "name": "độ_sáng_5"
+  },
+  {
+    "icon": "brightness_6",
+    "name": "độ_sáng_6"
+  },
+  {
+    "icon": "brightness_7",
+    "name": "độ_sáng_7"
+  },
+  {
+    "icon": "broken_image",
+    "name": "ảnh_hỏng"
+  },
+  {
+    "icon": "brush",
+    "name": "bàn_chải"
+  },
+  {
+    "icon": "burst_mode",
+    "name": "chế_độ_chụp_liên_tục"
+  },
+  {
+    "icon": "camera",
+    "name": "máy_ảnh"
+  },
+  {
+    "icon": "camera_alt",
+    "name": "máy_ảnh_phụ"
+  },
+  {
+    "icon": "camera_front",
+    "name": "máy_ảnh_phía_trước"
+  },
+  {
+    "icon": "camera_rear",
+    "name": "máy_ảnh_phía_sau"
+  },
+  {
+    "icon": "camera_roll",
+    "name": "danh_sách_ảnh"
+  },
+  {
+    "icon": "center_focus_strong",
+    "name": "lấy_nét_mạnh"
+  },
+  {
+    "icon": "center_focus_weak",
+    "name": "lấy_nét_yếu"
+  },
+  {
+    "icon": "collections",
+    "name": "bộ_sưu_tập"
+  },
+  {
+    "icon": "collections_bookmark",
+    "name": "đánh_dấu_bộ_sưu_tập"
+  },
+  {
+    "icon": "color_lens",
+    "name": "ống_kính_màu"
+  },
+  {
+    "icon": "colorize",
+    "name": "tô_màu"
+  },
+  {
+    "icon": "compare",
+    "name": "so_sánh"
+  },
+  {
+    "icon": "control_point",
+    "name": "điểm_kiểm_soát"
+  },
+  {
+    "icon": "control_point_duplicate",
+    "name": "bản_sao_điểm_kiểm_soát"
+  },
+  {
+    "icon": "crop",
+    "name": "cắt"
+  },
+  {
+    "icon": "crop_16_9",
+    "name": "cắt_16_9"
+  },
+  {
+    "icon": "crop_3_2",
+    "name": "cắt_3_2"
+  },
+  {
+    "icon": "crop_5_4",
+    "name": "cắt_5_4"
+  },
+  {
+    "icon": "crop_7_5",
+    "name": "cắt_7_5"
+  },
+  {
+    "icon": "crop_din",
+    "name": "cắt_din"
+  },
+  {
+    "icon": "crop_free",
+    "name": "cắt_miễn_phí"
+  },
+  {
+    "icon": "crop_landscape",
+    "name": "cắt_ngang"
+  },
+  {
+    "icon": "crop_original",
+    "name": "cắt_nguyên_bản"
+  },
+  {
+    "icon": "crop_portrait",
+    "name": "cắt_dọc"
+  },
+  {
+    "icon": "crop_rotate",
+    "name": "cắt_xoay"
+  },
+  {
+    "icon": "crop_square",
+    "name": "cắt_vuông"
+  },
+  {
+    "icon": "dehaze",
+    "name": "làm_trong_sạch"
+  },
+  {
+    "icon": "details",
+    "name": "chi_tiết"
+  },
+  {
+    "icon": "edit",
+    "name": "sửa"
+  },
+  {
+    "icon": "exposure",
+    "name": "phơi_sáng"
+  },
+  {
+    "icon": "exposure_neg_1",
+    "name": "phơi_sáng_ẩn_1"
+  },
+  {
+    "icon": "exposure_neg_2",
+    "name": "phơi_sáng_ẩn_2"
+  },
+  {
+    "icon": "exposure_plus_1",
+    "name": "phơi_sáng_+_1"
+  },
+  {
+    "icon": "exposure_plus_2",
+    "name": "phơi_sáng_+_2"
+  },
+  {
+    "icon": "exposure_zero",
+    "name": "phơi_sáng_0"
+  },
+  {
+    "icon": "filter",
+    "name": "bộ_lọc"
+  },
+  {
+    "icon": "filter_1",
+    "name": "bộ_lọc_1"
+  },
+  {
+    "icon": "filter_2",
+    "name": "bộ_lọc_2"
+  },
+  {
+    "icon": "filter_3",
+    "name": "bộ_lọc_3"
+  },
+  {
+    "icon": "filter_4",
+    "name": "bộ_lọc_4"
+  },
+  {
+    "icon": "filter_5",
+    "name": "bộ_lọc_5"
+  },
+  {
+    "icon": "filter_6",
+    "name": "bộ_lọc_6"
+  },
+  {
+    "icon": "filter_7",
+    "name": "bộ_lọc_7"
+  },
+  {
+    "icon": "filter_8",
+    "name": "bộ_lọc_8"
+  },
+  {
+    "icon": "filter_9",
+    "name": "bộ_lọc_9"
+  },
+  {
+    "icon": "filter_9_plus",
+    "name": "bộ_lọc_9_+_"
+  },
+  {
+    "icon": "filter_b_and_w",
+    "name": "bộ_lọc_đen_và_trắng"
+  },
+  {
+    "icon": "filter_center_focus",
+    "name": "bộ_lọc_tập_trung_chính_giữa"
+  },
+  {
+    "icon": "filter_drama",
+    "name": "bộ_lọc_kịch"
+  },
+  {
+    "icon": "filter_frames",
+    "name": "bộ_lọc_khung"
+  },
+  {
+    "icon": "filter_hdr",
+    "name": "bộ_lọc_hdr"
+  },
+  {
+    "icon": "filter_none",
+    "name": "không_có_bộ_lọc"
+  },
+  {
+    "icon": "filter_tilt_shift",
+    "name": "bộ_lọc_chuyển_động"
+  },
+  {
+    "icon": "filter_vintage",
+    "name": "bộ_lọc_cổ_điển"
+  },
+  {
+    "icon": "flare",
+    "name": "tia_sáng"
+  },
+  {
+    "icon": "flash_auto",
+    "name": "đèn_flash_tự_động"
+  },
+  {
+    "icon": "flash_off",
+    "name": "đèn_flash_tắt"
+  },
+  {
+    "icon": "flash_on",
+    "name": "đèn_flash_bật"
+  },
+  {
+    "icon": "flip",
+    "name": "lật"
+  },
+  {
+    "icon": "gradient",
+    "name": "độ_chệch_màu"
+  },
+  {
+    "icon": "grain",
+    "name": "độ_ngũ_gran"
+  },
+  {
+    "icon": "grid_off",
+    "name": "lưới_tắt"
+  },
+  {
+    "icon": "grid_on",
+    "name": "lưới_bật"
+  },
+  {
+    "icon": "hdr_off",
+    "name": "hdr_tắt"
+  },
+  {
+    "icon": "hdr_on",
+    "name": "hdr_bật"
+  },
+  {
+    "icon": "hdr_strong",
+    "name": "hdr_mạnh"
+  },
+  {
+    "icon": "hdr_weak",
+    "name": "hdr_yếu"
+  },
+  {
+    "icon": "healing",
+    "name": "chữa_trị"
+  },
+  {
+    "icon": "image",
+    "name": "ảnh"
+  },
+  {
+    "icon": "image_aspect_ratio",
+    "name": "tỉ_lệ_hình_ảnh"
+  },
+  {
+    "icon": "image_search",
+    "name": "tìm_kiếm_ảnh"
+  },
+  {
+    "icon": "iso",
+    "name": "iso"
+  },
+  {
+    "icon": "landscape",
+    "name": "phong_cảnh"
+  },
+  {
+    "icon": "leak_add",
+    "name": "thêm_sáng"
+  },
+  {
+    "icon": "leak_remove",
+    "name": "giảm_sáng"
+  },
+  {
+    "icon": "lens",
+    "name": "ống_kính"
+  },
+  {
+    "icon": "linked_camera",
+    "name": "máy_ảnh_liên_kết"
+  },
+  {
+    "icon": "looks",
+    "name": "trông"
+  },
+  {
+    "icon": "looks_3",
+    "name": "trông_3"
+  },
+  {
+    "icon": "looks_4",
+    "name": "trông_4"
+  },
+  {
+    "icon": "looks_5",
+    "name": "trông_5"
+  },
+  {
+    "icon": "looks_6",
+    "name": "trông_6"
+  },
+  {
+    "icon": "looks_one",
+    "name": "trông_1"
+  },
+  {
+    "icon": "looks_two",
+    "name": "trông_2"
+  },
+  {
+    "icon": "loupe",
+    "name": "kính_lúp"
+  },
+  {
+    "icon": "monochrome_photos",
+    "name": "ảnh_đơn_sắc"
+  },
+  {
+    "icon": "movie_creation",
+    "name": "tạo_phim"
+  },
+  {
+    "icon": "movie_filter",
+    "name": "bộ_lọc_phim"
+  },
+  {
+    "icon": "music_note",
+    "name": "nốt_nhạc"
+  },
+  {
+    "icon": "music_off",
+    "name": "tắt_nhạc"
+  },
+  {
+    "icon": "nature",
+    "name": "thiên_nhiên"
+  },
+  {
+    "icon": "nature_people",
+    "name": "người_thiên_nhiên"
+  },
+  {
+    "icon": "navigate_before",
+    "name": "điều_hướng_trước"
+  },
+  {
+    "icon": "navigate_next",
+    "name": "điều_hướng_sau"
+  },
+  {
+    "icon": "palette",
+    "name": "bảng_màu"
+  },
+  {
+    "icon": "panorama",
+    "name": "toàn_cảnh"
+  },
+  {
+    "icon": "panorama_fish_eye",
+    "name": "toàn_cảnh_mắt_cá"
+  },
+  {
+    "icon": "panorama_horizontal",
+    "name": "toàn_cảnh_ngang"
+  },
+  {
+    "icon": "panorama_vertical",
+    "name": "toàn_cảnh_dọc"
+  },
+  {
+    "icon": "panorama_wide_angle",
+    "name": "toàn_cảnh_góc_rộng"
+  },
+  {
+    "icon": "photo",
+    "name": "ảnh"
+  },
+  {
+    "icon": "photo_album",
+    "name": "album_ảnh"
+  },
+  {
+    "icon": "photo_camera",
+    "name": "máy_ảnh"
+  },
+  {
+    "icon": "photo_filter",
+    "name": "bộ_lọc_ảnh"
+  },
+  {
+    "icon": "photo_library",
+    "name": "thư_viện_ảnh"
+  },
+  {
+    "icon": "photo_size_select_actual",
+    "name": "chọn_kích_thước_ảnh_thực_tế"
+  },
+  {
+    "icon": "photo_size_select_large",
+    "name": "chọn_kích_thước_ảnh_lớn"
+  },
+  {
+    "icon": "photo_size_select_small",
+    "name": "chọn_kích_thước_ảnh_nhỏ"
+  },
+  {
+    "icon": "picture_as_pdf",
+    "name": "ảnh_dưới_dạng_pdf"
+  },
+  {
+    "icon": "portrait",
+    "name": "chân_dung"
+  },
+  {
+    "icon": "remove_red_eye",
+    "name": "loại bỏ mắt đỏ"
+  },
+  {
+    "icon": "rotate_90_degrees_ccw",
+    "name": "quay 90 độ ngược chiều không gian"
+  },
+  {
+    "icon": "rotate_left",
+    "name": "quay trái"
+  },
+  {
+    "icon": "rotate_right",
+    "name": "quay phải"
+  },
+  {
+    "icon": "shutter_speed",
+    "name": "tốc độ màn trập"
+  },
+  {
+    "icon": "slideshow",
+    "name": "trình chiếu ảnh"
+  },
+  {
+    "icon": "straighten",
+    "name": "điều chỉnh thẳng"
+  },
+  {
+    "icon": "style",
+    "name": "phong cách"
+  },
+  {
+    "icon": "switch_camera",
+    "name": "chuyển đổi máy ảnh"
+  },
+  {
+    "icon": "switch_video",
+    "name": "chuyển đổi video"
+  },
+  {
+    "icon": "tag_faces",
+    "name": "gắn tag khuôn mặt"
+  },
+  {
+    "icon": "texture",
+    "name": "cấu trúc"
+  },
+  {
+    "icon": "timelapse",
+    "name": "quay phim thời gian thực"
+  },
+  {
+    "icon": "timer",
+    "name": "hẹn giờ"
+  },
+  {
+    "icon": "timer_10",
+    "name": "hẹn giờ 10"
+  },
+  {
+    "icon": "timer_3",
+    "name": "hẹn giờ 3"
+  },
+  {
+    "icon": "timer_off",
+    "name": "tắt hẹn giờ"
+  },
+  {
+    "icon": "tonality",
+    "name": "độ đen trắng"
+  },
+  {
+    "icon": "transform",
+    "name": "chuyển đổi"
+  },
+  {
+    "icon": "tune",
+    "name": "điều chỉnh"
+  },
+  {
+    "icon": "view_comfy",
+    "name": "hiển thị comfy"
+  },
+  {
+    "icon": "view_compact",
+    "name": "hiển thị compact"
+  },
+  {
+    "icon": "vignette",
+    "name": "vignette"
+  },
+  {
+    "icon": "wb_auto",
+    "name": "cân bằng trắng tự động"
+  },
+  {
+    "icon": "wb_cloudy",
+    "name": "cân bằng trắng âm u"
+  },
+  {
+    "icon": "wb_incandescent",
+    "name": "cân bằng trắng đèn sợi tungsten"
+  },
+  {
+    "icon": "wb_iridescent",
+    "name": "cân bằng trắng đa sắc"
+  },
+  {
+    "icon": "wb_sunny",
+    "name": "cân bằng trắng nắng"
+  },
+  {
+    "icon": "360",
+    "name": "360"
+  },
+  {
+    "icon": "add_location",
+    "name": "thêm vị trí"
+  },
+  {
+    "icon": "atm",
+    "name": "atm"
+  },
+  {
+    "icon": "beenhere",
+    "name": "ở đây"
+  },
+  {
+    "icon": "category",
+    "name": "danh mục"
+  },
+  {
+    "icon": "compass_calibration",
+    "name": "hiệu chỉnh la bàn"
+  },
+  {
+    "icon": "departure_board",
+    "name": "bảng xuất phát"
+  },
+  {
+    "icon": "directions",
+    "name": "hướng dẫn"
+  },
+  {
+    "icon": "directions_bike",
+    "name": "hướng dẫn xe đạp"
+  },
+  {
+    "icon": "directions_boat",
+    "name": "hướng dẫn đò điện"
+  },
+  {
+    "icon": "directions_bus",
+    "name": "hướng dẫn xe bus"
+  },
+  {
+    "icon": "directions_car",
+    "name": "hướng dẫn xe hơi"
+  },
+  {
+    "icon": "directions_railway",
+    "name": "hướng dẫn xe lửa"
+  },
+  {
+    "icon": "directions_run",
+    "name": "hướng dẫn chạy"
+  },
+  {
+    "icon": "directions_subway",
+    "name": "hướng dẫn tàu điện ngầm"
+  },
+  {
+    "icon": "directions_transit",
+    "name": "hướng dẫn giao thông"
+  },
+  {
+    "icon": "directions_walk",
+    "name": "hướng dẫn đi bộ"
+  },
+  {
+    "icon": "edit_attributes",
+    "name": "chỉnh sửa thuộc tính"
+  },
+  {
+    "icon": "edit_location",
+    "name": "chỉnh sửa vị trí"
+  },
+  {
+    "icon": "ev_station",
+    "name": "trạm sạc xe điện"
+  },
+  {
+    "icon": "fastfood",
+    "name": "đồ ăn nhanh"
+  },
+  {
+    "icon": "flight",
+    "name": "chuyến bay"
+  },
+  {
+    "icon": "hotel",
+    "name": "khách sạn"
+  },
+  {
+    "icon": "layers",
+    "name": "lớp"
+  },
+  {
+    "icon": "layers_clear",
+    "name": "xóa lớp"
+  },
+  {
+    "icon": "local_activity",
+    "name": "hoạt động địa phương"
+  },
+  {
+    "icon": "local_airport",
+    "name": "sân bay địa phương"
+  },
+  {
+    "icon": "local_atm",
+    "name": "atm địa phương"
+  },
+  {
+    "icon": "local_bar",
+    "name": "quán bar địa phương"
+  },
+  {
+    "icon": "local_cafe",
+    "name": "quán cafe địa phương"
+  },
+  {
+    "icon": "local_car_wash",
+    "name": "rửa xe địa phương"
+  },
+  {
+    "icon": "local_convenience_store",
+    "name": "cửa hàng tiện lợi địa phương"
+  },
+  {
+    "icon": "local_dining",
+    "name": "nhà hàng địa phương"
+  },
+  {
+    "icon": "local_drink",
+    "name": "nước uống địa phương"
+  },
+  {
+    "icon": "local_florist",
+    "name": "hoa địa phương"
+  },
+  {
+    "icon": "local_gas_station",
+    "name": "trạm xăng địa phương"
+  },
+  {
+    "icon": "local_grocery_store",
+    "name": "cửa hàng tạp hóa địa phương"
+  },
+  {
+    "icon": "local_hospital",
+    "name": "bệnh viện địa phương"
+  },
+  {
+    "icon": "local_hotel",
+    "name": "khách sạn địa phương"
+  },
+  {
+    "icon": "local_laundry_service",
+    "name": "dịch vụ giặt ủi địa phương"
+  },
+  {
+    "icon": "local_library",
+    "name": "thư viện địa phương"
+  },
+  {
+    "icon": "local_mall",
+    "name": "trung tâm mua sắm địa phương"
+  },
+  {
+    "icon": "local_movies",
+    "name": "rạp chiếu phim địa phương"
+  },
+  {
+    "icon": "local_offer",
+    "name": "khuyến mãi địa phương"
+  },
+  {
+    "icon": "local_parking",
+    "name": "bãi đậu xe địa phương"
+  },
+  {
+    "icon": "local_pharmacy",
+    "name": "hiệu thuốc địa phương"
+  },
+  {
+    "icon": "local_phone",
+    "name": "điện thoại địa phương"
+  },
+  {
+    "icon": "local_pizza",
+    "name": "pizza địa phương"
+  },
+  {
+    "icon": "local_play",
+    "name": "chơi địa phương"
+  },
+  {
+    "icon": "local_post_office",
+    "name": "bưu điện địa phương"
+  },
+  {
+    "icon": "local_printshop",
+    "name": "cửa hàng in ấn địa phương"
+  },
+  {
+    "icon": "local_see",
+    "name": "xem địa phương"
+  },
+  {
+    "icon": "local_shipping",
+    "name": "vận chuyển địa phương"
+  },
+  {
+    "icon": "local_taxi",
+    "name": "taxi địa phương"
+  },
+  {
+    "icon": "map",
+    "name": "bản đồ"
+  },
+  {
+    "icon": "money",
+    "name": "tiền"
+  },
+  {
+    "icon": "my_location",
+    "name": "vị trí của tôi"
+  },
+  {
+    "icon": "navigation",
+    "name": "điều hướng"
+  },
+  {
+    "icon": "near_me",
+    "name": "gần tôi"
+  },
+  {
+    "icon": "not_listed_location",
+    "name": "vị trí không xác định"
+  },
+  {
+    "icon": "person_pin",
+    "name": "đánh dấu người"
+  },
+  {
+    "icon": "person_pin_circle",
+    "name": "đánh dấu vòng tròn người"
+  },
+  {
+    "icon": "pin_drop",
+    "name": "rơi kéo"
+  },
+  {
+    "icon": "place",
+    "name": "địa điểm"
+  },
+  {
+    "icon": "rate_review",
+    "name": "đánh giá"
+  },
+  {
+    "icon": "restaurant",
+    "name": "nhà hàng"
+  },
+  {
+    "icon": "restaurant_menu",
+    "name": "menu nhà hàng"
+  },
+  {
+    "icon": "satellite",
+    "name": "vệ tinh"
+  },
+  {
+    "icon": "store_mall_directory",
+    "name": "thư mục cửa hàng trung tâm mua sắm"
+  },
+  {
+    "icon": "streetview",
+    "name": "hiển thị phố"
+  },
+  {
+    "icon": "subway",
+    "name": "tàu điện ngầm"
+  },
+  {
+    "icon": "terrain",
+    "name": "địa hình"
+  },
+  {
+    "icon": "traffic",
+    "name": "giao thông"
+  },
+  {
+    "icon": "train",
+    "name": "tàu hỏa"
+  },
+  {
+    "icon": "tram",
+    "name": "điện ngầm"
+  },
+  {
+    "icon": "transfer_within_a_station",
+    "name": "chuyển đổi trong một trạm"
+  },
+  {
+    "icon": "transit_enterexit",
+    "name": "ra vào giao thông công cộng"
+  },
+  {
+    "icon": "trip_origin",
+    "name": "điểm xuất phát cuộc hành trình"
+  },
+  {
+    "icon": "zoom_out_map",
+    "name": "phóng to địa đồ"
+  },
+  {
+    "icon": "apps",
+    "name": "ứng dụng"
+  },
+  {
+    "icon": "arrow_back",
+    "name": "mũi tên quay lại"
+  },
+  {
+    "icon": "arrow_back_ios",
+    "name": "mũi tên quay lại ios"
+  },
+  {
+    "icon": "arrow_downward",
+    "name": "mũi tên xuống phía dưới"
+  },
+  {
+    "icon": "arrow_drop_down",
+    "name": "mũi tên hạ xuống"
+  },
+  {
+    "icon": "arrow_drop_down_circle",
+    "name": "mũi tên hạ xuống vòng tròn"
+  },
+  {
+    "icon": "arrow_drop_up",
+    "name": "mũi tên nâng lên"
+  },
+  {
+    "icon": "arrow_forward",
+    "name": "mũi tên chuyển tiếp"
+  },
+  {
+    "icon": "arrow_forward_ios",
+    "name": "mũi tên chuyển tiếp ios"
+  },
+  {
+    "icon": "arrow_left",
+    "name": "mũi tên quay trái"
+  },
+  {
+    "icon": "arrow_right",
+    "name": "mũi tên quay phải"
+  },
+  {
+    "icon": "arrow_upward",
+    "name": "mũi tên nâng lên"
+  },
+  {
+    "icon": "cancel",
+    "name": "hủy bỏ"
+  },
+  {
+    "icon": "check",
+    "name": "kiểm tra"
+  },
+  {
+    "icon": "chevron_left",
+    "name": "mũi tên chéo trái"
+  },
+  {
+    "icon": "chevron_right",
+    "name": "mũi tên chéo phải"
+  },
+  {
+    "icon": "close",
+    "name": "đóng"
+  },
+  {
+    "icon": "expand_less",
+    "name": "mở rộng ít hơn"
+  },
+  {
+    "icon": "expand_more",
+    "name": "mở rộng thêm"
+  },
+  {
+    "icon": "first_page",
+    "name": "trang đầu tiên"
+  },
+  {
+    "icon": "fullscreen",
+    "name": "toàn màn hình"
+  },
+  {
+    "icon": "fullscreen_exit",
+    "name": "thoát toàn màn hình"
+  },
+  {
+    "icon": "last_page",
+    "name": "trang cuối cùng"
+  },
+  {
+    "icon": "menu",
+    "name": "menu"
+  },
+  {
+    "icon": "more_horiz",
+    "name": "thêm chiều ngang"
+  },
+  {
+    "icon": "more_vert",
+    "name": "thêm chiều dọc"
+  },
+  {
+    "icon": "refresh",
+    "name": "làm mới"
+  },
+  {
+    "icon": "subdirectory_arrow_left",
+    "name": "mũi tên dọc nhỏ chỉ trái"
+  },
+  {
+    "icon": "subdirectory_arrow_right",
+    "name": "mũi tên dọc nhỏ chỉ phải"
+  },
+  {
+    "icon": "unfold_less",
+    "name": "mở rộng ít hơn"
+  },
+  {
+    "icon": "unfold_more",
+    "name": "mở rộng thêm"
+  },
+  {
+    "icon": "adb",
+    "name": "adb"
+  },
+  {
+    "icon": "airline_seat_flat",
+    "name": "ghế máy bay phẳng"
+  },
+  {
+    "icon": "airline_seat_flat_angled",
+    "name": "ghế máy bay phẳng nghiêng"
+  },
+  {
+    "icon": "airline_seat_individual_suite",
+    "name": "ghế máy bay cá nhân"
+  },
+  {
+    "icon": "airline_seat_legroom_extra",
+    "name": "độ rộng đùi ghế máy bay"
+  },
+  {
+    "icon": "airline_seat_legroom_normal",
+    "name": "độ rộng đùi bình thường ghế máy bay"
+  },
+  {
+    "icon": "airline_seat_legroom_reduced",
+    "name": "độ rộng đùi ghi lùi ghế máy bay"
+  },
+  {
+    "icon": "airline_seat_recline_extra",
+    "name": "ghế máy bay nghiêng lùi"
+  },
+  {
+    "icon": "airline_seat_recline_normal",
+    "name": "ghế máy bay lùi bình thường"
+  },
+  {
+    "icon": "bluetooth_audio",
+    "name": "âm thanh bluetooth"
+  },
+  {
+    "icon": "confirmation_number",
+    "name": "số xác nhận"
+  },
+  {
+    "icon": "disc_full",
+    "name": "đĩa đầy"
+  },
+  {
+    "icon": "drive_eta",
+    "name": "thời gian đi đến"
+  },
+  {
+    "icon": "enhanced_encryption",
+    "name": "mã hóa nâng cao"
+  },
+  {
+    "icon": "event_available",
+    "name": "sự kiện có sẵn"
+  },
+  {
+    "icon": "event_busy",
+    "name": "sự kiện bận rộn"
+  },
+  {
+    "icon": "event_note",
+    "name": "ghi chú sự kiện"
+  },
+  {
+    "icon": "folder_special",
+    "name": "thư mục đặc biệt"
+  },
+  {
+    "icon": "live_tv",
+    "name": "truyền hình trực tiếp"
+  },
+  {
+    "icon": "mms",
+    "name": "mms"
+  },
+  {
+    "icon": "more",
+    "name": "thêm"
+  },
+  {
+    "icon": "network_check",
+    "name": "kiểm tra mạng"
+  },
+  {
+    "icon": "network_locked",
+    "name": "mạng bị khóa"
+  },
+  {
+    "icon": "no_encryption",
+    "name": "không mã hóa"
+  },
+  {
+    "icon": "ondemand_video",
+    "name": "video theo yêu cầu"
+  },
+  {
+    "icon": "personal_video",
+    "name": "video cá nhân"
+  },
+  {
+    "icon": "phone_bluetooth_speaker",
+    "name": "loa bluetooth điện thoại"
+  },
+  {
+    "icon": "phone_callback",
+    "name": "gọi điện thoại"
+  },
+  {
+    "icon": "phone_forwarded",
+    "name": "điện thoại chuyển tiếp"
+  },
+  {
+    "icon": "phone_in_talk",
+    "name": "điện thoại nói chuyện"
+  },
+  {
+    "icon": "phone_locked",
+    "name": "điện thoại bị khóa"
+  },
+  {
+    "icon": "phone_missed",
+    "name": "cuộc gọi nhỡ"
+  },
+  {
+    "icon": "phone_paused",
+    "name": "điện thoại tạm ngừng"
+  },
+  {
+    "icon": "power",
+    "name": "nguồn"
+  },
+  {
+    "icon": "power_off",
+    "name": "tắt nguồn"
+  },
+  {
+    "icon": "priority_high",
+    "name": "ưu tiên cao"
+  },
+  {
+    "icon": "sd_card",
+    "name": "thẻ nhớ sd"
+  },
+  {
+    "icon": "sms",
+    "name": "tin nhắn văn bản"
+  },
+  {
+    "icon": "sms_failed",
+    "name": "gửi tin nhắn văn bản thất bại"
+  },
+  {
+    "icon": "sync",
+    "name": "đồng bộ"
+  },
+  {
+    "icon": "sync_disabled",
+    "name": "đồng bộ tắt"
+  },
+  {
+    "icon": "sync_problem",
+    "name": "lỗi đồng bộ"
+  },
+  {
+    "icon": "system_update",
+    "name": "cập nhật hệ thống"
+  },
+  {
+    "icon": "tap_and_play",
+    "name": "chạm và chơi"
+  },
+  {
+    "icon": "time_to_leave",
+    "name": "đến lúc rời"
+  },
+  {
+    "icon": "tv_off",
+    "name": "tivi tắt"
+  },
+  {
+    "icon": "vibration",
+    "name": "rung"
+  },
+  {
+    "icon": "voice_chat",
+    "name": "trò chuyện bằng giọng nói"
+  },
+  {
+    "icon": "vpn_lock",
+    "name": "khóa vpn"
+  },
+  {
+    "icon": "wc",
+    "name": "toilet"
+  },
+  {
+    "icon": "wifi",
+    "name": "wifi"
+  },
+  {
+    "icon": "wifi_off",
+    "name": "wifi tắt"
+  },
+  {
+    "icon": "ac_unit",
+    "name": "điều hòa nhiệt độ"
+  },
+  {
+    "icon": "airport_shuttle",
+    "name": "xe trung chuyển sân bay"
+  },
+  {
+    "icon": "all_inclusive",
+    "name": "đầy đủ tiện nghi"
+  },
+  {
+    "icon": "beach_access",
+    "name": "tiếp cận bãi biển"
+  },
+  {
+    "icon": "business_center",
+    "name": "trung tâm doanh nghiệp"
+  },
+  {
+    "icon": "casino",
+    "name": "sòng bạc"
+  },
+  {
+    "icon": "child_care",
+    "name": "chăm sóc trẻ em"
+  },
+  {
+    "icon": "child_friendly",
+    "name": "thân thiện với trẻ em"
+  },
+  {
+    "icon": "fitness_center",
+    "name": "phòng tập gym"
+  },
+  {
+    "icon": "free_breakfast",
+    "name": "đồ ăn sáng miễn phí"
+  },
+  {
+    "icon": "golf_course",
+    "name": "sân golf"
+  },
+  {
+    "icon": "hot_tub",
+    "name": "bồn tắm nước nóng"
+  },
+  {
+    "icon": "kitchen",
+    "name": "bếp"
+  },
+  {
+    "icon": "meeting_room",
+    "name": "phòng họp"
+  },
+  {
+    "icon": "no_meeting_room",
+    "name": "không có phòng họp"
+  },
+  {
+    "icon": "pool",
+    "name": "hồ bơi"
+  },
+  {
+    "icon": "room_service",
+    "name": "dịch vụ phòng"
+  },
+  {
+    "icon": "rv_hookup",
+    "name": "điện nhà xe di động"
+  },
+  {
+    "icon": "smoke_free",
+    "name": "không hút thuốc"
+  },
+  {
+    "icon": "smoking_rooms",
+    "name": "phòng được phép hút thuốc"
+  },
+  {
+    "icon": "spa",
+    "name": "spa"
+  },
+  {
+    "icon": "check_box",
+    "name": "ô chọn"
+  },
+  {
+    "icon": "check_box_outline_blank",
+    "name": "ô chọn rỗng"
+  },
+  {
+    "icon": "indeterminate_check_box",
+    "name": "ô chọn bất kì"
+  },
+  {
+    "icon": "radio_button_checked",
+    "name": "nút radio được chọn"
+  },
+  {
+    "icon": "radio_button_unchecked",
+    "name": "nút radio chưa chọn"
+  },
+  {
+    "icon": "star",
+    "name": "ngôi sao"
+  },
+  {
+    "icon": "star_border",
+    "name": "ngôi sao khung"
+  },
+  {
+    "icon": "star_half",
+    "name": "nửa ngôi sao"
+  },
+  {
+    "icon": "add_alert",
+    "name": "thêm cảnh báo"
+  },
+  {
+    "icon": "error",
+    "name": "lỗi"
+  },
+  {
+    "icon": "error_outline",
+    "name": "đường viền lỗi"
+  },
+  {
+    "icon": "notification_important",
+    "name": "thông báo quan trọng"
+  },
+  {
+    "icon": "warning",
+    "name": "cảnh báo"
+  },
+  {
+    "icon": "cake",
+    "name": "bánh"
+  },
+  {
+    "icon": "domain",
+    "name": "miền"
+  },
+  {
+    "icon": "group",
+    "name": "nhóm"
+  },
+  {
+    "icon": "group_add",
+    "name": "thêm nhóm"
+  },
+  {
+    "icon": "location_city",
+    "name": "địa chỉ thành phố"
+  },
+  {
+    "icon": "mood",
+    "name": "tâm trạng"
+  },
+  {
+    "icon": "mood_bad",
+    "name": "tâm trạng kém"
+  },
+  {
+    "icon": "notifications",
+    "name": "thông báo"
+  },
+  {
+    "icon": "notifications_active",
+    "name": "thông báo đang hoạt động"
+  },
+  {
+    "icon": "notifications_none",
+    "name": "không có thông báo"
+  },
+  {
+    "icon": "notifications_off",
+    "name": "tắt thông báo"
+  },
+  {
+    "icon": "notifications_paused",
+    "name": "thông báo tạm dừng"
+  },
+  {
+    "icon": "pages",
+    "name": "trang"
+  },
+  {
+    "icon": "party_mode",
+    "name": "chế độ tiệc tùng"
+  },
+  {
+    "icon": "people",
+    "name": "người"
+  },
+  {
+    "icon": "people_outline",
+    "name": "người đường viền"
+  },
+  {
+    "icon": "person",
+    "name": "người"
+  },
+  {
+    "icon": "person_add",
+    "name": "thêm người"
+  },
+  {
+    "icon": "person_outline",
+    "name": "người đường viền"
+  },
+  {
+    "icon": "plus_one",
+    "name": "thêm một"
+  },
+  {
+    "icon": "poll",
+    "name": "thăm dò"
+  },
+  {
+    "icon": "public",
+    "name": "công cộng"
+  },
+  {
+    "icon": "school",
+    "name": "trường học"
+  },
+  {
+    "icon": "sentiment_dissatisfied",
+    "name": "tâm trạng thất vọng"
+  },
+  {
+    "icon": "sentiment_satisfied",
+    "name": "tâm trạng hài lòng"
+  },
+  {
+    "icon": "sentiment_very_dissatisfied",
+    "name": "tâm trạng rất thất vọng"
+  },
+  {
+    "icon": "sentiment_very_satisfied",
+    "name": "tâm trạng rất hài lòng"
+  },
+  {
+    "icon": "share",
+    "name": "chia sẻ"
+  },
+  {
+    "icon": "thumb_down_alt",
+    "name": "ngón tay đỏ ít"
+  },
+  {
+    "icon": "thumb_up_alt",
+    "name": "ngón tay xanh ít"
+  },
+  {
+    "icon": "whatshot",
+    "name": "nổi tiếng"
+  },
+  {
+    "icon": "facebook",
+    "name": "facebook"
+  },
+  {
+    "icon": "telegram",
+    "name": "telegram"
+  },
+  {
+    "icon": "snapchat",
+    "name": "snapchat"
+  },
+  {
+    "icon": "tiktok",
+    "name": "tiktok"
+  }
+]

@@ -1,0 +1,123 @@
+.main {
+  ._head {
+    height: 4%;
+    max-height: 4%;
+    .title {
+      h2 {
+        color: var(--ion-color-vh-green);
+        font-weight: 500;
+      }
+    }
+    ._icon {
+      color: #ff000a;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  ._body {
+    height: 92%;
+    max-height: 92%;
+    overflow: hidden scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    input {
+      width: 100%;
+    }
+    .row {
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+      /* Track */
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #008848;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: #008848;
+      }
+    }
+  }
+  ._foot {
+    height: 4%;
+    max-height: 4%;
+    @mixin btn($color, $background, $border) {
+      color: $color;
+      background: $background 0% 0% no-repeat padding-box;
+      border: 1px solid $border;
+      span {
+        color: $color;
+      }
+    }
+    ._btn {
+      border-radius: 5px !important;
+      font-size: 0.9rem;
+      &_add {
+        @include btn(#ffffff, #008848, #008848);
+      }
+      &_cancel {
+        @include btn(#373737, #ffffff, #c8c7cc);
+      }
+    }
+  }
+
+  .btn-light {
+    background-color: var(--ion-color-vh-white);
+    border-color: var(--ion-color-vh-green);
+    color: var(--ion-color-vh-green);
+  }
+  .btn-success {
+    background-color: var(--ion-color-vh-green);
+    border-color: var(--ion-color-vh-white);
+    color: var(--ion-color-vh-white);
+    margin-left: 10pt;
+  }
+  .search {
+    justify-content: flex-end;
+    display: flex;
+    input {
+      width: 18rem;
+      border: 1px solid #8e8e93;
+    }
+  }
+
+  ._btn_add_link {
+    border-radius: 5px;
+    padding: 8px;
+    color: #ffffff;
+    background-color: #008848;
+    border-color: #008848;
+  }
+
+  ._delete_iframe {
+    color: #ff000a;
+  }
+}
+
+.back {
+  text-align: end;
+  button {
+    border-radius: 5px;
+    span {
+      color: #fff;
+    }
+  }
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 200px;
+  border: 1px solid var(--ion-color-vh-green);
+}
+.myPanelClass {
+  margin-top: 30px !important;
+}

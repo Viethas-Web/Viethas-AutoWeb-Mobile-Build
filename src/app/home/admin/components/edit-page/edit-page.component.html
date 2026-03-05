@@ -1,0 +1,87 @@
+<div class="form">
+  <div class="mb-3">
+    <h3 class="m-0">{{'cap_nhat_trang' | translate}}</h3>
+  </div>
+
+  <form class="form-group" [formGroup]="editPageForm">
+    <div class="form-item mb-3">
+      <label class="form-label">{{'ten_trang' | translate}}<span style="color: red;">*</span></label>
+      <input type="text" formControlName="name" [placeholder]="'nhap_ten_trang' | translate" class="form-control">
+    </div>
+
+    <div class="form-item mb-3">
+      <label class="form-label">{{'duong_dan_trang' | translate}}<span style="color: red;">*</span></label>
+      <input type="text" formControlName="link" [placeholder]="'nhap_duong_dan_trang' | translate" class="form-control">
+    </div>
+
+    <!-- SEO Fields -->
+    <div class="form-item mb-3">
+      <label class="form-label">
+        <span>{{'seo_title' | translate}}</span>
+        <span nz-tooltip
+          [nzTooltipTitle]="'tieu_de_seo_la_tieu_de_se_hien_thi_tren_ket_qua_tim_kiem_cua_google' | translate" nz-icon
+          nzType="question-circle" nzTheme="outline"></span>
+      </label>
+      <input type="text" formControlName="title" [placeholder]="'nhap_seo_title' | translate" class="form-control">
+    </div>
+
+    <div class="form-item mb-3">
+      <label class="form-label">
+        <span>{{'seo_description' | translate}}</span>
+        <span nz-tooltip
+          [nzTooltipTitle]="'mo_ta_seo_la_mo_ta_se_hien_thi_tren_ket_qua_tim_kiem_cua_google' | translate" nz-icon
+          nzType="question-circle" nzTheme="outline"></span>
+      </label>
+      <input type="text" formControlName="description" [placeholder]="'nhap_seo_description' | translate"
+        class="form-control">
+    </div>
+
+    <div class="form-item mb-3">
+      <label class="form-label">
+        <span>{{'seo_keywords' | translate}}</span>
+        <span nz-tooltip
+          [nzTooltipTitle]="'tu_khoa_seo_la_tu_khoa_se_hien_thi_tren_ket_qua_tim_kiem_cua_google' | translate" nz-icon
+          nzType="question-circle" nzTheme="outline">
+        </span>
+      </label>
+      <input type="text" formControlName="keywords" [placeholder]="'nhap_seo_keywords' | translate"
+        class="form-control">
+    </div>
+
+    <div class="form-item mb-3">
+      <label class="form-label">
+        <span>{{'og_title' | translate}}</span>
+        <span nz-tooltip
+          [nzTooltipTitle]="'tieu_de_og_la_tieu_de_se_hien_thi_khi_chia_se_trang_tren_mang_xa_hoi' | translate" nz-icon
+          nzType="question-circle" nzTheme="outline"></span>
+      </label>
+      <input type="text" formControlName="og_title" [placeholder]="'nhap_og_title' | translate" class="form-control">
+    </div>
+
+    <div class="form-item mb-3">
+      <label class="form-label">
+        <span>{{'og_description' | translate}}</span>
+        <span nz-tooltip
+          [nzTooltipTitle]="'mo_ta_og_la_doan_mo_ta_ngan_se_hien_thi_khi_chia_se_trang_tren_mang_xa_hoi' | translate"
+          nz-icon nzType="question-circle" nzTheme="outline"></span>
+      </label>
+      <input type="text" formControlName="og_description" [placeholder]="'nhap_og_description' | translate"
+        class="form-control">
+    </div>
+
+    <div class="form-item mb-3">
+      <label class="form-label">
+        <span>{{'og_type' | translate}}</span>
+        <span nz-tooltip
+          [nzTooltipTitle]="'loai_og_xac_dinh_loai_noi_dung_cua_trang_khi_chia_se_trang_tren_mang_xa_hoi' | translate"
+          nz-icon nzType="question-circle" nzTheme="outline"></span>
+      </label>
+      <input type="text" formControlName="og_type" [placeholder]="'nhap_og_type' | translate" class="form-control">
+    </div>
+  </form>
+  <div class="d-flex justify-content-between">
+    <button type="submit" class="btn btn-danger" (click)="onNoClick()">{{'huy' | translate}}</button>
+    <button type="submit" class="btn btn-primary" (click)="editPage()" [disabled]="editPageForm.invalid"
+      [ngStyle]="{opacity: editPageForm.invalid ? .5: 1}">{{'cap_nhat' | translate}}</button>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+._head {
+  height: 4%;
+  max-height: 4%;
+  h2 {
+    color: var(--ion-color-vh-green);
+    font-weight: 500;
+  }
+  ._icon {
+    color: #ff000a;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+._foot {
+  height: 4%;
+  max-height: 4%;
+  margin-top: 18px;
+
+  @mixin btn($color, $background, $border) {
+    color: $color;
+    background: $background 0% 0% no-repeat padding-box;
+    border: 1px solid $border;
+    span {
+      color: $color;
+    }
+  }
+  ._btn {
+    border-radius: 5px !important;
+    font-size: 0.9rem;
+    &_add {
+      @include btn(#ffffff, #008848, #008848);
+    }
+    &_cancel {
+      @include btn(#373737, #ffffff, #c8c7cc);
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 500px;
+  padding-right: 8px;
+}

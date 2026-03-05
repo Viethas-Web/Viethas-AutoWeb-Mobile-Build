@@ -1,0 +1,16 @@
+.title {
+    color: var(--ion-color-vh-pink);
+    font-weight: 700;
+}
+
+.body {
+    display: inline-block;
+    width: 100%;
+    height: 253px;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}

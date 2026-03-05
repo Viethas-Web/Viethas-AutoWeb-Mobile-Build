@@ -1,0 +1,151 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <span class="title"><b>{{'danh_sach_du_lich' | translate}}</b></span>
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_ten_du_lich' | translate}}" [(ngModel)]="searchNameTravel"
+              (keyup)="keyupSearch()" (keyup.enter)="onSearchTravel(pageCurrent)" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span (click)="onSearchTravel(pageCurrent)" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select">
+        <nz-select style="margin: 0 16px; width: 18rem;" [(ngModel)]="id_category"
+          nzPlaceHolder="{{'chon_danh_muc_du_lich' | translate}}">
+          <nz-option nzLabel="{{'tat_ca' | translate}}" nzValue="all"></nz-option>
+          <nz-option *ngFor="let item of categories" [nzValue]="item._id"
+            [nzLabel]="item.array_step? generateSymBol(item.array_step) + item.name : item.name"></nz-option>
+        </nz-select>
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="getTravels(pageCurrent)">
+          {{'xem' | translate}}
+        </button>
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="addTravelFn()">
+          <i class="bi bi-plus"></i> {{'them_du_lich' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 16px;">
+    <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="showTravels" #tableSales [nzShowPagination]="false"
+      nzShowSizeChanger [nzLoading]="loading">
+      <thead class="_thead">
+        <tr>
+          <th nzWidth="10%" nzAlign="center"><b>{{'anh' | translate}}</b></th>
+          <th nzWidth="30%" nzAlign="left"><b>{{'ten_du_lich' | translate}}</b>
+            <span class="ml-1" role="button" *ngIf="showTravels.length" nz-icon (click)="isASC = !isASC; softTravels()"
+              [nzType]="isASC ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th nzWidth="10%" nzAlign="left"><b>{{'danh_muc' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'ma_du_lich' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'an_hien_thi_tren_website' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of showTravels; trackBy: trackByFn">
+          <tr>
+            <td>
+              <div class="image d-flex align-items-center justify-content-center">
+                <img onerror="this.src='/assets/root/images/system/icons/image_default.svg'" [src]="item.webapp_travels_img"
+                  [alt]="item.name" width="40px" height="40px">
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.name }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.category_name }}</span>
+              </div>
+            </td>
+            <td nzAlign="right">
+              <span >{{ item.unitDefault.barcode }}</span>
+            </td>
+            <td nzAlign="center">
+              <div class="status">
+                <label class="switch">
+                  <nz-switch [(ngModel)]="item.webapp_hidden"
+                    (ngModelChange)="updateHiddenTravel(item, {webapp_hidden: $event})"></nz-switch>
+                </label>
+              </div>
+            </td>
+            <td nzAlign="center">
+              <div class="icon-action">
+                <span nz-icon nzType="edit" nzTheme="outline" (click)="editTravel(item)"></span>
+                <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteTravel(item)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </nz-table>
+    <div *ngIf="totalPages > 1" class="pagination mt-3">
+      <div class="pagination-list-button">
+        <div class="page-start pagiItem" (click)="gotoPreviousPage()">{{'truoc' | translate}}</div>
+        <div class="page-number pagiItem" *ngIf="totalPages >= 3 && pageCurrent >= 3" (click)="transferFn(1)">
+          1
+        </div>
+        <div class="page-number pagiItem" *ngIf="totalPages > 3 && pageCurrent > 3">
+          ...
+        </div>
+        <div *ngFor='let page of pageShowChoose ;let i = index'>
+          <div class="page-number pagiItem" *ngIf="page <= totalPages && page > 0"
+            [ngClass]="{'active': page == pageCurrent}" (click)="transferFn(page)">
+            {{page}}
+          </div>
+        </div>
+        <div class="page-number pagiItem" *ngIf="totalPages > 3 && pageCurrent < totalPages-2">
+          ...
+        </div>
+        <div class="page-number pagiItem" *ngIf="totalPages >= 3 && pageCurrent <= totalPages-2"
+          (click)="transferFn(totalPages)">
+          {{totalPages}}
+        </div>
+        <div class="page-end pagiItem" (click)="gotoNextPage()">{{'sau' | translate}}</div>
+        <button nz-popover [nzPopoverTitle]="'Tối đa ' +  totalPages" [nzPopoverContent]="contentTemplate"
+          class="page-go pagiItem" nzPopoverPlacement="top">
+          {{'toi_trang' | translate}}
+        </button>
+      </div>
+      <ng-template #contentTemplate>
+        <div class="input-container">
+          <div class="input-group">
+            <input class="form-control" width="10rem" placeholder="{{'nhap_trang_can_toi' | translate}}" type="number" min="1"
+              [max]="totalPages" [(ngModel)]="pageGoto" />
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button"
+                (click)="transferFn(pageGoto > totalPages ? totalPages : pageGoto < 1 ? 1 : pageGoto)">{{'toi' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nz-layout>
+
+<nz-modal [nzStyle]="{ top: '20px', width: '70vw'}" [(nzVisible)]="isVisibleAddTravelComponent" nzTitle="{{'them_travel' | translate}}"
+  (nzOnCancel)="handleCancelAddtravelComponent()" (nzOnOk)="handleOkAddtravelComponent()" [nzFooter]="null">
+  <ng-container *nzModalContent>
+    <div style="height: 80vh;">
+      <app-add-travel (submitAddTravel)="submitAddTravel($event)"></app-add-travel>
+    </div>
+  </ng-container>
+</nz-modal>
+
+
+<nz-modal [nzStyle]="{ top: '20px', width: '70vw'}" [(nzVisible)]="isVisibleEditTravelComponent"
+  nzTitle="{{'cap_nhat_travel' | translate}}" (nzOnCancel)="handleCancelEditTravelComponent()" [nzFooter]="null">
+  <ng-container *nzModalContent>
+    <div style="height: 80vh;">
+      <app-edit-travel [data]="dataEditTravel"></app-edit-travel>
+    </div>
+  </ng-container>
+</nz-modal>

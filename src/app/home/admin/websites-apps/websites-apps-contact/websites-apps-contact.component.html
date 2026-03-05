@@ -1,0 +1,57 @@
+<div style="height: 100%;padding: 16px;">
+  <div style="height: 8%">
+    <mat-toolbar class="bg-white border-bottom small-toolbar">
+      <mat-toolbar-row style="height: 8% !important">
+
+        <span class="h3">{{'danh_sach_khach_hang_can_tu_van_lien_he' | translate}}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <div style="height: 92%; margin-top: 8px;">
+    <div class="body-tab">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{'ho_va_ten' | translate}}</th>
+            <th scope="col">{{'so_dien_thoai' | translate}}</th>
+            <th scope="col">Email</th>
+            <th scope="col">{{'noi_dung' | translate}}</th>
+            <th scope="col">{{'ma_website' | translate}}</th>
+            <th scope="col">{{'ngay_gui' | translate}}</th>
+
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data; let i = index">
+            <td style="width: 5%;" scope="row">{{i+1}}</td>
+            <td style="width: 15%;">{{item.name}}</td>
+            <td style="width: 15%;">{{item.phone}}</td>
+            <td style="width: 15%;">{{item.email}}</td>
+            <td style="width: 20%;">{{item.content}}</td>
+            <td style="width: 20%;">{{item.db}}</td>
+            <td style="width: 15%;">{{item.date | date: 'dd/MM/yyyy HH:mm'}}</td>
+
+            <td style="width:5%;">
+              <button mat-flat-button (click)="deleteInfoCandidates(item._id)">
+                <mat-icon class="text-danger" aria-hidden="false" aria-label="Example home icon">delete
+                </mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="height: 10%;text-align: center;" *ngIf="!data.length">
+        {{'khong_du_lieu' | translate}} !
+      </div>
+      <div style="height: 10%;" *ngIf="data.length">
+        <mat-paginator style="bottom: 2%;position: absolute;height: 10%;width: 75%;" [length]="data.length"
+          [pageSizeOptions]="pageSizeOption" [pageSize]="pageSize" showFirstLastButtons="false"
+          (page)="getPaginatorData($event)">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

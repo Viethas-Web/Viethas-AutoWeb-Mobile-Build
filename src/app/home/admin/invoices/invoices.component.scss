@@ -1,0 +1,106 @@
+nz-layout {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  padding: 16px;
+  height: 100%;
+
+  .title {
+    color: var(--ion-color-vh-green);
+    font-size: 1.1rem;
+  }
+
+  .input-date {
+    padding: 3px 10px;
+    width: 192px;
+    font-family: "Roboto Mono", monospace;
+    color: #7c7c7c;
+    font-size: 14px;
+    border: 1px solid #7c7c7c;
+    outline: none;
+    border-radius: 3px;
+  }
+
+  ::-webkit-calendar-picker-indicator {
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .button-edit{
+    padding: 5px;
+    background: none;
+    color: #00a859;
+    margin-right: 5px;
+  }
+  .button-remove{
+    padding: 5px;
+    background: none;
+    color: #fc5710;
+  }
+  @mixin btn($color, $background, $border) {
+    color: $color;
+    background: $background 0% 0% no-repeat padding-box;
+    border: 1px solid $border;
+
+    span {
+      color: $color;
+    }
+  }
+
+  ._btn {
+    border-radius: 18px !important;
+    font-size: 0.9rem;
+
+    &_add {
+      @include btn(#ffffff, #008848, #008848);
+    }
+
+    &_soft {
+      @include btn(#373737, #ffffff, #c8c7cc);
+    }
+
+    &_delete {
+      @include btn(#ffffff, #ff000a, #ff000a);
+    }
+  }
+
+  .select {
+    ::ng-deep .ant-select-selector {
+      border-radius: 18px !important;
+    }
+  }
+
+  .search {
+    justify-content: flex-end;
+    display: flex;
+    position: relative;
+    nz-input-group {
+      border-radius: 18px;
+    }
+    input {
+      width: 20rem;
+    }
+
+    .ant-input-affix-wrapper-focused, 
+    .ant-input-affix-wrapper:focus {
+      border-color: var(--ion-color-vh-green);
+      box-shadow: 0 0 0 2px rgb(0 136 72 / 17%);
+    }
+  }
+
+  nz-table {
+    font-size: 14px !important;
+
+    th.ant-table-cell {
+      background-color: #529bfc;
+      color: #ffffff;
+    }
+  }
+
+  ::ng-deep
+    .ant-select:not(.ant-select-customize-input)
+    .ant-select-selector {
+    border-radius: 18px !important;
+    text-align: left;
+  }
+
+} 

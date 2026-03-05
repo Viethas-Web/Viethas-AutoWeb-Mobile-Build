@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" id="contact-book">
+  <defs>
+    <linearGradient id="a" x1="8.737" x2="25.263" y1="30.252" y2="1.629" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4c46c8"></stop>
+      <stop offset="1" stop-color="#87bfff"></stop>
+    </linearGradient>
+  </defs>
+  <path fill="url(#a)" d="M25 1.94H9a3 3 0 0 0-3 3v3H5a1 1 0 0 0 0 2h1v5H5a1 1 0 0 0 0 2h1v5H5a1 1 0 0 0 0 2h1v3a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-22a3 3 0 0 0-3-3Zm1 25a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-3h1a1 1 0 0 0 0-2H8v-5h1a1 1 0 0 0 0-2H8v-5h1a1 1 0 1 0 0-2H8v-3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1ZM20.793 16.8a4 4 0 1 0-5.586 0A5 5 0 0 0 13 20.94a1 1 0 0 0 2 0 3 3 0 1 1 6 0 1 1 0 0 0 2 0 5 5 0 0 0-2.207-4.14ZM18 15.94a2 2 0 1 1 2-2 2 2 0 0 1-2 2Z" data-name="Layer 2"></path>
+</svg>

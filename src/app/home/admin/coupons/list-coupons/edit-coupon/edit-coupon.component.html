@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <form [formGroup]="infoCoupon">
+        <div class="field-input">
+            <label class="title" for="name">{{'ten_coupon' | translate}}:</label>
+            <div class="field-require">
+                <input nz-input placeholder="{{'nhap_ten' | translate}}" formControlName="name" required/>
+                <span class="text-error" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    *{{'vui_long_nhap_ten_coupon' | translate}}
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="field-input">
+            <label class="title" for="value">{{'gia_tri_thanh_toan' | translate}}:</label>
+            <div class="field-require">
+                <input nz-input placeholder="{{'nhap_gia_tri' | translate}}" formControlName="value" required/>
+                <span class="text-error" *ngIf="value.invalid && (value.dirty || value.touched)">
+                    *{{'vui_long_nhap_gia_tri' | translate}}
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="field-input">
+            <label class="title" for="point">{{'so_diem_quy_doi' | translate}}:</label>
+            <div class="field-require">
+                <input nz-input placeholder="{{'nhap_diem' | translate}}" formControlName="point" required/>
+                <span class="text-error" *ngIf="point.invalid && (point.dirty || point.touched)">
+                    *{{'vui_long_nhap_diem_quy_doi' | translate}}
+                </span>
+            </div>
+        </div>
+        <br>
+    </form>
+</div>
+<div class="field-act">
+    <div class="act-button">
+        <button nz-button class="button-tool">{{'huy' | translate}}</button>
+        <button nz-button nzType="primary" class="button-tool" (click)="updateInfoCoupon()">{{'luu' | translate}}</button>
+    </div>
+</div>

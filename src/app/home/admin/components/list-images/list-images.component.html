@@ -1,0 +1,191 @@
+<div *ngIf="setupsImage?.upload_image"  #dropListContainer class="example-container" [ngClass]="imgs.length >= 6 ? '_image_zone':''" cdkDropListGroup>
+
+  <div style="width: 100%">
+    <div style="width:400px">
+        
+      <!-- nguon_hinh_anh_hien_thi_len -->
+      <div>
+        <mat-form-field  style="width: 100%" appearance="fill">
+          <mat-label>{{'nguon_hinh_anh_hien_thi_len' | translate}}</mat-label>
+          <mat-select disableRipple [(ngModel)]="setupsImage.upload_image.source" (ngModelChange)="updateSetup()">
+            <mat-option value="device">{{'tu_thiet_bi' | translate}}</mat-option>
+            <mat-option value="library">{{'tu_thu_vien' | translate}}</mat-option>
+            <mat-option value="url">{{'duong_dan_hinh_anh' | translate}}</mat-option>
+            <mat-option value="free_img">{{'kho_anh_dung_chung' | translate}}</mat-option>
+  
+          </mat-select>
+        </mat-form-field>
+      </div>
+        
+  
+        <!-- nen_anh_tai_len -->
+      <div>
+        <mat-form-field  style="width: 100%" appearance="fill" *ngIf="setupsImage.upload_image?.source == 'device'">
+          <mat-label>{{'nen_anh_tai_len' | translate}}</mat-label>
+          <mat-select disableRipple [(ngModel)]="setupsImage.upload_image.compress_type" (ngModelChange)="updateSetup()">
+            <mat-option [value]="'no-compress'">{{'khong_nen_anh_sau_khi_tai_len' | translate}}</mat-option>
+            <mat-option [value]="'compress-screen'">{{'nen_anh_theo_ti_le_man_hinh_hien_thi' | translate}}</mat-option>
+            <mat-option [value]="'custom'">{{'nen_anh_theo_kich_thuoc_tu_chon' | translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+  
+      <mat-form-field *ngIf="setupsImage.upload_image?.source == 'device' && setupsImage.upload_image?.compress_type == 'custom'" class="mr-4">
+        <mat-label>{{'chieu_rong' | translate}}</mat-label>
+        <input matInput placeholder="{{'chieu_rong' | translate}}" [(ngModel)]="compressWidth">
+      </mat-form-field>
+  
+      <mat-form-field *ngIf="setupsImage.upload_image?.source == 'device' && setupsImage.upload_image?.compress_type == 'custom'">
+        <mat-label>{{'chieu_cao' | translate}}</mat-label>
+        <input matInput placeholder="{{'chieu_cao' | translate}}" [(ngModel)]="compressHeight">
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+  <ng-container *ngIf="isMultiple">
+    <div *ngFor="let img of imgs; let i = index" cdkDropList [cdkDropListData]="i">
+      <div cdkDrag [cdkDragData]="i" (cdkDragEntered)="dragEntered($event)" (cdkDragMoved)="dragMoved()"
+        (cdkDragDropped)="dragDropped()" class="example-box" [ngStyle]="{'z-index': imageChoosed == img ? '2': '1'}">
+        <div class="_item_image">
+          <div class="_image d-flex align-items-center justify-content-center">
+            <img [src]="img.path" onerror="this.src = '/assets/root/images/system/icons/image_default.svg'" />
+            <div role="button" class="_icon_trash d-flex align-items-center justify-content-center align-self-center"
+              (click)="deleteFileImageByIndex(i)" nz-tooltip nzTooltipTitle="{{'xoa_anh' | translate}}">
+              <span>X</span>
+            </div>
+           
+  
+            <div role="button"
+              class="_icon_connect d-flex align-items-center justify-content-center align-self-center _icon_connect_active"
+              >
+              <!-- icon upload từ thiết bị -->
+              <span  nz-icon nzType="upload" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'device'" (click)="getFileImageItem(fileUploadItem)"></span>
+              <!-- icon upload từ thư viện -->
+              <span nz-icon nzType="picture" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'library'" (click)="openLibrary(i)"></span>
+  
+              <span nz-icon nzType="cloud-upload" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'free_img'" (click)="openFreeImage(i)"></span>
+  
+              <span nz-icon nzType="disconnect" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'url'" (click)="imageChoosed = img"></span>
+  
+              <div  *ngIf="imageChoosed == img" >
+                <div class="overlay" (click)="closePopover()"></div>
+  
+                <div class="popover">
+                  <p>{{'duong_dan_anh' | translate}}</p>
+                  <div class="d-flex align-items-center gap-4">
+                    <input style="flex: 1 0 100px;" class="input mr-1" type="text" #link_iframe [value]="img.path"
+                    placeholder="{{'nhap_duong_dan_lien_ket' | translate}}">
+                    <span role="button" class="text-success" (click)="accpectLinkIFrame(img, link_iframe.value)">{{'ap_dung' | translate}}</span>
+                  </div>
+                </div>
+                <div class="arrow" ></div>
+              </div>
+            </div>
+          </div>
+         
+          <input #fileUploadItem style="display: none;" type="file" accept=".png, .jpg"
+            (change)="onUploadItemImage($event, i)">
+        </div>
+      </div>
+  
+      <!-- Nếu ảnh chứa id_subproject thì đã là ảnh trên server rồi nên sẽ disable -->
+      <button 
+        class="_icon_upload d-flex align-items-center justify-content-center align-self-center _icon_connect_active"
+        *ngIf="!img?.path?.includes(id_subproject) && img?.path " 
+        style="margin-top: 6px;"
+        nz-button nzType="primary" (click)="indexImage = i; handleShowTransferImageToServer()"
+        >
+        {{'chuyen_anh_len_server'  | translate}}
+      </button>
+    </div>
+    <div class="example-add">
+      <div class="_buttons_choose_image ">
+  
+        <img style="width:90%; height: 90%"
+        [src]="'/assets/root/images/system/icons/image_default.svg' ">
+  
+        <div role="button"
+          class="_icon_connect d-flex align-items-center justify-content-center align-self-center _icon_connect_active"
+          (click)="handleChangeImage()"
+          >
+          <!-- icon upload từ thiết bị -->
+          <i  nz-icon nzType="upload" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'device'"></i>
+          <!-- icon upload từ thư viện -->
+          <i nz-icon nzType="picture" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'library'"></i>
+  
+          <i nz-icon nzType="cloud-upload" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'free_img'"></i>
+  
+          <i nz-icon nzType="disconnect" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'url'" ></i>
+  
+  
+          <div  *ngIf="imageChoosed == 'new'" >
+            <div class="overlay" (click)="closePopover($event)"></div>
+  
+            <div class="popover">
+              <p>{{'duong_dan_anh' | translate}}</p>
+              <div class="d-flex align-items-center gap-4">
+                <input style="flex: 1 0 100px;" class="input mr-1" type="text" [(ngModel)]="newUrlImage"
+                placeholder="{{'nhap_duong_dan_lien_ket' | translate}}">
+                <span role="button" class="text-success" (click)="handleChangeUrlImage($event)">{{'ap_dung' | translate}}</span>
+              </div>
+              
+            </div>
+            <div class="arrow" ></div>
+          </div>
+  
+  
+        </div>
+  
+      </div>
+      <input #fileUpload style="display: none;" type="file" accept=".png, .jpg" 
+      (change)="onUpload($event)" multiple>
+    </div>
+  </ng-container>
+
+  <div *ngIf="!isMultiple" class="example-add">
+    <div class="_buttons_choose_image ">
+
+      <img style="width:90%; height: 90%"
+      [src]="imgs[0]?.path" onerror="this.src = '/assets/root/images/system/icons/image_default.svg'">
+      <div role="button" class="_icon_trash d-flex align-items-center justify-content-center align-self-center"
+        (click)="deleteFileImageByIndex(0)" nz-tooltip nzTooltipTitle="{{'xoa_anh' | translate}}">
+        <span>X</span>
+      </div>
+      <div role="button"
+        class="_icon_connect_single d-flex align-items-center justify-content-center align-self-center"
+        (click)="handleChangeImage()"
+        >
+        <!-- icon upload từ thiết bị -->
+        <i  nz-icon nzType="upload" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'device'"></i>
+        <!-- icon upload từ thư viện -->
+        <i nz-icon nzType="picture" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'library'"></i>
+
+        <i nz-icon nzType="cloud-upload" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'free_img'"></i>
+
+        <i nz-icon nzType="disconnect" nzTheme="outline" *ngIf="setupsImage.upload_image?.source == 'url'" ></i>
+
+
+        <div  *ngIf="imageChoosed == 'new'" >
+          <div class="overlay" (click)="closePopover($event)"></div>
+
+          <div class="popover">
+            <p>{{'duong_dan_anh' | translate}}</p>
+            <div class="d-flex align-items-center gap-4">
+              <input style="flex: 1 0 100px;" class="input mr-1" type="text" [(ngModel)]="newUrlImage"
+              placeholder="{{'nhap_duong_dan_lien_ket' | translate}}">
+              <span role="button" class="text-success" (click)="handleChangeUrlImage($event)">{{'ap_dung' | translate}}</span>
+            </div>
+            
+          </div>
+          <div class="arrow" ></div>
+        </div>
+      </div>
+
+    </div>
+    <input #fileUploadSingle style="display: none;" type="file" accept=".png, .jpg"\
+    (change)="onUpload($event)" multiple>
+  </div>
+</div>

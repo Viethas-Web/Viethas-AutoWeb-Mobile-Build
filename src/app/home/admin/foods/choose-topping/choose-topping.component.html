@@ -1,0 +1,135 @@
+<div>
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'chon_topping_lien_ket' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="row p-8 m-0">
+    <div class="col-6 p-0 m-0 d-flex align-items-center">
+      <div class="search">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input [(ngModel)]="searchNameTopping" type="text" nz-input
+            placeholder="{{'tim_kiem_ten_topping' | translate}}" #search1 (keyup.enter)="onSearchTopping()" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span (click)="onSearchTopping()" nz-icon nzType="search"></span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select">
+      <app-select-language-config [isAdmin]="true"></app-select-language-config>
+      <mat-form-field appearance="fill" style="margin: 0 16px; width: 18rem;">
+        <mat-label>{{'chon_danh_muc' | translate}}</mat-label>
+        <mat-select [(ngModel)]="idCategory" (ngModelChange)="searchNameTopping = '';toppings = []">
+          <mat-option value="all">{{'tat_ca' | translate}}</mat-option>
+          <mat-option *ngFor="let item of categoryToppings" [value]="item._id">{{ item.array_step?
+            generateSymBol(item.array_step) + item.name || item.title : item.name || item.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+        (click)="resetPagination();sortToppings()">
+        {{'xem' | translate}}
+      </button>
+    </div>
+  </div>
+
+  <nz-table style="height: 488px" [nzScroll]="{ y: '350px' }" [nzData]="toppings" #tableSales nzShowSizeChanger
+    [nzLoading]="loading" [nzFooter]="toppings.length && footerTpl" [nzShowPagination]="false">
+    <thead class="_thead">
+      <tr>
+        <th nzWidth="10%" nzAlign="center"><b>{{'anh' | translate}}</b></th>
+        <th nzWidth="65%" nzAlign="left"> <b>{{'ten_topping' | translate}}</b> <span nz-icon (click)="handleSort()"
+            [nzType]=" isASC ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span></th>
+        <th nzWidth="25%" nzAlign="center"><b>{{'them_vao_mon_an' | translate}}</b></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of toppings; trackBy: trackByFn">
+        <tr>
+          <td>
+            <div class="image d-flex align-items-center justify-content-center">
+              <img onerror="this.src='/assets/root/images/system/icons/image_default.svg'"
+                [src]="item.imgs? item.imgs[0] : ''" [alt]="item['name_'+functionService.languageTempCode] || item.title" width="40px" height="40px">
+            </div>
+          </td>
+          <td>
+            <div class="d-flex justify-content-start text-start" style="margin-left: 20px; font-weight: 600;">
+              <span>{{ item['name_'+functionService.languageTempCode] || item.title }}</span>
+            </div>
+          </td>
+          <td nzAlign="center">
+            <div class="status">
+              <label class="switch">
+
+                <nz-switch [(ngModel)]="item.isChoose" (ngModelChange)="chooseToppingForFood($event, item)"></nz-switch>
+              </label>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+    <ng-template #footerTpl>
+      <div class="pagination">
+        <div class="pagination-list-button">
+          <div class="page-start pagiItem" (click)="gotoPreviousPage()">{{'truoc' | translate }}</div>
+          <div class="page-number pagiItem" *ngIf="totalPages >= 3 && pageCurrent >= 3" (click)="transferFn(1)">
+            1
+          </div>
+          <div class="page-number pagiItem" *ngIf="totalPages > 3 && pageCurrent > 3">
+            ...
+          </div>
+          <div *ngFor='let page of pageShowChoose ;let i = index'>
+            <div class="page-number pagiItem" *ngIf="page <= totalPages && page > 0"
+              [ngClass]="{'active': page == pageCurrent}" (click)="transferFn(page)">
+              {{page}}
+            </div>
+          </div>
+          <div class="page-number pagiItem" *ngIf="totalPages > 3 && pageCurrent < totalPages-2">
+            ...
+          </div>
+          <div class="page-number pagiItem" *ngIf="totalPages >= 3 && pageCurrent <= totalPages-2"
+            (click)="transferFn(totalPages)">
+            {{totalPages}}
+          </div>
+          <div class="page-end pagiItem" (click)="gotoNextPage()">{{'sau' | translate }}</div>
+          <button nz-popover [nzPopoverTitle]="'Tối đa ' +  totalPages" [nzPopoverContent]="contentTemplate"
+            class="page-go pagiItem" nzPopoverPlacement="top">
+            {{'toi_trang' | translate }}
+          </button>
+
+          <!-- Số lượng danh mục trên/trang -->
+          <nz-select [nzSize]="'large'" [(ngModel)]="limit" (ngModelChange)="handleChangeLimit()" nzPlaceHolder=""
+            nzAllowClear="false" class="ml-2">
+            <nz-option *ngFor="let n of numberPerPage" [nzValue]="n" [nzLabel]="n + '/Trang'"></nz-option>
+          </nz-select>
+
+        </div>
+        <ng-template #contentTemplate>
+          <div class="input-container">
+            <div class="input-group">
+              <input class="form-control" width="10rem" placeholder="{{'nhap_trang_can_toi' | translate }}"
+                type="number" min="1" [max]="totalPages" [(ngModel)]="pageGoto" />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button"
+                  (click)="transferFn(pageGoto > totalPages ? totalPages : pageGoto < 1 ? 1 : pageGoto)">Tới</button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+  </nz-table>
+
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="close()">
+      {{'huy' | translate}}
+    </button>
+    <button (click)="onChooseToppingForFood()" class="mr-2" nz-button nzType="primary"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'luu' | translate}}
+    </button>
+  </div>
+</div>

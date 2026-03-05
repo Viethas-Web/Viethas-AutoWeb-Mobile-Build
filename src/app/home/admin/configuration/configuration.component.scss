@@ -1,0 +1,107 @@
+nz-layout {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  padding: 16px;
+  height: 95%;
+  .title {
+    color: var(--ion-color-vh-green);
+    font-size: 1.1rem;
+  }
+  .button_save {
+    button {
+      border-radius: 5px;
+      span {
+        color: #fff;
+      }
+    }
+  }
+  .form {
+    padding: 16px 0px;
+    .padding {
+      padding-top: 5pt;
+      sup {
+        display: contents;
+      }
+    }
+    input {
+      width: 100%;
+    }
+    .logo_default {
+      width: 192px;
+      height: 128px;
+      margin: auto;
+    }
+    .icon_default {
+      width: 96px;
+      height: 64px;
+      margin: auto;
+      margin-top: 64px;
+    }
+    .logo_default_div {
+      position: relative;
+      div {
+        position: absolute;
+        bottom: 0px;
+      }
+    }
+
+    .image_default {
+      width: 210px;
+      height: 140px;
+      border: 1px #008848 dotted;
+      border-radius: 5px;
+      position: relative;
+      &:hover {
+        img {
+          position: absolute;
+          z-index: 1;
+          opacity: 0.5;
+        }
+        ._buttons_choose_image {
+          flex-direction: column;
+          display: flex;
+          z-index: 2;
+        }
+      }
+      .img_w100 {
+        width: 100%;
+        height: 100%;
+      }
+      .img_w90 {
+        width: 90%;
+        height: 90%;
+      }
+      ._buttons_choose_image {
+        width: 80%;
+        height: 140px;
+        display: none;
+        transition: opacity 0.5s ease;
+        button {
+          display: inline-block;
+          font-weight: 400;
+          text-align: center;
+          vertical-align: middle;
+          
+          border: 1px solid transparent;
+          padding: 0.375rem 0.75rem;
+          font-size: 14px;
+          border-radius: 5px;
+          transition: color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+        }
+        span {
+          font-size: 14px;
+        }
+        ._btn_upload,
+        ._btn_media {
+          color: #ffffff;
+          background-color: #008848;
+          border-color: #008848;
+        }
+      }
+    }
+    label{
+      font-weight: 500;
+    }
+  }
+}

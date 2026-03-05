@@ -1,0 +1,172 @@
+<div nz-row class="row-back medium-size" (click)="goBack()">
+    <i nz-icon nzType="left" nzTheme="outline"></i>{{'Back' | translate}}
+</div>
+<nz-layout id="product-list" class="height-layout">
+    <div nz-row class="product-list-header">
+        <div nz-col nzSpan="14" class="title left-all-content">
+            <b>{{'them_chuong_trinh_tich_diem_cho_san_pham' | translate}}</b>
+        </div>
+        <div nz-col nzSpan="10" class="right-all-content">
+            <div>
+                <button class="btn-add" nz-button nzType="default" (click)="addData()">
+                    <i nz-icon nzType="save" nzTheme="outline"></i>
+                    {{'luu'|translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="formAdd">
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-label style="text-align: start;" [nzSpan]="5"><b>{{'ten' | translate}}*</b></nz-form-label>
+            <nz-form-control [nzSpan]="10" [nzErrorTip]="userErrorTpl">
+                <input style="text-align: start;" nz-input formControlName="name"
+                    placeholder="{{'nhap_ten' | translate}}" />
+                <ng-template #userErrorTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">{{'yeu_cau_nhap_ten' | translate}}
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item style="margin:0 0 8px;">
+            <nz-form-label style="text-align: start;" [nzSpan]="5"><b>{{'ty_le_quy_doi_diem'|translate}}*</b>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input #box class="price" style="text-align: start;" nz-input
+                    [value]="vhAlgorithm.vhcurrencyunit(exchange.money)" placeholder="{{'nhap_so_tien' | translate}}"
+                    (keyup)="changeExchange('money',box.value)" /> {{synbol}} =
+                <input #points class="price" style="text-align: start;" nz-input [value]="exchange.points"
+                    placeholder="{{'Enter point' | translate}}" (keyup)="changeExchange('points',points.value)" />
+                {{'diem' | translate}}
+            </nz-form-control>
+        </nz-form-item>
+
+
+        <!-- <p><b>{{'Sản phẩm áp dụng tích điểm' | translate}}</b></p> -->
+
+
+        <p><b>{{'thiet_lap_chuong_trinh_tich_diem' | translate}}</b></p>
+
+        <nz-form-item style="margin:0 0 8px;">
+            <!-- <nz-form-label [nzSpan]="24"><b>{{'Kiểu hoa hồng'}}</b></nz-form-label> -->
+            <nz-form-control [nzSpan]="24">
+                <label nz-checkbox formControlName="include_promotion_product">
+                    {{'tich_diem_cho_san_pham_giam_gia' | translate}}
+                </label> <br>
+
+            </nz-form-control>
+        </nz-form-item>
+       
+    </form>
+    <button nz-button nzType="primary" (click)="openModalSelectProduct()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>
+        {{'danh_sach_san_pham_ap_dung_tich_diem' | translate}}</button>
+    <nz-table [nzLoading]="loading" [nzBordered]="true" [nzScroll]="{ y: '350px' }" #allowSale
+        [nzShowPagination]="true" nzNoResult="{{'khong_du_lieu'| translate}}" [nzData]="list_select_products">
+        <thead>
+            <tr>
+                <th nzWidth="24%"><b>{{'ten_san_pham' | translate}}</b></th>
+                <th nzWidth="10%"><b>{{'don_vi' | translate}}</b></th>
+                <th nzWidth="14%"><b>{{'Barcode' | translate}}</b></th>
+                <th nzWidth="14%"><b>{{'nhan_hieu_thuong_hieu' | translate}}</b></th>
+                <th nzWidth="18%" nzAlign='right'><b>{{'gia_ban' | translate}}</b></th>
+                <th nzWidth='20%' nzAlign="center"><b>{{ 'chuc_nang' | translate}}</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of allowSale.data">
+                <td>{{ data.name }}</td>
+                <td>{{ data.unitDefault?.unit }}</td>
+                <td>{{ data.unitDefault?.barcode }}</td>
+                <td>{{ data.brand }}</td>
+                <td class="money-right">{{vhAlgorithm.vhcurrencyunit_symbol(data.unitDefault?.price)}} </td>
+                <td nzAlign="center">
+                    <nz-switch [(ngModel)]="data.checked" (ngModelChange)="unChooseProduct(data)"></nz-switch>
+                    <!-- <label nz-checkbox [(ngModel)]="data.checked">Checkbox</label> -->
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</nz-layout>
+<nz-modal [nzStyle]="{ top: '20px' }" *ngIf="show_select_product" [(nzVisible)]="show_select_product"
+    nzTitle="{{'danh_sach_san_pham_ap_dung_chuong_trinh' | translate}}"  
+    (nzOnOk)="show_select_product = false" (nzOnCancel)="show_select_product = false" nzCancelText="" nzWidth="70vw">
+    <ng-container *nzModalContent>
+        <div nz-row style="margin-bottom: 12px;">
+            <div nz-col [nzSpan]="11">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                    <input style="text-align: start;width: 100%;" type="text" nz-input
+                        placeholder="{{'tim_kiem_ten_san_pham' | translate}}" [(ngModel)]="keySearch"
+                     (keyup.enter)="onSearch()" />
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                    <i nz-icon (click)="onSearch()" nzType="search"></i>
+                </ng-template>
+            </div>
+            <div nz-col [nzSpan]="2"></div>
+            <div nz-col [nzSpan]="11" style="display: flex; justify-content: space-between; gap:1rem">
+                <nz-select [(ngModel)]="dataCurrent" [nzServerSearch]="true" nzShowSearch
+                    (ngModelChange)="products = []; resetPagination();getCategorys();" style="width: 70%;"
+                    nzPlaceHolder="{{'chon_du_lieu' | translate}}">
+                    <nz-option *ngFor="let item of dataList" [nzValue]="item.value" [nzLabel]="item.label">
+                    </nz-option>
+                </nz-select>
+                <nz-select [(ngModel)]="idCategory" (ngModelChange)="products = []; resetPagination();" [nzServerSearch]="true" nzShowSearch
+                    (nzOnSearch)="searchLocalCategory($event)" style="width: 70%;"
+                    nzPlaceHolder="{{'chon_danh_muc' | translate}}">
+                    <nz-option  [nzValue]="'all'"
+                        [nzLabel]="'tat_ca' | translate">
+                    </nz-option>
+                    <nz-option *ngFor="let item of list_category_show" [nzValue]="item._id"
+                        [nzLabel]="item.array_step? generateSymBol(item.array_step) + item.name : item.name">
+                    </nz-option>
+                </nz-select>
+                <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button
+                    nzType="default" (click)="getProducts()">
+                    {{'xem' | translate}}
+                </button>
+            </div>
+        </div>
+
+        <nz-table [nzLoading]="loading" [nzBordered]="true" [nzScroll]="{ y: '350px' }" #allowSale
+            [nzShowPagination]="false" nzNoResult="{{'khong_du_lieu'| translate}}" [nzData]="products"
+            [nzFooter]="products?.length && footerTpl"
+            >
+            <thead>
+                <tr>
+                    <th nzWidth="24%"><b>{{'ten_san_pham' | translate}}</b></th>
+                    <th nzWidth="10%"><b>{{'don_vi' | translate}}</b></th>
+                    <th nzWidth="14%"><b>{{'Barcode' | translate}}</b></th>
+                    <th nzWidth="14%"><b>{{'nhan_hieu_thuong_hieu' | translate}}</b></th>
+                    <th nzWidth="18%" nzAlign='right'><b>{{'gia_ban' | translate}}</b></th>
+                    <th nzWidth='20%' nzAlign="center"><b>{{ 'chuc_nang' | translate}}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of allowSale.data">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.unitDefault?.unit }}</td>
+                    <td>{{ data.unitDefault?.barcode }}</td>
+                    <td>{{ data.brand }}</td>
+                    <td class="money-right">{{vhAlgorithm.vhcurrencyunit_symbol(data.unitDefault?.price)}} </td>
+                    <td nzAlign="center">
+                        <nz-switch [(ngModel)]="data.checked" (ngModelChange)="chooseProduct(data)"></nz-switch>
+                        <!-- <label nz-checkbox [(ngModel)]="data.checked">Checkbox</label> -->
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <ng-template #footerTpl>
+            <app-pagination
+              [pageCurrent]="pageCurrent"
+              [totalPages]="totalPages"
+              [limit]="limit"
+              [pageShowChoose]="pageShowChoose"
+              [pageGoto]="pageGoto"
+              (pageIndexChange)="pageIndexChange($event)"
+              (limitChange)="limitChange($event)"
+            ></app-pagination>
+          </ng-template>
+    </ng-container>
+</nz-modal>

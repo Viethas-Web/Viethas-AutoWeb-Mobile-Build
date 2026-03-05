@@ -1,0 +1,54 @@
+.modal-container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 500px;
+}
+
+.content-left,
+.content-right {
+    width: 50%;
+}
+
+.content-left {
+    position: relative;
+}
+
+
+
+.account-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow-y: auto;
+
+    .account-item {
+        cursor: pointer;
+        width: 30%;
+    }
+}
+
+.active {
+    border: 1px solid orange;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+@media (max-width: 767px) {
+    .content-left,
+    .content-right {
+        width: 100%;
+    }
+
+    .modal-container {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .account-list {
+        .account-item {
+            width: 43%;
+        }
+    }
+    
+}

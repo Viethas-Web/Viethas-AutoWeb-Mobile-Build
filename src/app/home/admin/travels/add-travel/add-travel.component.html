@@ -1,0 +1,234 @@
+<div class="add-product w-100 h-100">
+  <div class="main">
+    <form class="form p-0 m-0" *ngIf="addTravelForm" [formGroup]="addTravelForm">
+      <div class="row">
+        <!-- Tên, danh mục -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'ten_nha_nghi_khach_san' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="name" placeholder="{{'nhap_ten_nha_nghi_khach_san' | translate}}">
+          </div>
+        </div>
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'danh_muc' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input d-flex">
+            <nz-select style="margin-right: 8px;" [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
+              nzPlaceHolder="{{'chon_danh_muc_hotel' | translate}}" formControlName="id_category" (ngModelChange)="changeSelect($event)">
+              <nz-option nzLabel="Trống" nzValue=""></nz-option>
+              <ng-container *ngFor="let item of list_category">
+                <ng-container *ngIf="!item.array_step">
+                  <nz-option [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+                </ng-container>
+                <ng-container *ngIf="item.array_step">
+                  <nz-option [nzLabel]="generateSymBol(item.array_step) + item.name" [nzValue]="item._id"></nz-option>
+                </ng-container>
+              </ng-container>
+            </nz-select>
+            <ng-template #tagPlaceHolder let-selectedList>and {{ selectedListCategory.length }} more
+              selected</ng-template>
+            <button class="center-all-content button_list_unit" nz-button nzType="default" (click)="createCategory()">
+              <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+              {{'tao_nhanh' | translate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'don_vi' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input" style="display: flex;">
+            <input (blur)="enterPrice()" class="input" type="text" style="height: 30px !important;"
+              formControlName="unit" placeholder="{{'nhap_don_vi' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'dia_chi' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" formControlName="address" placeholder="{{'nhap_dia_chi' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'so_dien_thoai' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" formControlName="phone_number" placeholder="{{'nhap_so_dien_thoai' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'email_lien_he' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input type="email" class="input" formControlName="email" placeholder="{{'nhap_email_lien_he' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'gia_phong' | translate}} <sup>*</sup></label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input price" formControlName="price" type="text" placeholder="{{'nhap_gia_phong' | translate}}"
+              (blur)="enterPrice()">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'gia_khuyen_mai' | translate}}</label>
+          </div>
+          <div class="layout-input">
+            <input class="input price_sales" type="text" (blur)="enterPrice()"
+              formControlName="webapp_price_sales" placeholder="{{'nhap_gia_ban_chua_khuyen_mai' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">{{'so_luong_phong' | translate}}</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input price" formControlName="quantity_room" placeholder="{{'nhap_so_luong_phong' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div>
+            <label for="name-input">Barcode</label>
+          </div>
+          <div class="layout-input d-flex justify-content-between">
+            <input class="input" formControlName="barcode" placeholder="{{'nhap_quet_ma_vach_hotel' | translate}}">
+            <i style="margin: 8px 0 0 8px; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+              nzTooltipTitle="{{'tao_ma_vach_tu_dong' | translate}}" nzTooltipPlacement="bottom"
+              (click)="generateBarcodesAutomatically()"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bật/ tắt -->
+      <div class="row padding">
+        <div class="col-6">
+          <div *ngIf="!addTravelForm.value.manysize" class="d-flex justify-content-between">
+            <label>{{'an_hien_thi_nha_nghi_khach_san_tren_website' | translate}}</label>
+            <nz-switch formControlName="webapp_hidden"></nz-switch>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách hình ảnh hotel -->
+      <div class="row p-0 m-0 pt-2">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+          <h3 class="m-0" style="color: #008848; font-size: 16px;">{{'hinh_anh_hotel_hien_thi_tren_hotel' | translate}}</h3>
+        </div>
+        <div class="row p-0 m-0 w-100" style="overflow-x: auto;">
+          <div class="col p-0 d-flex align-items-center justify-content-center">
+            <div class="_buttons_choose_image align-items-center justify-content-center p-2">
+              <button [disabled]="listImgProduct.length == 4? true: false" class="_btn_upload"
+                [ngStyle]="{opacity: listImgProduct.length == 4 ? 0.5 : 1}" (click)="getFile()">{{'tai_len' | translate}}</button>
+              <span>{{'hoac' | translate}}</span> 
+              <button [disabled]="listImgProduct.length == 4? true: false" class="_btn_media"
+                [ngStyle]="{opacity: listImgProduct.length == 4 ? 0.5 : 1}" (click)="openLibrary()">{{'chon_tu_thu_vien' | translate}}</button>
+            </div>
+            <input style="display: none;" type="file" accept=".png, .jpg" id="file_upload" (change)="onUpload($event)">
+          </div>
+          <div class="col-9 p-0">
+            <div class="w-100 h-100 d-flex">
+              <div class="_image_list" [ngClass]="i == 0 ? 'mr-3': i == listImgProduct.length - 1 ? 'ml-3':'mr-3 ml-3'"
+                *ngFor="let img of listImgProduct; index as i">
+                <div class="_item_image">
+                  <div class="_image d-flex align-items-center justify-content-center" (click)="getFileImageItem(i)">
+                    <img [src]="img.src" onerror="this.src = '/assets/root/images/system/icons/image_default.svg'" />
+                    <div class="_icon_trash d-flex align-items-center justify-content-center align-self-center"
+                      (click)="deleteFileImageByIndex(i)" nz-tooltip nzTooltipTitle="{{'xoa_anh' | translate}}">
+                      <span>X</span>
+                    </div>
+                  </div>
+                  <input style="display: none;" type="file" accept=".png, .jpg" [id]="'file_upload_item'+ i"
+                    (change)="onUploadItemImage($event, i)">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nz-tabset [(nzSelectedIndex)]="selectedIndexTabset" class="row p-0 m-0">
+        <nz-tab nzTitle="{{'mo_ta_chi_tiet' | translate}}">
+          <div class="w-100" style="max-height: 500px;overflow: auto;">
+            <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="config"
+              formControlName="webapp_description">
+            </ckeditor>
+          </div>
+        </nz-tab>
+        <nz-tab nzTitle="{{'mo_ta_ngan' | translate}}">
+          <div class="w-100" style="max-height: 500px;overflow: auto;">
+            <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="config"
+              formControlName="webapp_sort_description">
+            </ckeditor>
+          </div>
+        </nz-tab>
+      </nz-tabset>
+
+      <!-- Nội dùng SEO -->
+      <div class="col-12" style="padding: 5pt 0 0;">
+        <div>
+          <div class="title">
+            <h5 style="font-size: 16px; margin: 6pt 0px !important;">SEO</h5>
+          </div>
+          <div class="_body_seo">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="label">
+                <label class="m-0" for="webapp_seo_title">{{'tieu_de' | translate}}</label>
+              </div>
+              <div class="text">
+                <input class="input" type="text" formControlName="webapp_seo_title"
+                  id="webapp_seo_title" placeholder="{{'nhap_tieu_de' | translate}}">
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="label">
+                <label class="m-0" for="webapp_seo_description">{{'mieu_ta' | translate}}</label>
+              </div>
+              <div class="text">
+                <input class="input" type="text" formControlName="webapp_seo_description"
+                  id="webapp_seo_description" placeholder="{{'nhap_mieu_ta' | translate}}">
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="label">
+                <label class="m-0" for="webapp_seo_keyword">{{'tu_khoa' | translate}}</label>
+              </div>
+              <div class="text">
+                <input class="input" type="text" formControlName="webapp_seo_keyword"
+                  id="webapp_seo_keyword" placeholder="{{'nhap_tu_khoa' | translate}}" data-role="tagsinput">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="backPageFn()">
+      {{'huy' | translate}}
+    </button>
+    <button [disabled]="(!addTravelForm.valid|| !categoriesChoice.length || submitting)" class="mr-2" nz-button nzType="primary"
+      [ngStyle]="{opacity: (!addTravelForm.valid|| !categoriesChoice.length)? .5: 1}" (click)="onSubmitAddProduct(addTravelForm.value)"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'them' | translate}}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,157 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <!-- Tiêu đề  -->
+        <span class="title d-flex flex-row" style="gap:8px">
+          <b>{{ "danh_sach_dich_vu_theo_cong" | translate }}</b>
+        </span>
+        <!-- Thanh tìm kiếm -->
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_ten_dich_vu' | translate}}" [(ngModel)]="keySearch"
+              (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span style="cursor: pointer;" (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select">
+        <!-- Chọn danh mục -->
+        <div style="margin: 0 16px; width: 18rem ">
+          <nz-select
+              [nzPlaceHolder]="'chon_danh_muc' | translate"
+              [(ngModel)]="idCategory"
+              [nzLoading]="loadingCategory"
+              (ngModelChange)="idCategory = $event; keySearch = ''; services = []; totalPages = 0"
+              nzShowSearch 
+            >
++             <nz-option *ngIf="!loadingCategory" [nzValue]="'all'" [nzLabel]="'tat_ca' | translate"></nz-option>
+              <ng-container *ngFor="let o of categories">
+                <nz-option *ngIf="!loadingCategory" nzCustomContent [nzValue]="o._id" [nzLabel]="renderOptionCategory(o)">
+                  {{ renderOptionCategory(o) }}
+                </nz-option>
+              </ng-container>
+              <nz-option *ngIf="loadingCategory" nzDisabled nzCustomContent>
+                <i nz-icon nzType="loading" class="loading-icon"></i>
+                Loading Data...
+              </nz-option>
+            </nz-select>
+        </div>
+        <button [disabled]="loadingCategory" class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination();getServices() ">
+          {{'xem' | translate}}
+        </button>
+        <button [disabled]="loadingCategory" class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="addProductFn()">
+          <i class="bi bi-plus"></i> {{ "them_dich_vu" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px">
+    <nz-table
+      [nzVirtualItemSize]="53"
+      [nzData]="services"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="services?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+          <th nzWidth="2%"><span></span></th>
+          <th nzWidth="8%" nzAlign="center"><b>{{'anh' | translate}}</b></th>
+          <th nzWidth="30%" nzAlign="left" (click)="handleSort(nameField)">
+            <b>{{'ten_dich_vu' | translate}}</b>
+            <span *ngIf="services?.length" nz-icon [nzType]="sortby[nameField] ? 'arrow-down' : 'arrow-up'" nzTheme="outline">
+            </span>
+          </th>
+          <th nzWidth="10%" nzAlign="left"><b>{{'danh_muc' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'don_vi' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="right"><b>{{'gia_ban' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'ma_dich_vu' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'an_hien_thi_tren_website' | translate}}</b></th>
+          <th nzWidth="10%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr>
+            <td style="cursor: pointer" (click)="
+                $event.stopPropagation(); item.show_expand = !item.show_expand
+              ">
+              <i class="icon-expand" *ngIf="item.manysize" nz-icon [nzType]="item.show_expand ? 'up' : 'down'"
+                nzTheme="outline"></i>
+            </td>
+            <td>
+              <div class="image d-flex align-items-center justify-content-center">
+                <img onerror="this.src='/assets/root/images/system/icons/image_default.svg'" [src]="item.imgs[0]"
+                  [alt]="item[nameField]" width="40px" height="40px" />
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item[nameField] }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.category_name || 'Trống' }}</span>
+              </div>
+            </td>
+            <td nzAlign="center">
+              <nz-select class="_select" *ngIf="!item.manysize" [(ngModel)]="item.unitDefault"
+                (ngModelChange)="selecUnit(item, $event)">
+                <nz-option class="_option" [nzValue]="unit"
+                  [nzLabel]="unit['unit_'+functionService.selectedLanguageCode]"
+                  *ngFor="let unit of item.units"></nz-option>
+              </nz-select>
+            </td>
+            <td nzAlign="right">
+              <span *ngIf="!item.manysize">{{
+                (item.unitDefault.price | number : "1.0-0") +
+                "
+                đ"
+                }}</span>
+            </td>
+            <td nzAlign="right">
+              <span *ngIf="!item.manysize">{{ item.unitDefault.barcode }}</span>
+            </td>
+            <td nzAlign="center">
+              <div class="status" *ngIf="!item.manysize">
+                <label class="switch">
+                  <nz-switch [(ngModel)]="item.webapp_hidden" (ngModelChange)="
+                      updateHiddenProduct(item, { webapp_hidden: $event })
+                    "></nz-switch>
+                </label>
+              </div>
+            </td>
+            <td nzAlign="center">
+              <div class="icon-action">
+                <span style="color: #008848; margin-right: 0.5rem;cursor: pointer; font-size: 18px" nz-icon nzType="edit" nzTheme="outline" (click)="editProduct(item)"></span>
+                <span style="color: #ff000a;cursor: pointer; font-size: 18px" nz-icon nzType="delete" nzTheme="outline" (click)="deleteProduct(item)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+
+  </div>
+</nz-layout>

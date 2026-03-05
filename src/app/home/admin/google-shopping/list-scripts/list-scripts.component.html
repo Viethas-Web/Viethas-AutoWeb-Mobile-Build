@@ -1,0 +1,64 @@
+<nz-layout id="purchase-invoice-today" class="products-google-shopping">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <!-- Tiêu đề  -->
+        <span class="title d-flex flex-row" style="gap:8px">
+          {{
+          'danh_sach_scripts' | translate
+          }}
+        </span>
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select">
+
+        <!-- Nút xem -->
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination();getData()">
+          {{'xem' | translate}}
+        </button>
+        <!-- Nút thêm sản phẩm -->
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="handleAddData()">
+          <i class="bi bi-plus"></i> {{ 'them_du_lieu' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <nz-table style="margin-top: 11px" [nzScroll]="{ y: tableHeight }" #editRowTable nzBordered [nzData]="scripts"
+    [nzShowPagination]="false" [nzFrontPagination]="false" [nzLoading]="loading"
+    [nzFooter]="scripts?.length && footerTpl" >
+    <thead>
+      <tr>
+        <th nzWidth="60%"><b>{{'Scripts' | translate}}</b></th>
+        <th nzWidth="15%"><b>{{'loai' | translate}}</b></th>
+        <th nzWidth="15%"><b>{{'hoat_dong' | translate}}</b></th>
+        <th><b>{{'thao_tac' | translate}}</b></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pro of editRowTable.data; let index = index" class="editable-row">
+        <td>
+          {{ pro.data }}
+        </td>
+        <td>
+          {{ pro.data_type }}
+        </td>
+        <td>
+          <nz-switch [ngModel]="pro.active" (ngModelChange)="updateActive(pro, $event)" [ngModelOptions]="{standalone: true}"></nz-switch>
+        </td>
+        <td>
+          <div class="icon-action">
+            <span nz-icon nzType="edit" nzTheme="outline" (click)="editData(pro)"></span>
+            <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteData(pro)"></span>
+          </div>
+        </td> 
+      </tr>
+    </tbody>
+  </nz-table>
+  <ng-template #footerTpl>
+    <app-pagination [pageCurrent]="pageCurrent" [totalPages]="totalPages" [limit]="limit"
+      [pageShowChoose]="pageShowChoose" [pageGoto]="pageGoto" (pageIndexChange)="pageIndexChange($event)"
+      (limitChange)="limitChange($event)"></app-pagination>
+  </ng-template>
+
+</nz-layout>

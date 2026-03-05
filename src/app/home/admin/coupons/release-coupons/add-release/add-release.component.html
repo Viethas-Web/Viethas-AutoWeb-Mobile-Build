@@ -1,0 +1,15 @@
+<!-- add đợt phát hành -->
+<form [formGroup]="data_release">
+    <p class="title">{{'ten_dot_phat_hanh_coupon' | translate}}</p>
+    <input nz-input placeholder="{{'nhap_ten' | translate}}" formControlName="name" />
+    <p></p>
+    <p class="title">{{'ngay_bat_dau_su_dung' | translate}}</p>
+    <input nz-input type="date" formControlName="date_validity" />
+    <p></p>
+    <p class="title">{{'ngay_het_han' | translate}}</p>
+    <input nz-input type="date" formControlName="date_expire" />
+    <div class="field-button">
+        <button nz-button class="button-tool" (click)="handleCancel()">{{'huy' | translate}}</button>
+        <button nz-button nzType="primary" class="button-tool" (click)="handleOk()">{{'them' | translate}}</button>
+    </div>
+</form>

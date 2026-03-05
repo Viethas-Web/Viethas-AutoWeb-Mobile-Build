@@ -1,0 +1,99 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-5 p-0 m-0 d-flex align-items-center justify-content-between">
+        <!-- Tiêu đề -->
+        <span class="title d-flex flex-row" style="gap:8px">
+          <b>{{ "danh_sach_chuyen_trang" | translate }}</b>
+        </span>
+        <!-- Thanh tìm kiếm -->
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem' | translate}}"
+              [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span style="cursor: pointer;" (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-7 p-0 m-0 d-flex align-items-center justify-content-end select">
+        <!-- Nút xem -->
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination(); getUrls()">
+          {{'xem' | translate}}
+        </button>
+        <!-- Nút thêm sản phẩm -->
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          [disabled]="pendingUrl !== null" (click)="addUrlFn()">
+          <i class="bi bi-plus"></i> {{ "them_trang" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div style="margin-top: 10px">
+    <nz-table
+      [nzVirtualItemSize]="72"
+      [nzData]="urls"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="urls?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+          <th nzAlign="left">
+            <b>{{'duong_dan' | translate}}</b>
+            <span class="sort-icon" (click)="sortField('old_url')">
+              <i class="bi" [ngClass]="{
+                'bi-sort-alpha-down': sort['old_url'] === 1,
+                'bi-sort-alpha-up': sort['old_url'] === -1
+              }"></i>
+            </span>
+          </th>
+          <th nzAlign="left">
+            <b>{{'duong_dan_moi' | translate}}</b>
+            <span class="sort-icon" (click)="sortField('current_url')">
+              <i class="bi" [ngClass]="{
+                'bi-sort-alpha-down': sort['current_url'] === 1,
+                'bi-sort-alpha-up': sort['current_url'] === -1
+              }"></i>
+            </span>
+          </th>
+          <th nzWidth="8%" nzAlign="center" ><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr [ngClass]="{'temp-row': (item._id.startsWith('temp_') || item.isEdited)}">
+            <td nzAlign="right">
+              <input type="text" nz-input [(ngModel)]="item.old_url" placeholder="Nhập đường dẫn cũ" (ngModelChange)="markAsEdited(item)"/>
+            </td>
+            <td nzAlign="right">
+              <input type="text" nz-input [(ngModel)]="item.current_url" placeholder="Nhập đường dẫn mới" (ngModelChange)="markAsEdited(item)"/>
+            </td>
+            <td nzAlign="center">
+              <span *ngIf="item._id.startsWith('temp_') || item.isEdited" style="color: #008848; margin-right: 0.5rem; cursor: pointer; font-size: 18px" class="icon-save" nz-icon nzType="check-circle" nzTheme="outline" (click)="saveUrl(item)"></span>
+              <span style="color: #ff000a; cursor: pointer; font-size: 18px" class="icon-delete" nz-icon nzType="delete" nzTheme="outline" (click)="deleteUrl(item)"></span>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+  </div>
+</nz-layout>

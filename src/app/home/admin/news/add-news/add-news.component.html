@@ -1,0 +1,360 @@
+<div class="main h-100" *ngIf="doneLoad">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'them_tin_tuc' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="_body">
+    <div class="body-top">
+      <div class="content-left">
+        <div class="image_default d-flex align-items-center justify-content-center">
+          <input style="display: none;" id="file-upload" type="file" accept=".png, .jpg" (change)="onUpload($event)" />
+          <div *ngIf="img?.path" role="button"
+            class="_icon_trash d-flex align-items-center justify-content-center align-self-center"
+            (click)="deleteFileImage()" nz-tooltip nzTooltipTitle="{{'xoa_anh' | translate}}">
+            <span>X</span>
+          </div>
+
+          <div role="button"
+            class="_icon_connect d-flex align-items-center justify-content-center align-self-center _icon_connect_active"
+            (click)="handleChangeImage()">
+            <!-- icon upload từ thiết bị -->
+            <i nz-icon nzType="upload" nzTheme="outline" *ngIf="setupNewsImg.upload_image?.source == 'device'"></i>
+            <!-- icon upload từ thư viện -->
+            <i nz-icon nzType="picture" nzTheme="outline" *ngIf="setupNewsImg.upload_image?.source == 'library'"></i>
+
+            <i nz-icon nzType="cloud-upload" nzTheme="outline"
+              *ngIf="setupNewsImg.upload_image?.source == 'free_img'"></i>
+
+            <i nz-icon nzType="disconnect" nzTheme="outline" *ngIf="setupNewsImg.upload_image?.source == 'url'"></i>
+
+            <div *ngIf="openPopover">
+              <div class="overlay" (click)="closePopover($event)"></div>
+
+              <div class="popover">
+                <p>{{'duong_dan_anh' | translate}}</p>
+                <div class="d-flex align-items-center gap-4">
+                  <input style="flex: 1 0 100px;" class="input mr-1" type="text" [(ngModel)]="imageUrl"
+                    placeholder="{{'nhap_duong_dan_lien_ket' | translate}}">
+                  <span role="button" class="text-success" (click)="updateUrl()">{{'ap_dung' | translate}}</span>
+                </div>
+              </div>
+              <div class="arrow"></div>
+            </div>
+
+          </div>
+
+          <img [ngClass]="img?.path? 'img_w100': 'img_w90'"
+            [src]="img?.path? img?.path: '/assets/root/images/system/icons/image_default.svg' ">
+        </div>
+      </div>
+      <div class="content-right">
+        <div>
+          <mat-form-field style="width: 100%" appearance="fill">
+            <mat-label>{{'nguon_hinh_anh_hien_thi_len' | translate}}</mat-label>
+            <mat-select disableRipple [(ngModel)]="setupNewsImg.upload_image.source" (ngModelChange)="updateSetup()">
+              <mat-option value="device">{{'tu_thiet_bi' | translate}}</mat-option>
+              <mat-option value="library">{{'tu_thu_vien' | translate}}</mat-option>
+              <mat-option value="url">{{'duong_dan_hinh_anh' | translate}}</mat-option>
+              <mat-option value="free_img">{{'kho_anh_dung_chung' | translate}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field style="width: 100%" appearance="fill" *ngIf="setupNewsImg.upload_image?.source == 'device'">
+            <mat-label>{{'nen_anh_tai_len' | translate}}</mat-label>
+            <mat-select disableRipple [(ngModel)]="setupNewsImg.upload_image.compress_type"
+              (ngModelChange)="updateSetup()">
+              <mat-option [value]="'no-compress'">{{'khong_nen_anh_sau_khi_tai_len' | translate}}</mat-option>
+              <mat-option [value]="'compress-screen'">{{'nen_anh_theo_ti_le_man_hinh_hien_thi' |
+                translate}}</mat-option>
+              <mat-option [value]="'custom'">{{'nen_anh_theo_kich_thuoc_tu_chon' | translate}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field
+          *ngIf="setupNewsImg.upload_image?.source == 'device' && setupNewsImg.upload_image?.compress_type == 'custom'"
+          class="mr-4">
+          <mat-label>{{'chieu_rong' | translate}}</mat-label>
+          <input matInput placeholder="{{'chieu_rong' | translate}}" [(ngModel)]="compressWidth">
+        </mat-form-field>
+
+        <mat-form-field
+          *ngIf="setupNewsImg.upload_image?.source == 'device' && setupNewsImg.upload_image?.compress_type == 'custom'">
+          <mat-label>{{'chieu_cao' | translate}}</mat-label>
+          <input matInput placeholder="{{'chieu_cao' | translate}}" [(ngModel)]="compressHeight">
+        </mat-form-field>
+
+        <!-- Nếu ảnh chứa id_subproject thì đã là ảnh trên server rồi nên sẽ disable -->
+        <button
+          class="_icon_upload d-flex align-items-center justify-content-center align-self-center _icon_connect_active"
+          *ngIf="!img?.path?.includes(id_subproject) && img?.path " nz-button nzType="primary"
+          (click)="handleShowTransferImageToServer()">
+          {{'chuyen_anh_len_server' | translate}}
+        </button>
+      </div>
+    </div>
+    <form *ngIf="addNewsForm" class="form-container" [formGroup]="addNewsForm">
+
+      <div class="_input">
+        <div class="d-flex">
+          <label class="m-0">{{'tieu_de_tin_tuc' | translate}}</label><sup>*</sup>
+        </div>
+        <div class="layout-input d-flex" style="gap:8px">
+          <input class="input w-100" type="text"
+            [formControl]="getFormControl('title_' + functionService.languageTempCode)"
+            placeholder="{{'nhap_tieu_de_tin_tuc' | translate }}">
+          <app-select-language-config [isAdmin]="true"></app-select-language-config>
+        </div>
+        <div *ngIf="getFormControl('title_' + functionService.languageTempCode).errors?.minlength &&
+        getFormControl('title_' + functionService.languageTempCode).touched" class="text-danger w-100">
+          {{'tieu_de_tin_tuc_phai_nhieu_hon' | translate}} 4 {{'ky_tu' | translate}}
+        </div>
+      </div>
+      <div class="_input pt-2">
+        <div class="d-flex">
+          <label class="m-0">{{'danh_muc_tin_tuc' | translate}}</label><sup>*</sup>
+        </div>
+        <div class="layout-input d-flex" style="gap:8px">
+          <div style="width:100%; ">
+           <nz-select
+              class="w-100"
+                nzMode="multiple"
+                formControlName="id_categorys"
+                [nzPlaceHolder]="'trong' | translate"
+                nzShowSearch
+              >
+                <ng-container *ngFor="let o of categories">
+                  <nz-option nzCustomContent [nzValue]="o._id" [nzLabel]="renderOptionCategory(o)">
+                    {{ renderOptionCategory(o) }}
+                  </nz-option>
+                </ng-container>
+            </nz-select>
+          </div>
+
+          <button class="center-all-content button_list_unit" nz-button nzType="default" (click)="createCategory()">
+            <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+            {{'tao_nhanh' | translate}}
+          </button>
+        </div>
+      </div>
+
+      <!-- Liên kết chính tắc -->
+      <div class="_input  pt-2">
+        <div class="d-flex items-center gap-2">
+          <label class="m-0">{{'lien_ket_chinh_tac' | translate}}</label>
+          <i nz-icon nzType="question-circle" nzTheme="outline"  nz-popover [nzPopoverContent]="contentTemplateUrlCanonical"></i>
+          <ng-template #contentTemplateUrlCanonical>
+              <div style="max-width: 320px">
+                {{'giai_thich_url_canonical' | translate}}
+              </div>
+          </ng-template>
+        </div>
+        <div class="layout-input d-flex">
+          <input class="input w-100" type="text"
+            [formControlName]="'url_canonical'"
+            placeholder="easywebapp.com/chi-tiet-san-pham/san-pham-1">
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center pt-2">
+        <label class="m-0 mr-2">{{'an_hien_thi_tren_web' | translate}}</label>
+        <nz-switch formControlName="webapp_hidden"></nz-switch>
+      </div>
+
+      <nz-collapse>
+        <nz-collapse-panel
+          [nzHeader]="headerTpl"
+          [nzActive]="false"
+        >
+          <div class="layout-input flex items-center gap-2 mb-2">
+            <input [(ngModel)]="reference_links.link1"  [ngModelOptions]="{standalone: true}" id="link1" class="input w-100" type="text"  placeholder="{{'nhap_lien_ket_tham_chieu' | translate}}">
+            <button nz-tooltip [nzTooltipTitle]="'chon_tu_thu_vien' | translate" class="open-library"  nzShape="circle" nz-button nzType="default" nzType="primary" (click)="openFromLibrary(1)">
+              <i nz-icon nzType="cloud-upload"></i>
+            </button>
+          </div>
+
+          <div class="layout-input flex items-center gap-2 mb-2">
+            <input [(ngModel)]="reference_links.link2"  [ngModelOptions]="{standalone: true}" id="link2" class="input w-100" type="text"  placeholder="{{'nhap_lien_ket_tham_chieu' | translate}}">
+            <button nz-tooltip [nzTooltipTitle]="'chon_tu_thu_vien' | translate" class="open-library"  nzShape="circle" nz-button nzType="default" nzType="primary" (click)="openFromLibrary(2)">
+              <i nz-icon nzType="cloud-upload"></i>
+            </button>
+          </div>
+
+          <div class="layout-input flex items-center gap-2 mb-2">
+            <input [(ngModel)]="reference_links.link3"  [ngModelOptions]="{standalone: true}" id="link3" class="input w-100" type="text"  placeholder="{{'nhap_lien_ket_tham_chieu' | translate}}">
+            <button nz-tooltip [nzTooltipTitle]="'chon_tu_thu_vien' | translate" class="open-library"  nzShape="circle" nz-button nzType="default" nzType="primary" (click)="openFromLibrary(3)">
+              <i nz-icon nzType="cloud-upload"></i>
+            </button>
+          </div>
+
+          <div class="layout-input flex items-center gap-2 mb-2">
+            <input [(ngModel)]="reference_links.link4"  [ngModelOptions]="{standalone: true}" id="link4" class="input w-100" type="text"  placeholder="{{'nhap_lien_ket_tham_chieu' | translate}}">
+            <button nz-tooltip [nzTooltipTitle]="'chon_tu_thu_vien' | translate" class="open-library"  nzShape="circle" nz-button nzType="default" nzType="primary" (click)="openFromLibrary(4)">
+              <i nz-icon nzType="cloud-upload"></i>
+            </button>
+          </div>
+
+          <div class="layout-input flex items-center gap-2 mb-2">
+            <input [(ngModel)]="reference_links.link5"  [ngModelOptions]="{standalone: true}" id="link5" class="input w-100" type="text"  placeholder="{{'nhap_lien_ket_tham_chieu' | translate}}">
+            <button nz-tooltip [nzTooltipTitle]="'chon_tu_thu_vien' | translate" class="open-library"  nzShape="circle" nz-button nzType="default" nzType="primary" (click)="openFromLibrary(5)">
+              <i nz-icon nzType="cloud-upload"></i>
+            </button>
+          </div>
+        </nz-collapse-panel>
+      </nz-collapse>
+
+      <!-- Header template cho collapse -->
+      <ng-template #headerTpl>
+        <div style="display: inline-block">
+          <div class="flex items-center gap-2">
+            <label class="m-0" for="link1">{{'lien_ket_tham_chieu' | translate}}</label>
+            <i nz-icon nzType="question-circle" nzTheme="outline"  nz-popover [nzPopoverContent]="contentTemplate"></i>
+          </div>
+
+          <ng-template #contentTemplate>
+            <div style="max-width: 320px">
+              <div class="font-medium mb-1">{{'lien_ket_tham_chieu_la_gi' | translate}}</div>
+              <p class="m-0">
+                {{
+                  'huong_dan_su_dung_lien_ket_tham_chieu' | translate
+                }}
+              </p>
+              <ul class="mt-2 mb-2">
+                <li>{{'gan_1_hoac_nhieu_lien_ket' | translate}}</li>
+                <li>{{'co_the_la_url_website_hinh_anh_pdf_docx_video' | translate}}</li>
+                <li>{{'nhap_url_truc_tiep_hoac_bam_nut' | translate}} <strong>{{'chon_tu_thu_vien' | translate}}</strong> {{'de_chon_file' | translate}}</li>
+                <li>{{'neu_khong_co_lien_ket' | translate}}</li>
+              </ul>
+            </div>
+          </ng-template>
+        </div>
+      </ng-template>
+
+      <!-- Danh sách Trường tự định nghĩa -->
+      <div style="margin-top: 13px; display: flex; flex-wrap: wrap; justify-content: space-between">
+        <div class="col-6 p-0" *ngFor="let item of newFields">
+          <div>
+            <label for="name-input">{{item?.field_lable}}<sup *ngIf="item.field_required">*</sup></label>
+          </div>
+          <div class="layout-input d-flex" style="gap:8px">
+            <!-- <input class="input" style="width: 100%;"
+              [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)"
+              placeholder="{{item?.field_placeholder}}" [type]="item.field_typeof">
+            <app-select-language-config [isAdmin]="true"></app-select-language-config> -->
+
+            <ng-container *ngIf="item.field_input_type.includes('input')">
+              <input class="input w-100" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}" [type]="getTypeInput(item)">
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </ng-container>
+
+            <ng-container *ngIf="item.field_input_type.includes('select')">
+              <div style="width:100%;">
+                <app-vh-select
+                [categoriesChoosing]="addNewsForm.get(item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode )?.value"
+                [labelSearch]="languageService.translate('tim') + ' ' + item.field_lable"
+                [multiple]="item.field_input_type == 'select-multiple'"
+                [listCategories]="item.data_list"
+                [fieldLabel]="'label_'+ functionService.languageTempCode"
+                [fieldValue]="'value_'+ functionService.languageTempCode"
+                (selectChange)="selectChange($event, item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode )"
+                [isObject]="item.field_input_type == 'select-multiple'"
+                >
+                </app-vh-select>
+              </div>
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form">
+        <div class="tab-editor">
+          <div class="flag">
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+          <nz-tabset style="display: contents" [(nzSelectedIndex)]="selectedIndexTabset" class="row p-0 m-0">
+            <nz-tab *ngFor="let item of ckeditorFields; let i = index" [nzTitle]="item.field_lable | translate">
+              <ng-container *ngIf="selectedIndexTabset === i">
+                <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                  [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+                </ckeditor>
+              </ng-container>
+            </nz-tab>
+
+            <!-- trường tự tạo ckeditor -->
+            <nz-tab *ngFor="let item of newFieldsCKEditor; let j = index" nzTitle="{{item?.field_lable}}">
+              <ng-container *ngIf="selectedIndexTabset === (ckeditorFields.length + j)">
+                <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                  [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+                </ckeditor>
+              </ng-container>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+
+        <button class="_btn _btn_cancel d-flex align-items-center right-all-content mt-2" nz-button nzType="primary" (click)="openCKEditorByDevice()">
+          {{'mo_ta_rieng_cho_tung_thiet_bi' | translate}}
+        </button>
+
+        <div class="col-12 p-0 pt-2">
+          <div>
+            <div class="title d-flex flex-row justify-content-between">
+              <h5 style="font-size: 16px; margin: 6pt 0px !important;">SEO</h5>
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </div>
+            <div class="_body_seo">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_title">{{'tieu_de' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text"
+                    [formControl]="getFormControl('webapp_seo_title_' + functionService.languageTempCode)" id="webapp_seo_title"
+                    placeholder="{{'nhap_tieu_de' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_description">{{'mieu_ta' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text"
+                    [formControl]="getFormControl('webapp_seo_description_' + functionService.languageTempCode)"
+                    id="webapp_seo_description" placeholder="{{'nhap_mieu_ta' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_keyword">{{'tu_khoa' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text"
+                    [formControl]="getFormControl('webapp_seo_keyword_' + functionService.languageTempCode)"
+                    id="webapp_seo_keyword" placeholder="{{'nhap_tu_khoa' | translate}}" data-role="tagsinput">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="close()">
+      {{'huy' | translate}}
+    </button>
+    <button [disabled]="(!addNewsForm.valid || submitting)" class="mr-2" nz-button nzType="primary"
+      [ngStyle]="{opacity: (!addNewsForm.valid)? .5: 1}" (click)="onSubmitAddNews(addNewsForm.value)"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'them' | translate}}
+    </button>
+  </div>
+</div>

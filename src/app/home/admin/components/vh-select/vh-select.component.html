@@ -1,0 +1,79 @@
+<div style="position:relative; ">
+  <div style="border: 1px solid #c8c7cc;
+  padding: 4.5px 10px;
+  border-radius: 5px; display: flex; align-items: center; justify-content: space-between; width: 100%"
+    (click)="toggleSelectCategory($event)">
+    <div>
+      {{labelCategory | translate}}
+    </div>
+
+    <i class="bi bi-chevron-down" style="color:#c8c7cc;"></i>
+  </div>
+
+  <div *ngIf="showCategory" style="position:absolute; left: 0; top: 100%; width: 100%">
+    <div
+      style="background-color: white; position:absolute; width: 100%; z-index: 9999; box-shadow: 0 2px 4px -1px #0003, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;">
+      <input *ngIf="allowSearch" id="inputSearch" placeholder="{{labelSearch | translate}}"
+        style="outline: none; width:100%" #text (keyup)="searchCate(text.value)">
+      <ul style="list-style-type:none; margin:0; padding: 0; height: 100%; max-height: 300px; overflow-y: auto">
+        <!-- Trường hợp allowEmpty -->
+        <li *ngIf="allowEmpty" class="category-item"
+          style="display:flex; align-items: center; gap: 8px; padding: 8px 16px" (click)="chooseCategory($event, null)">
+          <input *ngIf="multiple" [checked]="!categoriesChoosing.length" #emptyCategory
+            [disabled]="categoriesChoosing.length" style="width:fit-content" type="checkbox" [name]="'empty'"
+            [value]="''">
+          <label style="margin: 0; width: 100%">
+            {{ 'trong' | translate }}
+          </label>
+        </li>
+
+        <!-- Nếu không có listMainSectors -->
+        <ng-container *ngIf="!listMainSectors?.length">
+          <li class="category-item" style="display:flex; align-items: center; gap: 8px; padding: 8px 16px"
+            *ngFor="let item of listCategories" (click)="chooseCategory($event, item)">
+            <input *ngIf="multiple" [checked]="isSelected(item)" style="width:fit-content" type="checkbox"
+              [name]="item[fieldValue]" [value]="item[fieldValue]">
+            <label style="margin: 0; width: 100%">
+              {{ item.array_step
+              ? generateSymBol(item.array_step) + (item[fieldLabel + '_' + functionService.languageTempCode] ||
+              item[fieldLabel])
+              : (item[fieldLabel + '_' + functionService.languageTempCode] || item[fieldLabel]) | translate }}
+            </label>
+          </li>
+        </ng-container>
+
+        <!-- Nếu có listMainSectors -->
+        <ng-container *ngIf="listMainSectors?.length">
+          <!-- Nhóm Tất cả -->
+          <li *ngIf="listCategories[0]?._id=='all'" class="category-item" style="display:flex; align-items: center; gap: 8px; padding: 8px 16px" (click)="chooseMainSector($event, listCategories[0])">
+            <label style="margin: 0; width: 100%">
+              {{ listCategories[0][fieldLabel + '_' + functionService.languageTempCode] || listCategories[0][fieldLabel] }}
+            </label>
+          </li>
+
+          <!-- Nhóm theo từng mainSector -->
+          <ng-container *ngFor="let sector of listMainSectors">
+            <li class="category-item" style="font-weight: bold; padding: 8px 16px;" (click)="chooseMainSector($event, sector)">
+              {{ 'nhom_nganh_hang' | translate }}: {{ (sector.label || sector.name) | translate}}
+            </li>
+            <li class="category-item" style="display:flex; align-items: center; gap: 8px; padding: 8px 16px"
+              *ngFor="let item of getCategoriesBySector(sector.value)" (click)="chooseCategory($event, item)">
+              <label style="margin: 0; width: 100%">
+                {{ item.array_step ? generateSymBol(item.array_step) + (item[fieldLabel + '_' + functionService.languageTempCode] || item[fieldLabel])
+                : (item[fieldLabel + '_' + functionService.languageTempCode] || item[fieldLabel]) | translate }}
+              </label>
+            </li>
+          </ng-container>
+
+          <li *ngIf="loading" class="category-item"
+            style="display:flex; align-items: center; justify-content: center; padding: 8px 16px">
+            <i nz-icon nzType="loading" nzTheme="outline"></i>
+          </li>
+        </ng-container>
+      </ul>
+
+    </div>
+
+    <div style="position: fixed; inset: 0; z-index: 99" (click)="toggleSelectCategory($event)"></div>
+  </div>
+</div>

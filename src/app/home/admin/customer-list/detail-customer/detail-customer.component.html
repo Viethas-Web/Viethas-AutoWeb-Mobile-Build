@@ -1,0 +1,182 @@
+ 
+<nz-layout>
+  <div nz-row>
+    <div nz-col nzSpan="21" class="title left-all-content">
+      <b>{{'Customer information' | translate}}</b>
+    </div>
+    
+    
+  </div>
+
+  <div>
+    <form nz-form [formGroup]="detailCustomer">
+      <div nz-row style="padding-top: 8px;">
+        <div nz-col nzSpan="24" class="center-all-content" style="padding-bottom:8px;">
+          <div class="bg-img center-all-content" (click)="getFile()">
+            <input style="display: none;" id="file-upload" type="file" accept=".png, .jpg"
+              (change)="onUpload($event)" />
+            <img  [src]="detailCustomer.value.img"
+              onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'" />
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div><b class='label'>{{'Customer name' | translate}}*</b></div>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTplName">
+              <nz-input-group>
+                <input formControlName="name" nz-input placeholder="{{'Enter customer name' | translate}}" required
+                  (blur)="updateCustomer({name: detailCustomer.value.name})" />
+                <ng-template #combineTplName let-control>
+                  <!-- <ng-container *ngIf="control.hasError('minlength')">{{'At least 6 characters' | translate}}
+                  </ng-container> -->
+                  <ng-container *ngIf="control.hasError('required')">{{'Customer name is required' | translate}}
+                  </ng-container>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <div><b class='label'>{{'Phone number' | translate}}*</b></div>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTplPhone">
+              <nz-input-group>
+                <input formControlName="phone" nz-input placeholder="{{'Enter customer phone' | translate}}"
+                  minlength="6" required (blur)="updateCustomer({phone: detailCustomer.value.phone})" />
+                <ng-template #combineTplPhone let-control>
+                  <ng-container *ngIf="control.hasError('minlength')">{{'At least 6 characters' | translate}}
+                  </ng-container>
+                  <ng-container *ngIf="control.hasError('required')">{{'Phone number is required' | translate}}
+                  </ng-container>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div nz-row>
+            <div nz-col nzSpan="12">
+              <div><b class='label'>{{'Gender' | translate}}</b></div>
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="{{'Select gender' | translate}}"
+                formControlName="gender" (ngModelChange)="updateCustomer({gender: detailCustomer.value.gender})">
+                <nz-option nzLabel="{{'Female'|translate}}" nzValue="Female"></nz-option>
+                <nz-option nzLabel="{{'Male'|translate}}" nzValue="Male"></nz-option>
+              </nz-select>
+            </div>
+            <div nz-col nzSpan="12">
+              <div><b class='label'>{{'Date of birth' | translate}}</b></div>
+              <nz-date-picker formControlName="datebirth" nzPlaceHolder="{{'Select date of birth' | translate}}"
+                (ngModelChange)="onChangeDatePicker($event)"></nz-date-picker>
+            </div>
+          </div>
+        </div>
+        <div nz-col nzSpan="12">
+          <div><b class='label'>{{'Email' | translate}}</b></div>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="{{'Email is not correct' | translate}}">
+              <nz-input-group>
+                <input formControlName="email" nz-input placeholder="{{'Enter customer mail' | translate}}"
+                  (blur)="updateCustomer({email: detailCustomer.value.email})" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div><b class='label'>{{'Address' | translate}}</b></div>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group>
+                <input formControlName="address" nz-input placeholder="{{'Enter address' | translate}}"
+                  (blur)="updateCustomer({address: detailCustomer.value.address})" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+          <div nz-row>
+            <div nz-col nzSpan="8">
+              <div><b class='label'>{{'Country' | translate}}</b></div>
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group>
+                    <input style="width: 80%;" formControlName="country" nz-input
+                      placeholder="{{'Enter country' | translate}}" (blur)="updateCustomer({country: detailCustomer.value.country})" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="8">
+              <div><b class='label'>{{'Province' | translate}}</b></div>
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group>
+                    <input style="width: 80%;" formControlName="province" nz-input
+                      placeholder="{{'Enter province' | translate}}" (blur)="updateCustomer({province: detailCustomer.value.province})" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzSpan="8">
+              <div><b class='label'>{{'District' | translate}}</b></div>
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-input-group>
+                    <input style="width: 70%;" formControlName="district" nz-input
+                      placeholder="{{'Enter district' | translate}}" (blur)="updateCustomer({district: detailCustomer.value.district})" />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="12">
+          <div class="medium-size"><b>{{'hang_thanh_vien'|translate}}</b></div>
+          <nz-form-control>
+            <nz-select  nzShowSearch [nzAllowClear]="false"
+              formControlName="id_customer_class" (ngModelChange)="updateCustomer({id_customer_class: detailCustomer.value.id_customer_class})">
+              <nz-option  [nzValue]="''" nzLabel="{{'khong_xac_dinh' | translate}}">
+              </nz-option>
+              <nz-option *ngFor="let item of customerGroups" [nzValue]="item._id" [nzLabel]="item.name">
+              </nz-option>
+            </nz-select> 
+
+          </nz-form-control>
+        </div>
+        <div nz-col nzSpan="12">
+          <div><b class='label'>{{'Note' | translate}}</b></div>
+          <textarea nz-input placeholder="{{'Enter note' | translate}}" [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            formControlName="note" (blur)="updateCustomer({note: detailCustomer.value.note})"></textarea>
+        </div>
+      </div>
+      <div nz-row>
+         
+        <div nz-col nzSpan="12" style="padding-top: 22px;">
+          <div></div>
+          <label nz-checkbox (ngModelChange)="changeDebtEnable($event)" formControlName="debt_enable">{{'Debit permission' | translate}}</label>
+        </div>
+      </div>
+      <div nz-row *ngIf="detailCustomer.value.debt_enable">
+        <div nz-col nzSpan="12" style="padding-top: 22px;">
+          <div><b class='label'>{{'thoi_han_thanh_toan' | translate}}*</b></div>
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="combineTplTime">
+              <nz-input-group> 
+                <nz-input-number style="width: 90%;" formControlName="time_for_payment"   nzPlaceHolder="{{'nhap_so_ngay' | translate}}" (nzBlur)="updateCustomer({time_for_payment : detailCustomer.value.time_for_payment})"  [nzMin]="0"></nz-input-number>
+                <ng-template #combineTplTime let-control>
+                  <ng-container *ngIf="control.hasError('required')">{{'truong_nay_la_bat_buoc' | translate}}
+                  </ng-container>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </div>
+</nz-layout>

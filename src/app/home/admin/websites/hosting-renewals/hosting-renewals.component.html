@@ -1,0 +1,120 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0 justify-content-between">
+      <div class="p-0 m-0 d-flex align-items-center justify-content-between" style="gap: 8rem">
+        <span class="title"><b>{{ "cac_goi_gia_han_hosting" | translate }}</b></span>
+        <!-- <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_ten_goi' | translate}}"
+              [(ngModel)]="keySearch" (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div> -->
+      </div>
+      <div class="p-0 m-0 d-flex align-items-center justify-content-end">
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button
+          (click)="resetPagination();getHostingRenewalPackage()" nzType="default">
+          {{ "xem" | translate}}
+        </button>
+        <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="addPackage()">
+          <i class="bi bi-plus"></i> {{ "them_goi" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 16px">
+    <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="hostingRenewalPackage" #tableSales [nzShowPagination]="false"
+      nzShowSizeChanger  [nzFooter]="hostingRenewalPackage.length &&  footerTpl" [nzLoading]="loading">
+      <thead class="_thead">
+        <tr>
+          <th nzWidth="10%" nzAlign="left" (click)="handleSort('name_'+functionService.selectedLanguageCode)">
+            <b>{{'ten_goi' | translate}}</b>
+            <span 
+              *ngIf="hostingRenewalPackage?.length" 
+              nz-icon 
+              [nzType]="!sortby['name_'+functionService.selectedLanguageCode] ? 'arrow-down' : 'arrow-up'" 
+              nzTheme="outline"
+              >
+            </span>
+          </th>
+          <th nzWidth="15%" nzAlign="left" (click)="handleSort('price')">
+            <b>{{'gia' | translate}}</b>
+            <span 
+              *ngIf="hostingRenewalPackage?.length" 
+              nz-icon 
+              [nzType]="!sortby.price ? 'arrow-down' : 'arrow-up'" 
+              nzTheme="outline"
+              >
+            </span>
+          </th>
+          <th nzWidth="15%" nzAlign="left" >
+            <b>{{'ma_goi' | translate}}</b>
+          </th>
+          <th nzWidth="15%" nzAlign="left"  >
+            <b>{{'so_ngay_su_dung' | translate}}</b>
+          </th>
+          <th nzWidth="15%" nzAlign="left"  >
+            <b>{{'don_vi' | translate}}</b>
+          </th>
+        
+          <th nzWidth="15%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container>
+          <tr *ngFor="let item of hostingRenewalPackage; index as i">
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item['name_' + functionService.selectedLanguageCode] }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" >
+                <span>{{  (item.units[0]?.price | number : "1.0-0") +"đ" }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start" >
+                <span>{{ item.units[0]?.barcode }}</span>
+              </div>
+            </td>
+           
+            <td>
+              <div class="d-flex justify-content-start text-start" >
+                <span>{{ item?.days }}</span>
+              </div>
+            </td>
+
+            <td>
+              <div class="d-flex justify-content-start text-start" >
+                <span>{{ item.units[0]?.['unit_'+functionService.selectedLanguageCode] }}</span>
+              </div>
+            </td>
+            
+            <td nzAlign="center">
+              <div class="icon-action">
+                <span nz-icon nzType="edit" nzTheme="outline" (click)="editPackage(item)"></span>
+                <span nz-icon nzType="delete" nzTheme="outline" (click)="deletePackage(item)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </nz-table>
+    <ng-template #footerTpl>
+      <app-pagination
+      [pageCurrent]="pageCurrent"
+      [totalPages]="totalPages"
+      [limit]="limit"
+      [pageShowChoose]="pageShowChoose"
+      [pageGoto]="pageGoto"
+      (pageIndexChange)="pageIndexChange($event)"
+      (limitChange)="limitChange($event)"
+      > 
+      </app-pagination>
+    </ng-template>
+  </div>
+</nz-layout>

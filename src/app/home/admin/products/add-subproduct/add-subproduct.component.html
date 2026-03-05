@@ -1,0 +1,241 @@
+<div>
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0" style="color: #008848">{{'them_thuoc_tinh' | translate}}</h2>
+    </div>
+  </div>
+  <form [formGroup]="formSubProduct" >
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label>
+        <b>{{'ten_thuoc_tinh_mau_sac_kich_co' | translate }}</b> 
+        <span style="color:red">*</span>
+      </nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubsName">
+        <div class="d-flex flex-row" style="gap:8px">
+          <input nz-input [formControl]="getFormControl('name_' + functionService.languageTempCode)" placeholder="{{'nhap_ten_thuoc_tinh' | translate }}"/>
+          <app-select-language-config [isAdmin]="true"></app-select-language-config>
+        </div>
+        <ng-template #errorSubsName let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'vui_long_nhap_thuoc_tinh' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'ten_thuoc_tinh_la_bat_buoc' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    
+
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'Barcode' }}</b></nz-form-label>
+      <nz-form-control [nzSpan]="22">
+        <input formControlName="barcode" #barcodesize maxlength="15" nz-input placeholder="{{'Barcode' }}" />
+      </nz-form-control>
+      <div nz-col [nzSpan]="2" class="text-end">
+        <i style="margin: 8px 0 0 8px; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+          [nzTooltipTitle]="('tao_ma_vach_tu_dong' | translate)" nzTooltipPlacement="bottom"
+          (click)="generateBarcodesAutomatically()"></i>
+      </div>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'tinh_trang_san_pham' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-select formControlName="availability">
+        <nz-option nzLabel="{{'con_hang' | translate}}" nzValue="in_stock"></nz-option>
+        <nz-option nzLabel="{{'het_hang' | translate}}" nzValue="out_of_stock"></nz-option>
+      </nz-select>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_nhap' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubsPriceImport">
+        <input nz-input class="price_import_subproduct" type="text" formControlName="price_import"
+          placeholder="{{'nhap_gia_nhap' | translate }}" />
+        <ng-template #errorSubsPriceImport let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_nhap_la_bat_buoc' | translate}}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_ban_buon_ban_si' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubsPrice2">
+        <input nz-input class="price_2_subproduct" type="text" formControlName="price2"
+          placeholder="{{'nhap_gia_ban_buon_ban_si' | translate }}" />
+        <ng-template #errorSubsPrice2 let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_ban_buon_ban_si_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_ban_le' | translate }}</b><span style="color:red">*</span></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubsPrice">
+        <input nz-input class="price_subproduct" type="text" formControlName="price"
+          placeholder="{{'nhap_gia_ban_le' | translate }}" />
+        <ng-template #errorSubsPrice let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_ban_le_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'gia_ban_chua_khuyen_mai' | translate }}</b></nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubswebapp_price_sales">
+        <input nz-input class="webapp_price_sales_subproduct" type="text" formControlName="webapp_price_sales"
+          placeholder="{{'nhap_gia_ban_chua_khuyen_mai' | translate }}" />
+        <ng-template #errorSubswebapp_price_sales let-control>
+          <ng-container *ngIf="control.hasError('required')">{{'gia_ban_chua_khuyen_mai_la_bat_buoc' | translate }}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_khong_hop_le' | translate }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24">
+        <b>{{'don_vi' | translate}}</b>
+        <span style="color:red">*</span>
+      </nz-form-label>
+      <nz-form-control [nzErrorTip]="combineTplUnit2">
+        <nz-input-group class="d-flex justify-content-between">
+          <div class="d-flex flex-row w-100" style="gap:8px">
+            <input class="col-8" [formControl]="getFormControl('unit_' + functionService.languageTempCode)" nz-input placeholder="{{'nhap_don_vi' | translate}}" />
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            <button (click)="openUnitsSubProduct()" class="center-all-content btn_unit" nz-button nzType="default">
+              <i nz-icon nzType="ordered-list" nzTheme="outline"></i>
+              {{formSubProduct.value.units.length > 1 ? ('danh_sach_don_vi' | translate) : ('them_don_vi' | translate)}}
+            </button>
+          </div>
+          <ng-template #combineTplUnit2 let-control>
+            <ng-container *ngIf="control.hasError('required')">{{'don_vi_la_bat_buoc' | translate}}
+            </ng-container>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-1 w-100">
+      <nz-form-label [nzSpan]="24"><b>{{'so_luong_canh_bao_het_hang' | translate }}</b><span style="color:red">*</span>
+      </nz-form-label>
+      <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubsWarning_number">
+        <input nz-input type="text" class="warning_number_subproduct" formControlName="warning_number"
+          placeholder="{{'nhap_so_luong' | translate }}" />
+        <ng-template #errorSubsWarning_number let-control>
+          <ng-container *ngIf="control.hasError('pattern')">{{'gia_tri_khong_hop_le' | translate}}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-col nzSpan="24" *ngIf="formSubProduct.value.manylot">
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24"><b>{{'so_ngay_hsd_con_lai_duoc_phep_nhap_hang' | translate }}</b><span style="color:red">*</span>
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="errorSubsdays_import_warning">
+          <input required type="text" maxlength="15" class="days_import_warning_subproduct"
+            formControlName="days_import_warning" nz-input />
+          <ng-template #errorSubsdays_import_warning let-control>
+            <ng-container *ngIf="control.hasError('required')">{{'truong_nay_la_bat_buoc' | translate}}
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  
+    <div nz-col nzSpan="24" *ngIf="formSubProduct.value.manylot">
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24"><b>{{'so_ngay_hsd_con_lai_duoc_canh_bao' | translate }}</b><span style="color:red">*</span>
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24" [nzErrorTip]="combineTplPrice4">
+          <input required type="text" maxlength="15" class="days_exp_warning_subproduct"
+            formControlName="days_exp_warning" nz-input />
+          <ng-template #combineTplPrice4 let-control>
+            <ng-container *ngIf="control.hasError('required')">{{'truong_nay_la_bat_buoc' | translate}}
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="24" flex class="mb-1 w-100">
+      <div class="d-flex justify-content-between">
+        <label class="m-0">{{'an_hien_thi_san_pham_tren_website' | translate}}</label>
+        <nz-switch formControlName="webapp_hidden"></nz-switch>
+      </div>
+      <div class="d-flex justify-content-between pb-1 pt-2">
+        <label class="m-0">{{'lo_han_su_dung' | translate}}</label>
+        <nz-switch formControlName="manylot" (click)="changeManyLotSubProduct($event)"></nz-switch>
+      </div>
+    </div>
+
+
+
+
+    <!-- Bảng quản lí phân loại sản phẩm -->
+    <div nz-col nzSpan="24">
+      <ng-container *ngIf="formSubProduct.value.manylot">
+        <div nz-row class="pb-2">
+          <div class="d-flex justify-content-between align-items-center" nz-col nzSpan="24">
+            <span style="font-size: 14px; color: #008848">
+              <b>{{'danh_sach_lo_san_pham' | translate}}</b>
+            </span>
+            <button class="_btn_title_list d-flex justify-content-between align-items-center" nz-button
+              nzType="default" nzType="primary" (click)="openFormAddLotProduct()">
+              <i nz-icon nzType="plus" nzTheme="outline"></i>
+              {{'them_lo' | translate}}
+            </button>
+          </div>
+        </div>
+
+        <!-- Bản phân loại hàng hóa -->
+        <nz-table [nzScroll]="{ y: '200px' }" #basicTableLot [nzData]="lots" [nzShowPagination]="false">
+          <thead>
+            <tr>
+              <th nzAlign="left" [nzWidth]="'30%'">{{'so_lo_san_xuat' | translate}}</th>
+              <th nzAlign="center" [nzWidth]="'60%'">{{'ngay_bat_dau_va_het_han' | translate}}</th>
+              <th nzAlign="center" [nzWidth]="'10%'">{{'#'}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let lot of basicTableLot.data; index as i">
+              <tr (click)="openEditLotProduct(lot, i)">
+                <td nzAlign="left">
+                  {{ lot.lot_number }} <br>
+                  <span *ngIf="lot.barcode.length">
+                    {{'Barcode: '+ lot.barcode}}
+                  </span>
+                </td>
+                <td nzAlign="center"> {{lot.date_mfg | date: "dd/MM/yyyy"}} - {{lot.date_exp | date: "dd/MM/yyyy"}}
+                </td>
+                <td nzAlign="center">
+                  <a nz-popconfirm [nzPopconfirmTitle]="('xoa_lo' | translate) + lot.lot_number" nzCancelText="{{'huy' | translate}}"
+                    (click)="$event.stopPropagation()" nzOkText="{{'Ok'}}" (nzOnConfirm)="openDeleteLotProduct(i)"
+                    nz-tooltip nzTooltipTitle="{{'xoa_lo' | translate}}">
+                    <i style="color: var(--ion-color-vh-red)" class="cus-icon" nz-icon nzType="delete"
+                      nzTheme="outline"></i>
+                  </a>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+      </ng-container>
+    </div>
+  </form>
+  <div class="d-flex align-items-center justify-content-end" style="gap: 1rem">
+    <button nz-button class="nz-hover-border"
+        style="background-color: var(--ion-color-vh-white); color: var(--ion-color-vh-black)" nzType="default"
+        (click)="dialogRef.close(false)">
+        {{"huy" | translate}}
+      </button>
+      <button [disabled]="formSubProduct.invalid" [ngStyle]="{opacity: formSubProduct.invalid ? 0.5 : 1}" nz-button
+        class="nz-hover-border" style="background-color: var(--ion-color-vh-green); color: var(--ion-color-vh-white)"
+        class="nz-hover-border-green" (click)="dialogRef.close(true)">
+        {{"them" | translate }}
+      </button>
+  </div>
+
+</div>

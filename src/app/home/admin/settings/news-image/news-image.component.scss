@@ -1,0 +1,98 @@
+//css bộ công cụ thiết kế
+.edit-parameter {
+  width: 100%;
+  .title {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .config-img {
+    margin-top: 10px;
+    width: 300px;
+
+    .label-item {
+      width: 100%;
+      cursor: pointer;
+      input {
+        width: 50px;
+      }
+    }
+  }
+}
+.row-border {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0px;
+  white-space: nowrap;
+}
+.edit-parameter__content {
+  width: 100%;
+  flex-direction: column;
+  display: flex ;
+  margin-top: 1.5rem;
+  gap: 32px;
+}
+.edit-parameter__sizepage {
+}
+.edit-parameter__img {
+  height: 200px;
+}
+.display-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.p-title {
+  font-weight: bold;
+}
+.edit-parameter__img {
+  font-size: 12px;
+  &--item-header {
+    background-color: #f8e1cb;
+    height: 20%;
+  }
+  &--item-content {
+    height: 60%;
+    padding: 10px 30px;
+    display: flex;
+    overflow: hidden;
+    .item1 {
+      background-color: #bfdaff;
+      width: 20%;
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      margin-right: 5px;
+    }
+    .item2 {
+      width: 60%;
+      overflow: hidden;
+      p {
+        height: 47%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .item3 {
+      background-color: #fef2be;
+      width: 20%;
+      writing-mode: vertical-lr;
+      margin-left: 5px;
+    }
+  }
+  &--item-footer {
+    background-color: #ffbbb9;
+    height: 20%;
+  }
+}
+
+
+.config-img__title {
+  margin-bottom: 3px;
+}
+
+.parameter-page {
+  width: 100%;
+}

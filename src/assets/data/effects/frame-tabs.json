@@ -1,0 +1,211 @@
+[
+  {
+    "label": "Không hiệu ứng",
+    "type": "none",
+    "data": [
+      {
+        "id": "000000",
+        "name": "Mặc định",
+        "animation": {
+          "animation-0": {}
+        }
+      }
+    ]
+  },
+  {
+    "label": "Khi rê chuột",
+    "type": "hover",
+    "data": [
+      {
+        "id": "000001",
+        "type": "1",
+        "name": "lam_mo",
+        "animation": {
+          "animation-1": {
+            "--1h-opacity": "0.6",
+            "--1h-transition": "0.3s",
+            "--1-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--1h-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--1h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--1-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000002",
+        "type": "1",
+        "name": "doi_mau_nen",
+        "animation": {
+          "animation-2": {
+            "--2h-background-color": "#00a859",
+            "--2-transition": "0.3s",
+            "--2h-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_nen",
+            "var": "--2h-background-color",
+            "type": "background-color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--2h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--2-transition",
+            "type": "transition"
+          }
+        ],
+        "override": {
+          "animation-2": "animation-2-hover-background-color"
+        }
+      },
+      {
+        "id": "000003",
+        "type": "1",
+        "name": "doi_mau_vien",
+        "animation": {
+          "animation-1": {
+            "--1h-transition": "0.3s",
+            "--1-transition": "0.3s",
+            "--1h-background-color": "#ff0000"
+          }
+        },
+        "customize": [
+          {
+            "label": "tuy_chinh_vien_mau",
+            "var": "--1h-background",
+            "type": "background-color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--1h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--1-transition",
+            "type": "transition"
+          }
+        ],
+        "override": {
+          "animation-1": "animation-1-hover-background-color"
+        }
+      },
+      {
+        "id": "000004",
+        "type": "1",
+        "name": "do_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-box-shadow": "0 0 1.5rem #000000",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua",
+            "var": "--0h-box-shadow",
+            "type": "box-shadow"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ],
+        "override": {
+          "animation-0": "animation-0-hover-box-shadow"
+        }
+      },
+      {
+        "id": "000005",
+        "type": "1",
+        "name": "tao_bong_nhieu_mau",
+        "animation": {
+          "animation-0": {
+            "--0f-filter": "drop-shadow(0 0 0.5rem #ff0000)",
+            "--0-50-filter": "drop-shadow(0 0 0.5rem #0000ff)",
+            "--0t-filter": "drop-shadow(0 0 0.5rem #00ff00)",
+            "--0h-animation-duration-shared": "1s",
+            "--0h-animation-timing-function-shared": "linear",
+            "--0h-animation-iteration-count-shared": "infinite",
+            "--0h-animation": "shape-animate-0h var(--0h-animation-duration-shared) var(--0h-animation-timing-function-shared) var(--0h-animation-iteration-count-shared)"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_1",
+            "var": "--0f-filter",
+            "type": "filter"
+          },
+          {
+            "label": "mau_2",
+            "var": "--0-50-filter",
+            "type": "filter"
+          },
+          {
+            "label": "mau_3",
+            "var": "--0t-filter",
+            "type": "filter"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0h-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0h-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0h-animation-iteration-count-shared",
+            "type": "animation-iteration-count"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Tự động",
+    "type": "keyframes",
+    "data": [
+    ]
+  },
+  {
+    "label": "Khi xuất hiện",
+    "type": "visible",
+    "data": [
+    ]
+  },
+  {
+    "label": "Khi cuộn trang",
+    "type": "scroll",
+    "data": []
+  }
+]

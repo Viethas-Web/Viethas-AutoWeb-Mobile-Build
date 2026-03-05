@@ -1,0 +1,88 @@
+<div class="add-product w-100 h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'them_tai_khoan' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="main" >
+    <form class="form p-0 m-0" *ngIf="addBankAccount" [formGroup]="addBankAccount">
+      <div class="row">
+        <!-- ngan_hang -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'ngan_hang' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <div style="width:100%; ">
+              <app-vh-select [labelSearch]="'tim_ngan_hang'" [allowEmpty]="false" [fieldLabel]="'shortName'" [fieldValue]="'bin'" [categoriesChoosing]="[addBankAccount.value['acq_id']]" [listCategories]="banks" (selectChange)="changeBanks($event)">
+              </app-vh-select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tên chu_tai_khoan -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'chu_tai_khoan' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="account_name" placeholder="{{'nhap_chu_tai_khoan' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'so_tai_khoan' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" formControlName="account_no" placeholder="{{'nhap_so_tai_khoan' | translate}}">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div>
+            <label for="name-input">
+              {{'template' | translate}} 
+              <span style="color: red;">*</span>
+              <a target="_blank" class="question" href="https://www.vietqr.io/danh-sach-api/link-tao-ma-nhanh/#3-template">
+                <span nz-icon nzType="question-circle" nzTheme="outline" ></span>
+              </a>
+            </label>
+          </div> 
+          <div class="layout-input">
+            <div style="width:100%; ">
+              <app-vh-select [allowEmpty]="false" [allowSearch]="false" [fieldLabel]="'label'" [fieldValue]="'value'" [categoriesChoosing]="[addBankAccount.value['template']]" [listCategories]="templates" (selectChange)="changeTemplate($event)">
+              </app-vh-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'chi_nhanh_thanh_toan' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <div style="width:100%; ">
+              <app-vh-select [allowEmpty]="false" [allowSearch]="false" [fieldLabel]="'name'" [fieldValue]="'_id'" [categoriesChoosing]="[addBankAccount.value['branch']]" [listCategories]="branchs" (selectChange)="changeBranch($event)">
+              </app-vh-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="close()">
+      {{'huy' | translate}}
+    </button>
+    <button [disabled]="!addBankAccount.valid || submitting" class="mr-2" nz-button nzType="primary"
+      [ngStyle]="{opacity: !addBankAccount.valid? .5: 1}" (click)="onSubmitAddBankAccount(addBankAccount.value)"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'them' | translate}}
+    </button>
+  </div>
+</div>
+

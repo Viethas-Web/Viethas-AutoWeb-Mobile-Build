@@ -1,0 +1,58 @@
+<nz-layout id="purchase-invoice-today">
+    <div class="heading-title">
+        <div class="tool-left">
+            <p style="cursor: pointer;" (click)="goBack()"><i class="bi bi-chevron-left"></i>{{'tro_ve' | translate}}</p>
+            <p class="title">{{'chi_tiet_dot' | translate}}</p>
+        </div>
+        <div class="tool-right">
+            <button class="button-right" (click)="showModal()">+ {{'chon_coupon_phat_hanh' | translate}}</button>
+        </div>
+    </div>
+    <div style="margin-top: 16px;">
+        <nz-table [nzScroll]="{ y: tableHeight }" [nzData]="list_data" #tableSales [nzShowPagination]="false"
+            nzShowSizeChanger [nzLoading]="loading_product">
+            <thead class="_thead">
+                <tr>
+                    <th nzWidth="30%" nzAlign="left" (click)="nameCol = !nameCol;sortProducts()" style="cursor: pointer;"><b> {{'ten_phieu' | translate}} 
+                        <i [class]="nameCol ? 'bi bi-caret-down-fill' : 'bi bi-caret-up-fill'"></i></b></th>
+                    <th nzWidth="25%" nzAlign="left"><b>{{'gia_tri' | translate}}</b></th>
+                    <th nzWidth="25%" nzAlign="center"><b>{{'so_luong' | translate}}</b></th>
+                    <th nzWidth="20%" nzAlign="center"><b>{{'chuc_nang' | translate}}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of tableSales.data">
+                    <tr style="cursor: pointer;" >
+                        <td nzAlign="left" >
+                            <span>{{ item.coupon_name }}</span>
+                        </td>
+                        <td nzAlign="left">
+                            <span>{{ item.value | number: '1.0-0'}} VNĐ</span>
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ item.quantity_released}}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <button style="padding:10px;background:none;color: red;" nz-popconfirm
+                            [nzPopconfirmTitle]="'Xóa voucher '+ item.coupon_name +' này?'"
+                            nzPopconfirmPlacement="bottom"
+                            nzCancelText="{{'huy' | translate}}"
+                            nzOkText="{{'xoa' | translate}}"
+                            (nzOnConfirm)="removeDetail(item)"
+                            (nzOnCancel)="cancel()"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </nz-table>
+    </div>
+</nz-layout>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'chon_coupon' | translate}}" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzData
+    nzCancelText="{{'huy' | translate}}" nzOkText="{{'them' | translate}}">
+    <ng-container *nzModalContent>
+            <div class="list-item">
+                <nz-checkbox-group style="display:grid" [(ngModel)]="list_show_coupons"></nz-checkbox-group>
+            </div>
+            <nz-empty *ngIf="!list_show_coupons.length" nzNotFoundImage="simple"></nz-empty>
+    </ng-container>
+</nz-modal>

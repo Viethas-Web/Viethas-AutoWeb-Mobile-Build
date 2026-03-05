@@ -1,0 +1,103 @@
+.actice {
+  background-color: #00a859;
+  color: white;
+}
+.scroll {
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--ion-color-vh-green);
+    outline: 1px solid slategrey;
+    height: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  }
+}
+button {
+  margin: 4px;
+  font-weight: normal !important;
+}
+.folder {
+  padding: 2px;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  height: auto;
+  display: flex;
+}
+.file {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+.folder:hover {
+  // background-color: antiquewhite;
+  background-color: red;
+  cursor: default;
+}
+
+.relative {
+  position: relative;
+  height: 90%;
+  overflow: auto;
+}
+.relative_detail {
+  position: relative;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.absolute {
+  position: absolute;
+}
+.hidden {
+  display: none;
+}
+.action {
+  width: 180px;
+  top: 30px;
+  background-color: aliceblue;
+  position: absolute;
+  margin-bottom: -210px;
+  margin-right: -190px;
+  padding: 8px;
+  border-radius: 5px;
+  z-index: 999;
+  p {
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 8px !important;
+    display: flex;
+    align-items: center;
+    mat-icon {
+      color: #fad76f;
+      margin-right: 4px;
+    }
+  }
+  p:hover {
+    color: white;
+    background-color: #00a859;
+    border-radius: 4px;
+  }
+}
+.action_detail {
+  bottom: -84px !important;
+  left: 0 !important;
+}
+.action_right {
+  bottom: 80px !important;
+  right: -65px !important;
+}
+
+.image-loading::ng-deep  .ant-skeleton-image {
+  width: 100px  !important;
+  height: 100px !important;
+  margin-bottom: 3px !important;
+}

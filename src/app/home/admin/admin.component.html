@@ -1,0 +1,640 @@
+<div class="admin" id="admin" *ngIf="syncStatus && vhQueryAutoWeb.checkSigninAdmin()">
+  <div id="top-navbar" class="header navbar">
+    <div class="container-fluid p-0 ">
+      <div class="row p-0 m-0 w-100">
+        <div class="col-4 p-0 m-0 d-flex align-items-center justify-content-between">
+          <img style="height: 40px;" src="assets/viethas.png" />
+          <span class="m-0 title_page">{{'trang_quan_tri' | translate}}</span>
+
+        </div>
+        <div class="col-4 p-0 m-0 d-flex align-items-center justify-content-center">
+          <span *ngIf="functionService.multi_languages.length>1" class="mr-2"
+            style="font-weight: 500; color: #373737;">{{'ngon_ngu_hien_thi' | translate}}:</span>
+          <app-select-language-config [isSetLanguageCode]="true"></app-select-language-config>
+        </div>
+        <div class="col-4 m-0 d-flex align-items-center" style="padding-right: 8px;">
+          <div class="administrator w-100 d-flex justify-content-end">
+            <button class="ml-1">
+              <i class="bi bi-person"></i>
+              <span nz-dropdown [nzDropdownMenu]="menu">{{email}}</span>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu nzSelectable>
+                  <li nz-menu-item (click)="isVisibleChangePass = true">{{'doi_mat_khau' | translate}}</li>
+                  <li nz-menu-item (click)="signout()">{{'dang_xuat' | translate}}</li>
+                </ul>
+              </nz-dropdown-menu>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <nz-layout *ngIf="loading" style="width: 100%; max-width: 20%;">
+      <nz-sider *ngIf="!designMode" class="ant-table-body">
+        <div class="sider-content">
+          <ul class="sider-menu ant-table-body w-100" nz-menu nzMode="inline">
+            <li nz-menu-item [nzSelected]="true" (click)="routerToModule('')">
+              <span nz-icon nzType="home" nzTheme="outline"></span>
+              <span>{{'tong_quan' | translate}}</span>
+            </li>
+            <!-- <li nz-menu-item (click)="routerToModule('new-fields')">
+              <span nz-icon nzType="profile" nzTheme="outline"></span>
+              <span>{{'truong_du_lieu_tu_tao' | translate}}</span>
+            </li> -->
+            <li *ngIf="display.category" nz-menu-item (click)="routerToModule('categories')">
+              <span nz-icon nzType="profile" nzTheme="outline"></span>
+              <span>{{'danh_muc' | translate}}</span>
+            </li>
+            <li *ngIf="display.snimei" nz-menu-item (click)="$event.stopPropagation();routerToModule('snimei')">
+              <span nz-icon nzType="file-text" nzTheme="outline"></span>
+              <span>{{'tra_cuu_snimei' | translate}}</span>
+            </li>
+            <li *ngIf="display.ecommerce" (click)="$event.stopPropagation();routerToModule('products')" nz-menu-item>
+              <span nz-icon nzType="read" nzTheme="outline"></span>
+              <span>{{'quan_ly_san_pham' | translate}}</span>
+
+            </li>
+            <li *ngIf="display.food_drink" nz-menu-item (click)="$event.stopPropagation();routerToModule('foods')">
+              <span nz-icon nzType="read" nzTheme="outline"></span>
+              <span>{{'quan_ly_mon_an' | translate}}</span>
+            </li>
+            <li *ngIf="display.ecommerce || display.food_drink" nz-menu-item
+              (click)="$event.stopPropagation();routerToModule('combo')">
+              <span nz-icon nzType="read" nzTheme="outline"></span>
+              <span>{{'quan_ly_combo' | translate}}</span>
+            </li>
+            <li *ngIf="display.food_drink" nz-menu-item
+              (click)="$event.stopPropagation();routerToModule('side-dishes')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'quan_ly_topping' | translate}}</span>
+            </li>
+            <li *ngIf="display.news" nz-menu-item (click)="routerToModule('news')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'tin_tuc' | translate}}</span>
+            </li>
+            <li *ngIf="display.blogs" nz-menu-item (click)="routerToModule('blogs')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'bai_viet' | translate}}</span>
+            </li>
+            <li *ngIf="display.webapp" nzIcon="shop" nz-submenu nzTitle="{{'quan_ly_webapp' | translate}}"
+              [(nzOpen)]="openMap.sub8">
+              <ul>
+                <li nz-menu-item (click)="routerToModule('websites')">
+                  <span nz-icon nzType="shop" nzTheme="outline"></span>
+                  <span>{{'danh_sach' | translate}} website</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('websites-apps')">
+                  <span nz-icon nzType="shop" nzTheme="outline"></span>
+                  <span>{{'danh_sach' | translate}} apps</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('websites-contact')">
+                  <span nz-icon nzType="shop" nzTheme="outline"></span>
+                  <span>{{'thong_tin_tu_van' | translate}}</span>
+                </li>
+              </ul>
+            </li>
+
+            <li *ngIf="display.service_time" nz-submenu [(nzOpen)]="openMap.sub12"
+              nzTitle="{{'quan_ly_dich_vu_theo_thoi_gian' | translate}}" nzIcon="environment">
+              <ul class="list-unstyled p-0 w-100">
+                <li nz-menu-item (click)="routerToModule('rooms')" [ngClass]="{'btn_active': typeData === 'rooms'}">
+                  <span nz-icon nzType="bank" nzTheme="outline"></span>
+                  <span>{{'quan_ly_phong' | translate}}</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('amenities')"
+                  [ngClass]="{'btn_active': typeData === 'amenities'}">
+                  <span nz-icon nzType="appstore" nzTheme="outline"></span>
+                  <span>{{'quan_ly_tien_nghi' | translate}}</span>
+                </li>
+
+                <li nz-menu-item (click)="routerToModule('room-types')"
+                  [ngClass]="{'btn_active': typeData === 'room-types'}">
+                  <span nz-icon nzType="appstore" nzTheme="outline"></span>
+                  <span>{{'quan_ly_loai_phong' | translate}}</span>
+                </li>
+
+                <li nz-menu-item (click)="routerToModule('reservation')"
+                  [ngClass]="{'btn_active': typeData === 'reservation'}">
+                  <span nz-icon nzType="appstore" nzTheme="outline"></span>
+                  <span>{{'dat_phong' | translate}}</span>
+                </li>
+              </ul>
+            </li>
+
+
+
+            <li *ngIf="display.real_estate" nz-menu-item (click)="routerToModule('')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'quan_ly_bat_dong_san' | translate}}*</span>
+            </li>
+            <li *ngIf="display.service" nz-menu-item (click)="routerToModule('services')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'quan_ly_dich_vu_theo_cong' | translate}}*</span>
+            </li>
+
+
+
+            <li nz-submenu *ngIf="display.recruitment" [(nzOpen)]="openMap.sub9" nzTitle="{{'tuyen_dung' | translate}}"
+              nzIcon="dollar">
+              <ul class="list-unstyled p-0 w-100">
+                <li nz-menu-item (click)="routerToModule('recruitment')"
+                  [ngClass]="{'btn_active': typeData === 'recruitment'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'danh_sach_cong_viec' | translate}}</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('info-candidate')"
+                  [ngClass]="{'btn_active': typeData === 'info-candidate'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'danh_sach_ung_tuyen' | translate}}</span>
+                </li>
+              </ul>
+            </li>
+
+            <li *ngIf="display.ecommerce || display.food_drink" nz-submenu [(nzOpen)]="openMap.sub5"
+              nzTitle="{{'hoa_don' | translate}}" nzIcon="dollar">
+              <ul class="list-unstyled p-0 w-100">
+                <li nz-menu-item (click)="routerToModule('invoices')"
+                  [ngClass]="{'btn_active': typeData === 'invoices'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'hoa_don_dat_hang' | translate}}</span>
+                </li> 
+                <li nz-menu-item (click)="routerToModule('invoices-online')"
+                  [ngClass]="{'btn_active': typeData === 'invoices-online'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'hoa_don_thanh_toan_online' | translate}}</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('invoices-of-sale')"
+                  [ngClass]="{'btn_active': typeData === 'invoices-of-sale'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'hoa_don_ban_hang' | translate}}</span>
+                </li>
+              </ul>
+            </li>
+
+            <li nz-submenu [(nzOpen)]="openMap.sub16" *ngIf="display.ecommerce || display.food_drink || display.webapp"
+              nzTitle="{{'Google Shopping' | translate}}" nzIcon="google">
+              <ul class="list-unstyled p-0 w-100">
+                <li nz-menu-item (click)="routerToModule('fields-embedded-script')"
+                  [ngClass]="{'btn_active': typeData === 'fields-embedded-script'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'cau_hinh_truong_du_lieu_embedded_script' | translate}}</span>
+                </li> 
+                <li nz-menu-item (click)="routerToModule('fields-google-shopping')"
+                  [ngClass]="{'btn_active': typeData === 'fields-google-shopping'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'cau_hinh_truong_du_lieu_google_shopping' | translate}}</span>
+                </li> 
+                <li nz-menu-item (click)="routerToModule('products-google-shopping')"
+                  [ngClass]="{'btn_active': typeData === 'products-google-shopping'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'danh_sach_san_pham_google_shopping' | translate}}</span>
+                </li> 
+                <li nz-menu-item (click)="routerToModule('list-scripts')"
+                  [ngClass]="{'btn_active': typeData === 'list-scripts'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'danh_sach' | translate}} Head & Body Scripts</span>
+                </li> 
+                <li nz-menu-item (click)="routerToModule('list-scripts-object')"
+                  [ngClass]="{'btn_active': typeData === 'list-scripts-object'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'danh_sach_scripts_cho_doi_tuong' | translate}}</span>
+                </li> 
+              </ul>
+            </li>
+            <li *ngIf="display.ecommerce || display.food_drink" nz-submenu [(nzOpen)]="openMap.sub6"
+              nzTitle="{{'chuong_trinh_ban_hang' | translate}}" nzIcon="percentage">
+              <ul>
+                <li nz-menu-item (click)="routerToModule('customer-class')"
+                  [ngClass]="{'btn_active': typeData === 'customer-class'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'hang_khach_hang' | translate}}*</span>
+                </li>
+                <li nz-submenu nzTitle="{{'chuong_trinh_tich_diem' | translate}}" nzIcon="copyright">
+                  <ul class="list-unstyled p-0 w-100">
+                    <li nz-menu-item (click)="routerToModule('manage-point')"
+                      [ngClass]="{'btn_active': typeData === 'manage-point'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'quan_ly_diem_khach_hang' | translate}}</span>
+                    </li>
+                    <li nz-menu-item (click)="routerToModule('reward-point-by-bill')"
+                      [ngClass]="{'btn_active': typeData === 'reward-point-by-bill'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'tich_diem_theo_hoa_don' | translate}}</span>
+                    </li>
+                    <li nz-menu-item (click)="routerToModule('reward-point-by-product')"
+                      [ngClass]="{'btn_active': typeData === 'reward-point-by-product'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'tich_diem_theo_san_pham' | translate}}</span>
+                    </li>
+                  </ul>
+                </li>
+                <li nz-submenu [(nzOpen)]="openMap.sub7" nzTitle="{{'quan_ly_coupon' | translate}}" nzIcon="copyright">
+                  <ul class="list-unstyled p-0 w-100">
+                    <li nz-menu-item (click)="routerToModule('list-coupons')"
+                      [ngClass]="{'btn_active': typeData === 'list-coupons'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'danh_sach' | translate}} coupon</span>
+                    </li>
+                    <li nz-menu-item (click)="routerToModule('release-coupons')"
+                      [ngClass]="{'btn_active': typeData === 'release-coupons'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'phat_hanh' | translate}} coupon</span>
+                    </li>
+                  </ul>
+                </li>
+                <li nz-submenu [(nzOpen)]="openMap.sub11" nzTitle="{{'quan_ly_voucher' | translate}}" nzIcon="gift">
+                  <ul class="list-unstyled p-0 w-100">
+                    <li nz-menu-item (click)="routerToModule('list-voucher')"
+                      [ngClass]="{'btn_active': typeData === 'list-voucher'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'danh_sach' | translate}} voucher</span>
+                    </li>
+                    <li nz-menu-item (click)="routerToModule('release-vouchers')"
+                      [ngClass]="{'btn_active': typeData === 'release-vouchers'}">
+                      <span nz-icon nzType="read" nzTheme="outline"></span>
+                      <span>{{'phat_hanh' | translate}} voucher</span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li nz-submenu [(nzOpen)]="openMap.sub10" nzTitle="{{'cau_hinh_hinh_anh' | translate}}" nzIcon="file-image">
+              <ul>
+                <ng-container *ngFor="let setting of settings">
+                  <li *ngIf="conditionToShow(setting)" nz-menu-item (click)="handleChooseSettings(setting)">
+                    <span nz-icon [nzType]="setting.icon" nzTheme="outline"></span>
+                    <span>{{setting.label | translate}}</span>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+
+            <li *ngIf="display.ecommerce || display.food_drink" nz-submenu [(nzOpen)]="openMap.sub13"
+              nzTitle="{{'thiet_lap_thanh_toan_don_hang' | translate}}" nzIcon="file-image">
+              <ul>
+                <li nz-menu-item (click)="routerToModule('casso')">
+                  <span nz-icon nzType="shop" nzTheme="outline"></span>
+                  <span>{{'Casso' | translate}}</span>
+                </li>
+              </ul>
+            </li>
+
+            <li nz-menu-item (click)="routerToModule('redirect-page')">
+              <i nz-icon nzType="ordered-list" nzTheme="outline"></i>
+              <span>{{'danh_sach_chuyen_trang' | translate}}</span>
+            </li>
+
+            <li nz-menu-item (click)="routerToModule('')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'nhan_vien' | translate}}*</span>
+            </li>
+            <li nz-submenu [(nzOpen)]="openMap.sub14" nzTitle="{{'Tối ưu công cụ tìm kiếm (SEO)' | translate}}"
+              nzIcon="dollar">
+              <ul class="list-unstyled p-0 w-100">
+                <li nz-menu-item (click)="routerToModule('sitemap')" [ngClass]="{'btn_active': typeData === 'sitemap'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'so_do_trang_web' | translate}}</span>
+                </li>
+
+                <li nz-menu-item (click)="routerToModule('canonical')"
+                  [ngClass]="{'btn_active': typeData === 'canonical'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'Đường dẫn Url chính tắc' | translate}}</span>
+                </li>
+
+                <li nz-menu-item (click)="routerToModule('folders-manager')"
+                  [ngClass]="{'btn_active': typeData === 'folders-manager'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'Quản lý thư mục' | translate}}</span>
+                </li>
+              </ul>
+            </li>
+            <li nz-submenu [(nzOpen)]="openMap.sub15" [nzTitle]="'Cấu hình website'" nzIcon="percentage">
+              <ul>
+                <li nz-menu-item (click)="routerToModule('config-website')"
+                  [ngClass]="{'btn_active': typeData === 'customer-class'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'bieu_trung_logo_website' | translate}}</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('config-hosting')"
+                  [ngClass]="{'btn_active': typeData === 'customer-class'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'Trỏ tên miền về hosting'}}*(đang phát triển)</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('config-ssl')"
+                  [ngClass]="{'btn_active': typeData === 'customer-class'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'SSL cho website'}}*(đang phát triển)</span>
+                </li>
+                <li nz-menu-item (click)="routerToModule('config-administrator')"
+                  [ngClass]="{'btn_active': typeData === 'customer-class'}">
+                  <span nz-icon nzType="read" nzTheme="outline"></span>
+                  <span>{{'Quản trị viên'}}*(đang phát triển)</span>
+                </li>
+              </ul>
+            </li>
+            <li nz-menu-item (click)="routerToModule('info-contact')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'thong_tin_lien_he' | translate}}</span>
+            </li>
+            <li nz-menu-item (click)="routerToModule('zalo')">
+              <span nz-icon nzType="setting" nzTheme="outline"></span>
+              <span>{{'thiet_lap' | translate}} zalo*</span>
+            </li>
+            <li *ngIf="display.basic" nz-menu-item (click)="routerToModule('customers')">
+              <span nz-icon nzType="setting" nzTheme="outline"></span>
+              <span>{{'khach_hang' | translate}}</span>
+            </li>
+            <li nz-menu-item>
+              <span nz-icon nzType="setting" nzTheme="outline"></span>
+              <span>{{'phuong_thuc_thanh_toan' | translate}}</span>
+            </li>
+            <li *ngIf="display.branchs" nz-menu-item (click)="routerToModule('branchs')">
+              <span nz-icon nzType="shop" nzTheme="outline"></span>
+              <span>{{'chuoi_cua_hang' | translate}}*</span>
+            </li>
+          </ul>
+
+          <div class="line"></div>
+
+          <h2 class="m-0">{{'danh_sach_khoi_tu_do' | translate}}</h2>
+          <ul class="sider-menu ant-table-body w-100" nz-menu [nzMode]="'vertical'">
+            <!-- Danh sách các block popup/hover/menu dự án -->
+            <ng-container *ngIf="blockIndependentDesign.popups.length !== 0; else templateEmptyPopup">
+              <li nz-submenu nzTitle="{{'khoi_hop_thoai_noi_dung' | translate}}" nzIcon="mail">
+                <ul nz-menu-group nzTitle="{{'danh_sach_thanh_phan' | translate}}">
+                  <!-- Danh sách các block popup/hover/menu dự án -->
+                  <ng-container *ngFor="let popup of blockIndependentDesign.popups">
+                    <!-- Kiểm tra xem popup có chưa frame có chưa object có dynamic_data hay không, nếu không có thì không hiện -->
+                    <ng-container *ngIf="popup.component != 'AtwBlockHeader' && popup.component != 'AtwBlockFooter'">
+                      <!-- Danh sách popup có chứa frame/object -->
+                      <li (click)="chooseBlock(popup)" nz-menu-item nzIcon="reconciliation">
+                        <span nz-icon nzType="reconciliation" nzTheme="outline"></span>
+                        <span>{{popup.name | translate}}</span>
+                      </li>
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+
+            <!-- Danh sách các block header dự án -->
+            <ng-container *ngIf="blockIndependentDesign.headers.length !== 0; else templateEmptyHeaders">
+              <li nz-submenu nzTitle="{{'khoi_header' | translate}}" nzIcon="appstore">
+                <ul nz-menu-group nzTitle="{{'danh_sach_thanh_phan' | translate}}">
+                  <!-- Danh sách header -->
+                  <ng-container *ngFor="let header of blockIndependentDesign.headers">
+                    <!-- Kiểm tra xem header có chưa frame có chưa object có dynamic_data hay không, nếu không có thì không hiện -->
+                    <ng-container *ngIf="header.component == 'AtwBlockHeader'">
+                      <!-- Danh sách header có chứa frame/object -->
+                      <li (click)="chooseBlock(header)" nz-menu-item nzIcon="reconciliation">
+                        <span nz-icon nzType="appstore" nzTheme="outline"></span>
+                        <span>{{header.name | translate}}</span>
+                      </li>
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+
+            <!-- Danh sách các block footer dự án -->
+            <ng-container *ngIf="blockIndependentDesign.footers.length !== 0; else templateEmptyFooters">
+              <li nz-submenu nzTitle="{{'khoi_footer' | translate}}" nzIcon="setting">
+                <ul nz-menu-group nzTitle="{{'danh_sach_thanh_phan' | translate}}">
+                  <!-- Danh sách footer -->
+                  <ng-container *ngFor="let footer of blockIndependentDesign.footers">
+                    <!-- Kiểm tra xem footer có chưa frame có chưa object có dynamic_data hay không, nếu không có thì không hiện -->
+                    <ng-container *ngIf="footer.component == 'AtwBlockFooter'">
+                      <!-- Danh sách footer có chứa frame/object -->
+                      <li (click)="chooseBlock(footer)" nz-menu-item nzIcon="reconciliation">
+                        <span nz-icon nzType="reconciliation" nzTheme="outline"></span>
+                        <span>{{footer.name | translate}}</span>
+                      </li>
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+
+            <li nz-submenu nzTitle="{{'cau_hinh_trang_bao_tri' | translate}}" nzIcon="setting"
+              (click)="routerToModule('config-maintenance')">
+            </li>
+
+
+
+            <!-- Hiển thị kiểu trống -->
+            <ng-template #templateEmptyFooters>
+              <li nz-menu-item style="padding-left: 24px !important;">
+                <span nz-icon nzType="setting" nzTheme="outline"></span>
+                <span>{{'khoi_footer' | translate}}</span>
+              </li>
+            </ng-template>
+            <ng-template #templateEmptyHeaders>
+              <li nz-menu-item style="padding-left: 24px !important;">
+                <span nz-icon nzType="appstore" nzTheme="outline"></span>
+                <span>{{'khoi_header' | translate}}</span>
+              </li>
+            </ng-template>
+            <ng-template #templateEmptyPopup>
+              <li nz-menu-item style="padding-left: 24px !important;">
+                <span nz-icon nzType="mail" nzTheme="outline"></span>
+                <span>{{'khoi_hop_thoai_noi_dung' | translate}}</span>
+              </li>
+            </ng-template>
+          </ul>
+
+          <!-- Danh sách trang -->
+
+          <div class="line"></div>
+          <h2 class="m-0">{{'danh_sach_trang' | translate}}</h2>
+          <ul *ngIf="pages.length" class="sider-menu ant-table-body w-100" nz-menu [nzMode]="'vertical'">
+            <!-- Danh sách trang -->
+            <li *ngFor="let page of pages" [id]="page._id"
+              [ngStyle]="{color: page._id == detailCurrentPage?._id ? '#498433' : ''}" nz-submenu
+              [nzTitle]="page['name_' + functionService.selectedLanguageCode]" (click)="choosePage(page)"></li>
+          </ul>
+        </div>
+      </nz-sider>
+      <nz-sider *ngIf="designMode" class="ant-table-body">
+        <div *ngIf="detailCurrentPage">
+          <span>
+            {{'trang' | translate}}:
+            <span style="color: #008848">
+              {{ ( detailCurrentPage?.['name_' + functionService.selectedLanguageCode]) | translate }}
+            </span>
+          </span>
+        </div>
+        <!-- nút thoát và nút lưu -->
+        <div style="display:flex; gap:.5rem; align-items: center;">
+          <button nz-button nzType="default" class=" mt-2" (click)="handleExit()">
+            <span>{{'thoat' | translate}}</span>
+          </button>
+          <button [ngStyle]="{
+            'opacity': functionService.objectsAndBlocksUpdated.length ? '1' : '0.5',
+            'cursor': functionService.objectsAndBlocksUpdated.length ? 'pointer' : 'not-allowed'
+          }" nz-button nzType="primary" class="mt-2" (click)="handleSave()">
+            <span>{{'luu' | translate}}</span>
+          </button>
+        </div>
+
+        <div class="sider-content design-mode mt-2 mb-2 p-4">
+          <!-- ObjectConfig -->
+          <ng-container *ngIf="objectChoosing">
+            <ng-template
+              [ngComponentOutlet]="pipeBlockObjectAdminConfigService.pipeBlockObjectAdminConfigComponent(objectChoosing.component_admin_config)  "
+              [ndcDynamicInputs]="{
+                device: selectedDevice,
+                objectChoosing: objectChoosing,
+                staticdata: objectChoosing.staticdata,
+                config: objectChoosing[selectedDevice + '_config'],
+                class: objectChoosing[selectedDevice + '_class'],
+                blocks_of_page: detailCurrentPage?.blocks,
+                type: 'admin' 
+              }">
+            </ng-template>
+          </ng-container>
+
+          <!-- Block config -->
+          <ng-container *ngIf="blockChoosing">
+            <ng-template
+              [ngComponentOutlet]="pipeBlockObjectAdminConfigService.pipeBlockObjectAdminConfigComponent(blockChoosing.component_admin_config)  "
+              [ndcDynamicInputs]="{
+                device: selectedDevice,
+                blockChoosing: blockChoosing,
+                staticdata: blockChoosing.staticdata,
+                position: blockChoosing[selectedDevice +'_position_' +(blockChoosing.component != 'AtwBlockBlank' ? '' : detailCurrentPage._id)],
+                config: blockChoosing[selectedDevice + '_config'],
+                class: blockChoosing[selectedDevice + '_class'],
+                currentPage: detailCurrentPage,
+                type: 'admin' 
+              }">
+            </ng-template>
+          </ng-container>
+
+          <!-- Page config -->
+          <ng-container *ngIf="!objectChoosing && !blockChoosing && detailCurrentPage">
+            <ng-template
+              [ngComponentOutlet]="pipeBlockObjectAdminConfigService.pipeBlockObjectAdminConfigComponent('AtwPageAdminConfig')  "
+              [ndcDynamicInputs]="{
+                selectedDevice: selectedDevice,
+                detailCurrentPage: detailCurrentPage,
+                freeblocks: detailCurrentPage.freeblocks,
+                type: 'admin' 
+              }">
+            </ng-template>
+          </ng-container>
+        </div>
+      </nz-sider>
+
+    </nz-layout>
+    <!-- Main outlet -->
+    <div class="router">
+      <div class="body-outlet" id="scroll">
+        <ng-container *ngIf="configType == ''">
+          <router-outlet></router-outlet>
+        </ng-container>
+        <ng-container *ngIf="configType != ''">
+          <div class="w-100 h-100 other_outlet">
+            <div *ngIf="itemSelected?.breadcrumbs?.length" class="breadcrumb m-0">
+              <nz-breadcrumb>
+                <nz-breadcrumb-item *ngFor="let breadcrumb of itemSelected.breadcrumbs">
+                  {{breadcrumb.type}}: {{breadcrumb.name}}
+                </nz-breadcrumb-item>
+              </nz-breadcrumb>
+            </div>
+            <div class="main">
+              <!-- Nút trở về trang trước -->
+              <div *ngIf="backToPageObject.isVisibleBackToPage && configType !== 'page' && configType !== 'block'"
+                (click)="goBackToPreviousPage()" class="back-to-last-page">
+                <span nz-icon nzType="left" nzTheme="outline"></span>
+                <span>Trở lại {{configType === 'page' ? 'trang' : 'khối'}} trước
+                  ({{backToPageObject.previousItemSelected.name}})</span>
+              </div>
+              <ng-template
+                [ngComponentOutlet]="pipeBlockObjectAdminService.pipeBlockObjectAdminComponent(itemSelected.component_admin)  "
+                [ndcDynamicInputs]="{
+                  data : itemSelected, 
+                  type: 'admin', 
+                  pages: pages, 
+                  resolution: subproject.resolution, 
+                  subproject: subproject,
+                  selectedDevice: selectedDevice,
+                  blockChoosing: blockChoosing,
+                  objectChoosing: objectChoosing
+                 }" [ndcDynamicOutputs]="outputs">
+              </ng-template>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text-center login" *ngIf="syncStatus && !vhQueryAutoWeb.checkSigninAdmin()">
+  <div class="form-signin">
+    <div style="padding-bottom: 16px;">
+      <img class="mb-4" src="assets/viethas.png" alt="" width="180" height="100">
+
+      <div class="form-floating">
+        <!-- <label for="floatingInput">Email</label> -->
+        <input [(ngModel)]="email" type="email" class="form-control shadow-none" id="floatingInput" placeholder="Email">
+      </div>
+      <div class="form-floating">
+        <!-- <label for="floatingPassword">Mật khẩu</label> -->
+        <input [type]="passwordVisible ? 'text' : 'password'" (keyup)="checkKey($event)" [(ngModel)]="password"
+          type="password" class="form-control shadow-none" id="floatingPassword" placeholder="Password">
+        <i *ngIf="passwordVisible" (click)="passwordVisible = !passwordVisible" class="bi bi-eye-slash"
+          style="position: absolute; right: 8px;top: 16px; cursor: pointer; font-size: 22px;"></i>
+        <i *ngIf="!passwordVisible" (click)="passwordVisible = !passwordVisible" class="bi bi-eye"
+          style="position: absolute; right: 8px;top: 16px; cursor: pointer; font-size: 22px;"></i>
+
+      </div>
+      <div style="margin-top: 8px;text-align: right;cursor: pointer;" (click)="isVisible = true"><i>{{'quen_mat_khau' |
+          translate}}</i>?</div>
+    </div>
+    <button (click)="login()" class="shadow-none w-100 btn btn-lg">{{'dang_nhap' | translate}}</button>
+  </div>
+</div>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="{{'quen_mat_khau' | translate}}" (nzOnCancel)="isVisible = false"
+  (nzOnOk)="forgotPassword()">
+  <ng-container *nzModalContent>
+    <div>{{'nhap_email' | translate}}</div>
+    <input nz-input placeholder="{{'nhap_email' | translate}}" [(ngModel)]="email" type="email" />
+    <div>{{'nhap_mat_khau' | translate}}</div>
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="{{'nhap_mat_khau' | translate}}"
+        [(ngModel)]="password" />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <span nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"></span>
+    </ng-template>
+  </ng-container>
+</nz-modal>
+<nz-modal [(nzVisible)]="isVisibleChangePass" nzTitle="{{'doi_mat_khau' | translate}}"
+  (nzOnCancel)="isVisibleChangePass = false" (nzOnOk)="changePassword()">
+  <ng-container *nzModalContent>
+    <div>{{'nhap_email' | translate}}</div>
+    <input nz-input placeholder="{{'nhap_email' | translate}}" [(ngModel)]="email" type="email" />
+    <div>{{'nhap_mat_khau_cu' | translate}}</div>
+    <nz-input-group [nzSuffix]="suffixTemplate">
+      <input [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="{{'nhap_mat_khau_cu' | translate}}"
+        [(ngModel)]="oldpassword" />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <span nz-icon class="ant-input-password-icon" [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible = !passwordVisible"></span>
+    </ng-template>
+    <div>{{'nhap_mat_khau_moi' | translate}}</div>
+    <nz-input-group [nzSuffix]="suffixTemplate2">
+      <input [type]="passwordVisible2 ? 'text' : 'password'" nz-input placeholder="{{'nhap_mat_khau_moi' | translate}}"
+        [(ngModel)]="password" />
+    </nz-input-group>
+    <ng-template #suffixTemplate2>
+      <span nz-icon class="ant-input-password-icon" [nzType]="passwordVisible2 ? 'eye-invisible' : 'eye'"
+        (click)="passwordVisible2 = !passwordVisible2"></span>
+    </ng-template>
+  </ng-container>
+</nz-modal>

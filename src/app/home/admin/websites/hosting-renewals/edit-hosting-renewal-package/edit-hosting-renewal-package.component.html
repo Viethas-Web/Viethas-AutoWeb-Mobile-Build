@@ -1,0 +1,85 @@
+<div class="add-product w-100 h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'cap_nhat_goi_gia_han_hosting' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="main" >
+    <form class="form p-0 m-0" *ngIf="editHostingRenewalPackageForm" [formGroup]="editHostingRenewalPackageForm">
+      <div class="row">
+        <!-- ten_goi -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'ten_goi' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <input class="input" type="text" [formControl]="getFormControl('name_' + functionService.languageTempCode)" (blur)="updatePackage('name_' + functionService.languageTempCode, editHostingRenewalPackageForm.value['name_' + functionService.languageTempCode])" placeholder="{{'nhap_ten_goi' | translate}}">
+          </div>
+        </div>
+        <!-- don_vi -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'don_vi' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input" style="gap: 8px;">
+            <input class="input" type="text" [(ngModel)]="units[0]['unit_' + functionService.languageTempCode]" [ngModelOptions]="{standalone: true}" (blur)="updatePackage('units', units)"  placeholder="{{'nhap_don_vi' | translate}}">
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            
+          </div>
+        </div>
+
+        <!-- gia -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'gia' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <input class="input price" type="text" [(ngModel)]="units[0].price" [ngModelOptions]="{standalone: true}" (blur)="updatePackage('units', units)" placeholder="{{'nhap_gia' | translate}}">
+          </div>
+        </div>
+        <!-- barcode -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'Barcode' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input d-flex align-items-center" style="gap: 8px;">
+            <input class="input" type="text" [(ngModel)]="units[0].barcode" [ngModelOptions]="{standalone: true}" (blur)="updatePackage('units', units)" placeholder="{{'nhap_ma_goi' | translate}}">
+            <i class="ml-1" style="margin: auto; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+              nzTooltipTitle="{{'tao_ma_vach_tu_dong' | translate}}" nzTooltipPlacement="bottom"
+              (click)="generateBarcodesAutomatically()"></i>
+          </div>
+        </div>
+        <!-- so_ngay_su_dung -->
+        <div class="col-6">
+          <div>
+            <label for="name-input">{{'so_ngay_su_dung' | translate}} <span style="color: red;">*</span></label>
+          </div>
+          <div class="layout-input">
+            <input class="input days" type="text" formControlName="days" (blur)="updatePackage('days', editHostingRenewalPackageForm.value.days)" placeholder="{{'so_ngay_su_dung' | translate}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-editor">
+        <div class="flag">
+          <app-select-language-config [isAdmin]="true"></app-select-language-config>
+        </div>
+        <nz-tabset *ngIf="EDITOR" class="row p-0 m-0">
+          <nz-tab nzTitle="{{'mo_ta' | translate}}">
+            <div class="w-100" id="description" style="max-height: 500px; overflow: auto;">
+              <ckeditor class="ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                [formControl]="getFormControl('description_' + functionService.languageTempCode)" (blur)="updatePackage('description_' + functionService.languageTempCode, editHostingRenewalPackageForm.value['description_' + functionService.languageTempCode])">
+              </ckeditor>
+            </div>
+          </nz-tab>
+          
+        </nz-tabset>
+      </div>
+      
+    </form>
+  </div>
+  
+</div>
+

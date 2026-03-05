@@ -1,0 +1,107 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-between">
+        <span class="title"><b>{{ "danh_sach_ung_vien" | translate }}</b></span> 
+      </div>
+      <div class="col-6 p-0 m-0 d-flex align-items-center justify-content-end select" style="gap: '1rem'">
+        <nz-range-picker nzFormat='dd/MM/yyyy' [(ngModel)]="date" (ngModelChange)="keySearch =''; candidates = []" [nzAllowClear]="false"></nz-range-picker>
+        
+        <button class="_btn _btn_soft d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="resetPagination();getListdata()">
+          {{'xem' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px">
+
+    <nz-table
+      [nzVirtualItemSize]="53"
+      [nzData]="candidates"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="candidates?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+          <th scope="col" nzWidth="6%">{{'stt' | translate}}</th>
+          <th scope="col" (click)="handleSort('name')">
+            {{'ho_va_ten' | translate}}
+            <span *ngIf="candidates.length" nz-icon 
+            [nzType]="sortby.name ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col" (click)="handleSort('phone')">
+            {{'so_dien_thoai' | translate}}
+            <span *ngIf="candidates.length" nz-icon 
+            [nzType]="sortby.phone ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col" (click)="handleSort('email')">
+            {{'email' | translate}}
+            <span *ngIf="candidates.length" nz-icon 
+            [nzType]="sortby.email ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col" (click)="handleSort('position')">
+            {{'vi_tri' | translate}}
+            <span *ngIf="candidates.length" nz-icon 
+            [nzType]="sortby.position ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col" (click)="handleSort('date')">
+            {{'ngay_gui' | translate}}
+            <span *ngIf="candidates.length" nz-icon 
+            [nzType]="sortby.date ? 'arrow-down' : 'arrow-up'" nzTheme="outline"></span>
+          </th>
+          <th scope="col">File</th>
+          <th scope="col">
+            {{'thao_tac' | translate}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr>
+            <td style="width: 5%" scope="row">{{ (pageCurrent-1) * limit + index + 1  }}</td>
+            <td style="width: 15%" >{{ item.name }}</td>
+            <td style="width: 15%" >{{ item.phone }}</td>
+            <td style="width: 15%" >{{ item.email }}</td>
+            <td style="width: 20%" >{{ item.position }}</td>
+            <td style="width: 15%" >
+              {{ item.date | date : "dd/MM/yyyy HH:mm" }}
+            </td>
+            <td style="width: 10%">
+              <a target="_blank" href="{{ item.filecv }}">{{'mo_file_cv' | translate}}</a>
+            </td>
+            <td style="width: 5%">
+              <button mat-flat-button (click)="deleteInfoCandidates(item._id)">
+                <mat-icon
+                  class="text-danger"
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  >delete
+                </mat-icon>
+              </button>
+            </td>
+          
+        </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+  </div>
+</nz-layout>
+
+

@@ -1,0 +1,118 @@
+<div class="main h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'them_bai_viet' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div class="_body">
+    <form *ngIf="addNewsForm" [formGroup]="addNewsForm">
+      <div class="form">
+        <div class="row p-0 m-0">
+          <div class="col-3 m-0 p-0">
+            <div class="image_default d-flex align-items-center justify-content-center">
+              <input style="display: none;" id="file-upload" type="file" accept=".png, .jpg"
+                (change)="onUpload($event)" />
+              <div class="_buttons_choose_image align-items-center justify-content-center p-2">
+                <button class="_btn_upload" (click)="getFile()">{{'tai_len' | translate}}</button>
+                <span>{{'hoac' | translate}}</span>
+                <button class="_btn_media" (click)="openLibrary()">{{'chon_tu_thu_vien' | translate}}</button>
+              </div>
+              <img [ngClass]="addNewsForm.value.img? 'img_w100': 'img_w90'"
+                [src]="addNewsForm.value.img? addNewsForm.value.img: '/assets/root/images/system/icons/image_default.svg' ">
+            </div>
+          </div>
+          <div class="col-9 m-0 p-0">
+            <div class="_input">
+              <div class="d-flex">
+                <label class="m-0">{{'tieu_de_bai_viet' | translate}}</label><sub>*</sub>
+              </div>
+              <input class="input w-100" type="text" formControlName="title" placeholder="{{'nhap_tieu_de_bai_viet' | translate}}">
+            </div>
+            <div class="_input pt-2">
+              <div class="d-flex">
+                <label class="m-0">{{"danh_muc_bai_viet" | translate}}</label><sub>*</sub>
+              </div>
+              <div class="layout-input">
+                <nz-select id="category" formControlName="id_newscategory" nzPlaceHolder="{{'chon_danh_muc_bai_viet' | translate}}">
+                  <nz-option [nzValue]="item._id" [nzLabel]="item.name" *ngFor="let item of listNewsCategory">
+                    {{ item.name }}
+                  </nz-option>
+                </nz-select>
+              </div>
+            </div>
+            <div class="d-flex align-items-center pt-2">
+              <label class="m-0 mr-2">{{'cho_phep_hien_thi_tin_tuc_tren_website' | translate}}</label>
+              <nz-switch formControlName="hidden"></nz-switch>
+            </div>
+          </div>
+        </div>
+        <nz-tabset class="row p-0 m-0 pt-2">
+          <nz-tab nzTitle="{{'noi_dung_bai_viet' | translate}}">
+            <div class="w-100" style="max-height: 500px;overflow: auto;">
+              <ckeditor class="ckeditor ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="config"
+                formControlName="content">
+              </ckeditor>
+            </div>
+          </nz-tab>
+          <nz-tab nzTitle="{{'mo_ta_ngan_bai_viet' | translate}}">
+            <div class="w-100" style="max-height: 500px;overflow: auto;">
+              <ckeditor class="ckeditor ckeditor-admin" [editor]="EDITOR" (ready)="onReady($event)" [config]="config"
+                formControlName="description">
+              </ckeditor>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+
+        <div class="col-12 p-0 pt-2">
+          <div>
+            <div class="title">
+              <h5 style="font-size: 16px; margin: 6pt 0px !important;">SEO</h5>
+            </div>
+            <div class="_body_seo">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_title">{{'tieu_de' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" formControlName="webapp_seo_title" id="webapp_seo_title"
+                    placeholder="{{'nhap_tieu_de' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_description">{{'mieu_ta' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" formControlName="webapp_seo_description" id="webapp_seo_description"
+                    placeholder="{{'nhap_mieu_ta' | translate}}">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_keyword">{{'tu_khoa' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" formControlName="webapp_seo_keyword" id="webapp_seo_keyword"
+                    placeholder="{{'nhap_tu_khoa' | translate}}" data-role="tagsinput">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="_foot d-flex align-items-center justify-content-end">
+    <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+      (click)="close()">
+      {{'huy' | translate}}
+    </button>
+    <button [disabled]="(!addNewsForm.valid || submitting)" class="mr-2" nz-button nzType="primary"
+      [ngStyle]="{opacity: (!addNewsForm.valid)? .5: 1}" (click)="onSubmitAddNews(addNewsForm.value)"
+      class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+      {{'them' | translate}}
+    </button>
+  </div>
+</div>

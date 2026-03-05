@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512" viewBox="0 0 512 512">
+  <path fill="#0092ff" d="M186.3,21L81.1,126c-13,13-20.3,30.6-20.3,49v1.8c0-26.2,21.3-47.4,47.5-47.4h81.3V48.2   c0-26.2,21.3-47.4,47.5-47.4h-1.8C216.9,0.7,199.3,8,186.3,21z"/>
+  <path fill="#ebf2ff" d="M60.8,175v1.8c0-26.2,21.3-47.4,47.5-47.4h81.3V48.2c0-26.2,21.3-47.4,47.5-47.4h198.2V512H60.8V175z"/>
+  <linearGradient id="a" x1="436.142" x2="162.012" y1="511.54" y2="36.733" gradientUnits="userSpaceOnUse">
+    <stop offset=".001" stop-color="#ebf2ff"/>
+    <stop offset="1" stop-color="#c8d6e8"/>
+  </linearGradient>
+  <path fill="url(#a)" d="M60.8,175v1.8c0-26.2,21.3-47.4,47.5-47.4h81.3V48.2c0-26.2,21.3-47.4,47.5-47.4l198.2,194.1V512L60.8,176.8   V175z"/>
+  <rect width="169.1" height="127.3" x="236.1" y="124.3" fill="#fff" transform="rotate(-180 320.664 188)"/>
+  <rect width="146.5" height="101.5" x="248" y="137.8" fill="#00cfff" transform="rotate(-180 321.206 188.576)"/>
+  <path fill="#19bf70" d="M297.9,202.7l-16.6-16.6L248,219.4v20h146.5v-46.6l-43.3-43.3L297.9,202.7z"/>
+  <path fill="#ffb600" d="M273.6,178.8c4.2,0,7.7-1.5,10.7-4.4c2.9-2.9,4.4-6.5,4.4-10.7c0-4.2-1.5-7.7-4.4-10.7  c-2.9-2.9-6.5-4.4-10.7-4.4c-4.2,0-7.7,1.5-10.7,4.4c-2.9,2.9-4.4,6.5-4.4,10.7c0,4.2,1.5,7.7,4.4,10.7  C265.9,177.3,269.4,178.8,273.6,178.8L273.6,178.8z"/>
+  <rect width="315.5" height="20.4" x="87.6" y="276.8" fill="#aeb4c1"/>
+  <rect width="125.4" height="20.4" x="86.6" y="229.8" fill="#aeb4c1"/>
+  <rect width="125.4" height="20.4" x="87.9" y="186.2" fill="#aeb4c1"/>
+  <rect width="125.4" height="20.4" x="88.3" y="148.2" fill="#aeb4c1"/>
+  <rect width="315.5" height="20.4" x="87.6" y="325.2" fill="#aeb4c1"/>
+  <rect width="315.5" height="20.4" x="87.6" y="373.6" fill="#aeb4c1"/>
+  <rect width="315.5" height="20.4" x="87.6" y="416.1" fill="#aeb4c1"/>
+</svg>

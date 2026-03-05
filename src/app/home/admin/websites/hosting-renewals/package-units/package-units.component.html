@@ -1,0 +1,65 @@
+<div class="package-units">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0" style="color: #008848">{{'danh_sach_don_vi' | translate}}</h2>
+    </div>
+
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+  <div id="_unit" class="main pl-2 pr-2  w-100 h-100">
+    <div class="button_add_unit pt-2 pb-2 d-flex flex-row justify-content-end" style="gap:8px">
+      <div style="width: 200px">
+        <app-select-language-config [isAdmin]="true"></app-select-language-config>
+      </div>
+      <button class="d-flex justify-content-between align-items-center" nz-button nzType="primary"
+        (click)="openModalAddUnit()">
+        <span nz-icon nzType="plus" nzTheme="outline">
+        </span>
+        <span class="ml-1">
+          {{'them_don_vi' | translate}}
+        </span>
+      </button>
+    </div>
+    <nz-table *ngIf="dataUnits" #basicTable [nzData]="dataUnits" style="min-height: 320px" [nzScroll]="{ y: '320px' }"
+      [nzShowPagination]="dataUnits.length > 10 ? true: false ">
+      <thead>
+        <tr>
+          <th>{{'ten_don_vi' | translate}}</th>
+          <th nzAlign="center">{{'so_ngay_su_dung' | translate}}</th>
+          <th nzAlign="right">{{'gia' | translate}}</th>
+          <th nzAlign="right">Barcode</th>
+          <th nzAlign="center">{{'chon_mac_dinh' | translate}}</th>
+          <th nzWidth="12%" nzAlign="center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let data of basicTable.data; index as i">
+          <tr>
+            <td>{{data['unit_'+functionService.languageTempCode]}}</td>
+            <td nzAlign="center">{{data.ratio}}</td>
+            <td nzAlign="right">{{ (data.price | number : "1.0-0") + "đ" }}</td>
+            <td nzAlign="right">{{data.barcode}}</td>
+            <td nzAlign="center">
+              <nz-switch [(ngModel)]="data.default" (click)="$event.stopPropagation();" [nzDisabled]="data.default" 
+                (ngModelChange)="selectUnitDefault(data)" ></nz-switch>
+            </td>
+            <td nzAlign="center">
+              <div [style.display]="data.default ? 'none': 'block'" class="icon-action">
+                <span nz-icon nzType="edit" nzTheme="outline"
+                  (click)="$event.stopPropagation();editUnit(data, i)"></span>
+                <span nz-icon nzType="delete" nzTheme="outline" (click)="$event.stopPropagation();" nz-popconfirm
+                  nzOkText="Ok" nzCancelText="{{'huy' | translate}}" [nzPopconfirmTitle]="'Muốn xóa đơn vị '+ data['unit_' + functionService.languageTempCode] + '?'"
+                  nzPopconfirmPlacement="bottom" (nzOnConfirm)="deteleUnit(i)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </nz-table>
+  </div>
+  <div class="_foot d-flex justify-content-end" *ngIf="data.type == 'add'">
+    <button nz-button style="margin-right: 8px;" (click)="close()">{{"huy" | translate }}</button>
+    <button nz-button (click)="okUnits()">{{"luu" | translate}}</button>
+  </div>
+</div>

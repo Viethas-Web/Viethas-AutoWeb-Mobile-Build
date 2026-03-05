@@ -1,0 +1,111 @@
+<div nz-row class="row-back medium-size" (click)="goBack()">
+  <i nz-icon nzType="left" nzTheme="outline"></i>{{'Back'|translate}}
+</div>
+<nz-layout>
+  <div nz-row style="padding-bottom: 16px;z-index: 99;">
+    <div nz-col nzSpan="8" class="title left-all-content">
+      <b>{{'Create customer data' |translate}}</b>
+    </div>
+    <div nz-col nzSpan="16" class="beetween-all-content">
+      
+      <div>
+        <button (click)="downloadSampleFile()" class="btn-data center-all-content" nz-button nzType="default">
+          <i nz-icon nzType="download" nzTheme="outline"></i>
+          {{'Download sample file' | translate}}</button>
+      </div>
+      <div>
+        <button (click)="exportXLSXFile()" class="btn-data center-all-content" nz-button nzType="default">
+          <i nz-icon nzType="export" nzTheme="outline"></i>
+          {{'Export file'|translate}}</button>
+      </div>
+      <div>
+        <button (click)="openFile()" class="btn-data center-all-content" nz-button nzType="default">
+          <i nz-icon nzType="upload" nzTheme="outline"></i>
+          {{'Import file'|translate}}</button>
+      </div>
+      <div>
+        <button (click)="createDataCustomer()" [disabled]="!formData.length" class="btn-add center-all-content"
+          nz-button nzType="default">
+          <i nz-icon nzType="save" nzTheme="outline"></i>
+          {{'Create data'|translate}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row class='table'>
+    <table>
+      <thead>
+        <tr id="importCSV-header">
+          <th style="max-width: 3% !important; width: 3%;">#</th>
+          <th style="max-width: 22% !important; width: 22%;">{{"_customer_name"| translate}}</th>
+          <th style="max-width: 10% !important; width: 10%;">{{"_gender"| translate}}</th>
+          <th style="max-width: 15% !important; width: 15%;">{{"_email"| translate}}</th>
+          <th style="max-width: 10% !important; width: 10%;">{{"_phone"| translate}}</th>
+          <th style="max-width: 10% !important; width: 10%;">{{"_address"| translate}}</th>
+          <th style="max-width: 10% !important; width: 10%;">{{"_district"| translate}}</th>
+          <th style="max-width: 10% !important; width: 10%;">{{"_province"| translate}}</th>
+          <th style="max-width: 10% !important; width: 10%;">{{"_country"| translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let form of formData ? formData : []; let i = index" [formGroup]="form">
+          <td style="max-width: 3% !important; width: 3%;">{{i+ 1}}</td>
+          <td style="max-width: 22% !important; width: 22%;">
+            <input type="text" formControlName="name" (change)="checkModelChange()"
+              placeholder="{{ '_customer_name'| translate}}" />
+            <ng-container *ngFor="let validation of validation_messages.name">
+              <div class="error-message error-font" *ngIf="form.value['name'] == true">
+                <ion-text color="default_red">{{ validation.message }}</ion-text>
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validation_messages.status_name">
+              <div class="error-message error-font" *ngIf="form.value['status_name'] == true">
+                <ion-text color="default_red">{{ validation.message }}</ion-text>
+              </div>
+            </ng-container>
+          </td>
+          <td style="max-width: 10% !important; width: 10%; text-align: center;">
+            <select formControlName="gender">
+              <option value="{{'Male' | translate}}">{{"Male" | translate}}</option>
+              <option value="{{'Female' | translate}}">{{"Female" | translate}}</option>
+            </select>
+          </td>
+          <td style="max-width: 15% !important; width: 15%;">
+            <input type="text" formControlName="email" (change)="checkModelChange()"
+              placeholder="{{ '_email'| translate}}" />
+          </td>
+          <td style="max-width: 10% !important; width: 10%;">
+            <input type="text" formControlName="phone" (change)="checkModelChange()"
+              placeholder="{{ '_phone'| translate}}" />
+            <ng-container *ngFor="let validation of validation_messages.phone">
+              <div class="error-message error-font" *ngIf="form.get('phone').hasError(validation.type)">
+                <ion-text color="default_red">{{ validation.message }}</ion-text>
+              </div>
+            </ng-container>
+            <ng-container *ngFor="let validation of validation_messages.status_phone">
+              <div class="error-message error-font" *ngIf="form.value['status_phone'] == true">
+                <ion-text color="default_red">{{ validation.message }}</ion-text>
+              </div>
+            </ng-container>
+          </td>
+          <td style="max-width: 10% !important; width: 10%;">
+            <input type="text" formControlName="address" placeholder="{{ '_address'| translate}}" />
+          </td>
+          <td style="max-width: 10% !important; width: 10%;">
+            <input type="text" formControlName="district" placeholder="{{ '_district'| translate}}" />
+          </td>
+          <td style="max-width: 10% !important; width: 10%;">
+            <input type="text" formControlName="province" placeholder="{{ '_province'| translate}}" />
+          </td>
+          <td style="max-width: 10% !important; width: 10%;">
+            <input type="text" formControlName="country" placeholder="{{ '_country'| translate}}" />
+          </td>
+
+      </tbody>
+    </table>
+  </div>
+</nz-layout>
+<a style="display: none;" id="download_customer" [href]="url" download></a>
+<input type="file" style="display: none;" id="file_excel_customer"
+  accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+  (change)="openXLSXFile($event)" />

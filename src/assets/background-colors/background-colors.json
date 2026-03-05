@@ -1,0 +1,127 @@
+[
+    {
+      "bgColor": "#393646",
+      "type": "black",
+      "hex": "#393646"
+    },
+    {
+      "bgColor": "#4F4557",
+      "type": "black",
+      "hex": "#4F4557"
+    },
+    {
+      "bgColor": "#6D5D6E",
+      "type": "black",
+      "hex": "#A6D5D6E"
+    },
+    {
+      "bgColor": "#F4EEE0",
+      "type": "black",
+      "hex": "#F4EEE0"
+    },
+    {
+      "bgColor": "#B0A4A4",
+      "type": "black",
+      "hex": "#B0A4A4"
+    },
+    {
+      "bgColor": "#FFFBEB",
+      "type": "white",
+      "hex": "#FFFBEB"
+    },
+    {
+      "bgColor": "#FFE7CC",
+      "type": "white",
+      "hex": "#FFE7CC"
+    },
+    {
+      "bgColor": "#F8CBA6",
+      "type": "white",
+      "hex": "#F8CBA6"
+    },
+    {
+      "bgColor": "#FF597B",
+      "type": "red",
+      "hex": "#FF597B"
+    },
+    {
+      "bgColor": "#FF8E9E",
+      "type": "red",
+      "hex": "#FF8E9E"
+    },
+    {
+      "bgColor": "#F9B5D0",
+      "type": "red",
+      "hex": "#F9B5D0"
+    },
+    {
+      "bgColor": "#EEEEEE",
+      "type": "red",
+      "hex": "#EEEEEE"
+    },
+    {
+      "bgColor": "#E26A2C",
+      "type": "orange",
+      "hex": "#E26A2C"
+    },
+    {
+      "bgColor": "#FF8243",
+      "type": "orange",
+      "hex": "#FF8243"
+    },
+    {
+      "bgColor": "#FDA65D",
+      "type": "orange",
+      "hex": "#FDA65D"
+    },
+    {
+      "bgColor": "#FFD07F",
+      "type": "orange",
+      "hex": "#FFD07F"
+    },
+    {
+      "bgColor": "#F0FF42",
+      "type": "green",
+      "hex": "#F0FF42"
+    },
+    {
+      "bgColor": "#82CD47",
+      "type": "green",
+      "hex": "#82CD47"
+    },
+    {
+      "bgColor": "#54B435",
+      "type": "green",
+      "hex": "#54B435"
+    },
+    {
+      "bgColor": "#379237",
+      "type": "green",
+      "hex": "#379237"
+    },
+    {
+      "bgColor": "#19A7CE",
+      "type": "blue",
+      "hex": "#19A7CE"
+    },
+    {
+      "bgColor": "#B1B2FF",
+      "type": "blue",
+      "hex": "#B1B2FF"
+    },
+    {
+      "bgColor": "#AAC4FF",
+      "type": "blue",
+      "hex": "#AAC4FF"
+    },
+    {
+      "bgColor": "#D2DAFF",
+      "type": "blue",
+      "hex": "#D2DAFF"
+    },
+    {
+      "bgColor": "#EEF1FF",
+      "type": "blue",
+      "hex": "#EEF1FF"
+    }
+  ]

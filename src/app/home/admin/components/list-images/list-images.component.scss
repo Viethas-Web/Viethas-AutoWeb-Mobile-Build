@@ -1,0 +1,295 @@
+.example-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 8px;
+  margin: 8px;
+
+  ::ng-deep .cdk-overlay-pane {
+    z-index: 1001 !important;
+  }
+}
+
+.example-box {
+  width: 200px;
+  height: 140px;
+  border: solid 1px #ccc;
+  font-size: 30pt;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: move;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  &:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    opacity: 0.6;
+  }
+  &-placeholder {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    background: #ccc;
+    border: dotted 3px #999;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  ._item_image {
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    ._image {
+      position: relative;
+      width: 200px;
+      height: 140px;
+      img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+      }
+      ._icon_trash {
+        position: absolute;
+        z-index: 2;
+        color: #ff000a;
+        top: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        border: 1px solid #c8c7cc;
+        border-radius: 50%;
+        background-color: #ffffff;
+        line-height: normal;
+        &:hover {
+          border-color: #ff000a;
+        }
+      }
+      ._icon_connect {
+        position: absolute;
+        top: 35px;
+        z-index: 1001;
+        color: #008848;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        padding: 0;
+        border: 1px solid #c8c7cc;
+        border-radius: 50%;
+        background-color: #ffffff;
+        line-height: normal;
+        &:hover {
+          border-color: #008848;
+        }
+      }
+      ._icon_connect_active {
+        border-color: #008848 !important;
+      }
+      span {
+        font-size: 14px;
+      }
+
+      ._buttons_choose_image {
+        flex-direction: column;
+        display: none;
+        width: 100%;
+        height: 140px;
+        align-items: center;
+        button {
+          display: inline-block;
+          font-weight: 400;
+          text-align: center;
+          vertical-align: middle;
+          
+          border: 1px solid transparent;
+          padding: 0.375rem 0.75rem;
+          font-size: 14px;
+          border-radius: 5px;
+          transition: color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
+        }
+        span {
+          font-size: 14px;
+        }
+        ._btn_upload,
+        ._btn_media {
+          color: #ffffff;
+          background-color: #008848;
+          border-color: #008848;
+        }
+      }
+      &:hover {
+        img {
+          opacity: 0.5;
+        }
+        ._buttons_choose_image {
+          display: flex;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+.example-add {
+  ._buttons_choose_image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 140px;
+    align-items: center;
+    border: 1px #008848 dotted;
+    border-radius: 5px;
+
+
+    ._icon_trash {
+      position: absolute;
+      z-index: 2;
+      color: #ff000a;
+      top: 5px;
+      right: 5px;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      border: 1px solid #c8c7cc;
+      border-radius: 50%;
+      background-color: #ffffff;
+      line-height: normal;
+      &:hover {
+        border-color: #ff000a;
+      }
+    }
+
+    ._icon_connect_single {
+      position: absolute;
+      top: 40px;
+      z-index: 1001;
+      color: #008848;
+      right: 5px;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      border: 1px solid #c8c7cc;
+      border-radius: 50%;
+      background-color: #ffffff;
+      line-height: normal;
+      border-color: #008848 !important;
+      &:hover {
+        border-color: #008848;
+      }
+    }
+
+    ._icon_connect {
+      position: absolute;
+      top: 5px;
+      z-index: 1001;
+      color: #008848;
+      right: 5px;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      border: 1px solid #c8c7cc;
+      border-radius: 50%;
+      background-color: #ffffff;
+      line-height: normal;
+      border-color: #008848 !important;
+      &:hover {
+        border-color: #008848;
+      }
+    }
+      
+
+  }
+}
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+button {
+  margin-right: 4px;
+}
+
+.drop-list-item {
+  display: flex;
+  flex-direction: row;
+}
+
+._image_zone {
+  height: 298px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px !important;
+  border: 1px solid #c8c7cc;
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #008848;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #008848;
+  }
+}
+
+
+
+.popover {
+  position: absolute;
+  top: -100px;
+  z-index: 1001;
+  left: -119px;
+  padding: 10px;
+  border: 1px solid #c8c7cc;
+  width: 500px;
+  color: black;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+}
+
+.arrow {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #ffffff;
+  border: 1px solid #c8c7cc;
+  transform: rotate(45deg);
+  top: -30px;
+  left: -3px;
+  z-index: 1000;
+  margin: 0;
+}

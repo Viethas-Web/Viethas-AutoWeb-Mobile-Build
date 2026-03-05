@@ -1,0 +1,1961 @@
+
+[
+  {
+    "label": "Không hiệu ứng",
+    "type": "none",
+    "data": [
+      {
+        "id": "000000",
+        "name": "Mặc định",
+        "animation": {
+          "animation-0": {}
+        }
+      }
+    ]
+  },
+  {
+    "label": "Khi rê chuột",
+    "type": "hover",
+    "data": [
+      {
+        "id": "000001",
+        "type": "1",
+        "name": "thu_phong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000002",
+        "type": "1",
+        "name": "tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0-transition": "0.24s",
+            "--0h-transition": "0.24s",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000003",
+        "type": "1",
+        "name": "xoay",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "rotate(10deg)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000004",
+        "type": "1",
+        "name": "di_chuyen",
+        "animation": {
+          "animation-0": {
+            "--0h-transform": "translateX(10px) translateY(10px)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000005",
+        "type": "1",
+        "name": "thu_phong_va_di_chuyen",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) translateX(10px) translateY(10px)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000006",
+        "type": "1",
+        "name": "lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h1-opacity": "0.7",
+            "--0h1-transition": "0.3s"
+          },
+          "animation-1": {
+            "--1-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0h1-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h1-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--1-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000007",
+        "type": "1",
+        "name": "thu_phong_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h1-opacity": "0.7",
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5)",
+            "--0h1-transition": "0.3s",
+            "--0h-transition": "var(--0h1-transition)",
+            "--0-transition": "0.3s"
+          },
+          "animation-1": {
+            "--1-transition": "var(--0-transition)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0h1-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000008",
+        "type": "1",
+        "name": "thu_phong_va_xoay",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) rotate(10deg)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000009",
+        "type": "1",
+        "name": "thu_phong_di_chuyen_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) translateX(10px) translateY(10px)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000010",
+        "type": "1",
+        "name": "thu_phong_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000011",
+        "type": "1",
+        "name": "thu_phong_di_chuyen_xoay_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) translateX(10px) translateY(10px) rotate(10deg)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000012",
+        "type": "1",
+        "name": "thu_phong_xoay_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) rotate(10deg)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000013",
+        "type": "1",
+        "name": "di_chuyen_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform": "translateX(10px) translateY(10px)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000014",
+        "type": "1",
+        "name": "di_chuyen_xoay_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "translateX(10px) translateY(10px) rotate(10deg)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000015",
+        "type": "1",
+        "name": "di_chuyen_va_xoay",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "translateX(10px) translateY(10px) rotate(10deg)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000016",
+        "type": "1",
+        "name": "xoay_va_tao_bong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "rotate(10deg)",
+            "--0h-filter": "drop-shadow(0 0 0.5rem #00a859)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h-filter",
+            "type": "filter"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000020",
+        "name": "nhap_nhay",
+        "animation": {
+          "animation-0": {
+            "--0h-animation-duration-shared": "0.6s",
+            "--0h-animation-timing-function-shared": "linear",
+            "--0h-animation-iteration-count-shared": "infinite",
+            "--0h-animation": "icon-animate-0h var(--0h-animation-duration-shared) var(--0h-animation-timing-function-shared) var(--0h-animation-iteration-count-shared)",
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0hf-transform": "scale(1)",
+            "--0h-50-transform": "scale(2)",
+            "--0ht-transform": "var(--0hf-transform)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0hf-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0h-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0h-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0h-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0h-animation-iteration-count-shared",
+            "type": "animation-iteration-count"
+          }
+        ]
+      },
+      {
+        "id": "000021",
+        "type": "1",
+        "name": "thu_phong_xoay_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) rotate(10deg)",
+            "--0h1-opacity": "0.5",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong",
+            "var": "--0h1-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000022",
+        "name": "quay",
+        "animation": {
+          "animation-0": {
+            "--0h-animation-duration-shared": "1.6s",
+            "--0h-animation-timing-function-shared": "linear",
+            "--0h-animation-iteration-count-shared": "infinite",
+            "--0h-animation": "icon-animate-0h var(--0h-animation-duration-shared) var(--0h-animation-timing-function-shared) var(--0h-animation-iteration-count-shared)",
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0hf-transform": "rotate(0)",
+            "--0h-50-transform": "rotate(180deg)",
+            "--0ht-transform": "rotate(360deg)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0hf-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0h-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0ht-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0h-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0h-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0h-animation-iteration-count-shared",
+            "type": "animation-iteration-count"
+          }
+        ]
+      },
+      {
+        "id": "000024",
+        "name": "di_chuyen_lien_tuc",
+        "animation": {
+          "animation-0": {
+            "--0h-animation-duration-shared": "1.6s",
+            "--0h-animation-timing-function-shared": "linear",
+            "--0h-animation-iteration-count-shared": "infinite",
+            "--0h-animation": "icon-animate-0h var(--0h-animation-duration-shared) var(--0h-animation-timing-function-shared) var(--0h-animation-iteration-count-shared)",
+            "--0hf-transform": "translateX(0) translateY(10px)",
+            "--0h-50-transform": "translateX(0) translateY(0px)",
+            "--0ht-transform": "translateX(0) translateY(10px)"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0hf-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0h-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0ht-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0h-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0h-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0h-animation-iteration-count-shared",
+            "type": "animation-iteration-count"
+          }
+        ]
+      },
+      {
+        "id": "000026",
+        "name": "doi_mau_bieu_tuong",
+        "animation": {
+          "animation-0": {
+            "--0h1-color": "#ff0000",
+            "--0h1-transition": "0.3s"
+          },
+          "animation-1": {
+            "--1-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_bieu_tuong",
+            "var": "--0h1-color",
+            "type": "color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h1-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--1-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000027",
+        "name": "doi_nhieu_mau_bieu_tuong",
+        "animation": {
+          "animation-0": {
+            "--0h1-animation-duration-shared": "1s",
+            "--0h1-animation-timing-function-shared": "linear",
+            "--0h1-animation-iteration-count-shared": "infinite",
+            "--0h1-animation": "icon-animate-0h1 var(--0h1-animation-duration-shared) var(--0h1-animation-timing-function-shared) var(--0h1-animation-iteration-count-shared)",
+            "--0h1f-color": "#ff0000",
+            "--0h1-50-color": "#00ff00",
+            "--0h1t-color": "#0000ff"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_1",
+            "var": "--0h1f-color",
+            "type": "color"
+          },
+          {
+            "label": "mau_2",
+            "var": "--0h1-50-color",
+            "type": "color"
+          },
+          {
+            "label": "mau_3",
+            "var": "--0h1t-color",
+            "type": "color"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0h1-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0h1-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0h1-animation-iteration-count-shared",
+            "type": "animation-iteration-count"
+          }
+        ]
+      },
+      {
+        "id": "000032",
+        "type": "1",
+        "name": "di_chuyen_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h-transform": "translateX(10px) translateY(10px)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s",
+            "--0h1-opacity": "0.7",
+            "--0h1-transition": "var(--0h-transition)"
+          },
+          "animation-1": {
+            "--1-transition": "var(--0-transition)"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_mo",
+            "var": "--0h1-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000033",
+        "type": "1",
+        "name": "xoay_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "rotate(10deg)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s",
+            "--0h1-opacity": "0.7",
+            "--0h1-transition": "var(--0h-transition)"
+          },
+          "animation-1": {
+            "--1-transition": "var(--0-transition)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "do_mo",
+            "var": "--0h1-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000034",
+        "type": "1",
+        "name": "thu_phong_va_doi_mau_bieu_tuong",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s",
+            "--0h1-color": "#ff0000",
+            "--0h1-transition": "var(--0h-transition)"
+          },
+          "animation-1": {
+            "--1-transition": "var(--0-transition)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "mau_bieu_tuong",
+            "var": "--0h1-color",
+            "type": "color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000035",
+        "type": "1",
+        "name": "thu_phong_di_chuyen_xoay_va_lam_mo",
+        "animation": {
+          "animation-0": {
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin": "var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(1.5) translateX(10px) translateY(10px) rotate(10deg)",
+            "--0h1-opacity": "0.5",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s",
+            "--0h1-transition": "var(--0h-transition)"
+          },
+          "animation-1": {
+            "--1-transition": "var(--0-transition)"
+          }
+        },
+        "customize": [
+          {
+            "label": "do_mo",
+            "var": "--0h1-opacity",
+            "type": "opacity"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000036",
+        "name": "tao_bong_dang_lop",
+        "animation": {
+          "animation-0": {
+            "--0h-filter-1-shared": "drop-shadow(5px 5px 0 rgba(240, 46, 170, 0.4))",
+            "--0h-filter-2-shared": "drop-shadow(10px 10px 0 rgba(240, 46, 170, 0.3))",
+            "--0h-filter-3-shared": "drop-shadow(15px 15px 0 rgba(240, 46, 170, 0.2))",
+            "--0h-filter": "var(--0h-filter-1-shared) var(--0h-filter-2-shared) var(--0h-filter-3-shared)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "tao_bong_lop_1",
+            "var": "--0h-filter-1-shared",
+            "type": "filter"
+          },
+          {
+            "label": "tao_bong_lop_2",
+            "var": "--0h-filter-2-shared",
+            "type": "filter"
+          },
+          {
+            "label": "tao_bong_lop_3",
+            "var": "--0h-filter-3-shared",
+            "type": "filter"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000037",
+        "name": "phan_chieu_mat_guong",
+        "animation": {
+          "animation-0": {
+            "--0h-box-reflect-direction-keyword-shared": "below",
+            "--0h-box-reflect-offset-shared": "10px",
+            "--0h-box-reflect-mask-linear-direction-keyword-shared": "bottom",
+            "--0h-box-reflect-mask-linear-opacity-start-shared": "0",
+            "--0h-box-reflect-mask-linear-opacity-end-shared": "0.4",
+            "--0h-webkit-box-reflect": "var(--0h-box-reflect-direction-keyword-shared) calc(var(--0h-box-reflect-offset-shared) - 30%) linear-gradient(to var(--0h-box-reflect-mask-linear-direction-keyword-shared), rgba(0,0,0, var(--0h-box-reflect-mask-linear-opacity-start-shared)), rgba(0,0,0,var(--0h-box-reflect-mask-linear-opacity-end-shared)))",
+
+            "--0h-transform-origin-x-shared": "center",
+            "--0h-transform-origin-y-shared": "center",
+            "--0h-transform-origin":"var(--0h-transform-origin-x-shared) var(--0h-transform-origin-y-shared)",
+            "--0h-transform": "scale(0.9)",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          }
+        },
+        "customize": [
+          {
+            "label": "",
+            "var": "--0h-box-reflect-direction-keyword-shared",
+            "type": "box-reflect-direction-keyword"
+          },
+          {
+            "label": "",
+            "var": "--0h-box-reflect-offset-shared",
+            "type": "box-reflect-offset"
+          },
+          {
+            "label": "",
+            "var": "--0h-box-reflect-mask-linear-direction-keyword-shared",
+            "type": "box-reflect-mask-linear-direction-keyword"
+          },
+          {
+            "label": "do_mo_cua_phan_phan_chieu_diem_bat_dau",
+            "var": "--0h-box-reflect-mask-linear-opacity-start-shared",
+            "type": "opacity"
+          },
+          {
+            "label": "do_mo_cua_phan_phan_chieu_diem_ket_thuc",
+            "var": "--0h-box-reflect-mask-linear-opacity-end-shared",
+            "type": "opacity"
+          },
+          {
+            "label": "thu_phong",
+            "var": "--0h-transform",
+            "type": "transform"
+          },
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung_thu_phong",
+            "var": "--0h-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung_thu_phong",
+            "var": "--0h-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ]
+      },
+      {
+        "id": "000038",
+        "name": "doi_mau_bieu_tuong_va_mau_nen",
+        "animation": {
+          "animation-0": {
+            "--0h-background-color": "#00a859",
+            "--0h-transition": "0.3s",
+            "--0-transition": "0.3s"
+          },
+          "animation-1": {
+            "--0h1-color": "#ffffff",
+            "--0h1-transition": "var(--0h-transition)",
+            "--1-transition": "var(--0-transition)"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_bieu_tuong",
+            "var": "--0h1-color",
+            "type": "color"
+          },
+          {
+            "label": "mau_nen",
+            "var": "--0h-background-color",
+            "type": "background-color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          }
+        ],
+        "override": {
+          "animation-0": "animation-0-hover-background-color"
+        }
+      },
+      {
+        "id": "000039",
+        "type": "1",
+        "name": "3D",
+        "animation": {
+          "animation-1": {
+            "--0h1-transition": "0.3s",
+            "--1-transition": "0.3s",
+            "--0h1-transform": "translateX(-4px) translateY(-4px)",
+            "--0h1-filter": "drop-shadow(4px 4px 0px #000000)",
+            "--0h1-color": "#00a859"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_bieu_tuong",
+            "var": "--0h1-color",
+            "type": "color"
+          },
+          {
+            "label": "chinh_sua_bong",
+            "var": "--0h1-filter",
+            "type": "filter"
+          },
+          {
+            "label": "chinh_sua_di_chuyen_cho_khop_voi_bong",
+            "var": "--0h1-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h1-transition-shared",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--1-transition-shared",
+            "type": "transition"
+          }
+        ],
+        "override": {
+          "animation-1": "animation-0-hover-animation-1-filter"
+        }
+      },
+      {
+        "id": "000040",
+        "type": "1",
+        "name": "3D_nhan_xuong",
+        "animation": {
+          "animation-1": {
+            "--0h1-transition": "0.3s",
+            "--1-transition": "0.3s",
+            "--1-transform": "translateX(-4px) translateY(-4px)",
+            "--0h1-transform": "none",
+            "--1-filter": "drop-shadow(4px 4px 0px #000000)",
+            "--0h1-filter": "none",
+            "--0h1-color": "#00a859"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_bieu_tuong",
+            "var": "--0h1-color",
+            "type": "color"
+          },
+          {
+            "label": "chinh_sua_bong",
+            "var": "--1-filter",
+            "type": "filter"
+          },
+          {
+            "label": "chinh_sua_di_chuyen_cho_khop_voi_bong",
+            "var": "--1-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h1-transition-shared",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--1-transition-shared",
+            "type": "transition"
+          }
+        ],
+        "override": {
+          "animation-1": "animation-0-hover-animation-1-filter animation-1-filter"
+        }
+      }
+    ]
+  },
+  {
+    "label": "Tự động",
+    "type": "keyframes",
+    "data": [
+      {
+        "id": "000017",
+        "name": "nhap_nhay",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "0.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-iteration-count-shared": "infinite",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-iteration-count-shared)",
+            "--0h-animation": "var(--0-animation)",
+            "--0h-animation-play-state": "running",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "scale(1)",
+            "--0-50-transform": "scale(2)",
+            "--0t-transform": "var(--0f-transform)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "",
+            "var": "--0h-animation-play-state",
+            "type": "animation-play-state"
+          }
+        ]
+      },
+      {
+        "id": "000023",
+        "name": "quay",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "1.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-iteration-count-shared": "infinite",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-iteration-count-shared)",
+            "--0h-animation": "var(--0-animation)",
+            "--0h-animation-play-state": "running",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "rotate(0)",
+            "--0-50-transform": "rotate(180deg)",
+            "--0t-transform": "rotate(360deg)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "",
+            "var": "--0h-animation-play-state",
+            "type": "animation-play-state"
+          }
+        ]
+      },
+      {
+        "id": "000025",
+        "name": "di_chuyen_lien_tuc",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "1.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-iteration-count-shared": "infinite",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-iteration-count-shared)",
+            "--0h-animation": "var(--0-animation)",
+            "--0h-animation-play-state": "running",
+            "--0f-transform": "translateX(0) translateY(10px)",
+            "--0-50-transform": "translateX(0) translateY(0px)",
+            "--0t-transform": "translateX(0) translateY(10px)"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "",
+            "var": "--0h-animation-play-state",
+            "type": "animation-play-state"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Khi xuất hiện",
+    "type": "visible",
+    "data": [
+      {
+        "id": "000018",
+        "name": "thu_phong",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "0.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-iteration-count-shared": "1",
+            "--0-animation-delay": "0s",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-iteration-count-shared)",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "scale(3)",
+            "--0-50-transform": "scale(2)",
+            "--0t-transform": "scale(1)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0-animation-iteration-count-shared",
+            "type": "number-iteration-count"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          }
+        ]
+      },
+      {
+        "id": "000028",
+        "name": "quay",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "1.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-iteration-count-shared": "1",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-iteration-count-shared)",
+            "--0-animation-delay": "0s",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "rotate(0)",
+            "--0-50-transform": "rotate(180deg)",
+            "--0t-transform": "rotate(360deg)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0-animation-iteration-count-shared",
+            "type": "number-iteration-count"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          }
+        ]
+      },
+      {
+        "id": "000029",
+        "name": "di_chuyen_lien_tuc",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "1.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-iteration-count-shared": "1",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-iteration-count-shared)",
+            "--0-animation-delay": "0s",
+            "--0f-transform": "translateX(0) translateY(20px)",
+            "--0-50-transform": "translateX(0) translateY(10px)",
+            "--0t-transform": "translateX(0) translateY(0px)"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "lap_hoat_anh",
+            "var": "--0-animation-iteration-count-shared",
+            "type": "number-iteration-count"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-delay",
+            "type": "animation-delay"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Khi cuộn trang",
+    "type": "scroll",
+    "data": [
+      {
+        "id": "000019",
+        "name": "thu_phong",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "0.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-fill-mode-shared": "both",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-fill-mode-shared)",
+            "--0-animation-range": "cover 0% contain 100%",
+            "--0-animation-timeline": "--animation",
+            "--0-view-timeline-name": "--animation",
+            "--0-view-timeline-axis": "block",
+            "--0-view-timeline-inset": "0% 0%",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "scale(1.5)",
+            "--0-50-transform": "scale(1)",
+            "--0t-transform": "scale(-1)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-fill-mode-shared",
+            "type": "number-fill-mode"
+          }
+        ]
+      },
+      {
+        "id": "000030",
+        "name": "quay",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "1.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-fill-mode-shared": "both",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-fill-mode-shared)",
+            "--0-animation-range": "cover 0% contain 100%",
+            "--0-animation-timeline": "--animation",
+            "--0-view-timeline-name": "--animation",
+            "--0-view-timeline-axis": "block",
+            "--0-view-timeline-inset": "0% 0%",
+            "--0-transform-origin-x-shared": "center",
+            "--0-transform-origin-y-shared": "center",
+            "--0-transform-origin": "var(--0-transform-origin-x-shared) var(--0-transform-origin-y-shared)",
+            "--0f-transform": "rotate(0)",
+            "--0-50-transform": "rotate(180deg)",
+            "--0t-transform": "rotate(360deg)"
+          }
+        },
+        "customize": [
+          {
+            "label": "tam_truc_ngang_cua_hieu_ung",
+            "var": "--0-transform-origin-x-shared",
+            "type": "transform-origin-x"
+          },
+          {
+            "label": "tam_truc_doc_cua_hieu_ung",
+            "var": "--0-transform-origin-y-shared",
+            "type": "transform-origin-y"
+          },
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-fill-mode-shared",
+            "type": "number-fill-mode"
+          }
+        ]
+      },
+      {
+        "id": "000031",
+        "name": "di_chuyen_lien_tuc",
+        "animation": {
+          "animation-0": {
+            "--0-animation-duration-shared": "1.6s",
+            "--0-animation-timing-function-shared": "linear",
+            "--0-animation-fill-mode-shared": "both",
+            "--0-animation": "icon-animate-0 var(--0-animation-duration-shared) var(--0-animation-timing-function-shared) var(--0-animation-fill-mode-shared)",
+            "--0-animation-range": "cover 0% contain 100%",
+            "--0-animation-timeline": "--animation",
+            "--0-view-timeline-name": "--animation",
+            "--0-view-timeline-axis": "block",
+            "--0-view-timeline-inset": "0% 0%",
+            "--0f-transform": "translateX(0) translateY(10px)",
+            "--0-50-transform": "translateX(0) translateY(0px)",
+            "--0t-transform": "translateX(0) translateY(-5px)"
+          }
+        },
+        "customize": [
+          {
+            "label": "chinh_sua_khi_bat_dau",
+            "var": "--0f-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_o_giua",
+            "var": "--0-50-transform",
+            "type": "transform"
+          },
+          {
+            "label": "chinh_sua_khi_ket_thuc",
+            "var": "--0t-transform",
+            "type": "transform"
+          },
+          {
+            "label": "thoi_gian_lap_cua_moi_hoat_anh",
+            "var": "--0-animation-duration-shared",
+            "type": "animation-duration"
+          },
+          {
+            "label": "kieu_chay_hieu_ung",
+            "var": "--0-animation-timing-function-shared",
+            "type": "animation-timing-function"
+          },
+          {
+            "label": "",
+            "var": "--0-animation-fill-mode-shared",
+            "type": "number-fill-mode"
+          }
+        ]
+      }
+    ]
+  }
+]

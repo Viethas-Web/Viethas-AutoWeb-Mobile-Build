@@ -1,0 +1,165 @@
+<nz-layout id="purchase-invoice-today">
+  <div class="purchase-invoice-today-header">
+    <div class="row p-0 m-0">
+      <div class="col-4 p-0 m-0 d-flex align-items-center justify-content-between">
+        <!-- Tiêu đề  -->
+        <span class="title d-flex flex-row" style="gap:8px">
+          <b>{{ "danh_sach_snimei" | translate }}</b>
+        </span>
+        <!-- Thanh tìm kiếm -->
+        <div class="search">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input placeholder="{{'tim_kiem_snimei' | translate}}" [(ngModel)]="keySearch"
+              (keyup.enter)="onSearch()" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span (click)="onSearch()" nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-8 p-0 m-0 d-flex align-items-center justify-content-end select">
+        <!-- Chọn nhóm tra cứu -->
+        <nz-select style="margin: 0 16px; min-width: 170px;width:auto" [(ngModel)]="lookupGroup"
+          nzPlaceHolder="{{'chon_nhom_tra_cuu' | translate}}"
+          (ngModelChange)="keySearch = ''; snimeis = []; totalPages = 0">
+          <nz-option nzLabel="{{'tat_ca' | translate}}" nzValue="all"></nz-option>
+          <nz-option *ngFor="let item of lookupGroupArray" [nzValue]="item"
+            [nzLabel]="('nhom_tra_cuu' | translate) +' '+ item"></nz-option>
+        </nz-select>
+        <nz-range-picker nzFormat='dd/MM/yyyy' [(ngModel)]="date" (ngModelChange)="keySearch=''; snimeis = []" [nzAllowClear]="false"></nz-range-picker>
+        <button class="btn-filter" style="margin: 0 8px;padding: 7px;" nz-button nzType="default" (click)="isVisible = true">
+          <i nz-icon nzType="filter" nzTheme="outline"></i></button>
+
+        <button class="btn-view" style="margin: 0 8px;" nz-button nzType="default" (click)="resetPagination();getSNIMEIs()">
+          {{'xem' | translate}}
+        </button>
+        <button
+          class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="openModalImportExcel()">
+          <i class="bi bi-plus"></i> {{ "them_voi_excel" | translate }}
+        </button>
+        <button
+          class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default"
+          (click)="openModalAdd()">
+          <i class="bi bi-plus"></i> {{ "them" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 10px">
+    <nz-table
+      [nzVirtualItemSize]="53"
+      [nzData]="snimeis"
+      [nzVirtualForTrackBy]="trackByFn"
+      [nzLoading]="loading"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1200px', y: tableHeight }"
+      [nzFooter]="snimeis?.length && footerTpl"
+    >
+      <thead class="_thead">
+        <tr>
+          <th nzWidth="22%" nzAlign="left" (click)="handleSort('date_created')">
+            <b>{{'ngay_tao_du_lieu' | translate}}</b>
+            <i nz-icon [nzType]="sortby.date_created ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+          </th>
+          <th nzWidth="22%" nzAlign="left" (click)="handleSort('sn_imei')">
+            <b>{{'so_snimei' | translate}}</b>
+            <i nz-icon [nzType]="sortby.sn_imei ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+          </th>
+          <th nzWidth="22%" nzAlign="left" (click)="handleSort('lookup_group')">
+            <b>{{'nhom_tra_cuu' | translate}}</b>
+            <i nz-icon [nzType]="sortby.lookup_group ? 'caret-down':'caret-up'"
+              nzTheme="outline"></i>
+          </th>
+          <th nzWidth="22%" nzAlign="left" (click)="handleSort('active')">
+            <b>{{'kich_hoat' | translate}}</b>
+            <i nz-icon [nzType]="sortby.active ? 'caret-down':'caret-up'" nzTheme="outline"></i></th>
+          <th nzWidth="22%" nzAlign="left"
+            (click)="handleSort('warehouse_release_date')">
+            <b>{{'ngay_xuat_kho' | translate}}</b><i nz-icon
+              [nzType]="sortby.warehouse_release_date ? 'caret-down':'caret-up'" nzTheme="outline"></i></th>
+          <th nzWidth="22%" nzAlign="left" (click)="handleSort('active_date')">
+            <b>{{'ngay_kich_hoat' | translate}}</b><i nz-icon [nzType]="sortby.active_date ? 'caret-down':'caret-up'"
+              nzTheme="outline"></i></th>
+          <th nzWidth="22%" nzAlign="left" (click)="handleSort('expiration_date')">
+            <b>{{'ngay_het_han' | translate}}</b><i nz-icon [nzType]="sortby.expiration_date ? 'caret-down':'caret-up'"
+              nzTheme="outline"></i></th>
+          <th nzWidth="12%" nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template nz-virtual-scroll let-item let-index="index">
+          <tr>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.date_created  | date:'dd/MM/yyyy'}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.sn_imei }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.lookup_group }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.active ? 'Đã kích hoạt' : 'Chưa kích hoạt' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.warehouse_release_date | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.active_date | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start text-start">
+                <span>{{ item.expiration_date | date:'dd/MM/yyyy' }}</span>
+              </div>
+            </td>
+
+            <td nzAlign="center">
+              <div class="icon-action">
+                <span  style="color: #008848; margin-right: 0.5rem;cursor: pointer; font-size: 18px" nz-icon nzType="edit" nzTheme="outline" (click)="editProduct(item)"></span>
+                <span style="color: #ff000a;cursor: pointer; font-size: 18px" nz-icon nzType="delete" nzTheme="outline" (click)="deleteProduct(item)"></span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+
+      <ng-template #footerTpl>
+        <app-pagination
+          [pageCurrent]="pageCurrent"
+          [totalPages]="totalPages"
+          [limit]="limit"
+          [pageShowChoose]="pageShowChoose"
+          [pageGoto]="pageGoto"
+          (pageIndexChange)="pageIndexChange($event)"
+          (limitChange)="limitChange($event)"
+        ></app-pagination>
+      </ng-template>
+    </nz-table>
+  </div>
+</nz-layout>
+
+<nz-modal [(nzVisible)]="isVisible" nzCancelText="{{'huy' | translate}}" nzTitle="{{'loc_du_lieu_theo'|translate}}"
+  (nzOnCancel)="isVisible = false" (nzOnOk)="isVisible = false">
+  <ng-container *nzModalContent>
+    <nz-radio-group [(ngModel)]="date_query" (ngModelChange)="this.keySearch = '';snimeis = []">
+      <label nz-radio nzValue="">{{'khong' | translate}}</label>
+      <label nz-radio nzValue="warehouse_release_date">{{'ngay_xuat_kho' | translate}}</label>
+      <label nz-radio nzValue="active_date">{{'ngay_kich_hoat' | translate}}</label>
+      <label nz-radio nzValue="date_created">{{'ngay_tao_du_lieu' | translate}}</label>
+    </nz-radio-group>
+  </ng-container>
+</nz-modal>

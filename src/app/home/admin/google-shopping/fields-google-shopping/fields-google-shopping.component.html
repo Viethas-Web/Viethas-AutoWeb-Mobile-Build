@@ -1,0 +1,74 @@
+<div class="fields-google-shopping p-4">
+  <h1 class="text-primary-green font-bold">Cấu hình trường dữ liệu</h1>
+  <!-- <button nz-button (click)="deleteSetup()" nzType="primary">Xóa</button> -->
+  <nz-tabset>
+    <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab.title | translate">
+      <ng-container *ngTemplateOutlet="tableTemplate; context: { tab: tab }"></ng-container>
+    </nz-tab>
+  </nz-tabset>
+</div>
+
+<ng-template #tableTemplate let-tab="tab">
+  <button class="ml-2" nz-button (click)="showStructureProduct(tab.sector)" nzType="primary">
+    Xem cấu trúc {{ tab.title | translate }}
+  </button>
+
+  <br />
+  <br />
+
+  <nz-table nzBordered [nzData]="getData(tab.sector)?.data || []" [nzShowPagination]="false" [nzFrontPagination]="false"
+    [nzLoading]="getLoading(tab.sector)">
+    <thead>
+      <tr>
+        <th nzWidth="20%">Trường dữ liệu</th>
+        <th nzWidth="20%" class="d-flex align-items-center" style="gap: 8px;">
+          Label
+          <i nz-icon nzType="exclamation-circle" nzTheme="fill"
+            style="color: #aaa8a5; cursor: pointer; font-size: 16px;"
+            nz-tooltip
+            [nzTooltipTitle]="'ten_tieu_de_hien_thi_trong_quan_tri_cac_nganh_hang' | translate">
+          </i>
+        </th>
+        <th nzWidth="20%">Loại</th>
+        <th nzWidth="40%">Giá trị / Trường liên kết</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of getData(tab.sector)?.data || []">
+        <!-- Trường dữ liệu (key) – chỉ hiển thị, không edit -->
+        <td>{{ data.key }}</td>
+
+        <!-- Label -->
+        <td>{{ data.label | translate }}</td>
+
+        <!-- Chọn type: 'value' hay 'field' -->
+        <td>
+          <nz-select [(ngModel)]="data.type" (ngModelChange)="onDataChange(tab.sector)">
+            <nz-option nzValue="value" nzLabel="Giá trị"></nz-option>
+            <nz-option nzValue="field" nzLabel="Trường dữ liệu"></nz-option>
+          </nz-select>
+        </td>
+
+        <!-- Nếu type = value: nhập value; nếu type = field: chọn field_custom -->
+        <td>
+          <ng-container *ngIf="data.type === 'value'; else fieldSelect">
+            <input type="text" nz-input placeholder="Nhập giá trị nếu có" [(ngModel)]="data.value"
+              (ngModelChange)="onDataChange(tab.sector)" />
+          </ng-container>
+
+          <ng-template #fieldSelect>
+            <nz-select [(ngModel)]="data.field" (ngModelChange)="onDataChange(tab.sector)">
+              <nz-option [nzValue]="''" nzLabel="Chọn trường liên kết"></nz-option>
+              <nz-option-group *ngFor="let group of groupedFields(tab.sector); trackBy: trackByGroup"
+                [nzLabel]="group.label">
+                <nz-option *ngFor="let item of group.fields; trackBy: trackByField" [nzValue]="item.field_custom"
+                  [nzLabel]="item.field_label">
+                </nz-option>
+              </nz-option-group>
+            </nz-select>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</ng-template>

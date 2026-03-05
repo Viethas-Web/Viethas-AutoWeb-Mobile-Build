@@ -1,0 +1,34 @@
+<div class="edit-parameter d-flex" >
+  <!-- Kích thước trang -->
+  <div class="parameter-page " *ngIf="setupWebsiteImage">
+    <div>
+      <p class="title m-0">{{'hinh_anh_du_an' | translate}}</p>
+      <span class="text-danger" style="font-size: 12px">({{'moi_khi_tao_doi_tuong_moi_se_lay_cau_hinh_ben_duoi' | translate}})</span>
+    </div>
+    <div class="edit-parameter__content ">
+      <mat-form-field appearance="fill">
+        <mat-label>{{'nguon_hinh_anh_hien_thi_len' | translate}}</mat-label>
+        <mat-select disableRipple [(ngModel)]="setupWebsiteImage.upload_image.source" (ngModelChange)="updateSetup()">
+          <mat-option value="device">{{'tu_thiet_bi' | translate}}</mat-option>
+          <mat-option value="library">{{'tu_thu_vien' | translate}}</mat-option>
+          <mat-option value="url">{{'duong_dan_hinh_anh' | translate}}</mat-option>
+          <mat-option value="free_img">{{'kho_anh_dung_chung' | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="setupWebsiteImage.upload_image.source == 'device'">
+        <mat-label>{{'nen_anh_tai_len' | translate}}</mat-label>
+        <mat-select disableRipple [(ngModel)]="setupWebsiteImage.upload_image.compress_type" (ngModelChange)="updateSetup()">
+          <mat-option [value]="'no-compress'">{{'khong_nen_anh_sau_khi_tai_len' | translate}}</mat-option>
+          <mat-option [value]="'compress-screen'">{{'nen_anh_theo_ti_le_man_hinh_hien_thi' | translate}}</mat-option>
+          <mat-option [value]="'custom'">{{'nen_anh_theo_kich_thuoc_tu_chon' | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>  
+  </div>
+  
+
+  <div *ngIf="!setupWebsiteImage" style="position: absolute; left:0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center">
+    <nz-spin nzSimple></nz-spin>
+  </div>
+</div>

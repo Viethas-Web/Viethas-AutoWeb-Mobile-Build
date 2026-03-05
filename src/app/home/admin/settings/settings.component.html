@@ -1,0 +1,23 @@
+<div class="search_block">
+  <h3 style="font-weight: bold; margin: 0">{{'cau_hinh_chung' | translate}}</h3>
+</div>
+<div class="body_list_block overflow-auto" >
+  <ul class="list-group h-100">
+    <ng-container *ngFor="let setting of settings">
+      <li *ngIf="conditionToShow(setting)" style="display:flex; align-items:center; gap: 10px; padding-inline: 6px; margin-bottom: 10px; justify-content: space-between; cursor: pointer" (click)="handleChooseSettings(setting)">
+        <div style="display:flex; gap: 6px; align-items:center">
+          <i [class]="setting.icon"></i>
+          <p style="margin: 0">
+            {{setting.label | translate}}
+          </p>
+        </div>
+
+        <img style="width: 13px; height: 13px;" [src]="'/assets/root/images/system/icons/icon_object_sample.svg'">
+      </li>
+    </ng-container>
+  </ul>
+</div>
+
+
+
+

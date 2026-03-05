@@ -1,0 +1,147 @@
+<div class="heading" style="display: flex;align-items:center; justify-content: space-between;width: 100%;">
+    <div class="heading-left" style="width: 70%;display: flex;
+    align-items: center;
+    justify-content: space-between;">
+        <p style="font-size: 1.1rem;color: #00a85f;font-weight: 500;margin: 0;">{{'don_dat_hang' | translate }} {{data.bill_code}}</p>
+        <button style="display:flex;align-items:center;
+        padding: 10px;background: #00a859;
+        gap: 5px;
+        color: #ffffff;border-radius: 3px;"><span nz-icon nzType="save" nzTheme="outline"></span> Lưu</button>
+    </div>
+    <div class="heading-right" style="width: 30%;text-align: right;">
+        <i class="bi bi-x" style="cursor:pointer;color: #07d31d;font-size: 30px;" (click)="closeDialog()"></i>
+    </div>
+</div>
+<br />
+<div class="wrapper">
+    <div class="side-left">
+        <nz-table #dataDetail [nzShowPagination]="false" [nzData]="showDetail" [nzLoading]="loading_product">
+            <thead class="_thead">
+                <tr>
+                    <th nzWidth="15%" nzAlign="left"><b>{{'ten_san_pham' | translate }} </b></th>
+                    <th nzWidth="10%" nzAlign="left"><b>{{'don_vi' | translate }}</b></th>
+                    <th nzWidth="10%" nzAlign="center"><b>{{'so_luong' | translate }}</b></th>
+                    <th nzWidth="20%" nzAlign="center"><b>{{'don_gia' | translate }}</b></th>
+                    <th nzWidth="10%" nzAlign="center"><b>{{'tong' | translate }}</b></th>
+                    <th nzWidth="2%"><span></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of dataDetail.data">
+                    <tr>
+                        <td>
+                            <div class="image d-flex align-items-center">
+                                <span>{{item.name}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex justify-content-start text-start">
+                                <span style="text-transform: capitalize;">{{ item.unit }}</span>
+                            </div>
+                        </td>
+                        <td nzAlign="center">
+                            <nz-input-number [(ngModel)]="item.quantity"></nz-input-number>
+                        </td>
+                        <td nzAlign="center">
+                            <input nz-input [value]="vhAlgorithm.vhcurrencyunit(item.price)" />
+                        </td>
+                        <td nzAlign="center">
+                            <span>{{ item.price * item.quantity | number:'1.0-2'}}</span>
+                        </td>
+                        <td nzAlign="center">
+                            <button style="padding: 10px;background: none;color: red;" nz-popconfirm
+                            nzPopconfirmTitle="{{'ban_co_chac_chan_xoa_hoa_don_nay' | translate }}" nzPopconfirmPlacement="bottom"
+                            nzCancelText="Hủy" nzOkText="Ok"
+                            (click)="$event.stopPropagation();"
+                            (nzOnConfirm)="detailProduct(item)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </nz-table>
+    </div>
+    <div class="side-right">
+        <div class="top-right">
+            <div class="field-info">
+                <p class="title">{{'ma_hoa_don' | translate }}</p>
+                <span>{{data.bill_code}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'ngay_tao_don' | translate }}</p>
+                <span>{{data.date | date: 'dd/MM/yyyy'}} {{data.date | date: 'hh:mm'}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'giao_hang' | translate }}</p>
+                <span>GHTK</span>
+            </div>
+        </div>
+        <div class="center-right">
+            <div class="field-info">
+                <p class="title">{{'khach_hang' | translate }}: </p>
+                <span>{{endUser.name}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'so_dien_thoai' | translate }}: </p>
+                <span>{{endUser.phone}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">Email: </p>
+                <span>{{endUser.email}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'dia_chi' | translate }}: </p>
+                <span>{{endUser.address}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'hinh_thuc_thanh_toan' | translate }}: </p>
+                <span>{{'chuyen_khoan_ngan_hang' | translate }}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'ghi_chu_cua_khach' | translate }}: </p>
+                <span>{{'truoc_khi_giao_hang_vui_long_goi_xac_nhan' | translate }}</span>
+            </div>
+        </div>
+        <div class="bottom-right">
+            <p class="title" style="color:#00a85f; text-align: right;cursor: pointer;" (click)="openPayment()"> + {{'them_thanh_toan_khac' | translate }}</p>
+            <div class="field-info">
+                <p class="title">{{'cong_tien' | translate }} </p>
+                <span>{{data.total}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title" style="display: flex;align-items: center;justify-content: space-between;width: 60%">
+                    {{'giam_gia_hoa_don' | translate }} <nz-input-number [(ngModel)]="discount" style="width: 50px;"
+                        [nzFormatter]="formatterPercent" [nzParser]="parserPercent"></nz-input-number></p>
+                <input nz-input [(ngModel)]="data.discount" style="width: 100px;" />
+            </div>
+            <div class="field-info">
+                <p class="title">{{'thanh_toan_bang_diem' | translate }} </p>
+                <span>-15000</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'giam_gia_coupon' | translate }} </p>
+                <span>-10000</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'phi' | translate }} </p>
+                <input nz-input value="-15000" style="width: 100px;" />
+            </div>
+            <div class="field-info">
+                <p class="title" style="display: flex;align-items:center;justify-content: space-between;width: 40%;">
+                    {{'thue' | translate }} <nz-input-number [(ngModel)]="tax" style="width: 50px;" [nzFormatter]="formatterPercent"
+                        [nzParser]="parserPercent"></nz-input-number></p>
+                <span>{{data.tax}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'tong' | translate }} </p>
+                <span>{{data.total - 25000}}</span>
+            </div>
+            <div class="field-info">
+                <p class="title">{{'ghi_chu_cua_shop' | translate }} </p>
+                <textarea rows="1" nz-input style="width: 200px;">{{'da_cong_them_tien_ship' | translate }}</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

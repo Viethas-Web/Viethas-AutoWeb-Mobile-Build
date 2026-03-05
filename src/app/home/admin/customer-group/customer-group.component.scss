@@ -1,0 +1,73 @@
+.row-back {
+    margin-top: 8px;
+    cursor: pointer;
+    i {
+        margin-top: 2px;
+    }
+}
+
+nz-layout {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 6px #00000014;
+    border-radius: 5px;
+    padding: 16px;
+    height: 100%;
+    overflow: hidden;
+    .title {
+        color: var(--ion-color-vh-green);
+        font-size: 1.1rem;
+    }
+    .ant-divider-horizontal {
+        margin: 0 !important;
+    }
+    .ant-list-item {
+        padding-bottom: 0 !important;
+        b {
+            font-size: 0.9rem;
+            color: black !important;
+        }
+        .quantity {
+            color: var(--ion-color-vh-gray);
+            font-style: 0.8rem;
+        }
+        .cus-icon {
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+input {
+    width: 90%;
+    border: 1px solid #c8c7cc !important;
+    border-radius: 5px !important;
+}
+form{
+    padding: 24px;
+}
+.btn-add {
+    color: #fff;
+    background: var(--ion-color-vh-green);
+    border-radius: 5px;
+}
+
+.btn-cancel {
+    background: #fff 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    border-color: #c8c7cc;
+}
+
+.infinite-container {
+    height: 80vh;
+    width: 100%;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+}
+
+.infinite-container::-webkit-scrollbar {
+    width: 0px !important;
+    /* For Chrome, Safari, and Opera */
+}

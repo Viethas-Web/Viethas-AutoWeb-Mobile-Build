@@ -1,0 +1,9 @@
+.title {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  h2 {
+    color: var(--ion-color-vh-green);
+    font-weight: 500;
+  }
+}

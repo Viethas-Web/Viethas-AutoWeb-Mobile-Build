@@ -1,0 +1,118 @@
+<div nz-row class="row-back medium-size" (click)="goBack()">
+  <i nz-icon nzType="left" nzTheme="outline"></i>{{'Back' | translate}}
+</div>
+<nz-layout id="product-list" class="height-layout">
+  <div nz-row class="product-list-header" style="padding: 8px 0;">
+      <div nz-col nzSpan="6" class="title left-all-content">
+          <b>{{release.coupon_name}}</b>
+      </div>
+      <div nz-col nzSpan="8" style="display: flex;align-items: center;justify-content: space-between;">
+          <nz-input-group style="width: 45%;" [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input placeholder="{{'tim_theo_ma' | translate}}" [(ngModel)]="search_value" (ngModelChange)="search($event)" />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+              <i nz-icon nzType="search"></i>
+          </ng-template>
+          <nz-select nzPlaceHolder="{{'chon_trang_thai' | translate}}" [ngModel]="filterValue" (ngModelChange)="filter($event)" style="width: 45%;">
+              <nz-option nzValue="all" nzLabel="{{'tat_ca' | translate}}"></nz-option>
+              <nz-option nzValue="1" nzLabel="{{'da_phat_hanh' | translate}}"></nz-option>
+              <nz-option nzValue="3" nzLabel="{{'da_doi_tu_diem_tich_luy' | translate}}"></nz-option>
+              <nz-option nzValue="4" nzLabel="{{'da_su_dung' | translate}}"></nz-option>
+              <nz-option nzValue="5" nzLabel="{{'da_het_han' | translate}}"></nz-option>
+          </nz-select>
+      </div>
+      <div nz-col nzSpan="10" class=" right-all-content">
+          <button class="btn-add" nz-button nzType="default" (click)="initForm()">
+              <i nz-icon nzType="plus" nzTheme="outline"></i>
+              {{'tao_ma_voucher'|translate}}
+          </button>
+      </div>
+  </div>
+  <div>
+      <nz-table *ngIf="list_data.length" [nzScroll]="{ y: heightScroll }" #dataShow nzShowPagination nzShowSizeChanger [nzPageSize]="20" [nzPageSizeOptions]="[20, 30, 40, 50, 100, 200]" [nzData]="list_data" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+          <thead>
+              <tr>
+                  <th nzWidth="5%" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+                  <th style="cursor: pointer;" (click)="codeCol = !codeCol;sortTable('code')">
+                      <b>{{'ma_phieu' | translate}}</b>
+                      <i nz-icon [nzType]="codeCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                  </th>
+                  <th style="cursor: pointer;" (click)="date_validityCol = !date_validityCol;sortTable('date_validity')">
+                      <b>{{'ngay_bat_dau' | translate}}</b>
+                      <i nz-icon [nzType]="date_validityCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                  </th>
+                  <th style="cursor: pointer;" (click)="date_expireCol = !date_expireCol;sortTable('date_expire')">
+                      <b>{{'ngay_het_han' | translate}}</b>
+                      <i nz-icon [nzType]="date_expireCol == true ? 'caret-down':'caret-up'" nzTheme="outline"></i>
+                  </th>
+                  <th><b>{{'trang_thai' | translate}}</b></th>
+                  <th nzAlign="center"><b>{{'thao_tac' | translate}}</b></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let data of dataShow.data, index as i">
+                  <td [nzChecked]="setOfCheckedId.has(data._id)" (nzCheckedChange)="onItemChecked(data.code, $event)">
+                  </td>
+                  <td> {{ data.code }} <i style="cursor: pointer" (click)="$event.stopPropagation(); vhComponent.copyValue(data.code)" nz-icon nzType="copy" nzTheme="outline"></i></td>
+                  <td> {{ data.date_validity | date :"dd/MM/yyyy" }}</td>
+                  <td> {{ data.date_expire| date :"dd/MM/yyyy" }}</td>
+                  <td>
+                      <ng-container>
+                          <span [ngSwitch]="data.status">
+                              <span *ngSwitchCase="1" style="color: var(--ion-color-vh-black);">
+                                  <ng-container *ngIf="!checkExpried(data.date_expire); else elseTemplate">
+                                      <span> {{'da_phat_hanh' | translate}}</span>
+                      </ng-container>
+                      <ng-template #elseTemplate>
+                          <span style="color: var(--ion-color-vh-gray);"> {{'da_het_han' | translate}}</span>
+                      </ng-template>
+                      </span>
+                      <span *ngSwitchCase="3" style="color: var(--ion-color-vh-green);">
+                                  {{'da_doi_tu_diem_tich_luy' | translate}}
+                              </span>
+                      <span *ngSwitchCase="4" style="color: var(--ion-color-vh-red);">
+                                  {{'da_su_dung_de_thanh_toan' | translate}}
+                              </span>
+
+                      </span>
+                      </ng-container>
+
+                  </td>
+                  <td nzAlign="center" class="center-all-content">
+                   
+                      <button nz-button [disabled]="data.status != 1" class="  btn_content">
+                          <i style=" font-size: 1.2rem;" nz-icon nzType="delete" nzTheme="outline"
+                              nz-popconfirm (click)="$event.stopPropagation()"
+                              nzPopconfirmTitle="{{'xoa_voucher_nay' | translate}}?"
+                              nzPopconfirmPlacement="bottom" (nzOnConfirm)="deleteProductCode(data)"></i>
+                      </button>
+                      <button nz-button class="btn_content">
+                          <i (click)="print([data])" style="font-size: 1.2rem;" nz-icon nzType="printer"
+                          nzTheme="outline"></i>
+                      </button>
+
+                  </td>
+              </tr>
+          </tbody>
+      </nz-table>
+      <nz-empty nzNotFoundImage="simple" *ngIf="!list_data.length"></nz-empty>
+  </div>
+</nz-layout>
+<nz-modal [(nzVisible)]="isVisibleModal" nzTitle="{{'tao_ma_voucher' | translate}}" (nzOnCancel)="isVisibleModal = false" (nzOnOk)="addProductCode()">
+  <ng-container *nzModalContent>
+      <form [formGroup]="form">
+          <nz-form-item style="margin:0 0 8px;">
+              <nz-form-label [nzSpan]="24"><b>{{'so_luong_phieu_phat_hanh' | translate}}</b></nz-form-label>
+              <nz-form-control [nzSpan]="24" [nzErrorTip]="userErrorTpl">
+                  <nz-input-number style="width: 100%;" formControlName="number" [nzMin]="1" nzPlaceHolder="{{'vui_long_nhap_so_phieu' | translate}}" [nzMax]="200" [nzStep]="1">
+                  </nz-input-number>
+                  <ng-template #userErrorTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">{{'Number is so_phieu_la_bat_buoc' | translate}}
+                      </ng-container>
+                  </ng-template>
+              </nz-form-control>
+          </nz-form-item>
+         
+      </form>
+  </ng-container>
+</nz-modal>

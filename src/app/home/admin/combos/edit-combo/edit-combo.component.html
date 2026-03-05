@@ -1,0 +1,329 @@
+<div class="add-product w-100 h-100">
+  <div class="_head d-flex justify-content-between align-items-center">
+    <div class="title">
+      <h2 class="m-0">{{'cap_nhat_combo' | translate}}</h2>
+    </div>
+    <span class="_icon" nz-icon nzType="close" nzTheme="outline" (click)="close()">
+    </span>
+  </div>
+    <div class="main">
+      <form class="form p-0 m-0" *ngIf="editComboForm" [formGroup]="editComboForm">
+        <div class="row">
+          <!-- Tên, danh mục -->
+          <div class="col-6 padding">
+            <div>
+              <label for="name-input">{{'ten_combo' | translate}} <sup>*</sup></label>
+            </div>
+            <div class="layout-input d-flex" style="gap:8px">
+              <input class="input" type="text" [formControl]="getFormControl('name_' + functionService.languageTempCode)" placeholder="{{'nhap_ten_combo' | translate}}"
+                (blur)="updateDynamicField('name', editComboForm.value['name_' + functionService.languageTempCode])">
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </div>
+          </div>
+
+          <!-- CHọn danh mục -->
+          <div class="col-6 padding">
+            <div>
+              <label for="name-input">{{'danh_muc' | translate}} <sup>*</sup></label>
+            </div>
+            <div class="layout-input d-flex" style="gap:8px">
+              <div style="width:100%; ">
+                <nz-select
+                  nzMode="multiple"
+                  formControlName="id_categorys"
+                  [nzPlaceHolder]="'trong' | translate"
+                  (ngModelChange)="updateProduct('id_categorys', { id_categorys: editComboForm.value.id_categorys })"
+                  nzShowSearch
+                >
+                  <ng-container *ngFor="let o of categories">
+                    <nz-option  nzCustomContent [nzValue]="o._id" [nzLabel]="renderOptionCategory(o)">
+                      {{ renderOptionCategory(o) }}
+                    </nz-option>
+                  </ng-container>
+                </nz-select>
+              </div>
+
+              <button class="center-all-content button_list_unit" nz-button nzType="default" (click)="createCategory()">
+                <span nz-icon nzType="plus-circle" nzTheme="outline"></span>
+                {{'tao_nhanh' | translate}}
+              </button>
+            </div>
+          </div>
+
+
+          <div class="col-6 padding">
+            <div class="d-flex align-items-center">
+              <label for="name-input">{{'duong_dan_chi_tiet' | translate}}</label>
+              <span class="ml-1"  style="margin-bottom: .5rem" nz-icon nzType="question-circle" nzTheme="outline" [nz-tooltip]="'chu_y_duong_dan_chi_co_the_la' | translate"></span>
+            </div>
+            <div class="layout-input">
+              <input class="input" type="text" formControlName="link" placeholder="{{'nhap_duong_dan' | translate}}"
+                (blur)="updateProduct('link', {link: editComboForm.value.link})">
+                <div *ngIf="editComboForm.get('link').invalid && editComboForm.get('link').touched" class="error-message">
+                  <small *ngIf="editComboForm.get('link').errors.required">{{'vui_long_nhap_duong_dan' | translate}}</small>
+                  <small *ngIf="editComboForm.get('link').errors.pattern">{{'duong_dan_khong_hop_le' | translate}}</small>
+                </div>
+            </div>
+          </div>
+
+          <!-- Thương hiệu, đơn vị -->
+          <div class="col-6 padding">
+            <div>
+              <label for="name-input">{{'don_vi' | translate}} <sup>*</sup></label>
+            </div>
+            <div class="layout-input d-flex" style="gap:8px">
+              <input class="input" type="text" [formControl]="getFormControl('unit_' + functionService.languageTempCode)" placeholder="{{'nhap_don_vi' | translate}}"
+                (blur)="updateDynamicField('unit', editComboForm.value['unit_' + functionService.languageTempCode])">
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </div>
+          </div>
+
+          <!-- Barcode -->
+          <ng-container>
+            <div class="col-6 padding">
+              <div>
+                <label for="name-input">Barcode</label>
+              </div>
+              <div class="layout-input d-flex justify-content-between">
+                <input class="input warning_number" formControlName="barcode" placeholder="{{'nhap_quet_ma_vach_combo' | translate}}"
+                  (blur)="updateProduct('barcode', {barcode: editComboForm.value.barcode})">
+                <i style="margin: 8px 0 0 8px; cursor: pointer" nz-icon nzType="reload" nzTheme="outline" nz-tooltip
+                  nzTooltipTitle="{{'tao_ma_vach_tu_dong' | translate}}" nzTooltipPlacement="bottom"
+                  (click)="generateBarcodesAutomatically()"></i>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="row padding">
+          <div class="col-6 padding" *ngFor="let item of newFields">
+            <div>
+              <label for="name-input">{{item?.field_lable}}<sup *ngIf="item.field_required">*</sup></label>
+            </div>
+            <div class="layout-input d-flex" style="gap:8px">
+              <!-- <input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}"
+                [type]="item.field_typeof"
+                (blur)="updateDynamicField(item['field_custom'], editComboForm.value[item['field_custom'] + '_' + functionService.languageTempCode])">
+              <app-select-language-config [isAdmin]="true"></app-select-language-config> -->
+
+              <ng-container *ngIf="item.field_input_type.includes('input')">
+                <input class="input" [formControl]="getFormControl(item['field_custom'] + '_' + functionService.languageTempCode)" placeholder="{{item?.field_placeholder}}"
+                [type]="getTypeInput(item)" (blur)="updateDynamicField(item['field_custom'], editComboForm.value[item['field_custom'] + '_' + functionService.languageTempCode])">
+                <app-select-language-config [isAdmin]="true"></app-select-language-config>
+              </ng-container>
+
+              <ng-container *ngIf="item.field_input_type.includes('select')">
+                <div style="width:100%;">
+                  <app-vh-select
+                    [categoriesChoosing]="editComboForm.get(item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode).value"
+                    [labelSearch]="languageService.translate('tim') + ' ' + item.field_lable"
+                    [multiple]="item.field_input_type == 'select-multiple'"
+                    [listCategories]="item.data_list"
+                    [fieldLabel]="'label_'+ functionService.languageTempCode"
+                    [fieldValue]="'value_'+ functionService.languageTempCode"
+                    (selectChange)="selectChange($event, item.field_input_type == 'select-multiple' ? item['field_custom'] : item['field_custom' ] + '_' + functionService.languageTempCode)"
+                    [isObject]="item.field_input_type == 'select-multiple'">
+                  </app-vh-select>
+                </div>
+                <app-select-language-config [isAdmin]="true"></app-select-language-config>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <!-- Bật/ tắt -->
+        <div class="row padding">
+
+          <div class="col-6">
+            <div class="d-flex justify-content-between">
+              <label>{{'an_hien_thi_tren_website' | translate}}</label>
+              <nz-switch formControlName="webapp_hidden"
+                (ngModelChange)="updateProduct('webapp_hidden', {webapp_hidden: editComboForm.value.webapp_hidden})"></nz-switch>
+            </div>
+          </div>
+        </div>
+
+        <ng-template [ngTemplateOutlet]="templateElementCombo"></ng-template>
+
+        <!-- Danh sách hình ảnh combo-->
+        <div class="row p-0 m-0 pt-2">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0 pb-2">
+            <h3 class="m-0" style="color: #008848; font-size: 16px;">{{'hinh_anh_combo_hien_thi_tren_website' | translate}}</h3>
+          </div>
+          <ng-template [ngTemplateOutlet]="listImages"></ng-template>
+
+        </div>
+
+        <div class="tab-editor">
+          <div class="flag">
+            <app-select-language-config [isAdmin]="true"></app-select-language-config>
+          </div>
+          <nz-tabset style="display: contents" [(nzSelectedIndex)]="selectedIndexTabset" class="row p-0 m-0">
+            <nz-tab *ngFor="let item of ckeditorFields; let i = index" [nzTitle]="item.field_lable | translate">
+              <ng-container *ngIf="selectedIndexTabset === i">
+                <ckeditor
+                  class="ckeditor-admin"
+                  (blur)="updateDynamicField(item.field_custom, editComboForm.get(item.field_custom + '_' + functionService.languageTempCode).value)"
+                  [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                  [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+                </ckeditor>
+              </ng-container>
+            </nz-tab>
+
+            <nz-tab *ngFor="let item of newFieldsCKEditor; let j = index" nzTitle="{{ item?.field_lable}}">
+              <ng-container *ngIf="selectedIndexTabset === (ckeditorFields.length + j)">
+                <ckeditor
+                  class="ckeditor-admin"
+                  (blur)="updateDynamicField(item.field_custom, editComboForm.get(item.field_custom + '_' + functionService.languageTempCode).value)"
+                  [editor]="EDITOR" (ready)="onReady($event)" [config]="functionService.CKEDITORConfig"
+                  [formControl]="getFormControl(item.field_custom + '_' + functionService.languageTempCode)">
+                </ckeditor>
+              </ng-container>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+
+        <button class="_btn _btn_cancel d-flex align-items-center right-all-content mt-2" nz-button nzType="primary" (click)="openCKEditorByDevice()">
+          {{'mo_ta_rieng_cho_tung_thiet_bi' | translate}}
+        </button>
+
+        <!-- Nội dùng SEO -->
+        <div class="col-12" style="padding: 5pt 0 0;">
+          <div>
+            <div class="title d-flex flex-row justify-content-between">
+              <h5 style="font-size: 16px; margin: 6pt 0px !important;">SEO</h5>
+              <app-select-language-config [isAdmin]="true"></app-select-language-config>
+            </div>
+            <div class="_body_seo">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_title">{{'tieu_de' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" [formControl]="getFormControl('webapp_seo_title_' + functionService.languageTempCode)" id="webapp_seo_title"
+                    placeholder="{{'nhap_tieu_de' | translate}}"
+                    (blur)="updateDynamicField('webapp_seo_title', editComboForm.value['webapp_seo_title_' + functionService.languageTempCode])">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_description">{{'mieu_ta' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" [formControl]="getFormControl('webapp_seo_description_' + functionService.languageTempCode)" id="webapp_seo_description"
+                    placeholder="{{'nhap_mieu_ta' | translate}}"
+                    (blur)="updateDynamicField('webapp_seo_description', editComboForm.value['webapp_seo_description_' + functionService.languageTempCode])">
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="label">
+                  <label class="m-0" for="webapp_seo_keyword">{{'tu_khoa' | translate}}</label>
+                </div>
+                <div class="text">
+                  <input class="input" type="text" [formControl]="getFormControl('webapp_seo_keyword_' + functionService.languageTempCode)" id="webapp_seo_keyword"
+                    placeholder="{{'nhap_tu_khoa' | translate}}" data-role="tagsinput"
+                    (blur)="updateDynamicField('webapp_seo_keyword', editComboForm.value['webapp_seo_keyword_' + functionService.languageTempCode])">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Danh sách hình ảnh của combo sản phẩm -->
+      <ng-template #listImages>
+        <app-list-images [imgs]="listImgProduct" [folderName]="'images/database/combo-products'"
+          (sendImgs)="sendImgs($event)" [setupsImage]="setupComboImg"></app-list-images>
+
+      </ng-template>
+
+      <ng-template #templateElementCombo>
+        <!-- Bảng quản lí thành phần combo-->
+        <ng-container>
+          <div nz-row class="pb-2 pt-2">
+            <div class="d-flex justify-content-between align-items-center" nz-col nzSpan="24">
+              <h5 class="m-0" style="font-size: 16px; color: #008848">{{'danh_sach_thanh_phan_combo' | translate}}</h5>
+            </div>
+          </div>
+          <!-- Bảng danh sách lô -->
+          <nz-table [nzScroll]="{ y: comboIngredients.length> 0?'450px':'' }" #comboElement [nzData]="comboIngredients"
+            [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th [nzWidth]="'5%'" nzAlign="center">{{'#'}}</th>
+                <th [nzWidth]="'30%'" nzAlign="left">{{'ten_san_pham' | translate}}</th>
+                <th [nzWidth]="'15%'" nzAlign="center">{{'don_vi' | translate}}</th>
+                <th [nzWidth]="'10%'" nzAlign="right">{{'so_luong' | translate}}</th>
+                <th [nzWidth]="'15%'" nzAlign="right">{{'gia_ban' | translate}}</th>
+                <th [nzWidth]="'15%'" nzAlign="right">{{'gia_tong' | translate}}</th>
+                <th [nzWidth]="'10%'" nzAlign="center">{{'thao_tac' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td style="color: var(--ion-color-vh-green);font-weight: bold;">
+                  {{'gia_combo' | translate }}
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="2" nzAlign="right" style="color: var(--ion-color-vh-green);font-weight: bold;">
+                  {{vhAlgorithm.vhcurrencyunit(total)+' đ' }}
+                </td>
+              </tr>
+              <ng-container *ngFor="let product of comboElement.data; index as i">
+                <tr>
+                  <td nzAlign="center">{{i + 1}}</td>
+                  <td nzAlign="left">{{ product.name }}</td>
+                  <td nzAlign="center">
+                    <nz-select class="_select" [(ngModel)]="product.ratio" (ngModelChange)="selecUnit(product, $event)">
+                      <nz-option class="_option" [nzValue]="unit.ratio" [nzLabel]="unit.unit"
+                        *ngFor="let unit of product.units"></nz-option>
+                    </nz-select>
+                  </td>
+                  <td nzAlign="right">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <button (click)="subQuantity(product)" [disabled]="product.quantity === 1" [ngStyle]="{
+                    opacity: product.quantity === 0? .5: 1
+                  }" nz-button nzType="primary" nzShape="circle"><i class="bi bi-dash"></i></button>
+                      <span role="button" (click)="editQuantity(product)"><b><u>{{
+                            product.quantity}}</u></b></span>
+                      <button (click)="addQuantity(product)" nz-button nzType="primary" nzShape="circle"><i
+                          class="bi bi-plus"></i></button>
+                    </div>
+                  </td>
+                  <td nzAlign="right">
+                    <span role="button" (click)="editPrice(product)">
+                      <b>
+                        <u>
+                          {{ vhAlgorithm.vhcurrencyunit(product.price ) }}
+                        </u>
+                      </b>
+                    </span>
+                  </td>
+                  <td nzAlign="right"> {{vhAlgorithm.vhcurrencyunit(product.price * product.quantity)}}</td>
+                  <td class="d-flex justify-content-around">
+                    <a (click)="daleteComboIngredients(product)">
+                      <i style="color: var(--ion-color-vh-red)" class="cus-icon" nz-icon nzType="delete" nzTheme="outline"
+                        nz-tooltip nzTooltipTitle="{{'xoa' | translate}}"></i>
+                    </a>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </nz-table>
+        </ng-container>
+      </ng-template>
+    </div>
+
+    <!-- <div class="_foot d-flex align-items-center justify-content-end">
+      <button class="_btn _btn_cancel d-flex align-items-center right-all-content mr-2" nz-button nzType="default"
+          (click)="close()">
+          {{'huy' | translate}}
+      </button>
+      <button  class="mr-2" nz-button nzType="primary"
+          (click)="close()"
+          class="_btn _btn_add d-flex align-items-center right-all-content mr-2" nz-button nzType="default">
+          {{'them' | translate}}
+      </button>
+  </div> -->
+</div>

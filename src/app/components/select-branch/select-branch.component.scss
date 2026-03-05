@@ -1,0 +1,33 @@
+//modal branch
+.modal-branch {
+    text-align: center;
+    margin-top: 20px;
+    &-complete {
+        margin-top: 8px;
+        padding: 8px;
+        left: 0;
+        bottom: 0;
+        background: var(--ion-color-vh-green);
+        color: var(--ion-color-vh-white);
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    div {
+        font-size: 0.9rem;
+    }
+    h3 {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    img {
+        width: 150px;
+        height: auto;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    nz-select {
+        width: 90%;
+    }
+
+}

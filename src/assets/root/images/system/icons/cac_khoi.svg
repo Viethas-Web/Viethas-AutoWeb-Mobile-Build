@@ -1,0 +1,9 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <defs>
+        <style>.cls-1{fill:#fff;}</style>
+    </defs>
+    <title>Menu trang thiet ke</title>
+    <path class="cls-1" d="M7.94,16.43V47.57H56.06V16.43ZM54.32,45.81H9.68V18.19H54.32Z"/>
+    <path class="cls-1" d="M32,43.33A11.33,11.33,0,1,0,20.81,32,11.27,11.27,0,0,0,32,43.33Zm0-20.9A9.57,9.57,0,1,1,22.55,32,9.52,9.52,0,0,1,32,22.43Z"/>
+    <path class="cls-1" d="M26.93,32.88h4.2v4.26a.87.87,0,1,0,1.74,0V32.88h4.2a.88.88,0,0,0,0-1.76h-4.2V26.86a.87.87,0,1,0-1.74,0v4.26h-4.2a.88.88,0,0,0,0,1.76Z"/>
+</svg>

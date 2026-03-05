@@ -1,0 +1,55 @@
+<div>
+  <div class="d-flex flex-row justify-content-between" style="gap:8px">
+    <h2 class="m-0" style="color: #008848">{{'them_nhom_thuoc_tinh' | translate}}</h2>
+    <div class="d-flex flex-row justify-content-between" style="gap:8px">
+      <app-select-language-config [isAdmin]="true"></app-select-language-config>
+    </div>
+  </div>
+  <div>
+    <div class="form_lot_product">
+      <nz-form-item class="mb-1 w-100">
+        <nz-form-label [nzSpan]="24">
+          <b>{{'ten_nhom_thuoc_tinh' | translate }}</b>
+          <span style="color:red">*</span>
+        </nz-form-label>
+        <nz-form-control [nzSpan]="24">
+          <input [(ngModel)]="groupProperty['name_' + functionService.languageTempCode]" nz-input  placeholder="{{'nhap_ten_nhom_thuoc_tinh' | translate }}" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="mb-1 w-100">
+        <div class="w-100 d-flex justify-content-between mt-1">
+          <b>{{'danh_sach_thuoc_tinh' | translate }}<span style="color:red">*</span></b>
+          <span role="button" nz-icon nzType="plus" nzTheme="outline" (click)="addProperty()"></span>
+        </div>
+      </nz-form-item>
+      <div style="height: 250px; overflow-y: auto;" class="w-100" class="_add_property_list">
+        <ul *ngIf="groupProperty['value_' + functionService.languageTempCode]?.length" class="m-0 p-0" >
+          <li class="example-box row m-0" *ngFor="let item of groupProperty['value_' + functionService.languageTempCode]; index as i">
+            <div class="col p-0 d-flex align-items-center">
+              <i class="bi bi-x mr-2 text-danger" nz-popconfirm [nzPopconfirmTitle]="('xoa_thuoc_tinh' | translate) + ' ' + item"
+                nzCancelText="{{'thoat' | translate}}" nzOkText="{{'dong_y' | translate}}" (nzOnConfirm)="deleteProperty(i)"></i>
+              <span class="p-0 m-0"> {{item}}</span>
+            </div>
+            <div>
+              <i class="bi bi-pencil-square mr-2 text-success" (click)="editProperty(item,i)"></i>
+            </div>
+          </li>
+        </ul>
+        <nz-empty *ngIf="!groupProperty['value_' + functionService.languageTempCode]?.length" [nzNotFoundContent]="null"></nz-empty>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end" style="gap: 1rem">
+    <button (click)="this.dialogRef.close(false)" nz-button class="nz-hover-border"
+      style="background-color: var(--ion-color-vh-white); color: var(--ion-color-vh-black)" nzType="default">
+      {{"thoat" | translate}}
+    </button>
+    <button [disabled]="(groupProperty['name_' + functionService.defaultLanguage]=='' || !groupProperty['name_' + functionService.defaultLanguage])" 
+      [ngStyle]="{opacity:(groupProperty['name_' + functionService.defaultLanguage]=='' || !groupProperty['name_' + functionService.defaultLanguage]) ? .5: 1}" 
+      nz-button class="nz-hover-border-green" (click)="addPropertyGroup()"
+      style="background-color: var(--ion-color-vh-green); color: var(--ion-color-vh-white)"
+    >
+      {{"them" | translate }}
+    </button>
+  </div>
+</div>

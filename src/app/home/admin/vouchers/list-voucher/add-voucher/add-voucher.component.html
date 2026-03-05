@@ -1,0 +1,111 @@
+<div class="field-add">
+    <span (click)="goBack()" style="cursor: pointer"><i class="bi bi-arrow-left"></i>Trở về</span>
+    <div class="heading">
+        <p class="title">{{'them_voucher' | translate}}</p>
+        <button class="button-add"   (click)="addVoucher()">
+            <span nz-icon nzType="save"
+                nzTheme="outline">
+            </span>{{'luu' | translate}}
+        </button>
+    </div>
+    <br>
+    <form class="content" [formGroup]="formVoucher">
+        <div class="form-fill">
+            <label class="text">{{'ten_voucher' | translate}}</label>
+            <input nz-input placeholder="{{'nhap_ten' | translate}}" formControlName="name" required />
+            <span class="text-error" *ngIf="formVoucher.get('name').invalid && (formVoucher.get('name').dirty || formVoucher.get('name').touched)">
+                * {{'vui_long_nhap_ten' | translate}}
+            </span>
+        </div>
+        <div class="form-fill">
+            <label class="text">{{'diem_quy_doi' | translate}}</label>
+            <input nz-input placeholder="Nhập điểm" formControlName="points" required />
+            <span class="text-error" *ngIf="formVoucher.get('points').invalid && (formVoucher.get('points').dirty || formVoucher.get('points').touched)">
+                * {{'vui_long_nhap_diem_quy_doi' | translate}}
+            </span>
+        </div>
+        <div class="form-fill">
+            <label class="text">{{'gia_niem_yet' | translate}}</label>
+            <input class="price_origin" nz-input placeholder="0 VNĐ" formControlName="price_origin" required />
+            <span class="text-error" *ngIf="formVoucher.get('price_origin').invalid && (formVoucher.get('price_origin').dirty || formVoucher.get('price_origin').touched)">
+                * {{'vui_long_gia' | translate}}
+            </span>
+        </div>
+        <div class="form-fill">
+            <label class="text">{{'don_vi' | translate}}</label>
+            <input nz-input placeholder="{{'nhap_don_vi' | translate}}" formControlName="unit" required />
+            <span class="text-error" *ngIf="formVoucher.get('unit').invalid && (formVoucher.get('unit').dirty || formVoucher.get('unit').touched)">
+                * {{'vui_long_nhap_don_vi' | translate}}
+            </span>
+        </div>
+    </form>
+</div>
+<br>
+<hr style="border-top: 1px solid #f7ecec;">
+<div class="field-add">
+    <div class="heading">
+        <p class="title">{{'san_pham_trong_voucher' | translate}}</p>
+        <button class="button-add" (click)="chooseProductVoucher()">+ {{'chon_san_pham' | translate}}</button>
+    </div>
+    <br>
+    <div class="body">
+        <nz-table #dataSet [nzData]="[1,2,3]">
+            <thead>
+                <tr>
+                    <th>{{'hinh_anh' | translate}}</th>
+                    <th>{{'ten_thanh_phan' | translate}}</th>
+                    <th>{{'don_vi' | translate}}</th>
+                    <th>{{'so_luong' | translate}}</th>
+                    <th>{{'gia_ban' | translate}}</th>
+                    <th>{{'gia_tong' | translate}}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td style="color: var(--ion-color-vh-green);font-weight: bold;">{{'gia_tri_voucher' | translate}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="color: var(--ion-color-vh-green);font-weight: bold;">{{
+                        vhAlgorithm.vhcurrencyunit(total)}}</td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let data of listProductChoosed;let i = index">
+                    <td>
+                        <img style="width: 32px;" [src]="data.imgs[0] ? data.imgs[0] : imgDefault">
+                    </td>
+                    <td>
+                        {{data.name}}
+                    </td>
+                    <td>
+                        <nz-select [(ngModel)]="data['unit_choosed']" (ngModelChange)="calculatePrice()" nzShowSearch nzPlaceHolder="{{'chon_don_vi' | translate}}">
+                            <nz-option *ngFor="let item of data['units']" nzLabel="{{item.unit}}" [nzValue]="item">
+                            </nz-option>
+                        </nz-select>
+                    </td>
+                    <td>
+                        <nz-input-number [nzStep]="1" [(ngModel)]="data.quantity" type="number" nz-input [nzMin]="1"
+                            [nzMax]="9999999999" (ngModelChange)="calculatePrice()"></nz-input-number>
+                    </td>
+                    <td>
+                        <input #price
+                            [value]="vhAlgorithm.vhcurrencyunit(data['unit_choosed'].price ? data['unit_choosed'].price : 0)"
+                            nz-input (ngModelChange)="calculatePrice()">
+                    </td>
+                    <td>
+                        {{ vhAlgorithm.vhcurrencyunit( data['unit_choosed'].price * data.quantity)}}
+                    </td>
+                    <td>
+                        <button style="background: none;padding: 10px;"><i class="bi bi-trash" style="color:red"
+                                (click)="deleteProduct(data)"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+
+
+

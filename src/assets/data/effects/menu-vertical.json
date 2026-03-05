@@ -1,0 +1,183 @@
+[
+  {
+    "label": "Không hiệu ứng",
+    "type": "none",
+    "data": [
+      {
+        "id": "000000",
+        "name": "Mặc định",
+        "animation": {
+          "animation-0": {
+            "--0h1f-transform": "translateY(0) translateX(0)",
+            "--0h1t-transform": "translateY(0) translateX(0)",
+            "--0h1f-opacity": "0",
+            "--0h1t-opacity": "1",
+            "--0h1f-visibility": "hidden",
+            "--0h1t-visibility": "visible",
+            "--0h1-animation": "menu-horizontal-animate-0h1 0s linear 1",
+            "--0h1-animation-fill-mode": "forwards",
+            "--0h-1t-z-index": "-1"
+          },
+          "animation-3" : {
+            "--0h3f-transform": "translateY(0) translateX(0)",
+            "--0h3t-transform": "translateY(0) translateX(0)",
+            "--0h3f-visibility": "hidden",
+            "--0h3t-visibility": "visible",
+            "--0h3-animation": "menu-horizontal-animate-0h3 0s linear 1",
+            "--0h3-animation-fill-mode": "forwards",
+            "--0h3f-opacity": "0",
+            "--0h3t-opacity": "1",
+             "--0h-3t-z-index": "-1"
+          }
+        },
+        "animation_sub": {
+          "animation-10": {}
+        }
+      }
+    ]
+  },
+  {
+    "label": "Khi rê chuột",
+    "type": "hover",
+    "data": [
+      {
+        "id": "000001",
+        "type": "1",
+        "name": "Đổi màu và gạch chân",
+        "animation": {
+          "animation-0": {
+            "--0h1f-transform": "translateY(0) translateX(0)",
+            "--0h1t-transform": "translateY(0) translateX(0)",
+            "--0h1f-opacity": "0",
+            "--0h1t-opacity": "1",
+            "--0h1f-visibility": "hidden",
+            "--0h1t-visibility": "visible",
+            "--0h1-animation": "menu-horizontal-animate-0h1 0s linear 1",
+            "--0h1-animation-fill-mode": "forwards",
+            "--0h-1t-z-index": "-1",
+
+            "--0h-color": "#ffffff",
+            "--0h-background-color": "#b6b6a4",
+            "--0-transition": "0.2s",
+            "--0h-transition": "0.2s",
+            "--0h-text-decoration-line": "underline",
+            "--0h-text-decoration-color": "#ffffff",
+            "--0h-text-decoration-thickness": "10%",
+            "--0h-text-underline-offset": "20%"
+          },
+          "animation-2": {
+            "--2-transition": "var(--0-transition)"
+          },
+          "animation-3" : {
+            "--0h3f-transform": "translateY(0) translateX(0)",
+            "--0h3t-transform": "translateY(0) translateX(0)",
+            "--0h3f-visibility": "hidden",
+            "--0h3t-visibility": "visible",
+            "--0h3-animation": "menu-horizontal-animate-0h3 0s linear 1",
+            "--0h3-animation-fill-mode": "forwards",
+            "--0h3f-opacity": "0",
+            "--0h3t-opacity": "1",
+             "--0h-3t-z-index": "-1"
+          }
+
+        },
+        "animation_sub": {
+          "animation-10": {
+            "--10h-background-color": "blue",
+            "--10h-color": "white",
+            "--10h-text-decoration-color": "white",
+            "--10h-text-decoration-thickness": "10%",
+            "--10h-text-underline-offset": "20%",
+            "--10h-text-decoration-line": "underline",
+            "--10-transition": "0.2s",
+            "--10h-transition": "0.2s"
+          }
+        },
+        "customize": [
+          {
+            "label": "mau_chu",
+            "var": "--0h-color",
+            "type": "color"
+          },
+          {
+            "label": "mau_nen",
+            "var": "--0h-background-color",
+            "type": "background-color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--0h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--0-transition",
+            "type": "transition"
+          },
+          {
+            "label": "kieu_gach_chan",
+            "var": "--0h-text-decoration-line",
+            "type": "text-decoration-line"
+          },
+          {
+            "label": "mau_gach_chan",
+            "var": "--0h-text-decoration-color",
+            "type": "color"
+          },
+          {
+            "label": "",
+            "var": "--0h-text-decoration-thickness",
+            "type": "text-decoration-thickness"
+          },
+          {
+            "label": "",
+            "var": "--0h-text-underline-offset",
+            "type": "text-underline-offset"
+          }
+        ],
+        "customize_sub": [
+          {
+            "label": "mau_chu",
+            "var": "--10h-color",
+            "type": "color"
+          },
+          {
+            "label": "mau_nen",
+            "var": "--10h-background-color",
+            "type": "background-color"
+          },
+          {
+            "label": "thoi_gian_bat_dau",
+            "var": "--10h-transition",
+            "type": "transition"
+          },
+          {
+            "label": "thoi_gian_ket_thuc",
+            "var": "--10-transition",
+            "type": "transition"
+          },
+          {
+            "label": "kieu_gach_chan",
+            "var": "--10h-text-decoration-line",
+            "type": "text-decoration-line"
+          },
+          {
+            "label": "mau_gach_chan",
+            "var": "--10h-text-decoration-color",
+            "type": "color"
+          },
+          {
+            "label": "",
+            "var": "--10h-text-decoration-thickness",
+            "type": "text-decoration-thickness"
+          },
+          {
+            "label": "",
+            "var": "--10h-text-underline-offset",
+            "type": "text-underline-offset"
+          }
+        ]
+      }
+    ]
+  }
+]

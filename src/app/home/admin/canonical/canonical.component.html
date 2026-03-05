@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="messenger-box">
+    <div>
+      <label for="url-canonical" class="input-label">{{'duong_dan_chinh_tac' | translate}}:</label>
+      <input id="url-canonical" class="input-field" placeholder="{{'nhap_duong_dan' | translate}}" [(ngModel)]="setup.url_canonical" />
+      <button class="_btn _btn_add d-flex align-items-center right-all-content" nz-button nzType="default" (click)="update()">{{'cap_nhat' | translate}}</button>
+    </div>
+  </div>
+</div>

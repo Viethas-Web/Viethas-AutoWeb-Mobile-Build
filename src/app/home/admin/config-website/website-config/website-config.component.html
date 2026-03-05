@@ -1,0 +1,25 @@
+<div style="width: 50%;margin: 0 auto;padding-top: 36px;">
+    <!-- <h3>Tiêu đề website</h3>
+    <input nz-input id="name" #name [(ngModel)]="commonData.title" (blur)="updateTitle(name.value)" /> -->
+    <h3>Favicon website (128x128)</h3>
+    <div class="_buttons_choose_image parent"  > 
+        <ng-container *ngIf="commonData.favicon; else elseTemplate">
+            <div class="child mb-4">
+                <button class="_btn_upload" (click)="getFile()">Tải lên</button>
+                <button class="_btn_media" (click)="openLibrary()">Chọn từ thư
+                    viện</button>
+            </div>
+            <img  [src]="commonData.favicon" alt="" width="100%">
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div class="child mb-4">
+                <button class="_btn_upload" (click)="getFile()">Tải lên</button>
+                <button class="_btn_media" (click)="openLibrary()">Chọn từ thư
+                    viện</button>
+            </div>
+        </ng-template>
+
+
+    </div>
+    <input style="display: none;" id="file-upload" type="file" accept=".png, .jpg" (change)="onUpload($event)" />
+</div>
