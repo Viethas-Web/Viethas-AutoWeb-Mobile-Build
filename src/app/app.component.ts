@@ -110,8 +110,10 @@ export class AppComponent {
       if (barcodes && barcodes.length > 0) {
         const scannedData = barcodes[0].rawValue;
         console.log('Dữ liệu QR code:', scannedData);
+        localStorage.setItem('id_subproject', scannedData as string);
         // alert('Quét QR successfully: ' + scannedData);
          this.initializeApp(scannedData as string);
+         this.is_database = true;
         // Bạn có thể xử lý dữ liệu ở đây, ví dụ: điều hướng hoặc hiển thị
       } else {
         alert('Không tìm thấy QR code nào. Vui lòng thử lại.');

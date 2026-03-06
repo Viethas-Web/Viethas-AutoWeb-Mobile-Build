@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, QueryLi
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationError, NavigationEnd, Router, Event } from '@angular/router';
 import { Platform } from '@ionic/angular';
-import { VhAlgorithm, VhEventMediator, VhQueryAutoWeb } from 'vhautowebdb';
+import { VhAlgorithm, VhAuth, VhEventMediator, VhOTP, VhQueryAutoWeb } from 'vhautowebdb';
 import { forkJoin } from 'rxjs';
 import { CartService } from 'vhobjects-user';
 import { FunctionService } from 'vhobjects-service/src/services';
@@ -11,6 +11,7 @@ import { AtwBlockPopupHoverBlank } from 'vhobjects-user';
 import { Meta, Title } from '@angular/platform-browser';
 // import { PipeBlockService } from 'src/app/services/pipeBlock.service';
 import { SelectBranchComponent } from 'src/app/components/select-branch/select-branch.component';
+import { BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 
 @Component({
   selector: 'app-home-blank',
@@ -56,30 +57,27 @@ export class HomeBlankComponent implements OnInit {
     private cartService: CartService,
     private changeDetectorRef: ChangeDetectorRef,
     private vhEventMediator: VhEventMediator,
-    private meta: Meta,
-    private title: Title,
+    private vhAuth: VhAuth,
+    private vhOTP: VhOTP,
     // public pipeBlockService: PipeBlockService
   ) {
+    this.syncData();
+  }
+
+  syncData() {
     this.vhQueryAutoWeb.syncCollections_Desktop()
       .then(() => {
         this.vhQueryAutoWeb.localStorageSET('back_page_url', []);
         this.checkOnAuthStateChangedEndUser();
-        this.vhQueryAutoWeb.getSetups_byFields({ type: { $eq: 'website-config' } })
-          .then((docs: any) => {
-            if (docs.length) {
-              localStorage.setItem('vh-autoweb-website-title', docs[0].title);
-              this.updateFavicon(docs[0].favicon)
-
-            }
-          }, (err) => {
-            // chưa có dữu liệu
-            console.log(err);
-          });
 
         this.checkBranch()
         /*************************************************************************************************************************/
         //phần này get dữ liệu getlocalSubProject
         this.subproject = this.vhQueryAutoWeb.getlocalSubProject_Working();
+        if (!this.subproject) {
+          return;
+
+        }
         this.resolution = this.subproject.resolution;
         // gán dữ liệu scrollbar mặc định cho page  nếu chưa có
         if (!this.subproject.resolution[this.deviceDisplay + '_class']['scrollbar']) {
@@ -94,322 +92,24 @@ export class HomeBlankComponent implements OnInit {
         }
         this.resolution.zoom = 1
         // gán thiết bị thiết kế cần hiển thị
-        if (platform.is('ipad') || platform.is('tablet') && !platform.is('desktop')) {
-          if (platform.isLandscape()) this.currentDeviceShow = 'tablet_landscape';
+        if (this.platform.is('ipad') || this.platform.is('tablet') && !this.platform.is('desktop')) {
+          if (this.platform.isLandscape()) this.currentDeviceShow = 'tablet_landscape';
           else this.currentDeviceShow = 'tablet_portrait';
         }
-        else if (platform.is('iphone') || platform.is('ios') || platform.is('android') || platform.is('mobileweb') || platform.is('mobile') || platform.is('phablet')) {
-          if (platform.isLandscape()) this.currentDeviceShow = 'mobile_landscape';
+        else if (this.platform.is('iphone') || this.platform.is('ios') || this.platform.is('android') || this.platform.is('mobileweb') || this.platform.is('mobile') || this.platform.is('phablet')) {
+          if (this.platform.isLandscape()) this.currentDeviceShow = 'mobile_landscape';
           else this.currentDeviceShow = 'mobile_portrait';
         }
         else this.currentDeviceShow = 'desktop';
 
-        Promise.resolve().then(() => {
-          // bắt sự thay đổi link trên router để get lại danh sách blocks của trang tương ứng
-          this.route.params.subscribe((routeParam) => {
-            // console.log('this.router.url.split', this.router.url.split('/')[2]);
-            // xử lý thẻ canonical nếu ko có link_object
-            if (!this.router.url.split('/')[2]) {
-
-              // console.log('set canonical link');
-              const canonicalLink: HTMLLinkElement = document.querySelector("link[rel='canonical']") || document.createElement('link');
-              let baseUrl = window.location.origin;
-              this.vhQueryAutoWeb.getSetups_byFields({ type: { $eq: 'url_canonical' } }).then((docs: any) => {
-                if (docs.length) {
-                  if (docs[0]?.url_canonical) baseUrl = docs[0]?.url_canonical;
-                }
-                const currentPath = this.router.url.split('?')[0]; // loại bỏ query param nếu cần
-                canonicalLink.setAttribute('rel', 'canonical');
-                canonicalLink.setAttribute('href', baseUrl + currentPath);
-                if (!canonicalLink.parentNode) {
-                  document.head.appendChild(canonicalLink);
-                }
-              });
-            }
-            // console.log('this.router.url------', this.router.url);
-            if (routeParam.link_page == undefined) this.router.navigate(['', '']);
-            // lấy dữ liệu của page để gán SEO cho trang nếu có
-            this.vhQueryAutoWeb.getPage_byLink(routeParam.link_page ? routeParam.link_page : '')
-              .then((page: any) => {
-                if (!page) {
-                  // console.log('page ko tồn tại, kiểm tra redirect', this.router.url);
-                  this.vhQueryAutoWeb.getURLRedirects_byFields_byPages({ old_url: { $eq: this.router.url } }).then((res: any) => {
-                    // console.log('res', res);
-                    if (res.data.length) {
-                      window.location.href = res.data[0].current_url;
-                    }
-                    else {
-                      // lấy trang 404 nếu không tìm thấy trang
-                      this.vhQueryAutoWeb.getPages_byFields({
-                        type: { $eq: 'not_found' },
-                        default: { $eq: true },
-                      })
-                        .then((pages: Array<any>) => {
-
-                          if (pages.length != 0) {
-                            this.vhQueryAutoWeb.getDetailPage(pages[0]._id)
-                              .then((page) => {
-                                this.detailPage = page;
-                                this.getBlockPage();
-                              })
-
-                          }
-                          else {
-                            this.router.navigate(['/page-not-found']);
-                          }
-                        });
-                    }
-                  })
-                  return;
-                }
-                if (page?.seo && page?.seo?.['title_' + this.functionService.selectedLanguageCode]) this.title.setTitle(page?.seo?.['title_' + this.functionService.selectedLanguageCode]);
-                else {
-                  const titleTag = document.querySelector('title');
-                  if (titleTag) {
-                    titleTag.remove();
-                  }
-                }
-                // description
-                if (page?.seo && page?.seo?.['description_' + this.functionService.selectedLanguageCode]) {
-                  this.meta.updateTag({ name: 'description', content: page?.seo?.['description_' + this.functionService.selectedLanguageCode] });
-                }
-                else {
-
-                  const metaDescription = document.querySelector('meta[name="description"]');
-                  if (metaDescription) {
-                    metaDescription.remove();
-                  }
-                }
-                // keywords
-                if (page?.seo && page?.seo?.['keywords_' + this.functionService.selectedLanguageCode]) this.meta.updateTag({ name: 'keywords', content: page?.seo?.['keywords_' + this.functionService.selectedLanguageCode] });
-                else {
-
-                  const metaDescription = document.querySelector('meta[name="keywords"]');
-                  if (metaDescription) {
-                    metaDescription.remove();
-                  }
-                }
-
-                // title khi copy để gửi qua mạng xã hội
-                if (page?.seo && page?.seo?.['og_title_' + this.functionService.selectedLanguageCode]) this.meta.updateTag({ property: 'og:title', content: page?.seo?.['og_title_' + this.functionService.selectedLanguageCode] });
-                else {
-                  const ogTitleMeta = document.querySelector('meta[property="og:title"]');
-                  if (ogTitleMeta) {
-                    ogTitleMeta.remove();
-                  }
-
-                }
-                // description khi copy để gửi qua mạng xã hội
-                if (page?.seo && page?.seo?.['og_description_' + this.functionService.selectedLanguageCode]) this.meta.updateTag({ property: 'og:description', content: page?.seo?.['og_description_' + this.functionService.selectedLanguageCode] });
-                else {
-
-                  const ogTitleMeta = document.querySelector('meta[property="og:description"]');
-                  if (ogTitleMeta) {
-                    ogTitleMeta.remove();
-                  }
-
-                }
-
-                // code tạm gán script cho page có _id = "685e5ff8fff6f2bd871b1f4c" , sau này hoàn thiện sẽ xóa
-                if (page && page._id == "685e5ff8fff6f2bd871b1f4c") {
-                  //  Thêm script event conversion
-                  const conversionScript = this.renderer.createElement('script');
-                  conversionScript.text = `
-                                          gtag('event', 'conversion', {'send_to': 'AW-10833430906/yh56CIf5gYIYEPqS5K0o'});
-                                        `;
-                  this.renderer.appendChild(document.head, conversionScript);
-                }
-                this.embeddedScriptsForPage(page);
-              })
-            this.route.firstChild?.params.subscribe((routeParam) => {
-              if (routeParam.link_object) {
-                let link_data = routeParam.link_object;
-                if (link_data) {
-                  // get dữ liệu của các ngành hàng để gán SEO cho trang động
-                  Promise.all([
-                    this.vhQueryAutoWeb.getCategorys_byFields({ link: { $eq: link_data } }),
-                    this.vhQueryAutoWeb.getProducts_byFields({ link: { $eq: link_data } }),
-                    this.vhQueryAutoWeb.getNewss_byFields({ link: { $eq: link_data } }),
-                    this.vhQueryAutoWeb.getFoods_byFields({ link: { $eq: link_data } }),
-                    this.vhQueryAutoWeb.getServices_byFields({ link: { $eq: link_data } }),
-                    this.vhQueryAutoWeb.getWebApps_byFields({ link: { $eq: link_data } }),
-                  ]).then((results: any) => {
-
-
-                    // lấy dữ liệu từ kết quả trả về của 1 trong các query
-                    let data = results.map(r => r?.data).find(arr => Array.isArray(arr) && arr.length > 0) || [];
-                    // console.log('data', data);
-                    // xử lý thẻ canonical nếu có url_canonical
-                    if (data.length && data[0] && data[0].url_canonical) {
-                      // console.log('set canonical link 2 ');
-                      // console.log('data[0].url_canonical', data[0].url_canonical);
-                      const canonicalLink: HTMLLinkElement = document.querySelector("link[rel='canonical']") || document.createElement('link');
-                      canonicalLink.setAttribute('rel', 'canonical');
-                      canonicalLink.setAttribute('href', data[0].url_canonical);
-                      if (!canonicalLink.parentNode) {
-                        document.head.appendChild(canonicalLink);
-                      }
-                    }
-                    else {
-                      // console.log('set canonical link 3');
-                      const canonicalLink: HTMLLinkElement = document.querySelector("link[rel='canonical']") || document.createElement('link');
-                      let baseUrl = window.location.origin;
-                      this.vhQueryAutoWeb.getSetups_byFields({ type: { $eq: 'url_canonical' } }).then((docs: any) => {
-                        if (docs.length) {
-                          if (docs[0]?.url_canonical) baseUrl = docs[0]?.url_canonical;
-                        }
-                        const currentPath = this.router.url.split('?')[0]; // loại bỏ query param nếu cần
-                        canonicalLink.setAttribute('rel', 'canonical');
-                        canonicalLink.setAttribute('href', baseUrl + currentPath);
-                        if (!canonicalLink.parentNode) {
-                          document.head.appendChild(canonicalLink);
-                        }
-                      });
-                    }
-
-                    // nếu có dữ liệu thì gán SEO cho trang
-                    if (data.length && data[0]) {
-                      if (data[0]['webapp_seo_title_' + this.functionService.selectedLanguageCode]) this.title.setTitle(data[0]['webapp_seo_title_' + this.functionService.selectedLanguageCode]);
-                      else {
-                        const titleTag = document.querySelector('title');
-                        if (titleTag) {
-                          titleTag.remove();
-                        }
-                      }
-                      if (data[0]['webapp_seo_description_' + this.functionService.selectedLanguageCode])
-                        this.meta.updateTag({ name: 'description', content: data[0]['webapp_seo_description_' + this.functionService.selectedLanguageCode] });
-
-                      else {
-                        const metaDescription = document.querySelector('meta[name="description"]');
-                        if (metaDescription) {
-                          metaDescription.remove();
-                        }
-                      }
-                      if (data[0]['webapp_seo_keyword_' + this.functionService.selectedLanguageCode])
-                        this.meta.updateTag({ name: 'keywords', content: data[0]['webapp_seo_keyword_' + this.functionService.selectedLanguageCode] });
-                      else {
-
-                        const metaDescription = document.querySelector('meta[name="keywords"]');
-                        if (metaDescription) {
-                          metaDescription.remove();
-                        }
-                      }
-
-
-                    }
-                  }).catch((error) => {
-                    console.error('Error fetching data:', error);
-                  });
-                }
-
-              }
-            });
-
-
-            // gán lại thiết bị cần hiển thị hợp lý, vd: đang ở thiet bị tablet ngang nhưng ko thiết kế giao diện này sẽ hiển thị desktop
-            this.handleGetDeviceValid().then((device) => {
-              this.deviceDisplay = device;
-              // load lần đầu tiên vào trang web sẽ get dữ liệu page ở fontend
-              if (!this.thefirst) {
-                this.thefirst++;
-                this.checkMaintenance(routeParam)
-                this.handleSetLanguageCode()
-                this.getEmbeddedScripts();
-              } else { // khi router qua các trang khác sẽ pipeDetailPage_byLink trong fw để hiển thị các blocks của trang đó  
-                this.vhQueryAutoWeb.pipeDetailPage_byLink(routeParam.link_page ? routeParam.link_page : '')
-                  .then(() => {
-                    //Loại bỏ những block ko được phép hiển thị
-                    this.detailPage.blocks = this.detailPage.blocks.filter(e => !e[this.deviceDisplay + '_hidden'])
-                    // sort lại danh sách block theo position từ nhỏ tới lớn 
-                    this.detailPage.blocks.sort((a: any, b: any) => {
-                      const aPosition = a?.[`${this.deviceDisplay}_position_${this.detailPage._id}`]?.top ?? 0;
-                      const bPosition = b?.[`${this.deviceDisplay}_position_${this.detailPage._id}`]?.top ?? 0;
-
-                      return aPosition - bPosition; // Sắp xếp tăng dần theo giá trị top
-                    });
-                    let exist = true;
-                    //Giữ lại các block giống nhau trong this.blocks_of_page và this.detailPage.blocks
-                    for (let i = 0; i < this.blocks_of_page.length; i++) {
-                      exist = false;
-                      for (let j = 0; j < this.detailPage.blocks.length; j++) {
-                        if (this.blocks_of_page[i]._id == this.detailPage.blocks[j]._id) {
-                          this.blocks_of_page[i] = this.detailPage.blocks[j];
-                          exist = true;
-                          break;
-                        }
-                      }
-                      if (!exist) this.blocks_of_page[i] = null;
-                    }
-                    this.blocks_of_page = [...this.blocks_of_page.filter(e => e != null)];
-                    //Thêm vào các block mới mà this.detailPage.blocks có và this.blocks_of_page ko có
-                    for (let i = 0; i < this.detailPage.blocks.length; i++) {
-                      exist = false;
-                      for (let j = 0; j < this.blocks_of_page.length; j++) {
-                        if (this.detailPage.blocks[i]._id == this.blocks_of_page[j]._id) {
-                          exist = true;
-                        }
-                      }
-                      if (!exist) this.blocks_of_page.push(this.detailPage.blocks[i]);
-                    }
-                    this.processConvert();
-
-                    // gán lại header footer nếu có sự thay đổi
-                    this.handleFreeBlocks();
-
-                  })
-              }
-            })
-          });
-        })
 
       })
   }
 
 
-
   ngOnInit(): void {
   }
 
-  getEmbeddedScripts() {
-
-    this.vhQueryAutoWeb.getSetups_byFields({ type: { $eq: 'embedded_script' } })
-      .then((res: any) => {
-        if (res.length) {
-          res.forEach(ele => {
-            const target = ele.data_type === 'header' ? document.head : document.body; // 👈 chọn nơi gắn script
-
-            // Regex để phân biệt script nội dung và script có src
-            const scriptRegex = /<script[^>]*>([\s\S]*?)<\/script>/gi;
-            const srcRegex = /<script[^>]*src=["']([^"']+)["'][^>]*><\/script>/i;
-            const matchSrc = ele.data.match(srcRegex);
-
-            if (matchSrc && matchSrc[1]) {
-              // Trường hợp script có src
-              const script = this.renderer.createElement('script');
-              script.type = 'text/javascript';
-              script.src = matchSrc[1];
-              this.renderer.appendChild(target, script);
-              this.embeddedScripts.push(script);
-            } else {
-              // Trường hợp script có nội dung trực tiếp
-              const matchContent = ele.data.match(scriptRegex);
-              if (matchContent && matchContent.length) {
-                matchContent.forEach(scriptTag => {
-                  const innerContent = /<script[^>]*>([\s\S]*?)<\/script>/i.exec(scriptTag);
-                  if (innerContent && innerContent[1]) {
-                    const script = this.renderer.createElement('script');
-                    script.type = 'text/javascript';
-                    script.text = innerContent[1];
-                    this.renderer.appendChild(target, script);
-                    this.embeddedScripts.push(script);
-                  }
-                });
-              }
-            }
-          });
-        }
-      });
-  }
   handleSetLanguageCode() {
     this.vhQueryAutoWeb.localStorageSET('multi_languages', { multi_languages: [] });
     if (!this.vhQueryAutoWeb.localStorageGET('language_code')?.code || !this.vhQueryAutoWeb.localStorageGET('default_language')) {
@@ -646,7 +346,7 @@ export class HomeBlankComponent implements OnInit {
     //   this.block_chat_box = this.detailPage.freeblocks.find(e => e._id == this.detailPage[this.deviceDisplay + '_config'].id_block_chatbox);
     // }
     if (this.detailPage[this.deviceDisplay + '_config'].id_block_chatboxs?.length) {
-      this.block_chat_boxs = this.detailPage.freeblocks.filter(block => 
+      this.block_chat_boxs = this.detailPage.freeblocks.filter(block =>
         this.detailPage[this.deviceDisplay + '_config'].id_block_chatboxs.includes(block._id)
       );
     } else this.block_chat_boxs = [];
@@ -943,108 +643,51 @@ export class HomeBlankComponent implements OnInit {
     this.functionService.recursiveAdjustMargin(marginData, blocks, index, this.deviceDisplay, deltaHeight);
   }
 
-  /**
-   * hàm này để set lại favicon(là hình ảnh nhỏ trên tab chrome) cho trang web
-   * @param url đường dẫn hình ảnh
-   */
-  updateFavicon(url: string): void {
-    const linkElement = document.querySelector("link[rel~='icon']");
-
-    // Xác định type dựa vào phần mở rộng file
-    const extension = url.split('.').pop()?.toLowerCase();
-    let type = 'image/png'; // Mặc định
-
-    switch (extension) {
-      case 'png':
-        type = 'image/png';
-        break;
-      case 'jpg':
-      case 'jpeg':
-        type = 'image/jpeg';
-        break;
-      case 'ico':
-        type = 'image/x-icon';
-        break;
-      case 'svg':
-        type = 'image/svg+xml';
-        break;
-      default:
-        type = 'image/png'; // fallback nếu không rõ
-        break;
-    }
-
-    if (linkElement) {
-      this.renderer.setAttribute(linkElement, 'href', url);
-      this.renderer.setAttribute(linkElement, 'type', type);
-    }
+  scanQR() {
+    this.scanQRCode();
   }
 
-  public embeddedScriptsForPage(page): void {
-    if (!page?._id) {
-      console.warn('⚠️ detailPage chưa có _id');
-      return;
+  async scanQRCode() {
+    try {
+      // Kiểm tra xem camera có được hỗ trợ không
+      const { supported } = await BarcodeScanner.isSupported();
+      if (!supported) {
+        alert('Camera không được hỗ trợ trên thiết bị này.');
+        console.error('Camera không được hỗ trợ trên thiết bị này.');
+        return;
+      }
+
+      // Yêu cầu quyền camera
+      const { camera } = await BarcodeScanner.requestPermissions();
+      if (camera !== 'granted') {
+        alert('Vui lòng cấp quyền truy cập camera để quét QR code.\n\nBạn có thể cấp quyền trong Cài đặt ứng dụng.');
+        console.error('Quyền truy cập camera bị từ chối.');
+        return;
+      }
+
+      // Mở camera để quét barcode
+      const { barcodes } = await BarcodeScanner.scan();
+      if (barcodes && barcodes.length > 0) {
+        const scannedData = barcodes[0].rawValue;
+        console.log('Dữ liệu QR code:', scannedData);
+        // alert('Quét QR successfully: ' + scannedData);
+        this.vhAuth.initializeBuildProject('vhdevweb', 'mongo', 'viethas', 'mongo', 'commercial', 'research', 240415, scannedData)
+          .then(() => {
+            console.log('hello initializeApp');
+
+            this.vhQueryAutoWeb.localStorageSET('back_page_url', []);
+            this.vhOTP.initializeProject('Youtube');
+            this.syncData();
+          })
+
+        // Bạn có thể xử lý dữ liệu ở đây, ví dụ: điều hướng hoặc hiển thị
+      } else {
+        alert('Không tìm thấy QR code nào. Vui lòng thử lại.');
+        console.log('Không tìm thấy barcode nào.');
+      }
+    } catch (error) {
+      console.error('Lỗi khi quét QR code:', error);
+      alert('Lỗi khi quét QR code: ' + (error instanceof Error ? error.message : 'Unknown error'));
     }
-
-    const query = {
-      type: { $eq: 'embedded_script_object' },
-      data_type: { $eq: 'page' },
-      page_id: { $eq: page._id }
-    };
-
-    this.vhQueryAutoWeb.getSetups_byFields(query).then((res: any) => {
-      if (!res?.length) return;
-
-      res.forEach((item: any) => {
-        if (!item.active || !item.data) return;
-
-        const data = item.data.trim();
-
-        if (this.functionService.checkInvalidScript(data)) {
-          console.warn('Script không hợp lệ, bỏ qua:', data);
-          return;
-        }
-
-        // 🔍 Kiểm tra nếu script có src
-        const srcRegex = /<script[^>]*src=["']([^"']+)["'][^>]*><\/script>/i;
-        const matchSrc = data.match(srcRegex);
-
-        if (matchSrc && matchSrc[1]) {
-          // Nếu là script có src
-          const src = matchSrc[1];
-          // Kiểm tra trùng src để tránh load lại
-          if (document.querySelector(`script[src="${src}"]`)) {
-            console.log('Script đã tồn tại:', src);
-            return;
-          }
-
-          const script = document.createElement('script');
-          script.type = 'text/javascript';
-          script.src = src;
-          script.async = false; // đảm bảo chạy theo thứ tự
-          document.body.appendChild(script);
-        } else {
-          // Nếu là script nội dung inline
-          const contentRegex = /<script[^>]*>([\s\S]*?)<\/script>/gi;
-          const matches = [...data.matchAll(contentRegex)];
-
-          if (matches.length) {
-            matches.forEach(m => {
-              const scriptEl = document.createElement('script');
-              scriptEl.type = 'text/javascript';
-              scriptEl.text = m[1];
-              document.body.appendChild(scriptEl);
-            });
-          } else {
-            // Nếu data chỉ là JS code, không có thẻ <script>
-            const scriptEl = document.createElement('script');
-            scriptEl.type = 'text/javascript';
-            scriptEl.text = data;
-            document.body.appendChild(scriptEl);
-          }
-        }
-      });
-    }).catch(err => {
-      console.error('Lỗi khi load script page:', err);
-    });
   }
 }
