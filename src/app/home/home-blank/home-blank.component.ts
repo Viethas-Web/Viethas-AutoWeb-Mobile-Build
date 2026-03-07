@@ -102,6 +102,64 @@ export class HomeBlankComponent implements OnInit {
         }
         else this.currentDeviceShow = 'desktop';
 
+        Promise.resolve().then(() => {
+
+          this.route.params.subscribe((routeParam) => {
+            // gán lại thiết bị cần hiển thị hợp lý, vd: đang ở thiet bị tablet ngang nhưng ko thiết kế giao diện này sẽ hiển thị desktop
+            this.handleGetDeviceValid().then((device) => {
+              this.deviceDisplay = device;
+              // load lần đầu tiên vào trang web sẽ get dữ liệu page ở fontend
+              if (!this.thefirst) {
+                this.thefirst++;
+                this.checkMaintenance(routeParam)
+                this.handleSetLanguageCode()
+              } else { // khi router qua các trang khác sẽ pipeDetailPage_byLink trong fw để hiển thị các blocks của trang đó  
+                this.vhQueryAutoWeb.pipeDetailPage_byLink(routeParam.link_page ? routeParam.link_page : '')
+                  .then(() => {
+                    //Loại bỏ những block ko được phép hiển thị
+                    this.detailPage.blocks = this.detailPage.blocks.filter(e => !e[this.deviceDisplay + '_hidden'])
+                    // sort lại danh sách block theo position từ nhỏ tới lớn 
+                    this.detailPage.blocks.sort((a: any, b: any) => {
+                      const aPosition = a?.[`${this.deviceDisplay}_position_${this.detailPage._id}`]?.top ?? 0;
+                      const bPosition = b?.[`${this.deviceDisplay}_position_${this.detailPage._id}`]?.top ?? 0;
+
+                      return aPosition - bPosition; // Sắp xếp tăng dần theo giá trị top
+                    });
+                    let exist = true;
+                    //Giữ lại các block giống nhau trong this.blocks_of_page và this.detailPage.blocks
+                    for (let i = 0; i < this.blocks_of_page.length; i++) {
+                      exist = false;
+                      for (let j = 0; j < this.detailPage.blocks.length; j++) {
+                        if (this.blocks_of_page[i]._id == this.detailPage.blocks[j]._id) {
+                          this.blocks_of_page[i] = this.detailPage.blocks[j];
+                          exist = true;
+                          break;
+                        }
+                      }
+                      if (!exist) this.blocks_of_page[i] = null;
+                    }
+                    this.blocks_of_page = [...this.blocks_of_page.filter(e => e != null)];
+                    //Thêm vào các block mới mà this.detailPage.blocks có và this.blocks_of_page ko có
+                    for (let i = 0; i < this.detailPage.blocks.length; i++) {
+                      exist = false;
+                      for (let j = 0; j < this.blocks_of_page.length; j++) {
+                        if (this.detailPage.blocks[i]._id == this.blocks_of_page[j]._id) {
+                          exist = true;
+                        }
+                      }
+                      if (!exist) this.blocks_of_page.push(this.detailPage.blocks[i]);
+                    }
+                    this.processConvert();
+
+                    // gán lại header footer nếu có sự thay đổi
+                    this.handleFreeBlocks();
+
+                  })
+              }
+            })
+          })
+
+        })
 
       })
   }
@@ -201,7 +259,7 @@ export class HomeBlankComponent implements OnInit {
    * @param routeParam 
    */
   checkMaintenance(routeParam) {
-    this.getPage(routeParam.link_page);
+    this.getPage('');
     // kiểm tra có cấu hình hiển thị trang bảo trì thì chuyển qua trang bảo trì
     this.vhQueryAutoWeb
       .getSetups_byFields({ type: { $eq: 'maintenance' } })

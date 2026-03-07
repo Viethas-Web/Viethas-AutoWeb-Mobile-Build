@@ -51,6 +51,7 @@ export class AppComponent {
               console.warn('Route not found:', event.url);
               this.router.navigate(['/page-not-found']);
             }
+            else  this.router.navigate(['/']);
           }
         });
         this.vhQueryAutoWeb.localStorageSET('back_page_url', []);
