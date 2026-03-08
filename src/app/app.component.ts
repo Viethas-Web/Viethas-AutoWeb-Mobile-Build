@@ -40,7 +40,7 @@ export class AppComponent {
 
   /**Khởi tạo app */
   private initializeApp(id_subproject: string = '664483e744da7a03b4d5e1a2') {
-    this.vhAuth.initializeBuildProject('vhdevweb', 'mongo', 'viethas', 'mongo', 'commercial', 'research', 240415, id_subproject)
+    this.vhAuth.initializeBuildProject_Mobile('vhdevweb', 'mongo', 'viethas', 'file', 'commercial', 'research', 240415, id_subproject, '1234.webappgiare.vn')
       .then(() => {
         console.log('hello initializeApp');
 
