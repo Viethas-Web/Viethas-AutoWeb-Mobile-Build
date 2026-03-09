@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -75,6 +76,7 @@ export class HomeBlankComponent implements OnInit {
         //phần này get dữ liệu getlocalSubProject
         this.subproject = this.vhQueryAutoWeb.getlocalSubProject_Working();
         if (!this.subproject) {
+          localStorage.setItem('vhautoweb_data', '');
           return;
 
         }
@@ -727,12 +729,13 @@ export class HomeBlankComponent implements OnInit {
       const { barcodes } = await BarcodeScanner.scan();
       if (barcodes && barcodes.length > 0) {
         const scannedData = barcodes[0].rawValue;
-        console.log('Dữ liệu QR code:', scannedData);
+        console.log('Dữ liệu QR code:', JSON.parse(scannedData));
         // alert('Quét QR successfully: ' + scannedData);
-        this.vhAuth.initializeBuildProject('vhdevweb', 'mongo', 'viethas', 'mongo', 'commercial', 'research', 240415, scannedData)
+        this.vhAuth.initializeBuildProject_Mobile('vhdevweb', 'mongo', 'viethas', 'mongo', 'commercial', 'research', 240415, JSON.parse(scannedData).id_subproject, JSON.parse(scannedData).hosting)
           .then(() => {
             console.log('hello initializeApp');
 
+            localStorage.setItem('vhautoweb_data', scannedData);
             this.vhQueryAutoWeb.localStorageSET('back_page_url', []);
             this.vhOTP.initializeProject('Youtube');
             this.syncData();

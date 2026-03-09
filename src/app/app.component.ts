@@ -20,7 +20,6 @@ export class AppComponent {
     private translateService: TranslateService,
     private languageService: LanguageService,
   ) {
-      // this.initializeApp(localStorage.getItem('id_subproject') as string);
     this.setDefaultCurrency();
   }
 
@@ -28,19 +27,19 @@ export class AppComponent {
 
   ngOnInit() {
     this.selectLang('vi')
-    if (localStorage.getItem('id_subproject')) {
+    if (localStorage.getItem('vhautoweb_data')) {
       this.is_database = true;
-      this.initializeApp(localStorage.getItem('id_subproject') as string);
+      this.initializeApp(JSON.parse(localStorage.getItem('vhautoweb_data')));
     }
-    else{
+    else {
       this.is_database = false;
     }
-      // this.initializeApp(localStorage.getItem('id_subproject') as string);
+    // this.initializeApp(localStorage.getItem('id_subproject') as string);
   }
 
   /**Khởi tạo app */
-  private initializeApp(id_subproject: string = '664483e744da7a03b4d5e1a2') {
-    this.vhAuth.initializeBuildProject_Mobile('vhdevweb', 'mongo', 'viethas', 'file', 'commercial', 'research', 240415, id_subproject, '1234.webappgiare.vn')
+  private initializeApp(data) {
+    this.vhAuth.initializeBuildProject_Mobile('vhdevweb', 'mongo', 'viethas', 'file', 'commercial', 'research', 240415, data.id_subproject, data.hosting)
       .then(() => {
         console.log('hello initializeApp');
 
@@ -51,7 +50,7 @@ export class AppComponent {
               console.warn('Route not found:', event.url);
               this.router.navigate(['/page-not-found']);
             }
-            else  this.router.navigate(['/']);
+            else this.router.navigate(['/']);
           }
         });
         this.vhQueryAutoWeb.localStorageSET('back_page_url', []);
@@ -84,37 +83,61 @@ export class AppComponent {
     this.languageService.switchLanguage(value)
   }
 
-  scanQR(){
+  scanQR() {
     this.scanQRCode();
   }
 
   async scanQRCode() {
     try {
+      console.log('Checking if barcode scanning is supported...');
       // Kiểm tra xem camera có được hỗ trợ không
       const { supported } = await BarcodeScanner.isSupported();
+      console.log('Supported:', supported);
       if (!supported) {
         alert('Camera không được hỗ trợ trên thiết bị này.');
         console.error('Camera không được hỗ trợ trên thiết bị này.');
         return;
       }
+      const module = await BarcodeScanner.isGoogleBarcodeScannerModuleAvailable();
 
+      if (!module.available) {
+        await BarcodeScanner.installGoogleBarcodeScannerModule();
+      }
+
+      // Kiểm tra camera hardware
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        console.log('Video devices:', videoDevices);
+        if (videoDevices.length === 0) {
+          alert('Không tìm thấy camera trên thiết bị này.');
+          return;
+        }
+      } catch (e) {
+        console.warn('Cannot enumerate devices:', e);
+      }
+
+      console.log('Requesting camera permissions...');
       // Yêu cầu quyền camera
       const { camera } = await BarcodeScanner.requestPermissions();
+      console.log('Camera permission:', camera);
       if (camera !== 'granted') {
         alert('Vui lòng cấp quyền truy cập camera để quét QR code.\n\nBạn có thể cấp quyền trong Cài đặt ứng dụng.');
         console.error('Quyền truy cập camera bị từ chối.');
         return;
       }
 
+      console.log('Starting barcode scan...');
       // Mở camera để quét barcode
       const { barcodes } = await BarcodeScanner.scan();
+      console.log('Scan result:', barcodes);
       if (barcodes && barcodes.length > 0) {
         const scannedData = barcodes[0].rawValue;
         console.log('Dữ liệu QR code:', scannedData);
-        localStorage.setItem('id_subproject', scannedData as string);
+        localStorage.setItem('vhautoweb_data', scannedData);
         // alert('Quét QR successfully: ' + scannedData);
-         this.initializeApp(scannedData as string);
-         this.is_database = true;
+        this.initializeApp(JSON.parse(scannedData));
+        this.is_database = true;
         // Bạn có thể xử lý dữ liệu ở đây, ví dụ: điều hướng hoặc hiển thị
       } else {
         alert('Không tìm thấy QR code nào. Vui lòng thử lại.');
@@ -122,7 +145,11 @@ export class AppComponent {
       }
     } catch (error) {
       console.error('Lỗi khi quét QR code:', error);
-      alert('Lỗi khi quét QR code: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      if (error instanceof Error && error.message.includes('Failed to scan code')) {
+        alert('Không thể mở camera để quét QR code. Vui lòng kiểm tra camera của thiết bị và thử lại.');
+      } else {
+        alert('Lỗi khi quét QR code: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      }
     }
   }
 }
